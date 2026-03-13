@@ -1,0 +1,21 @@
+{
+  "experiment": "baseline_hetlora_seed42",
+  "policy": "static_tier",
+  "num_clients": 10,
+  "num_rounds": 3,
+  "total_communication_bytes": 198246400,
+  "total_communication_mb": 189.0625,
+  "battery_summary": {
+    "active_clients": 10,
+    "dropped_clients": 0,
+    "dropout_rate": 0.0,
+    "avg_battery": 55.98872023780181,
+    "min_battery": 21.10079872977503,
+    "total_energy_wh": 3.5999999999999996,
+    "avg_energy_per_client": 0.36,
+    "energy_std": 0.3631803959466975,
+    "jain_fairness_index": 0.49560229445506687,
+    "avg_rounds_participated": 0.9
+  },
+  "final_avg_loss": 1.2713550840105328
+}

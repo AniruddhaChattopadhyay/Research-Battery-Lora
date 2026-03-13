@@ -1,0 +1,21 @@
+{
+  "experiment": "e2_ablation_random_seed42",
+  "policy": "random",
+  "num_clients": 10,
+  "num_rounds": 3,
+  "total_communication_bytes": 65331200,
+  "total_communication_mb": 62.3046875,
+  "battery_summary": {
+    "active_clients": 10,
+    "dropped_clients": 0,
+    "dropout_rate": 0.0,
+    "avg_battery": 56.79573778166146,
+    "min_battery": 26.9487519461493,
+    "total_energy_wh": 1.44,
+    "avg_energy_per_client": 0.144,
+    "energy_std": 0.168949696655543,
+    "jain_fairness_index": 0.42077922077922075,
+    "avg_rounds_participated": 0.9
+  },
+  "final_avg_loss": 1.3204536892118908
+}

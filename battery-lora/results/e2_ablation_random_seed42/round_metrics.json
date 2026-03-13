@@ -1,0 +1,89 @@
+[
+  {
+    "round": 1,
+    "num_clients_trained": 3,
+    "ranks_used": {
+      "2": 2,
+      "8": 1
+    },
+    "avg_train_loss": 1.340710685366676,
+    "client_details": [
+      {
+        "client_id": 1,
+        "rank": 2,
+        "loss": 1.3668106624058314,
+        "samples": 50
+      },
+      {
+        "client_id": 0,
+        "rank": 2,
+        "loss": 1.3175888061523438,
+        "samples": 50
+      },
+      {
+        "client_id": 4,
+        "rank": 8,
+        "loss": 1.3377325875418526,
+        "samples": 50
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "num_clients_trained": 3,
+    "ranks_used": {
+      "2": 1,
+      "4": 2
+    },
+    "avg_train_loss": 1.3246768315633137,
+    "client_details": [
+      {
+        "client_id": 3,
+        "rank": 2,
+        "loss": 1.3072669165475028,
+        "samples": 50
+      },
+      {
+        "client_id": 9,
+        "rank": 4,
+        "loss": 1.317314692905971,
+        "samples": 50
+      },
+      {
+        "client_id": 2,
+        "rank": 4,
+        "loss": 1.3494488852364677,
+        "samples": 50
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "num_clients_trained": 3,
+    "ranks_used": {
+      "2": 2,
+      "32": 1
+    },
+    "avg_train_loss": 1.3204536892118908,
+    "client_details": [
+      {
+        "client_id": 1,
+        "rank": 2,
+        "loss": 1.2376512799944197,
+        "samples": 50
+      },
+      {
+        "client_id": 8,
+        "rank": 32,
+        "loss": 1.434833254132952,
+        "samples": 50
+      },
+      {
+        "client_id": 9,
+        "rank": 2,
+        "loss": 1.2888765335083008,
+        "samples": 50
+      }
+    ]
+  }
+]

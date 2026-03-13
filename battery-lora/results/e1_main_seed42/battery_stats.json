@@ -1,0 +1,12 @@
+{
+  "active_clients": 10,
+  "dropped_clients": 0,
+  "dropout_rate": 0.0,
+  "avg_battery": 57.05304772318192,
+  "min_battery": 26.71483381749433,
+  "total_energy_wh": 1.78,
+  "avg_energy_per_client": 0.178,
+  "energy_std": 0.19482299658921173,
+  "jain_fairness_index": 0.4549684089603677,
+  "avg_rounds_participated": 0.9
+}

@@ -1,0 +1,158 @@
+{
+  "0": {
+    "tier": "low",
+    "final_battery": 74.84174017720972,
+    "is_active": true,
+    "total_energy_wh": 0.2,
+    "rounds_participated": 1,
+    "battery_history": [
+      67.23940099592318,
+      68.99378696083545,
+      71.91776356902258,
+      74.84174017720972
+    ],
+    "rank_history": [
+      8
+    ]
+  },
+  "1": {
+    "tier": "mid",
+    "final_battery": 33.92836772693909,
+    "is_active": true,
+    "total_energy_wh": 0.7,
+    "rounds_participated": 2,
+    "battery_history": [
+      27.495619188927396,
+      29.250005153839677,
+      32.17398176202681,
+      33.92836772693909
+    ],
+    "rank_history": [
+      16,
+      16
+    ]
+  },
+  "2": {
+    "tier": "mid",
+    "final_battery": 65.99775563393995,
+    "is_active": true,
+    "total_energy_wh": 0.35,
+    "rounds_participated": 1,
+    "battery_history": [
+      68.16149832399843,
+      68.10301879183469,
+      66.05623516610369,
+      65.99775563393995
+    ],
+    "rank_history": [
+      16
+    ]
+  },
+  "3": {
+    "tier": "low",
+    "final_battery": 84.88390821507882,
+    "is_active": true,
+    "total_energy_wh": 0.2,
+    "rounds_participated": 1,
+    "battery_history": [
+      77.28156903379228,
+      80.20554564197941,
+      81.95993160689169,
+      84.88390821507882
+    ],
+    "rank_history": [
+      8
+    ]
+  },
+  "4": {
+    "tier": "mid",
+    "final_battery": 51.39784298687422,
+    "is_active": true,
+    "total_energy_wh": 0.35,
+    "rounds_participated": 1,
+    "battery_history": [
+      53.5615856769327,
+      51.514802051201706,
+      51.45632251903796,
+      51.39784298687422
+    ],
+    "rank_history": [
+      16
+    ]
+  },
+  "5": {
+    "tier": "mid",
+    "final_battery": 42.07981806196179,
+    "is_active": true,
+    "total_energy_wh": 0.0,
+    "rounds_participated": 0,
+    "battery_history": [
+      42.25525665845302,
+      42.19677712628928,
+      42.13829759412553,
+      42.07981806196179
+    ],
+    "rank_history": []
+  },
+  "6": {
+    "tier": "low",
+    "final_battery": 89.47651919494278,
+    "is_active": true,
+    "total_energy_wh": 0.0,
+    "rounds_participated": 0,
+    "battery_history": [
+      80.70458937038138,
+      83.62856597856852,
+      86.55254258675565,
+      89.47651919494278
+    ],
+    "rank_history": []
+  },
+  "7": {
+    "tier": "mid",
+    "final_battery": 62.5810816768416,
+    "is_active": true,
+    "total_energy_wh": 0.0,
+    "rounds_participated": 0,
+    "battery_history": [
+      53.8091518522802,
+      56.733128460467334,
+      59.65710506865447,
+      62.5810816768416
+    ],
+    "rank_history": []
+  },
+  "8": {
+    "tier": "high",
+    "final_battery": 36.64030564696967,
+    "is_active": true,
+    "total_energy_wh": 0.08,
+    "rounds_participated": 1,
+    "battery_history": [
+      37.2251009686071,
+      37.16662143644336,
+      37.10814190427961,
+      36.64030564696967
+    ],
+    "rank_history": [
+      2
+    ]
+  },
+  "9": {
+    "tier": "high",
+    "final_battery": 27.18267007480427,
+    "is_active": true,
+    "total_energy_wh": 0.16,
+    "rounds_participated": 2,
+    "battery_history": [
+      28.176822121587897,
+      28.118342589424152,
+      27.65050633211421,
+      27.18267007480427
+    ],
+    "rank_history": [
+      2,
+      2
+    ]
+  }
+}

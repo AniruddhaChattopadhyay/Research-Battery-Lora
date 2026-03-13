@@ -1,0 +1,21 @@
+{
+  "experiment": "e2_ablation_binary_seed42",
+  "policy": "binary",
+  "num_clients": 10,
+  "num_rounds": 3,
+  "total_communication_bytes": 96870400,
+  "total_communication_mb": 92.3828125,
+  "battery_summary": {
+    "active_clients": 10,
+    "dropped_clients": 0,
+    "dropout_rate": 0.0,
+    "avg_battery": 56.9010009395562,
+    "min_battery": 27.18267007480427,
+    "total_energy_wh": 2.04,
+    "avg_energy_per_client": 0.20400000000000001,
+    "energy_std": 0.20756685669923317,
+    "jain_fairness_index": 0.49133412042502955,
+    "avg_rounds_participated": 0.9
+  },
+  "final_avg_loss": 1.2604163033621651
+}
