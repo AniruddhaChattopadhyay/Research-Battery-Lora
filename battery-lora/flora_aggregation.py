@@ -33,6 +33,7 @@ def aggregate_flora(
     global_state: Dict[str, np.ndarray],
     client_updates: List[Tuple[Dict[str, np.ndarray], int, int]],
     max_rank: int,
+    ema_alpha: float = 0.0,
 ) -> Dict[str, np.ndarray]:
     """
     Aggregate heterogeneous-rank LoRA adapters using FLoRA stacking.
@@ -43,6 +44,9 @@ def aggregate_flora(
         client_updates: List of (state_dict, num_samples, client_rank) tuples.
                        Each state_dict has the same keys but potentially smaller tensors.
         max_rank: The global maximum rank (e.g., 32)
+        ema_alpha: EMA blending factor. 0.0 = no EMA (original behavior),
+                   0.5 = blend 50% old + 50% new. Prevents any single round
+                   from drastically changing the global adapter.
 
     Returns:
         Updated global state dict with aggregated parameters.
@@ -107,6 +111,12 @@ def aggregate_flora(
         mask = weight_count > 0
         result = np.copy(global_param).astype(np.float64)
         result[mask] = accumulator[mask] / weight_count[mask]
+
+        # EMA blending: preserve some of the old global state to prevent
+        # any single round from drastically overwriting learned parameters
+        if ema_alpha > 0:
+            result = ema_alpha * global_param.astype(np.float64) + (1 - ema_alpha) * result
+
         new_state[key] = result.astype(global_param.dtype)
 
     return new_state

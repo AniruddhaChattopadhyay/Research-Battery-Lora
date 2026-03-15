@@ -140,11 +140,12 @@ class BatteryLoRAServer:
             # Track communication (upload)
             self.communication_bytes_total += compute_communication_cost(client_state)
 
-        # FLoRA stacking aggregation
+        # FLoRA stacking aggregation (with optional EMA blending)
         self.global_state = aggregate_flora(
             self.global_state,
             client_updates,
             max_rank=self.cfg.lora.max_rank,
+            ema_alpha=self.cfg.rank_policy.ema_alpha,
         )
 
     def run_training(self):

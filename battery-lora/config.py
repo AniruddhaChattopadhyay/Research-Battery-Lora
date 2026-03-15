@@ -102,6 +102,7 @@ class FederatedConfig:
 class RankPolicyConfig:
     """Configuration for the battery-to-rank mapping policy."""
     # Which policy to use: "threshold", "continuous", "binary", "random", "fixed"
+    # Append "_smoothed" for rank smoothing (e.g., "threshold_smoothed")
     policy_type: str = "threshold"
     # For "fixed" policy — what rank to use
     fixed_rank: int = 8
@@ -109,6 +110,8 @@ class RankPolicyConfig:
     thresholds: List[int] = field(default_factory=lambda: [80, 60, 40, 20])
     # For "continuous" policy — minimum future rounds to guarantee
     min_future_rounds: int = 5
+    # EMA blending for aggregation: 0.0 = off, 0.5 = blend 50% old + 50% new
+    ema_alpha: float = 0.0
 
 
 @dataclass

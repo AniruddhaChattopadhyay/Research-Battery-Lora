@@ -15,6 +15,9 @@ from battery_simulator import DeviceState
 from config import DeviceTierConfig, RankPolicyConfig
 
 
+RANK_LADDER = [2, 4, 8, 16, 32]  # Ordered list of valid ranks
+
+
 class RankPolicy(ABC):
     """Base class for rank selection policies."""
 
@@ -27,6 +30,57 @@ class RankPolicy(ABC):
     @abstractmethod
     def name(self) -> str:
         pass
+
+
+class SmoothedRankPolicy(RankPolicy):
+    """
+    Wraps any rank policy to prevent abrupt rank changes.
+
+    A client's rank can only move one step on the rank ladder per round:
+        2 ↔ 4 ↔ 8 ↔ 16 ↔ 32
+
+    For example, if a client was at rank 4 last round and the inner policy
+    now wants rank 32, this round it gets rank 8 (one step up). Next round
+    it can go to 16, then 32.
+
+    This prevents the aggregation instability caused by large rank jumps.
+    """
+
+    def __init__(self, inner_policy: RankPolicy):
+        self.inner = inner_policy
+        # Track last rank used per client: client_id -> rank
+        self._last_rank: dict = {}
+
+    @property
+    def name(self) -> str:
+        return f"{self.inner.name}_smoothed"
+
+    def get_rank(self, device: DeviceState) -> int:
+        target = self.inner.get_rank(device)
+        cid = device.client_id
+
+        if cid not in self._last_rank:
+            # First time seeing this client — use target directly
+            self._last_rank[cid] = target
+            return target
+
+        last = self._last_rank[cid]
+
+        if target == last:
+            return target
+
+        # Move one step toward target on the rank ladder
+        last_idx = RANK_LADDER.index(last) if last in RANK_LADDER else 0
+        target_idx = RANK_LADDER.index(target) if target in RANK_LADDER else 0
+
+        if target_idx > last_idx:
+            new_idx = last_idx + 1  # one step up
+        else:
+            new_idx = last_idx - 1  # one step down
+
+        smoothed = RANK_LADDER[new_idx]
+        self._last_rank[cid] = smoothed
+        return smoothed
 
 
 class BatteryThresholdPolicy(RankPolicy):
@@ -222,23 +276,35 @@ def create_rank_policy(
     seed: int = 42,
 ) -> RankPolicy:
     """Create a rank policy from config."""
-    if policy_cfg.policy_type == "threshold":
-        return BatteryThresholdPolicy(tier_cfg)
-    elif policy_cfg.policy_type == "continuous":
-        return ContinuousPolicy(
+    ptype = policy_cfg.policy_type
+
+    # Strip "_smoothed" suffix — handled by wrapping at the end
+    smoothed = ptype.endswith("_smoothed")
+    if smoothed:
+        ptype = ptype.replace("_smoothed", "")
+
+    if ptype == "threshold":
+        policy = BatteryThresholdPolicy(tier_cfg)
+    elif ptype == "continuous":
+        policy = ContinuousPolicy(
             tier_cfg,
             battery_capacity_wh=battery_capacity_wh,
             reserve_percent=reserve_percent,
             min_future_rounds=policy_cfg.min_future_rounds,
             energy_per_round=energy_per_round,
         )
-    elif policy_cfg.policy_type == "binary":
-        return BinaryPolicy(tier_cfg)
-    elif policy_cfg.policy_type == "fixed":
-        return FixedRankPolicy(rank=policy_cfg.fixed_rank)
-    elif policy_cfg.policy_type == "static_tier":
-        return StaticTierPolicy(tier_cfg)
-    elif policy_cfg.policy_type == "random":
-        return RandomPolicy(tier_cfg=tier_cfg, seed=seed)
+    elif ptype == "binary":
+        policy = BinaryPolicy(tier_cfg)
+    elif ptype == "fixed":
+        policy = FixedRankPolicy(rank=policy_cfg.fixed_rank)
+    elif ptype == "static_tier":
+        policy = StaticTierPolicy(tier_cfg)
+    elif ptype == "random":
+        policy = RandomPolicy(tier_cfg=tier_cfg, seed=seed)
     else:
         raise ValueError(f"Unknown policy type: {policy_cfg.policy_type}")
+
+    if smoothed:
+        policy = SmoothedRankPolicy(policy)
+
+    return policy

@@ -82,16 +82,31 @@ def apply_paper_mode(cfg):
 # ── Experiment registry ───────────────────────────────────────
 # Maps friendly name -> config factory
 
+
+def _make_fixed_config(policy_type, ema_alpha, seed):
+    """Create a config with the fixed BatteryLoRA improvements."""
+    cfg = get_e1_main_config(seed=seed)
+    cfg.rank_policy.policy_type = policy_type
+    cfg.rank_policy.ema_alpha = ema_alpha
+    cfg.experiment_name = f"e1_fixed_{policy_type.replace('_smoothed','_sm')}_ema{int(ema_alpha*100)}_seed{seed}"
+    return apply_paper_mode(cfg)
+
+
 EXPERIMENTS = {
-    # E1: Main comparison
+    # E1: Main comparison (original)
     'battery_lora':   lambda seed: apply_paper_mode(get_e1_main_config(seed=seed)),
     'homolora_r8':    lambda seed: apply_paper_mode(get_baseline_homolora_config(rank=8, seed=seed)),
     'homolora_r32':   lambda seed: apply_paper_mode(get_baseline_homolora_config(rank=32, seed=seed)),
     'hetlora':        lambda seed: apply_paper_mode(get_baseline_hetlora_config(seed=seed)),
-    # E2: Ablation
+    # E2: Ablation (original)
     'ablation_binary':     lambda seed: apply_paper_mode(get_e2_ablation_config(policy='binary', seed=seed)),
     'ablation_random':     lambda seed: apply_paper_mode(get_e2_ablation_config(policy='random', seed=seed)),
     'ablation_continuous': lambda seed: apply_paper_mode(get_e2_ablation_config(policy='continuous', seed=seed)),
+    # E3: Fixed BatteryLoRA variants (new)
+    'fixed_threshold_smoothed':      lambda seed: _make_fixed_config('threshold_smoothed', ema_alpha=0.5, seed=seed),
+    'fixed_continuous_smoothed':     lambda seed: _make_fixed_config('continuous_smoothed', ema_alpha=0.5, seed=seed),
+    'fixed_threshold_ema_only':      lambda seed: _make_fixed_config('threshold', ema_alpha=0.5, seed=seed),
+    'fixed_continuous_ema_only':     lambda seed: _make_fixed_config('continuous', ema_alpha=0.5, seed=seed),
 }
 
 # Recommended run order (most important first)
