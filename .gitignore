@@ -1,0 +1,18 @@
+# Private research notes — do not commit
+NGEN-AI-2026-research-ideas.md
+research-plan-battery-aware-fedlora.md
+battery-aware-adaptive-rank-fedlora-research-plan.md
+
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info/
+
+# Environments
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store

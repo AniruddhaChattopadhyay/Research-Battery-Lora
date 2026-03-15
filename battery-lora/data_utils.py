@@ -55,12 +55,26 @@ def format_alpaca_prompt(example: dict) -> str:
         )
 
 
-def formatting_prompts_func(example: dict) -> str:
+def formatting_prompts_func(examples: dict):
     """
     Formatting function for SFTTrainer.
-    Called per-example (trl >= 0.29 calls this unbatched).
+    trl <= 0.28: called with a batch (dict of lists), must return list of strings.
+    trl >= 0.29: called per-example (dict of scalars), must return a string.
     """
-    return format_alpaca_prompt(example)
+    # Detect batched vs single by checking if values are lists
+    if isinstance(examples.get("instruction", ""), list):
+        # Batched mode (trl <= 0.28)
+        return [
+            format_alpaca_prompt({
+                "instruction": examples["instruction"][i],
+                "input": examples.get("input", [""] * len(examples["instruction"]))[i],
+                "output": examples.get("output", [""] * len(examples["instruction"]))[i],
+            })
+            for i in range(len(examples["instruction"]))
+        ]
+    else:
+        # Single example mode (trl >= 0.29)
+        return format_alpaca_prompt(examples)
 
 
 def load_partitioned_data(

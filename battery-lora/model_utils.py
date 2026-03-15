@@ -106,7 +106,7 @@ def load_base_model(model_cfg: ModelConfig):
     model = AutoModelForCausalLM.from_pretrained(
         model_cfg.name,
         quantization_config=quant_config,
-        dtype=dtype,
+        torch_dtype=dtype,
         device_map=device_map,
         trust_remote_code=True,
     )

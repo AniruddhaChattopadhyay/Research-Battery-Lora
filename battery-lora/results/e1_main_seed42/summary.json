@@ -2,20 +2,20 @@
   "experiment": "e1_main_seed42",
   "policy": "threshold",
   "num_clients": 10,
-  "num_rounds": 3,
-  "total_communication_bytes": 81100800,
-  "total_communication_mb": 77.34375,
+  "num_rounds": 30,
+  "total_communication_bytes": 1631027200,
+  "total_communication_mb": 1555.46875,
   "battery_summary": {
     "active_clients": 10,
     "dropped_clients": 0,
     "dropout_rate": 0.0,
-    "avg_battery": 57.05304772318192,
-    "min_battery": 26.71483381749433,
-    "total_energy_wh": 1.78,
-    "avg_energy_per_client": 0.178,
-    "energy_std": 0.19482299658921173,
-    "jain_fairness_index": 0.4549684089603677,
-    "avg_rounds_participated": 0.9
+    "avg_battery": 70.41858244589743,
+    "min_battery": 33.71632903878253,
+    "total_energy_wh": 33.730000000000004,
+    "avg_energy_per_client": 3.373,
+    "energy_std": 1.1521722961432457,
+    "jain_fairness_index": 0.8955104556370395,
+    "avg_rounds_participated": 15.0
   },
-  "final_avg_loss": 1.2539312271844771
+  "final_avg_loss": 0.9728899269104003
 }

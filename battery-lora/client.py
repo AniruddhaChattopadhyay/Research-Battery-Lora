@@ -16,7 +16,8 @@ import numpy as np
 from collections import OrderedDict
 from typing import Dict, List, Tuple
 
-from trl import SFTTrainer, SFTConfig
+from transformers import TrainingArguments
+from trl import SFTTrainer
 from peft import LoraConfig, get_peft_model, get_peft_model_state_dict, set_peft_model_state_dict
 
 from config import ExperimentConfig
@@ -85,29 +86,30 @@ class BatteryLoRAClient:
             self.cfg.training.learning_rate_min,
         )
 
-        # Training arguments
-        training_args = SFTConfig(
+        # Training arguments (TrainingArguments for trl<=0.28, SFTConfig for >=0.29)
+        training_args = TrainingArguments(
             output_dir=f"./tmp/client_{self.client_id}",
             num_train_epochs=self.cfg.training.local_epochs,
             per_device_train_batch_size=self.cfg.training.batch_size,
             learning_rate=lr,
             weight_decay=self.cfg.training.weight_decay,
             max_grad_norm=self.cfg.training.max_grad_norm,
-            max_length=self.cfg.model.max_seq_length,
             logging_steps=50,
             save_strategy="no",
             report_to="none",
-            remove_unused_columns=False,
-            fp16=torch.cuda.is_available(),
+            remove_unused_columns=True,
+            bf16=torch.cuda.is_available(),
         )
 
         # Train — SFTTrainer handles tokenization and collation internally
+        # trl<=0.28 uses `tokenizer=`, trl>=0.29 uses `processing_class=`
         trainer = SFTTrainer(
             model=model,
-            processing_class=tokenizer,
+            tokenizer=tokenizer,
             args=training_args,
             train_dataset=train_dataset,
             formatting_func=formatting_prompts_func,
+            max_seq_length=self.cfg.model.max_seq_length,
         )
 
         results = trainer.train()
