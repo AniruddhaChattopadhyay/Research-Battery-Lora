@@ -1,0 +1,9 @@
+raw_outputs/
+results/
+plots/
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+*.egg-info/
+.ipynb_checkpoints/

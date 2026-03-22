@@ -1,0 +1,22 @@
+[project]
+name = "uq-edge"
+version = "0.1.0"
+description = "Does quantization break model confidence? Systematic study of calibration in quantized SLMs."
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.5.0",
+    "transformers>=4.48.0",
+    "accelerate>=1.0.0",
+    "bitsandbytes>=0.45.0",
+    "datasets>=3.0.0",
+    "numpy>=2.0.0",
+    "scipy>=1.14.0",
+    "pandas>=2.2.0",
+    "scikit-learn>=1.5.0",
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.0",
+]
+
+[project.optional-dependencies]
+gptq = ["auto-gptq>=0.7.0"]
+awq = ["autoawq>=0.2.0"]
