@@ -10,16 +10,32 @@ def scores_msp(data: dict) -> np.ndarray:
 
 
 def scores_entropy(data: dict) -> np.ndarray:
-    """Predictive entropy — lower = more confident.
+    """Predictive entropy — normalized to [0, 1] where higher = more confident.
 
-    We negate so that higher = more confident (consistent with other methods).
+    Raw entropy is non-negative (0 = certain, large = uncertain).
+    We normalize via: confidence = 1 - (entropy / max_entropy), clamped to [0, 1].
     """
-    return -data["mean_entropies"]
+    raw = data["mean_entropies"]
+    if len(raw) == 0:
+        return raw
+    max_ent = np.max(raw) if np.max(raw) > 0 else 1.0
+    normalized = 1.0 - (raw / max_ent)
+    return np.clip(normalized, 0.0, 1.0)
 
 
 def scores_log_likelihood(data: dict) -> np.ndarray:
-    """Mean token log-likelihood — higher = more confident."""
-    return data["mean_log_probs"]
+    """Mean token log-likelihood — normalized to [0, 1] where higher = more confident.
+
+    Raw log-likelihood is negative (0 = certain, large negative = uncertain).
+    We normalize via: confidence = 1 - (|ll| / max_|ll|), clamped to [0, 1].
+    """
+    raw = data["mean_log_probs"]
+    if len(raw) == 0:
+        return raw
+    abs_ll = np.abs(raw)
+    max_abs = np.max(abs_ll) if np.max(abs_ll) > 0 else 1.0
+    normalized = 1.0 - (abs_ll / max_abs)
+    return np.clip(normalized, 0.0, 1.0)
 
 
 def scores_verbalized(data: dict) -> np.ndarray:
