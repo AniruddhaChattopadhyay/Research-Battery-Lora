@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dice_smoke_0",
+    "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+    "tool": {
+      "name": "schedule_meeting",
+      "description": "Schedule a meeting with attendees and a time window.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "attendees": {
+            "type": "array"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "attendees",
+          "start_time"
+        ]
+      }
+    },
+    "gold_call": {
+      "name": "schedule_meeting",
+      "arguments": {
+        "title": "team sync",
+        "attendees": [
+          "Alice",
+          "Bob"
+        ],
+        "start_time": "3 PM",
+        "duration_minutes": 30
+      }
+    }
+  }
+]

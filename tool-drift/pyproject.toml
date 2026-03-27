@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tool-drift"
+version = "0.1.0"
+description = "Pilot scaffold for robust tool calling under interface drift"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = [
+    "benchmarks",
+    "defense",
+    "drift",
+    "eval",
+    "inference",
+    "scripts",
+]

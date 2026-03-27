@@ -1,0 +1,106 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "sample_count": 1,
+    "original_score": 0.0,
+    "drifted_score": 0.0,
+    "repaired_score": 0.0,
+    "recovery_rate": 0.0,
+    "validation_failures": 0,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "unknown": 1
+    },
+    "drifted_stats": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "repaired_stats": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  "results": [
+    {
+      "id": "dice_smoke_0",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "drifted_tool": "schedule_meeting",
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "Team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "15:00",
+          "duration_minutes": 30
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "3 PM",
+          "duration_minutes": 30
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3:00 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3:00 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "error_type": "clean"
+    }
+  ]
+}

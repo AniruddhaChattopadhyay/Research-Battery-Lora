@@ -1,0 +1,45 @@
+[
+  {
+    "id": "bfcl_smoke_0",
+    "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+    "tool": {
+      "name": "book_flight",
+      "description": "Book a flight for a traveler between two cities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "class": {
+            "type": "string",
+            "enum": [
+              "economy",
+              "business"
+            ]
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "date"
+        ]
+      }
+    },
+    "gold_call": {
+      "name": "book_flight",
+      "arguments": {
+        "origin": "Paris",
+        "destination": "Tokyo",
+        "date": "next Monday",
+        "class": "economy"
+      }
+    }
+  }
+]
