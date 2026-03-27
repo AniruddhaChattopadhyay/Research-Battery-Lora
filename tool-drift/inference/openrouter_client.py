@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import time
 import urllib.error
 import urllib.request
 from typing import Any, Mapping
@@ -88,6 +89,30 @@ def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
     return {"name": "", "arguments": {}}
 
 
+def _retry_delay_seconds(
+    attempt: int,
+    *,
+    detail: str = "",
+    retry_after: str | None = None,
+) -> float:
+    if retry_after:
+        try:
+            return max(float(retry_after), 0.0)
+        except ValueError:
+            pass
+
+    parsed = _extract_json_dict(detail)
+    error = parsed.get("error", {})
+    if isinstance(error, dict):
+        metadata = error.get("metadata", {})
+        if isinstance(metadata, dict):
+            retry_after_seconds = metadata.get("retry_after_seconds")
+            if isinstance(retry_after_seconds, int | float):
+                return max(float(retry_after_seconds), 0.0)
+
+    return min(2**attempt, 30.0)
+
+
 def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> dict[str, Any]:
     load_dotenv()
     api_key = require_env("OPENROUTER_API_KEY")
@@ -103,16 +128,31 @@ def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> di
         method="POST",
     )
 
-    try:
-        with urllib.request.urlopen(request, timeout=120) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"OpenRouter HTTP error {exc.code}: {detail}") from exc
-    except urllib.error.URLError as exc:
-        raise RuntimeError(f"OpenRouter request failed: {exc}") from exc
+    max_attempts = 6
+    retryable_status_codes = {408, 429, 500, 502, 503, 504}
+    for attempt in range(max_attempts):
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            if exc.code in retryable_status_codes and attempt + 1 < max_attempts:
+                time.sleep(
+                    _retry_delay_seconds(
+                        attempt,
+                        detail=detail,
+                        retry_after=exc.headers.get("Retry-After"),
+                    )
+                )
+                continue
+            raise RuntimeError(f"OpenRouter HTTP error {exc.code}: {detail}") from exc
+        except urllib.error.URLError as exc:
+            if attempt + 1 < max_attempts:
+                time.sleep(_retry_delay_seconds(attempt))
+                continue
+            raise RuntimeError(f"OpenRouter request failed: {exc}") from exc
 
-    return payload
+    raise RuntimeError("OpenRouter request failed after exhausting retries")
 
 
 def request_tool_call(

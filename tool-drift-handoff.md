@@ -49,6 +49,8 @@ Important files:
 - [scripts/run_pilot_bfcl.py](/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_bfcl.py)
 - [scripts/run_pilot_dice.py](/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py)
 - [scripts/summarize_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/summarize_results.py)
+- [scripts/export_bfcl_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_bfcl_subset.py)
+- [scripts/export_dice_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_dice_subset.py)
 - [scripts/common.py](/Users/aniruddha/Documents/research/tool-drift/scripts/common.py)
 - [inference/openrouter_client.py](/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py)
 - [defense/validator.py](/Users/aniruddha/Documents/research/tool-drift/defense/validator.py)
@@ -65,6 +67,11 @@ Smoke test data:
 
 - [data/bfcl_smoke.json](/Users/aniruddha/Documents/research/tool-drift/data/bfcl_smoke.json)
 - [data/dice_smoke.json](/Users/aniruddha/Documents/research/tool-drift/data/dice_smoke.json)
+
+Real pilot subset data:
+
+- [data/bfcl_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/bfcl_pilot_subset.json)
+- [data/dice_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/dice_pilot_subset.json)
 
 ---
 
@@ -185,6 +192,24 @@ Latest result file:
 
 - [outputs/dice/dice-bench-live-20260327-062613-009920/dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260327-062613-009920/dice_results.json)
 
+## 4.5 Real pilot subsets are generated and loadable
+
+The exported subset files now exist and load correctly through the benchmark adapters:
+
+- [data/bfcl_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/bfcl_pilot_subset.json): 20 tasks
+- [data/dice_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/dice_pilot_subset.json): 20 tasks
+
+Current config defaults point to those files:
+
+- [configs/pilot_bfcl.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/pilot_bfcl.yaml)
+- [configs/pilot_dice.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/pilot_dice.yaml)
+
+Interpretation:
+
+- the project no longer depends on smoke files for non-demo runs,
+- the next meaningful evaluation step is to run the real pilot subsets,
+- subset export is no longer the blocker.
+
 ---
 
 ## 5. What Was Changed During This Session
@@ -219,14 +244,18 @@ Current default model config in YAML:
 - endpoint: `https://openrouter.ai/api/v1/chat/completions`
 - model: `qwen/qwen3.5-9b`
 
-## 5.4 Added benchmark adapter stubs
+## 5.4 Added benchmark adapters for pre-exported subsets
 
 Files:
 
 - [benchmarks/bfcl_adapter.py](/Users/aniruddha/Documents/research/tool-drift/benchmarks/bfcl_adapter.py)
 - [benchmarks/dice_adapter.py](/Users/aniruddha/Documents/research/tool-drift/benchmarks/dice_adapter.py)
 
-These currently expect pre-exported JSON subset files.
+Current behavior:
+
+- they load pre-exported JSON subset files,
+- they resolve relative subset paths against the repo root,
+- they now work with the default pilot subset files in `data/`.
 
 ## 5.5 Added smoke-test datasets
 
@@ -310,6 +339,41 @@ Updated:
 
 `error_breakdown` now uses `clean` instead of `unknown` when validation has no issues.
 
+## 5.11 Downloaded official benchmark assets and exported real pilot subsets
+
+Downloaded locally under:
+
+- [external/bfcl](/Users/aniruddha/Documents/research/tool-drift/external/bfcl)
+- [external/dice-bench](/Users/aniruddha/Documents/research/tool-drift/external/dice-bench)
+- [external/gorilla-repo](/Users/aniruddha/Documents/research/tool-drift/external/gorilla-repo)
+- [external/dice-bench-repo](/Users/aniruddha/Documents/research/tool-drift/external/dice-bench-repo)
+
+Exporter scripts:
+
+- [scripts/export_bfcl_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_bfcl_subset.py)
+- [scripts/export_dice_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_dice_subset.py)
+
+Current exported subsets:
+
+- BFCL: 20 tasks
+  - 5 each from `BFCL_v4_simple_python`, `BFCL_v4_multiple`, `BFCL_v4_live_simple`, `BFCL_v4_live_multiple`
+  - only clean single-call examples with non-ambiguous ground truth
+- DICE: 20 tasks
+  - from `round_1.jsonl`
+  - one unique tool per example
+  - uses official tool docs from `src/graph/tool_docs.json`
+
+Configs updated:
+
+- [configs/pilot_bfcl.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/pilot_bfcl.yaml) now points to `data/bfcl_pilot_subset.json`
+- [configs/pilot_dice.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/pilot_dice.yaml) now points to `data/dice_pilot_subset.json`
+
+Notebook updated:
+
+- [tool_drift_pilot_colab.ipynb](/Users/aniruddha/Documents/research/tool-drift/notebooks/tool_drift_pilot_colab.ipynb) now defaults to `demo_mode = False`
+- the notebook uses the real pilot subset files by default
+- `refresh_subsets = True` is available if the exporter scripts need to be rerun inside Colab
+
 ---
 
 ## 6. Known Issues
@@ -330,9 +394,12 @@ Fix needed:
 - optionally archive or delete legacy flat outputs,
 - or teach the summarizer to ignore results without `run_id`.
 
-## 6.2 Real subset export is still not done
+## 6.2 Real subsets exist, but the exporter heuristics may need refinement
 
-The adapters still expect pre-exported JSON subsets.
+Current exported files:
+
+- [data/bfcl_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/bfcl_pilot_subset.json)
+- [data/dice_pilot_subset.json](/Users/aniruddha/Documents/research/tool-drift/data/dice_pilot_subset.json)
 
 Current expected schema:
 
@@ -342,10 +409,11 @@ Current expected schema:
 - `gold_call`
 - optional `candidate_tools`
 
-The next agent should either:
+What may still need improvement:
 
-1. build exporter scripts from BFCL and DICE repos, or
-2. document a strict manual export path and commit small real subsets.
+- BFCL currently filters out ambiguous gold-answer cases instead of supporting multi-answer evaluation,
+- DICE currently uses only `round_1` single-function examples,
+- future work may want a harder DICE subset or support for multi-call dialogues.
 
 ## 6.3 BFCL repair is still not effective
 
@@ -367,15 +435,15 @@ Fix needed:
 - test a stricter repair format with field-by-field extraction,
 - consider a deterministic canonicalizer/field-mapper before calling repair.
 
-## 6.4 DICE smoke case is now too easy
+## 6.4 The current DICE pilot subset may still be too easy
 
-The current DICE smoke example no longer stress-tests the system because the model succeeds under the current drift setting.
+The smoke example is easy, and the current round-1 pilot subset may also be easier than what the paper eventually needs.
 
 Fix needed:
 
-- use multiple DICE examples,
-- ensure at least some cases actually break under rename/reorder/distractor drift,
-- keep normalized scoring but avoid “plumbing only” tasks.
+- run the actual 20-example DICE pilot subset,
+- inspect whether rename/reorder/distractor drift causes enough degradation,
+- if not, move to harder rounds or add multi-call evaluation support.
 
 ---
 
@@ -432,19 +500,15 @@ Interpretation:
 
 The next agent should do these in order:
 
-### Step 1: Implement real subset exporters
+### Step 1: Run the real pilot subsets
 
-Highest-value work item.
+Use the current default configs, which already point at the exported subset files.
 
-Build:
+Goal:
 
-- a small BFCL subset exporter,
-- a small DICE subset exporter,
-
-that produce the JSON format expected by:
-
-- [benchmarks/bfcl_adapter.py](/Users/aniruddha/Documents/research/tool-drift/benchmarks/bfcl_adapter.py)
-- [benchmarks/dice_adapter.py](/Users/aniruddha/Documents/research/tool-drift/benchmarks/dice_adapter.py)
+- get the first real 20-example BFCL and 20-example DICE result tables,
+- identify whether DICE is already informative enough,
+- use BFCL failures to drive repair improvements.
 
 ### Step 2: Strengthen BFCL repair diagnosis
 
@@ -457,21 +521,13 @@ Likely path:
 - compare tool-calling vs JSON-only repair on the same failure,
 - maybe add a stricter field-by-field repair prompt.
 
-### Step 3: Replace smoke-only DICE with a harder subset
+### Step 3: Replace the DICE subset with a harder slice if needed
 
 - keep the normalized scorer,
-- pick 10-20 examples where rename/reorder/distractor drift actually matters,
-- avoid examples the model solves unchanged under drift.
+- extend beyond round 1 if the pilot needs harder dialogue settings,
+- or add support for evaluating multi-call DICE rounds.
 
-### Step 4: Run a true pilot slice
-
-After exporters and scorer are fixed:
-
-- run 10-20 BFCL examples,
-- run 10-20 DICE examples,
-- produce real `original -> drifted -> repaired` tables.
-
-Only after that should the team decide whether to scale further.
+Only after those runs should the team decide whether to scale further.
 
 ---
 
@@ -494,7 +550,24 @@ cd /Users/aniruddha/Documents/research/tool-drift
 ./.venv/bin/python scripts/summarize_results.py --results-dir outputs
 ```
 
-### BFCL smoke non-demo
+### Export real pilot subsets
+
+```bash
+cd /Users/aniruddha/Documents/research/tool-drift
+./.venv/bin/python scripts/export_bfcl_subset.py --per-category 5 --output data/bfcl_pilot_subset.json
+./.venv/bin/python scripts/export_dice_subset.py --count 20 --output data/dice_pilot_subset.json
+```
+
+### Real pilot runs
+
+```bash
+cd /Users/aniruddha/Documents/research/tool-drift
+./.venv/bin/python scripts/run_pilot_bfcl.py --config configs/pilot_bfcl.yaml
+./.venv/bin/python scripts/run_pilot_dice.py --config configs/pilot_dice.yaml
+./.venv/bin/python scripts/summarize_results.py --results-dir outputs
+```
+
+### Optional smoke checks
 
 ```bash
 cd /Users/aniruddha/Documents/research/tool-drift
@@ -509,12 +582,6 @@ cfg['data']['bfcl_subset_path'] = str(Path('data/bfcl_smoke.json').resolve())
 res = run(cfg, demo=False)
 print(res['summary'])
 PY
-```
-
-### DICE smoke non-demo
-
-```bash
-cd /Users/aniruddha/Documents/research/tool-drift
 ./.venv/bin/python - <<'PY'
 from pathlib import Path
 from scripts.common import load_yaml
@@ -535,5 +602,6 @@ PY
 - Colab is no longer required for orchestration.
 - OpenRouter-backed local execution is working.
 - Run isolation and normalized scoring are in place.
-- The codebase is still at the "pilot infrastructure plus smoke validation" stage, not the "benchmark-ready experimentation" stage.
-- The next agent should focus on **real subset wiring and BFCL repair diagnosis**, not broad architecture changes.
+- Real benchmark subset export is in place.
+- The codebase is now at the "first true pilot run" stage, not just the "smoke validation" stage.
+- The next agent should focus on **running the real pilot subsets and improving BFCL repair diagnosis**, not broad architecture changes.

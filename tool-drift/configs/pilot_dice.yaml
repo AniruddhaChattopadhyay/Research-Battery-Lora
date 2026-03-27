@@ -10,7 +10,7 @@ model:
   endpoint: https://openrouter.ai/api/v1/chat/completions
 
 data:
-  dice_subset_path: null
+  dice_subset_path: data/dice_pilot_subset.json
 
 drift:
   description_modes:

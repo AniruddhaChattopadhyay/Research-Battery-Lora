@@ -1,0 +1,1849 @@
+{
+  "summary": {
+    "benchmark": "bfcl",
+    "demo_mode": false,
+    "run_id": "bfcl-live-20260327-070815-475161",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-live-20260327-070815-475161",
+    "sample_count": 20,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 0.7,
+    "drifted_score": 0.65,
+    "repaired_score": 0.55,
+    "recovery_rate": 0.0,
+    "validation_failures": 6,
+    "repaired_failures": 2,
+    "error_breakdown": {
+      "clean": 14,
+      "wrong_tool": 6
+    },
+    "drifted_stats": {
+      "mean": 0.65,
+      "min": 0.65,
+      "max": 0.65
+    },
+    "repaired_stats": {
+      "mean": 0.55,
+      "min": 0.55,
+      "max": 0.55
+    }
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "bfcl",
+      "mode": "live",
+      "output_dir": "outputs/bfcl"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions"
+    },
+    "data": {
+      "bfcl_subset_path": "data/bfcl_pilot_subset.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "formal"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "alias_enums"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 8,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "bfcl_multi_turn_small"
+    }
+  },
+  "results": [
+    {
+      "id": "simple_python_1",
+      "prompt": "user: Calculate the factorial of 5 using math functions.",
+      "original_tool": "math.factorial",
+      "drifted_tool": "math.factorial",
+      "original_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "pred_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "repaired_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_3",
+      "prompt": "user: Find the roots of a quadratic equation with coefficients a=1, b=-3, c=2.",
+      "original_tool": "algebra.quadratic_roots",
+      "drifted_tool": "algebra.quadratic_roots",
+      "original_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b": -3,
+          "c": 2
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b": -3,
+          "c": 2
+        }
+      },
+      "drifted_gold_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b_v2": -3,
+          "c_v2": 2
+        }
+      },
+      "pred_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b_v2": -3,
+          "c_v2": 2
+        }
+      },
+      "repaired_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b_v2": -3,
+          "c_v2": 2
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_4",
+      "prompt": "user: Solve a quadratic equation where a=2, b=6, and c=5",
+      "original_tool": "solve_quadratic_equation",
+      "drifted_tool": "solve_quadratic_equation",
+      "original_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b": 6,
+          "c": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b": 6,
+          "c": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b_v2": 6,
+          "c_v2": 5
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b_v2": 6,
+          "c_v2": 5
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b_v2": 6,
+          "c_v2": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_5",
+      "prompt": "user: Find all the roots of a quadratic equation given coefficients a = 3, b = -11, and c = -4.",
+      "original_tool": "solve_quadratic",
+      "drifted_tool": "solve_quadratic",
+      "original_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b": -11,
+          "c": -4,
+          "root_type": "all"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b": -11,
+          "c": -4,
+          "root_type": "all"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b_v2": -11,
+          "c_v2": -4,
+          "root_type_v2": "all"
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b_v2": -11,
+          "c_v2": -4
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b_v2": -11,
+          "c_v2": -4
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "root_type_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "root_type_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_6",
+      "prompt": "user: What are the roots of the quadratic equation where a=2, b=5 and c=3 ?",
+      "original_tool": "solve_quadratic",
+      "drifted_tool": "solve_quadratic",
+      "original_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b": 5,
+          "c": 3
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b": 5,
+          "c": 3
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b_v2": 5,
+          "c_v2": 3
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b_v2": 5,
+          "c_v2": 3
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b_v2": 5,
+          "c_v2": 3
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_1",
+      "prompt": "user: Calculate the area of a triangle, given the lengths of its three sides: 3, 4, and 5.",
+      "original_tool": "math.triangle_area_heron",
+      "drifted_tool": "math.triangle_area_heron",
+      "original_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2": 4,
+          "side3": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2": 4,
+          "side3": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2_v2": 4,
+          "side3_v2": 5
+        }
+      },
+      "pred_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2_v2": 4,
+          "side3_v2": 5
+        }
+      },
+      "repaired_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2_v2": 4,
+          "side3_v2": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_2",
+      "prompt": "user: What is the capital of Brazil?",
+      "original_tool": "country_info.capital",
+      "drifted_tool": "country_info.largest_city",
+      "original_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected country_info.largest_city, got country_info.capital"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "tool_call",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: user: What is the capital of Brazil?\n\nTool: country_info.largest_city\nDescription: Fetch the largest city of a specified country.\nRequired: country\nFields:\n- country: type=string\n\nInvalid tool call:\n{\n  \"name\": \"country_info.capital\",\n  \"arguments\": {\n    \"country\": \"Brazil\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected country_info.largest_city, got country_info.capital\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "pred_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "repaired_call": {
+        "name": "country_info.largest_city",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "multiple_5",
+      "prompt": "user: What is the wind speed and temperature in location given by coordinates 46.603354,1.8883340 on December 13, 2019?",
+      "original_tool": "weather.get_by_coordinates_date",
+      "drifted_tool": "weather.get_by_city_date",
+      "original_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected weather.get_by_city_date, got weather.get_by_coordinates_date"
+          },
+          {
+            "code": "missing_field",
+            "field": "city",
+            "message": "Missing required field: city"
+          },
+          {
+            "code": "missing_field",
+            "field": "date",
+            "message": "Missing required field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected weather.get_by_city_date, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "city",
+            "message": "Missing required field: city"
+          },
+          {
+            "code": "missing_field",
+            "field": "date",
+            "message": "Missing required field: date"
+          }
+        ]
+      },
+      "repaired_valid": false,
+      "repair_used": true,
+      "repair_strategy": "json_fallback",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: user: What is the wind speed and temperature in location given by coordinates 46.603354,1.8883340 on December 13, 2019?\n\nTool: weather.get_by_city_date\nDescription: Retrieves the historical weather data based on city and date.\nRequired: city, date\nFields:\n- city: type=string\n- date: type=string\n\nInvalid tool call:\n{\n  \"name\": \"weather.get_by_coordinates_date\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected weather.get_by_city_date, got weather.get_by_coordinates_date\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"city\",\n      \"message\": \"Missing required field: city\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"date\",\n      \"message\": \"Missing required field: date\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {
+          "coordinates": [
+            46.603354,
+            1.888334
+          ],
+          "date": "2019-12-13"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {
+          "coordinates": [
+            46.603354,
+            1.888334
+          ],
+          "date_v2": "2019-12-13"
+        }
+      },
+      "pred_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "coordinates",
+          "date"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "coordinates",
+          "date_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "coordinates",
+          "date_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "multiple_9",
+      "prompt": "user: Calculate the average grade for student John who has these scores {'math':90, 'science':75, 'history':82, 'music':89} across different subjects.",
+      "original_tool": "calculate_average",
+      "drifted_tool": "calculate_standard_deviation",
+      "original_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected calculate_standard_deviation, got calculate_average"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "tool_call",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: user: Calculate the average grade for student John who has these scores {'math':90, 'science':75, 'history':82, 'music':89} across different subjects.\n\nTool: calculate_standard_deviation\nDescription: This function calculates the standard deviation across different scores for a specific student.\nRequired: gradeDict\nFields:\n- gradeDict: type=object\n\nInvalid tool call:\n{\n  \"name\": \"calculate_average\",\n  \"arguments\": {\n    \"gradeDict\": {\n      \"math\": 90,\n      \"science\": 75,\n      \"history\": 82,\n      \"music\": 89\n    }\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected calculate_standard_deviation, got calculate_average\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": [
+              90
+            ],
+            "science": [
+              75
+            ],
+            "history": [
+              82
+            ],
+            "music": [
+              89
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": [
+              90
+            ],
+            "science": [
+              75
+            ],
+            "history": [
+              82
+            ],
+            "music": [
+              89
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "repaired_call": {
+        "name": "calculate_standard_deviation",
+        "arguments": {
+          "gradeDict": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "gradeDict"
+        ]
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "gradeDict"
+        ]
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "gradeDict"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "multiple_11",
+      "prompt": "user: Calculate the roots of a quadratic equation with coefficients 5, 20, and -25",
+      "original_tool": "math_roots.quadratic",
+      "drifted_tool": "math_roots.quadratic",
+      "original_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b": 20,
+          "c": -25
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b": 20,
+          "c": -25
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b_v2": 20,
+          "c_v2": -25
+        }
+      },
+      "pred_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b_v2": 20,
+          "c_v2": -25
+        }
+      },
+      "repaired_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b_v2": 20,
+          "c_v2": -25
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_0-0-0",
+      "prompt": "user: Can you retrieve the details for the user with the ID 7890, who has black as their special request?",
+      "original_tool": "get_user_info",
+      "drifted_tool": "get_user_info",
+      "original_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special": "black"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special": "black"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special_v2": "black"
+        }
+      },
+      "pred_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special_v2": "black"
+        }
+      },
+      "repaired_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special_v2": "black"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_1-1-0",
+      "prompt": "user: I want to see the star history of ShishirPatil/gorilla and gorilla-llm/gorilla-cli, with the timelines aligned, so that I can more clearly observe the rate of change from their initial releases.",
+      "original_tool": "github_star",
+      "drifted_tool": "github_star",
+      "original_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned": true
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned": true
+        }
+      },
+      "drifted_gold_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned_v2": true
+        }
+      },
+      "pred_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned_v2": true
+        }
+      },
+      "repaired_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned_v2": true
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_2-2-0",
+      "prompt": "user: I need a Comfort Uber ride from 2020 Addison Street, Berkeley, CA, USA, and I can wait up to 600 seconds for it.",
+      "original_tool": "uber.ride",
+      "drifted_tool": "uber.ride",
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type": "comfort",
+          "time": 600
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type": "comfort",
+          "time": 600
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type_v2": "comfort",
+          "time_v2": 600
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type_v2": "comfort",
+          "time_v2": 600
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type_v2": "comfort",
+          "time_v2": 600
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_3-2-1",
+      "prompt": "user: I need a 'Plus' type Uber from 221B Baker Street, Berkeley, CA, USA, and I can wait up to 600 seconds for it.",
+      "original_tool": "uber.ride",
+      "drifted_tool": "uber.ride",
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type": "plus",
+          "time": 600
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type": "plus",
+          "time": 600
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type_v2": "plus",
+          "time_v2": 600
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type_v2": "plus",
+          "time_v2": 600
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type_v2": "plus",
+          "time_v2": 600
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_10-3-6",
+      "prompt": "user: Could you tell me the current weather in Yosemite National Park which locates at Mariposa, CA, and make sure to give me the temperature in Celsius?",
+      "original_tool": "get_current_weather",
+      "drifted_tool": "get_current_weather",
+      "original_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Yosemite National Park, CA",
+          "unit": "celsius"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Mariposa, CA",
+          "unit": "celsius"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Mariposa, CA",
+          "unit_v2": "celsius"
+        }
+      },
+      "pred_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Yosemite National Park, CA",
+          "unit_v2": "celsius"
+        }
+      },
+      "repaired_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Yosemite National Park, CA",
+          "unit_v2": "celsius"
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "location"
+        ]
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "location"
+        ]
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "location"
+        ]
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_0-0-0",
+      "prompt": "user: update my latte to a large size with coconut milk and make it extra sweet? make it served 'boiling hot' as the special request. The drink id is 'latte'",
+      "original_tool": "ChaDri.change_drink",
+      "drifted_tool": "ChaFod",
+      "original_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "latte"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected ChaFod, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "foodItem",
+            "message": "Missing required field: foodItem"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "json_fallback",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: user: update my latte to a large size with coconut milk and make it extra sweet? make it served 'boiling hot' as the special request. The drink id is 'latte'\n\nTool: ChaFod\nDescription: Changes the food item based on the customer's request, allowing for modifications to the ingredients or preparation method.\nRequired: foodItem\nFields:\n- foodItem: type=string\n- newIngredients: type=string\n- removeIngredients: type=string\n- specialInstructions: type=string\n\nInvalid tool call:\n{\n  \"name\": \"\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected ChaFod, got <missing>\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"foodItem\",\n      \"message\": \"Missing required field: foodItem\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "latte",
+          "new_preferences": {
+            "size": [
+              "large"
+            ],
+            "milk_type": [
+              "coconut"
+            ],
+            "sweetness_level": [
+              "extra"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "special_instructions": [
+              "served boiling hot",
+              "serve boiling hot",
+              "boiling hot",
+              "served 'boiling hot'"
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "latte",
+          "new_preferences_v2": {
+            "size": [
+              "large"
+            ],
+            "milk_type": [
+              "coconut"
+            ],
+            "sweetness_level": [
+              "extra"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "special_instructions": [
+              "served boiling hot",
+              "serve boiling hot",
+              "boiling hot",
+              "served 'boiling hot'"
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "ChaFod",
+        "arguments": {
+          "foodItem": "latte",
+          "newIngredients": "large size, coconut milk, extra sweet",
+          "specialInstructions": "boiling hot"
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "new_preferences"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "drink_id",
+          "new_preferences_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "drink_id",
+          "new_preferences_v2"
+        ],
+        "extra_fields": [
+          "foodItem",
+          "newIngredients",
+          "specialInstructions"
+        ],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "live_multiple_1-0-1",
+      "prompt": "system: You are an agent that is used for ordering food on your customers behalf using your functions\nuser: NO SUGAR in my coffee loll. Can you change my drink with drink id '1234' order to have no sweetness, and also make sure it's served hot?",
+      "original_tool": "ChaDri.change_drink",
+      "drifted_tool": "ChaFod",
+      "original_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected ChaFod, got ChaDri.change_drink"
+          },
+          {
+            "code": "missing_field",
+            "field": "foodItem",
+            "message": "Missing required field: foodItem"
+          },
+          {
+            "code": "unknown_field",
+            "field": "drink_id",
+            "message": "Unknown field: drink_id"
+          },
+          {
+            "code": "unknown_field",
+            "field": "new_preferences_v2",
+            "message": "Unknown field: new_preferences_v2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected ChaFod, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "foodItem",
+            "message": "Missing required field: foodItem"
+          }
+        ]
+      },
+      "repaired_valid": false,
+      "repair_used": true,
+      "repair_strategy": "json_fallback",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: system: You are an agent that is used for ordering food on your customers behalf using your functions\nuser: NO SUGAR in my coffee loll. Can you change my drink with drink id '1234' order to have no sweetness, and also make sure it's served hot?\n\nTool: ChaFod\nDescription: Changes the food item based on the customer's request, allowing for modifications to the ingredients or preparation method.\nRequired: foodItem\nFields:\n- foodItem: type=string\n- newIngredients: type=string\n- removeIngredients: type=string\n- specialInstructions: type=string\n\nInvalid tool call:\n{\n  \"name\": \"ChaDri.change_drink\",\n  \"arguments\": {\n    \"drink_id\": \"1234\",\n    \"new_preferences_v2\": {\n      \"sweetness_level\": \"none\",\n      \"temperature\": \"hot\"\n    }\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected ChaFod, got ChaDri.change_drink\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"foodItem\",\n      \"message\": \"Missing required field: foodItem\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"drink_id\",\n      \"message\": \"Unknown field: drink_id\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"new_preferences_v2\",\n      \"message\": \"Unknown field: new_preferences_v2\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234",
+          "new_preferences": {
+            "sweetness_level": [
+              "none"
+            ],
+            "temperature": [
+              "hot"
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234",
+          "new_preferences_v2": {
+            "sweetness_level": [
+              "none"
+            ],
+            "temperature": [
+              "hot"
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234",
+          "new_preferences_v2": {
+            "sweetness_level": "none",
+            "temperature": "hot"
+          }
+        }
+      },
+      "repaired_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "new_preferences"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "new_preferences_v2"
+        ]
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "drink_id",
+          "new_preferences_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "live_multiple_2-1-0",
+      "prompt": "user: T\u00f4i c\u1ea7n m\u1ed9t chuy\u1ebfn xe Uber lo\u1ea1i 'Plus' t\u1eeb \u0111\u1ecba ch\u1ec9 '2150 Shattuck Ave, Berkeley, CA' v\u00e0 t\u00f4i c\u00f3 th\u1ec3 ch\u1edd t\u1ed1i \u0111a 10 ph\u00fat.",
+      "original_tool": "uber.ride",
+      "drifted_tool": "uber.ride",
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_3-2-0",
+      "prompt": "user: Get weather of Ha Noi for me",
+      "original_tool": "api.weather",
+      "drifted_tool": "uber.ride",
+      "original_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected uber.ride, got api.weather"
+          },
+          {
+            "code": "missing_field",
+            "field": "time",
+            "message": "Missing required field: time"
+          },
+          {
+            "code": "missing_field",
+            "field": "type",
+            "message": "Missing required field: type"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "json_fallback",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: user: Get weather of Ha Noi for me\n\nTool: uber.ride\nDescription: Finds a suitable Uber ride for the customer based on the starting location, the desired ride type, and the maximum wait time the customer is willing to accept.\nRequired: loc, type, time\nFields:\n- loc: type=string\n- type: type=string enum=['plus', 'comfort', 'black']\n- time: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"api.weather\",\n  \"arguments\": {\n    \"loc\": \"Ha Noi, Vietnam\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected uber.ride, got api.weather\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"time\",\n      \"message\": \"Missing required field: time\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"type\",\n      \"message\": \"Missing required field: type\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "pred_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam",
+          "type": "comfort",
+          "time": 30
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [],
+        "extra_fields": [
+          "time",
+          "type"
+        ],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "live_multiple_4-2-1",
+      "prompt": "user: T\u00ecm chuy\u1ebfn xe cho t\u00f4i t\u1eeb H\u00e0 N\u1ed9i lo\u1ea1i Plus trong 10 ph\u00fat n\u1eefa. Address: 123 Hanoi Street",
+      "original_tool": "uber.ride",
+      "drifted_tool": "uber.ride",
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street, Hanoi, Vietnam",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street, Hanoi, Vietnam",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street, Hanoi, Vietnam",
+          "type_v2": "plus",
+          "time_v2": 10
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "loc"
+        ]
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "loc"
+        ]
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "loc"
+        ]
+      },
+      "error_type": "clean"
+    }
+  ]
+}

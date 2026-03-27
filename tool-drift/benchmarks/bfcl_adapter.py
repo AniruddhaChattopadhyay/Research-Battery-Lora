@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from scripts.common import load_json
+from scripts.common import load_json, repo_root
 
 
 def load_bfcl_tasks(config: dict[str, Any]) -> list[dict[str, Any]]:
@@ -28,6 +28,8 @@ def load_bfcl_tasks(config: dict[str, Any]) -> list[dict[str, Any]]:
         )
 
     path = Path(subset_path)
+    if not path.is_absolute():
+        path = repo_root() / path
     if not path.exists():
         raise FileNotFoundError(f"BFCL subset file not found: {path}")
 

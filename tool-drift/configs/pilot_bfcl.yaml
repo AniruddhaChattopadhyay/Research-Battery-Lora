@@ -10,7 +10,7 @@ model:
   endpoint: https://openrouter.ai/api/v1/chat/completions
 
 data:
-  bfcl_subset_path: null
+  bfcl_subset_path: data/bfcl_pilot_subset.json
 
 drift:
   description_modes:

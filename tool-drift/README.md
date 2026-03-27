@@ -47,6 +47,23 @@ Notes:
 - the pilot score uses normalized semantic matching, not raw string equality,
 - repair now tries tool-calling first and falls back to JSON-only extraction if the first repair remains invalid.
 
+## Export Real Pilot Subsets
+
+The repo now includes exporter scripts for real benchmark slices:
+
+```bash
+cd /Users/aniruddha/Documents/research/tool-drift
+./.venv/bin/python scripts/export_bfcl_subset.py --per-category 5 --output data/bfcl_pilot_subset.json
+./.venv/bin/python scripts/export_dice_subset.py --count 20 --output data/dice_pilot_subset.json
+```
+
+Current default pilot subset files:
+
+- `data/bfcl_pilot_subset.json`
+- `data/dice_pilot_subset.json`
+
+The config files already point to those paths.
+
 ## Colab Flow
 
 1. Open `notebooks/tool_drift_pilot_colab.ipynb`.
