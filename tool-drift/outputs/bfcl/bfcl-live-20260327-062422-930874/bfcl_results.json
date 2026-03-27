@@ -1,0 +1,198 @@
+{
+  "summary": {
+    "benchmark": "bfcl",
+    "demo_mode": false,
+    "run_id": "bfcl-live-20260327-062422-930874",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-live-20260327-062422-930874",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 1,
+    "drifted_score": 0,
+    "repaired_score": 0,
+    "recovery_rate": 0.0,
+    "validation_failures": 1,
+    "repaired_failures": 1,
+    "error_breakdown": {
+      "wrong_tool": 1
+    },
+    "drifted_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "repaired_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    }
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "bfcl",
+      "mode": "demo",
+      "output_dir": "outputs/bfcl"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions"
+    },
+    "data": {
+      "bfcl_subset_path": "/Users/aniruddha/Documents/research/tool-drift/data/bfcl_smoke.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "formal"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "alias_enums"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 8,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "bfcl_multi_turn_small"
+    }
+  },
+  "results": [
+    {
+      "id": "bfcl_smoke_0",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "drifted_tool": "book_flight",
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "Paris",
+          "destination": "Tokyo",
+          "date": "next Monday",
+          "class": "economy"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected book_flight, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "date_v2",
+            "message": "Missing required field: date_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "origin",
+            "message": "Missing required field: origin"
+          },
+          {
+            "code": "missing_field",
+            "field": "destination_v2",
+            "message": "Missing required field: destination_v2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected book_flight, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "date_v2",
+            "message": "Missing required field: date_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "origin",
+            "message": "Missing required field: origin"
+          },
+          {
+            "code": "missing_field",
+            "field": "destination_v2",
+            "message": "Missing required field: destination_v2"
+          }
+        ]
+      },
+      "repaired_valid": false,
+      "repair_used": true,
+      "repair_strategy": "json_fallback",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: origin, destination_v2, date_v2\nFields:\n- origin: type=string\n- destination_v2: type=string\n- date_v2: type=string\n- class_v2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"wrong_tool\",\n      \"field\": \"name\",\n      \"message\": \"Expected book_flight, got <missing>\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"date_v2\",\n      \"message\": \"Missing required field: date_v2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"origin\",\n      \"message\": \"Missing required field: origin\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destination_v2\",\n      \"message\": \"Missing required field: destination_v2\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "Paris",
+          "destination": "Tokyo",
+          "date": "next Monday",
+          "class": "economy"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "Paris",
+          "destination_v2": "Tokyo",
+          "date_v2": "next Monday",
+          "class_v2": "economy"
+        }
+      },
+      "pred_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "class_v2",
+          "date_v2",
+          "destination_v2",
+          "origin"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "class_v2",
+          "date_v2",
+          "destination_v2",
+          "origin"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    }
+  ]
+}

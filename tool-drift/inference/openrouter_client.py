@@ -19,6 +19,44 @@ def _tool_to_openai_schema(tool: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _read_message_content(message: Mapping[str, Any]) -> str:
+    content = message.get("content", "")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts: list[str] = []
+        for item in content:
+            if isinstance(item, dict) and item.get("type") == "text":
+                parts.append(str(item.get("text", "")))
+        return "\n".join(part for part in parts if part)
+    return str(content)
+
+
+def _extract_json_dict(text: str) -> dict[str, Any]:
+    decoder = json.JSONDecoder()
+    stripped = text.strip()
+    if not stripped:
+        return {}
+
+    try:
+        parsed = json.loads(stripped)
+    except json.JSONDecodeError:
+        parsed = None
+    if isinstance(parsed, dict):
+        return parsed
+
+    for index, char in enumerate(stripped):
+        if char != "{":
+            continue
+        try:
+            parsed, _ = decoder.raw_decode(stripped[index:])
+        except json.JSONDecodeError:
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    return {}
+
+
 def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
     choices = list(payload.get("choices", []))
     if not choices:
@@ -40,51 +78,20 @@ def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
         }
 
     # Fallback: some providers may return JSON in content instead of tool_calls.
-    content = message.get("content", "")
-    if isinstance(content, str):
-        try:
-            parsed = json.loads(content)
-            if isinstance(parsed, dict):
-                return {
-                    "name": str(parsed.get("name", parsed.get("tool", ""))),
-                    "arguments": dict(parsed.get("arguments", {})),
-                }
-        except json.JSONDecodeError:
-            pass
+    parsed = _extract_json_dict(_read_message_content(message))
+    if parsed:
+        return {
+            "name": str(parsed.get("name", parsed.get("tool", ""))),
+            "arguments": dict(parsed.get("arguments", {})),
+        }
 
     return {"name": "", "arguments": {}}
 
 
-def request_tool_call(
-    *,
-    model: str,
-    prompt: str,
-    tools: list[Mapping[str, Any]],
-    base_url: str | None = None,
-    temperature: float = 0.0,
-    max_tokens: int = 256,
-) -> dict[str, Any]:
+def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> dict[str, Any]:
     load_dotenv()
     api_key = require_env("OPENROUTER_API_KEY")
     endpoint = base_url or require_env("OPENROUTER_BASE_URL")
-
-    body = {
-        "model": model,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "You are a function-calling model. "
-                    "Return exactly one tool call when the request matches a tool."
-                ),
-            },
-            {"role": "user", "content": prompt},
-        ],
-        "tools": [_tool_to_openai_schema(tool) for tool in tools],
-        "tool_choice": "auto",
-        "temperature": temperature,
-        "max_tokens": max_tokens,
-    }
 
     request = urllib.request.Request(
         endpoint,
@@ -105,4 +112,72 @@ def request_tool_call(
     except urllib.error.URLError as exc:
         raise RuntimeError(f"OpenRouter request failed: {exc}") from exc
 
+    return payload
+
+
+def request_tool_call(
+    *,
+    model: str,
+    prompt: str,
+    tools: list[Mapping[str, Any]],
+    base_url: str | None = None,
+    temperature: float = 0.0,
+    max_tokens: int = 256,
+) -> dict[str, Any]:
+    body = {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are a function-calling model. "
+                    "Return exactly one tool call when the request matches a tool."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ],
+        "tools": [_tool_to_openai_schema(tool) for tool in tools],
+        "tool_choice": "auto",
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+    }
+    payload = _request_payload(body, base_url=base_url)
     return _extract_tool_call(payload)
+
+
+def request_json_tool_call(
+    *,
+    model: str,
+    prompt: str,
+    base_url: str | None = None,
+    temperature: float = 0.0,
+    max_tokens: int = 256,
+) -> dict[str, Any]:
+    body = {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You repair function calls. "
+                    "Return only a single JSON object with keys name and arguments."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+    }
+    payload = _request_payload(body, base_url=base_url)
+    choices = list(payload.get("choices", []))
+    if not choices:
+        return {"name": "", "arguments": {}}
+
+    message = dict(choices[0].get("message", {}))
+    parsed = _extract_json_dict(_read_message_content(message))
+    if not parsed:
+        return {"name": "", "arguments": {}}
+    return {
+        "name": str(parsed.get("name", parsed.get("tool", ""))),
+        "arguments": dict(parsed.get("arguments", {})),
+    }

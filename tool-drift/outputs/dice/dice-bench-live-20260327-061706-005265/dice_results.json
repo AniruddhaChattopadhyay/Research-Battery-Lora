@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "run_id": "dice-bench-live-20260327-061706-005265",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260327-061706-005265",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 1,
+    "drifted_score": 0,
+    "repaired_score": 0,
+    "recovery_rate": 0.0,
+    "validation_failures": 1,
+    "repaired_failures": 1,
+    "error_breakdown": {
+      "missing_field": 1
+    },
+    "drifted_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "repaired_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    }
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "dice-bench",
+      "mode": "demo",
+      "output_dir": "outputs/dice"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions"
+    },
+    "data": {
+      "dice_subset_path": "/Users/aniruddha/Documents/research/tool-drift/data/dice_smoke.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "reorder_parameters"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 8,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "dice_sample"
+    }
+  },
+  "results": [
+    {
+      "id": "dice_smoke_0",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "drifted_tool": "schedule_meeting",
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "3:00 PM",
+          "duration_minutes": 30
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "title",
+            "message": "Missing required field: title"
+          },
+          {
+            "code": "missing_field",
+            "field": "start_time_v2",
+            "message": "Missing required field: start_time_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendees_v2",
+            "message": "Missing required field: attendees_v2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "wrong_tool",
+            "field": "name",
+            "message": "Expected schedule_meeting, got <missing>"
+          },
+          {
+            "code": "missing_field",
+            "field": "title",
+            "message": "Missing required field: title"
+          },
+          {
+            "code": "missing_field",
+            "field": "start_time_v2",
+            "message": "Missing required field: start_time_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendees_v2",
+            "message": "Missing required field: attendees_v2"
+          }
+        ]
+      },
+      "repaired_valid": false,
+      "repair_used": true,
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: title, attendees_v2, start_time_v2\nFields:\n- title: type=string\n- attendees_v2: type=array\n- start_time_v2: type=string\n- duration_minutes_v2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"title\",\n      \"message\": \"Missing required field: title\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"start_time_v2\",\n      \"message\": \"Missing required field: start_time_v2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendees_v2\",\n      \"message\": \"Missing required field: attendees_v2\"\n    }\n  ]\n}\n\nConstraints:\n- Use the exact tool name from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "3 PM",
+          "duration_minutes": 30
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendees_v2",
+          "duration_minutes_v2",
+          "start_time_v2",
+          "title"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "attendees_v2",
+          "duration_minutes_v2",
+          "start_time_v2",
+          "title"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "multi_turn_drift"
+    }
+  ]
+}

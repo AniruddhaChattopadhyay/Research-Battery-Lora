@@ -18,9 +18,9 @@ from drift.candidate_drift import apply_candidate_drift
 from drift.description_drift import apply_description_drift
 from drift.schema_drift import apply_schema_drift
 from eval.error_taxonomy import summarize_errors
-from eval.metrics import exact_match_rate, recovery_rate, summarize_series
-from inference.openrouter_client import request_tool_call
-from scripts.common import adapt_gold_call_to_tool, build_example_call, default_output_dir, dump_json, ensure_dir, load_yaml, synthetic_tools
+from eval.metrics import accuracy, compare_tool_calls, recovery_rate, summarize_series
+from inference.openrouter_client import request_json_tool_call, request_tool_call
+from scripts.common import adapt_gold_call_to_tool, build_example_call, dump_json, load_yaml, prepare_output_dir, synthetic_tools
 
 
 def synthetic_tasks(kind: str, sample_count: int) -> list[dict[str, Any]]:
@@ -108,10 +108,10 @@ def repair_call(
     validation: Any,
     config: dict[str, Any],
     demo: bool,
-) -> tuple[dict[str, Any], str]:
+) -> tuple[dict[str, Any], str, str]:
     repair_prompt = build_repair_prompt(task, tool, invalid_call, validation.to_dict())
     if demo:
-        return build_example_call(tool), repair_prompt
+        return build_example_call(tool), repair_prompt, "demo"
 
     model_cfg = config.get("model", {})
     repaired = request_tool_call(
@@ -120,12 +120,21 @@ def repair_call(
         tools=[tool],
         base_url=model_cfg.get("endpoint"),
     )
-    return repaired, repair_prompt
+    first_pass = validate_tool_call(tool, repaired)
+    if first_pass.valid:
+        return repaired, repair_prompt, "tool_call"
+
+    repaired = request_json_tool_call(
+        model=str(model_cfg.get("name", "")),
+        prompt=repair_prompt,
+        base_url=model_cfg.get("endpoint"),
+    )
+    return repaired, repair_prompt, "json_fallback"
 
 
 def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
     sample_count = int(config.get("evaluation", {}).get("sample_count", 8))
-    output_dir = ensure_dir(default_output_dir(config))
+    output_dir, run_id = prepare_output_dir(config, demo)
     if demo:
         tasks = synthetic_tasks("bfcl", sample_count)
     else:
@@ -143,6 +152,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
 
         drifted_tool, tools = prepare_drifted_tools(task, config)
         drifted_gold_call = adapt_gold_call_to_tool(task["gold_call"], drifted_tool)
+        drifted_eval_tool = tools[0]
         if demo:
             call = deepcopy(original_call)
         else:
@@ -152,56 +162,58 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
                 config=config,
                 demo=demo,
             )
-        validation = validate_tool_call(tools[0], call)
+        validation = validate_tool_call(drifted_eval_tool, call)
         if validation.valid:
             repaired = call
             repair_prompt = None
+            repair_strategy = "not_needed"
         else:
-            repaired, repair_prompt = repair_call(
+            repaired, repair_prompt, repair_strategy = repair_call(
                 task=task,
-                tool=tools[0],
+                tool=drifted_eval_tool,
                 invalid_call=call,
                 validation=validation,
                 config=config,
                 demo=demo,
             )
-        repaired_validation = validate_tool_call(tools[0], repaired)
+        repaired_validation = validate_tool_call(drifted_eval_tool, repaired)
+        original_match = compare_tool_calls(original_call, task["gold_call"], task["tool"])
+        drifted_match = compare_tool_calls(call, drifted_gold_call, drifted_eval_tool)
+        repaired_match = compare_tool_calls(repaired, drifted_gold_call, drifted_eval_tool)
         results.append(
             {
                 "id": task["id"],
                 "prompt": task["prompt"],
                 "original_tool": task["tool"]["name"],
-                "drifted_tool": tools[0]["name"],
+                "drifted_tool": drifted_eval_tool["name"],
                 "original_call": original_call,
                 "validation": validation.to_dict(),
                 "repaired_validation": repaired_validation.to_dict(),
                 "repaired_valid": repaired_validation.valid,
                 "repair_used": not validation.valid,
+                "repair_strategy": repair_strategy,
                 "repair_prompt": repair_prompt,
                 "gold_call": task["gold_call"],
                 "drifted_gold_call": drifted_gold_call,
                 "pred_call": call,
                 "repaired_call": repaired,
+                "original_match": original_match,
+                "drifted_match": drifted_match,
+                "repaired_match": repaired_match,
                 "error_type": "clean" if validation.valid else "schema_or_description_drift",
             }
         )
 
-    original_score = exact_match_rate(
-        (record["original_call"] for record in results),
-        (record["gold_call"] for record in results),
-    )
-    drifted_score = exact_match_rate(
-        (record["pred_call"] for record in results),
-        (record["drifted_gold_call"] for record in results),
-    )
-    repaired_score = exact_match_rate(
-        (record["repaired_call"] for record in results),
-        (record["drifted_gold_call"] for record in results),
-    )
+    original_score = accuracy(record["original_match"]["matched"] for record in results)
+    drifted_score = accuracy(record["drifted_match"]["matched"] for record in results)
+    repaired_score = accuracy(record["repaired_match"]["matched"] for record in results)
     summary = {
         "benchmark": "bfcl",
         "demo_mode": demo,
+        "run_id": run_id,
+        "output_dir": str(output_dir),
         "sample_count": len(results),
+        "scoring_policy": "normalized_semantic_match_v1",
         "original_score": original_score,
         "drifted_score": drifted_score,
         "repaired_score": repaired_score,
@@ -212,7 +224,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
         "drifted_stats": summarize_series([drifted_score]),
         "repaired_stats": summarize_series([repaired_score]),
     }
-    dump_json(output_dir / "bfcl_results.json", {"summary": summary, "results": results})
+    dump_json(output_dir / "bfcl_results.json", {"summary": summary, "config": config, "results": results})
     return {"summary": summary, "results": results}
 
 

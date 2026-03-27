@@ -10,7 +10,7 @@ def classify_error(record: dict[str, Any]) -> str:
     validation = record.get("validation", {})
     issues = validation.get("issues", [])
     if not issues:
-        return "unknown"
+        return "clean"
     codes = [issue.get("code", "unknown") for issue in issues]
     if "wrong_tool" in codes:
         return "wrong_tool"
@@ -28,4 +28,3 @@ def classify_error(record: dict[str, Any]) -> str:
 def summarize_errors(records: Iterable[dict[str, Any]]) -> dict[str, int]:
     counts = Counter(classify_error(record) for record in records)
     return dict(counts)
-

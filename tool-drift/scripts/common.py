@@ -4,6 +4,7 @@ import json
 import os
 import re
 from dataclasses import asdict, is_dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict
 
@@ -135,6 +136,36 @@ def ensure_dir(path: str | Path) -> Path:
 def default_output_dir(config: Dict[str, Any]) -> Path:
     output_dir = config.get("project", {}).get("output_dir", "outputs")
     return repo_root() / output_dir
+
+
+def _slugify(text: Any) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", str(text).strip().lower())
+    slug = slug.strip("-")
+    return slug or "run"
+
+
+def resolve_run_mode(config: Dict[str, Any], demo: bool) -> str:
+    if demo or bool(config.get("pilot", {}).get("demo_mode", False)):
+        return "demo"
+    return "live"
+
+
+def resolve_run_id(config: Dict[str, Any], demo: bool) -> str:
+    project_cfg = config.get("project", {})
+    explicit = project_cfg.get("run_id")
+    if explicit:
+        return _slugify(explicit)
+
+    benchmark = _slugify(project_cfg.get("benchmark", "benchmark"))
+    mode = resolve_run_mode(config, demo)
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    return f"{benchmark}-{mode}-{timestamp}"
+
+
+def prepare_output_dir(config: Dict[str, Any], demo: bool) -> tuple[Path, str]:
+    run_id = resolve_run_id(config, demo)
+    output_dir = ensure_dir(default_output_dir(config) / run_id)
+    return output_dir, run_id
 
 
 def synthetic_tools() -> list[dict[str, Any]]:

@@ -42,7 +42,10 @@ Notes:
 
 - the default non-demo backend is OpenRouter,
 - the configured endpoint is OpenAI-compatible chat completions,
-- if your OpenRouter account uses a different model slug, update `model.name` in the YAML.
+- if your OpenRouter account uses a different model slug, update `model.name` in the YAML,
+- each run now writes to its own timestamped subdirectory under the configured `output_dir`,
+- the pilot score uses normalized semantic matching, not raw string equality,
+- repair now tries tool-calling first and falls back to JSON-only extraction if the first repair remains invalid.
 
 ## Colab Flow
 
@@ -61,4 +64,5 @@ The scaffold is built to let you validate the research idea quickly:
 - synthetic/demo mode is fully runnable without external benchmark assets,
 - the real benchmark path is explicit via adapter stubs and JSON subset paths,
 - the repair loop is one-shot and inference-only,
-- the notebook is meant to orchestrate Colab execution, not hide the logic.
+- the notebook is meant to orchestrate Colab execution, not hide the logic,
+- result files now include per-example match diagnostics for `original`, `drifted`, and `repaired`.

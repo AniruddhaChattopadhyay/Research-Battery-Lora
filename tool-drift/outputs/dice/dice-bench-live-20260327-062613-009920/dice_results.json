@@ -1,0 +1,171 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "run_id": "dice-bench-live-20260327-062613-009920",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260327-062613-009920",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 1,
+    "drifted_score": 1,
+    "repaired_score": 1,
+    "recovery_rate": 0.0,
+    "validation_failures": 0,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "clean": 1
+    },
+    "drifted_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "repaired_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    }
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "dice-bench",
+      "mode": "demo",
+      "output_dir": "outputs/dice"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions"
+    },
+    "data": {
+      "dice_subset_path": "/Users/aniruddha/Documents/research/tool-drift/data/dice_smoke.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "reorder_parameters"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 8,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "dice_sample"
+    }
+  },
+  "results": [
+    {
+      "id": "dice_smoke_0",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "drifted_tool": "schedule_meeting",
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "3:00 PM",
+          "duration_minutes": 30
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time": "3 PM",
+          "duration_minutes": 30
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3:00 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "team sync",
+          "attendees_v2": [
+            "Alice",
+            "Bob"
+          ],
+          "start_time_v2": "3:00 PM",
+          "duration_minutes_v2": 30
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    }
+  ]
+}

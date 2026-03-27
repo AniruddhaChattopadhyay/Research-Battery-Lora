@@ -16,6 +16,7 @@ def build_repair_prompt(
         [
             "You are repairing a tool call.",
             "Return only corrected JSON with keys: name, arguments.",
+            "Output schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}",
             "",
             f"Task: {task.get('prompt', '')}",
             "",
@@ -29,8 +30,8 @@ def build_repair_prompt(
             "",
             "Constraints:",
             "- Use the exact tool name from the tool card.",
+            "- If fields were renamed, use the renamed field names from the tool card.",
             "- Fix fields, types, and enum values.",
             "- Do not add explanations.",
         ]
     )
-

@@ -20,7 +20,10 @@ def summarize_file(path: Path) -> dict[str, Any]:
     return {
         "file": str(path),
         "benchmark": summary.get("benchmark", "unknown"),
+        "run_id": summary.get("run_id"),
+        "demo_mode": summary.get("demo_mode"),
         "sample_count": summary.get("sample_count", 0),
+        "scoring_policy": summary.get("scoring_policy"),
         "original_score": summary.get("original_score", 0.0),
         "drifted_score": summary.get("drifted_score", 0.0),
         "repaired_score": summary.get("repaired_score", 0.0),
@@ -46,4 +49,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
