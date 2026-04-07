@@ -1,0 +1,338 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "run_id": "dice-bench-live-20260405-112517-544704",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-112517-544704",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 1,
+    "drifted_score": 0,
+    "repaired_score": 1,
+    "recovery_rate": 1.0,
+    "validation_failures": 1,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "missing_field": 1
+    },
+    "drifted_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "repaired_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "originally_correct_count": 1,
+    "drifted_score_on_originally_correct": 0,
+    "repaired_score_on_originally_correct": 1,
+    "recovery_rate_on_originally_correct": 1.0,
+    "drift_misses_on_originally_correct": 1,
+    "repair_recoveries_on_originally_correct": 1,
+    "repair_harms_on_originally_correct": 0
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "dice-bench",
+      "mode": "live",
+      "output_dir": "outputs/dice"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "temperature": 0.0,
+      "repair_max_tokens": 512,
+      "provider_preferences": {
+        "only": [
+          "venice"
+        ],
+        "allow_fallbacks": false
+      }
+    },
+    "data": {
+      "dice_subset_path": "data/dice_single_36.json"
+    },
+    "drift": {
+      "description_modes": [
+        "legacy_example",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "reorder_parameters"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 1,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "dice_stage2_50"
+    }
+  },
+  "results": [
+    {
+      "id": "dice_round_1_36",
+      "prompt": "user: I understand that you're looking to schedule an appointment for a haircut. Could we start by discussing what day you might be free?\nuser: How about November 10th? Does that fit into your schedule?\nuser: November 10th works for me. Let's consider a time that won't interfere with your daily commitments. What about 10:00 in the morning?\nuser: 10:00 AM sounds perfect, as it leaves the rest of the day free. Do you have a preferred location in mind?\nuser: I was thinking of 456 Salon Ave., as it's quite central and convenient. Does that work for you?\nuser: That location is great, as it's easy to reach for both of us. Should we finalize this arrangement, or is there anything else we need to consider?\nuser: It seems like we've agreed on all the details. AI, please go ahead and arrange the appointment accordingly.",
+      "original_tool": "schedule_appointment",
+      "original_tool_schema": {
+        "name": "schedule_appointment",
+        "description": "Schedule an appointment for a service at a date/time/location.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "type": "string",
+              "description": "Type of service (e.g. 'dentist')."
+            },
+            "date": {
+              "type": "string",
+              "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+            },
+            "time": {
+              "type": "string",
+              "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+            },
+            "location": {
+              "type": "string",
+              "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+            }
+          },
+          "required": [
+            "service",
+            "date",
+            "time",
+            "location"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_appointment",
+      "drifted_tool_schema": {
+        "name": "schedule_appointment",
+        "description": "Schedule an appointment for a service at a date/time/location. Legacy integration note: older examples may still show payloads like {\"date\": \"value\", \"time\": \"value\", \"location\": \"value\"}.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "type": "string",
+              "description": "Type of service (e.g. 'dentist')."
+            },
+            "date_v2": {
+              "type": "string",
+              "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+            },
+            "time_v2": {
+              "type": "string",
+              "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+            },
+            "location_v2": {
+              "type": "string",
+              "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+            }
+          },
+          "required": [
+            "service",
+            "date_v2",
+            "time_v2",
+            "location_v2"
+          ],
+          "x_rename_map": {
+            "service": "service",
+            "date": "date_v2",
+            "time": "time_v2",
+            "location": "location_v2"
+          }
+        }
+      },
+      "original_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date": "11-10",
+          "time": "10:00",
+          "location": "456 Salon Ave."
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "service",
+            "message": "Missing required field: service"
+          },
+          {
+            "code": "missing_field",
+            "field": "location_v2",
+            "message": "Missing required field: location_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "date_v2",
+            "message": "Missing required field: date_v2"
+          },
+          {
+            "code": "missing_field",
+            "field": "time_v2",
+            "message": "Missing required field: time_v2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "forced_tool_call",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_appointment\n\nTask: user: I understand that you're looking to schedule an appointment for a haircut. Could we start by discussing what day you might be free?\nuser: How about November 10th? Does that fit into your schedule?\nuser: November 10th works for me. Let's consider a time that won't interfere with your daily commitments. What about 10:00 in the morning?\nuser: 10:00 AM sounds perfect, as it leaves the rest of the day free. Do you have a preferred location in mind?\nuser: I was thinking of 456 Salon Ave., as it's quite central and convenient. Does that work for you?\nuser: That location is great, as it's easy to reach for both of us. Should we finalize this arrangement, or is there anything else we need to consider?\nuser: It seems like we've agreed on all the details. AI, please go ahead and arrange the appointment accordingly.\n\nTool: schedule_appointment\nDescription: Schedule an appointment for a service at a date/time/location. Legacy integration note: older examples may still show payloads like {\"date\": \"value\", \"time\": \"value\", \"location\": \"value\"}.\nRequired: service, date_v2, time_v2, location_v2\nFields:\n- service: type=string\n- date_v2: type=string\n- time_v2: type=string\n- location_v2: type=string\n\nInvalid tool call:\n{\n  \"name\": \"schedule_appointment\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"service\",\n      \"message\": \"Missing required field: service\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"location_v2\",\n      \"message\": \"Missing required field: location_v2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"date_v2\",\n      \"message\": \"Missing required field: date_v2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"time_v2\",\n      \"message\": \"Missing required field: time_v2\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_appointment.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Infer missing required fields from the task, even if the invalid call is empty.\n- Every required field in the tool card must appear in arguments.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_appointment",
+        "tool_call_extracted": {
+          "name": "schedule_appointment",
+          "arguments": {
+            "service": "haircut",
+            "date_v2": "11-10",
+            "time_v2": "10:00",
+            "location_v2": "456 Salon Ave."
+          }
+        },
+        "tool_call_raw_output": {
+          "id": "gen-1775368555-wsCkwVTIHjvpzjZHxMtO",
+          "object": "chat.completion",
+          "created": 1775368555,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Venice",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "tool_calls",
+              "native_finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "reasoning": "The user wants to schedule an appointment for a haircut. Let me extract the relevant information from the conversation:\n\n1. Service: haircut (mentioned in the first message)\n2. Date: November 10th - needs to be in MM-DD format, so \"11-10\"\n3. Time: 10:00 AM - needs to be in HH:MM 24-hour format, so \"10:00\"\n4. Location: 456 Salon Ave.\n\nNow I need to create the corrected JSON with the exact tool name \"schedule_appointment\" and all required fields properly formatted.\n",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "index": 0,
+                    "id": "chatcmpl-tool-a7b6fdbe29055280",
+                    "function": {
+                      "name": "schedule_appointment",
+                      "arguments": "{\n  \"service\": \"haircut\",\n  \"date_v2\": \"11-10\",\n  \"time_v2\": \"10:00\",\n  \"location_v2\": \"456 Salon Ave.\"\n}"
+                    }
+                  }
+                ],
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user wants to schedule an appointment for a haircut. Let me extract the relevant information from the conversation:\n\n1. Service: haircut (mentioned in the first message)\n2. Date: November 10th - needs to be in MM-DD format, so \"11-10\"\n3. Time: 10:00 AM - needs to be in HH:MM 24-hour format, so \"10:00\"\n4. Location: 456 Salon Ave.\n\nNow I need to create the corrected JSON with the exact tool name \"schedule_appointment\" and all required fields properly formatted.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1158,
+            "completion_tokens": 190,
+            "total_tokens": 1348,
+            "cost": 8.64e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 8.64e-05,
+              "upstream_inference_prompt_cost": 5.79e-05,
+              "upstream_inference_completions_cost": 2.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 123,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date": "11-10",
+          "time": "10:00",
+          "location": "456 Salon Ave."
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date_v2": "11-10",
+          "time_v2": "10:00",
+          "location_v2": "456 Salon Ave."
+        }
+      },
+      "pred_call": {
+        "name": "schedule_appointment",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date_v2": "11-10",
+          "time_v2": "10:00",
+          "location_v2": "456 Salon Ave."
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "date_v2",
+          "location_v2",
+          "service",
+          "time_v2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "multi_turn_drift"
+    }
+  ]
+}

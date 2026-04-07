@@ -1,0 +1,3827 @@
+{
+  "summary": {
+    "benchmark": "bfcl",
+    "demo_mode": true,
+    "run_id": "bfcl-demo-20260327-122224-127287",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-demo-20260327-122224-127287",
+    "sample_count": 20,
+    "scoring_policy": "normalized_semantic_match_v2",
+    "original_score": 1,
+    "drifted_score": 0,
+    "repaired_score": 0,
+    "recovery_rate": 0.0,
+    "validation_failures": 20,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "missing_field": 20
+    },
+    "drifted_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "repaired_stats": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "originally_correct_count": 20,
+    "drifted_score_on_originally_correct": 0,
+    "repaired_score_on_originally_correct": 0,
+    "recovery_rate_on_originally_correct": 0.0,
+    "drift_misses_on_originally_correct": 20,
+    "repair_recoveries_on_originally_correct": 0,
+    "repair_harms_on_originally_correct": 0
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "bfcl",
+      "mode": "live",
+      "output_dir": "outputs/bfcl"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "temperature": 0.0,
+      "provider_preferences": {
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "sort": "latency"
+      }
+    },
+    "data": {
+      "bfcl_subset_path": "data/bfcl_pilot_subset.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "formal",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_all_parameters",
+        "camel_case",
+        "alias_enums"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "candidate_extra_candidates": 3,
+      "severity": "medium"
+    },
+    "evaluation": {
+      "sample_count": 20,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "bfcl_pilot_subset"
+    }
+  },
+  "results": [
+    {
+      "id": "bfcl_0",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_1",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_2",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_3",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_4",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_5",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_6",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_7",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_8",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_9",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_10",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_11",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_12",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_13",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_14",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_15",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_16",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_17",
+      "prompt": "Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.",
+      "original_tool": "schedule_meeting",
+      "original_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "attendees": {
+              "type": "array"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "duration_minutes": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "title",
+            "attendees",
+            "start_time"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_meeting",
+      "drifted_tool_schema": {
+        "name": "schedule_meeting",
+        "description": "Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "titleV2": {
+              "type": "string"
+            },
+            "attendeesV2": {
+              "type": "array"
+            },
+            "startTimeV2": {
+              "type": "string"
+            },
+            "durationMinutesV2": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "titleV2",
+            "attendeesV2",
+            "startTimeV2"
+          ],
+          "x_rename_map": {
+            "title": "titleV2",
+            "attendees": "attendeesV2",
+            "start_time": "startTimeV2",
+            "duration_minutes": "durationMinutesV2",
+            "title_v2": "titleV2",
+            "attendees_v2": "attendeesV2",
+            "start_time_v2": "startTimeV2",
+            "duration_minutes_v2": "durationMinutesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "schedule_meeting",
+        "schedule_meeting_alt_1",
+        "schedule_meeting_alt_2",
+        "schedule_meeting_alt_3"
+      ],
+      "original_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "titleV2",
+            "message": "Missing required field: titleV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "startTimeV2",
+            "message": "Missing required field: startTimeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "attendeesV2",
+            "message": "Missing required field: attendeesV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "title",
+            "message": "Unknown field: title"
+          },
+          {
+            "code": "unknown_field",
+            "field": "attendees",
+            "message": "Unknown field: attendees"
+          },
+          {
+            "code": "unknown_field",
+            "field": "start_time",
+            "message": "Unknown field: start_time"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: schedule_meeting\n\nTask: Schedule a team sync with Alice and Bob at 3 PM for 30 minutes.\n\nTool: schedule_meeting\nDescription: Function: schedule_meeting. Purpose: schedule_meeting should be used when the user needs the following capability. Schedule a meeting with attendees and a time window.\nRequired: titleV2, attendeesV2, startTimeV2\nFields:\n- titleV2: type=string\n- attendeesV2: type=array\n- startTimeV2: type=string\n- durationMinutesV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"schedule_meeting\",\n  \"arguments\": {\n    \"title\": \"title_value\",\n    \"attendees\": [\n      \"attendees_item\"\n    ],\n    \"start_time\": \"start_time_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"titleV2\",\n      \"message\": \"Missing required field: titleV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"startTimeV2\",\n      \"message\": \"Missing required field: startTimeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"attendeesV2\",\n      \"message\": \"Missing required field: attendeesV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"title\",\n      \"message\": \"Unknown field: title\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"attendees\",\n      \"message\": \"Unknown field: attendees\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"start_time\",\n      \"message\": \"Unknown field: start_time\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly schedule_meeting.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "schedule_meeting",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "title_value",
+          "attendeesV2": [
+            "attendees_item"
+          ],
+          "startTimeV2": "start_time_value"
+        }
+      },
+      "pred_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "title": "title_value",
+          "attendees": [
+            "attendees_item"
+          ],
+          "start_time": "start_time_value"
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_meeting",
+        "arguments": {
+          "titleV2": "titleV2_value",
+          "attendeesV2": [
+            "attendeesV2_item"
+          ],
+          "startTimeV2": "startTimeV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ],
+        "extra_fields": [
+          "attendees",
+          "start_time",
+          "title"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "attendeesV2",
+          "startTimeV2",
+          "titleV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_18",
+      "prompt": "Book a flight from Paris to Tokyo for next Monday in economy class.",
+      "original_tool": "book_flight",
+      "original_tool_schema": {
+        "name": "book_flight",
+        "description": "Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "book_flight",
+      "drifted_tool_schema": {
+        "name": "book_flight",
+        "description": "Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "originV2": {
+              "type": "string"
+            },
+            "destinationV2": {
+              "type": "string"
+            },
+            "dateV2": {
+              "type": "string"
+            },
+            "classV2": {
+              "type": "string",
+              "enum": [
+                "economy",
+                "business"
+              ]
+            }
+          },
+          "required": [
+            "originV2",
+            "destinationV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "origin": "originV2",
+            "destination": "destinationV2",
+            "date": "dateV2",
+            "class": "classV2",
+            "origin_v2": "originV2",
+            "destination_v2": "destinationV2",
+            "date_v2": "dateV2",
+            "class_v2": "classV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "book_flight",
+        "book_flight_alt_1",
+        "book_flight_alt_2",
+        "book_flight_alt_3"
+      ],
+      "original_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "destinationV2",
+            "message": "Missing required field: destinationV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "originV2",
+            "message": "Missing required field: originV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "origin",
+            "message": "Unknown field: origin"
+          },
+          {
+            "code": "unknown_field",
+            "field": "destination",
+            "message": "Unknown field: destination"
+          },
+          {
+            "code": "unknown_field",
+            "field": "date",
+            "message": "Unknown field: date"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: book_flight\n\nTask: Book a flight from Paris to Tokyo for next Monday in economy class.\n\nTool: book_flight\nDescription: Function: book_flight. Purpose: book_flight should be used when the user needs the following capability. Book a flight for a traveler between two cities.\nRequired: originV2, destinationV2, dateV2\nFields:\n- originV2: type=string\n- destinationV2: type=string\n- dateV2: type=string\n- classV2: type=string enum=['economy', 'business']\n\nInvalid tool call:\n{\n  \"name\": \"book_flight\",\n  \"arguments\": {\n    \"origin\": \"origin_value\",\n    \"destination\": \"destination_value\",\n    \"date\": \"date_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"destinationV2\",\n      \"message\": \"Missing required field: destinationV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"originV2\",\n      \"message\": \"Missing required field: originV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"origin\",\n      \"message\": \"Unknown field: origin\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"destination\",\n      \"message\": \"Unknown field: destination\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"date\",\n      \"message\": \"Unknown field: date\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly book_flight.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "book_flight",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "origin_value",
+          "destinationV2": "destination_value",
+          "dateV2": "date_value"
+        }
+      },
+      "pred_call": {
+        "name": "book_flight",
+        "arguments": {
+          "origin": "origin_value",
+          "destination": "destination_value",
+          "date": "date_value"
+        }
+      },
+      "repaired_call": {
+        "name": "book_flight",
+        "arguments": {
+          "originV2": "originV2_value",
+          "destinationV2": "destinationV2_value",
+          "dateV2": "dateV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ],
+        "extra_fields": [
+          "date",
+          "destination",
+          "origin"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "dateV2",
+          "destinationV2",
+          "originV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "bfcl_19",
+      "prompt": "What is the weather in Trento this weekend?",
+      "original_tool": "lookup_weather",
+      "original_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      },
+      "drifted_tool": "lookup_weather",
+      "drifted_tool_schema": {
+        "name": "lookup_weather",
+        "description": "Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cityV2": {
+              "type": "string"
+            },
+            "unitsV2": {
+              "type": "string",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          },
+          "required": [
+            "cityV2"
+          ],
+          "x_rename_map": {
+            "city": "cityV2",
+            "units": "unitsV2",
+            "city_v2": "cityV2",
+            "units_v2": "unitsV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "lookup_weather",
+        "lookup_weather_alt_1",
+        "lookup_weather_alt_2",
+        "lookup_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "cityV2",
+            "message": "Missing required field: cityV2"
+          },
+          {
+            "code": "unknown_field",
+            "field": "city",
+            "message": "Unknown field: city"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "demo",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: lookup_weather\n\nTask: What is the weather in Trento this weekend?\n\nTool: lookup_weather\nDescription: Function: lookup_weather. Purpose: lookup_weather should be used when the user needs the following capability. Look up a weather forecast for a city.\nRequired: cityV2\nFields:\n- cityV2: type=string\n- unitsV2: type=string enum=['metric', 'imperial']\n\nInvalid tool call:\n{\n  \"name\": \"lookup_weather\",\n  \"arguments\": {\n    \"city\": \"city_value\"\n  }\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"cityV2\",\n      \"message\": \"Missing required field: cityV2\"\n    },\n    {\n      \"code\": \"unknown_field\",\n      \"field\": \"city\",\n      \"message\": \"Unknown field: city\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly lookup_weather.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "lookup_weather",
+        "tool_call_extracted": null,
+        "tool_call_raw_output": null,
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "city_value"
+        }
+      },
+      "pred_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "city": "city_value"
+        }
+      },
+      "repaired_call": {
+        "name": "lookup_weather",
+        "arguments": {
+          "cityV2": "cityV2_value"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "cityV2"
+        ],
+        "extra_fields": [
+          "city"
+        ],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "cityV2"
+        ]
+      },
+      "error_type": "schema_or_description_drift"
+    }
+  ]
+}

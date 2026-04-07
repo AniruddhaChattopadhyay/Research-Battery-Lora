@@ -23,6 +23,11 @@ def apply_candidate_drift(
     base = [deepcopy(dict(tool)) for tool in tools]
     if mode != "distractors":
         return base
-    distractors = [distractor_tool(tool, idx) for idx, tool in enumerate(base[:extra_candidates], start=1)]
-    return base + distractors
+    if not base or extra_candidates <= 0:
+        return base
 
+    distractors = [
+        distractor_tool(base[idx % len(base)], idx + 1)
+        for idx in range(extra_candidates)
+    ]
+    return base + distractors

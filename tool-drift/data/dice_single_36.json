@@ -1,0 +1,83 @@
+[
+  {
+    "id": "dice_round_1_36",
+    "prompt": "user: I understand that you're looking to schedule an appointment for a haircut. Could we start by discussing what day you might be free?\nuser: How about November 10th? Does that fit into your schedule?\nuser: November 10th works for me. Let's consider a time that won't interfere with your daily commitments. What about 10:00 in the morning?\nuser: 10:00 AM sounds perfect, as it leaves the rest of the day free. Do you have a preferred location in mind?\nuser: I was thinking of 456 Salon Ave., as it's quite central and convenient. Does that work for you?\nuser: That location is great, as it's easy to reach for both of us. Should we finalize this arrangement, or is there anything else we need to consider?\nuser: It seems like we've agreed on all the details. AI, please go ahead and arrange the appointment accordingly.",
+    "tool": {
+      "name": "schedule_appointment",
+      "description": "Schedule an appointment for a service at a date/time/location.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "string",
+            "description": "Type of service (e.g. 'dentist')."
+          },
+          "date": {
+            "type": "string",
+            "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+          },
+          "time": {
+            "type": "string",
+            "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+          },
+          "location": {
+            "type": "string",
+            "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+          }
+        },
+        "required": [
+          "service",
+          "date",
+          "time",
+          "location"
+        ]
+      }
+    },
+    "candidate_tools": [
+      {
+        "name": "schedule_appointment",
+        "description": "Schedule an appointment for a service at a date/time/location.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "type": "string",
+              "description": "Type of service (e.g. 'dentist')."
+            },
+            "date": {
+              "type": "string",
+              "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+            },
+            "time": {
+              "type": "string",
+              "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+            },
+            "location": {
+              "type": "string",
+              "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+            }
+          },
+          "required": [
+            "service",
+            "date",
+            "time",
+            "location"
+          ]
+        }
+      }
+    ],
+    "gold_call": {
+      "name": "schedule_appointment",
+      "arguments": {
+        "service": "haircut",
+        "date": "11-10",
+        "time": "10:00",
+        "location": "456 Salon Ave."
+      }
+    },
+    "source_benchmark": "dice-bench",
+    "source_round": 1,
+    "source_diag_id": 36,
+    "source_category": "Persuassion_Deliberation_and_Negotiation"
+  }
+]

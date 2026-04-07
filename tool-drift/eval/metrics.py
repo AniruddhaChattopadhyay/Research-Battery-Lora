@@ -143,6 +143,45 @@ def _freeze(value: Any) -> Any:
     return value
 
 
+def _coerce_float(value: Any) -> float | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value.strip())
+        except ValueError:
+            return None
+    return None
+
+
+def _normalize_coordinate_pair(value: Any) -> tuple[float, float] | None:
+    if isinstance(value, list) and len(value) == 2:
+        first = _coerce_float(value[0])
+        second = _coerce_float(value[1])
+        if first is not None and second is not None:
+            return (first, second)
+
+    if isinstance(value, str):
+        text = value.strip()
+        if text.startswith("[") and text.endswith("]"):
+            text = text[1:-1]
+        parts = [part.strip() for part in text.split(",")]
+        if len(parts) == 2:
+            first = _coerce_float(parts[0])
+            second = _coerce_float(parts[1])
+            if first is not None and second is not None:
+                return (first, second)
+
+    return None
+
+
+def _looks_like_coordinate_field(field: str) -> bool:
+    lowered = field.casefold()
+    return "coord" in lowered or "coordinates" in lowered
+
+
 def _normalize_value(field: str, value: Any, spec: Mapping[str, Any]) -> Any:
     expected_type = str(spec.get("type", "")).lower()
     if expected_type == "integer":
@@ -180,6 +219,47 @@ def _normalize_value(field: str, value: Any, spec: Mapping[str, Any]) -> Any:
     return value
 
 
+def _values_match(field: str, prediction: Any, reference: Any, spec: Mapping[str, Any]) -> bool:
+    expected_type = str(spec.get("type", "")).lower()
+
+    if _looks_like_coordinate_field(field):
+        pred_coords = _normalize_coordinate_pair(prediction)
+        ref_coords = _normalize_coordinate_pair(reference)
+        if pred_coords is not None and ref_coords is not None:
+            return pred_coords == ref_coords
+
+    if isinstance(reference, list) and expected_type != "array":
+        return any(_values_match(field, prediction, candidate, spec) for candidate in reference)
+
+    if isinstance(prediction, list) and expected_type != "array" and len(prediction) == 1:
+        return _values_match(field, prediction[0], reference, spec)
+
+    if expected_type == "object" or isinstance(reference, dict) or isinstance(prediction, dict):
+        if not isinstance(reference, dict) or not isinstance(prediction, dict):
+            return False
+        if set(reference) != set(prediction):
+            return False
+        nested_properties = dict(spec.get("properties", {}))
+        for key in reference:
+            nested_spec = dict(nested_properties.get(key, {}))
+            if not _values_match(str(key), prediction[key], reference[key], nested_spec):
+                return False
+        return True
+
+    if expected_type == "array":
+        if not isinstance(reference, list) or not isinstance(prediction, list):
+            return False
+        ref_values = [_normalize_value(field, item, {}) for item in reference]
+        pred_values = [_normalize_value(field, item, {}) for item in prediction]
+        if field in {"attendees", "participants", "invitees"}:
+            return sorted(_freeze(item) for item in pred_values) == sorted(_freeze(item) for item in ref_values)
+        return tuple(_freeze(item) for item in pred_values) == tuple(_freeze(item) for item in ref_values)
+
+    pred_value = _normalize_value(field, prediction, spec)
+    ref_value = _normalize_value(field, reference, spec)
+    return pred_value == ref_value
+
+
 def compare_tool_calls(
     prediction: Mapping[str, Any],
     reference: Mapping[str, Any],
@@ -204,9 +284,7 @@ def compare_tool_calls(
     mismatched_fields: list[str] = []
     for field in sorted(pred_keys & ref_keys):
         spec = dict(properties.get(field, {}))
-        pred_value = _normalize_value(field, pred_args[field], spec)
-        ref_value = _normalize_value(field, ref_args[field], spec)
-        if pred_value != ref_value:
+        if not _values_match(field, pred_args[field], ref_args[field], spec):
             mismatched_fields.append(field)
 
     matched = name_match and not missing_fields and not extra_fields and not mismatched_fields

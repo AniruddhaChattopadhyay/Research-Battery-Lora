@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import socket
 import time
 import urllib.error
 import urllib.request
@@ -132,7 +133,7 @@ def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> di
     retryable_status_codes = {408, 429, 500, 502, 503, 504}
     for attempt in range(max_attempts):
         try:
-            with urllib.request.urlopen(request, timeout=120) as response:
+            with urllib.request.urlopen(request, timeout=180) as response:
                 return json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", errors="replace")
@@ -151,19 +152,27 @@ def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> di
                 time.sleep(_retry_delay_seconds(attempt))
                 continue
             raise RuntimeError(f"OpenRouter request failed: {exc}") from exc
+        except (TimeoutError, socket.timeout) as exc:
+            if attempt + 1 < max_attempts:
+                time.sleep(_retry_delay_seconds(attempt))
+                continue
+            raise RuntimeError(f"OpenRouter request timed out: {exc}") from exc
 
     raise RuntimeError("OpenRouter request failed after exhausting retries")
 
 
-def request_tool_call(
+def _request_tool_call_payload(
     *,
     model: str,
     prompt: str,
     tools: list[Mapping[str, Any]],
     base_url: str | None = None,
+    force_tool_name: str | None = None,
     temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
     max_tokens: int = 256,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], dict[str, Any]]:
     body = {
         "model": model,
         "messages": [
@@ -177,22 +186,85 @@ def request_tool_call(
             {"role": "user", "content": prompt},
         ],
         "tools": [_tool_to_openai_schema(tool) for tool in tools],
-        "tool_choice": "auto",
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
+    if seed is not None:
+        body["seed"] = int(seed)
+    if provider_preferences:
+        body["provider"] = dict(provider_preferences)
+    if force_tool_name:
+        body["tool_choice"] = {
+            "type": "function",
+            "function": {"name": force_tool_name},
+        }
+    else:
+        body["tool_choice"] = "auto"
     payload = _request_payload(body, base_url=base_url)
-    return _extract_tool_call(payload)
+    return _extract_tool_call(payload), payload
 
 
-def request_json_tool_call(
+def request_tool_call(
+    *,
+    model: str,
+    prompt: str,
+    tools: list[Mapping[str, Any]],
+    base_url: str | None = None,
+    force_tool_name: str | None = None,
+    temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
+    max_tokens: int = 256,
+) -> dict[str, Any]:
+    tool_call, _ = _request_tool_call_payload(
+        model=model,
+        prompt=prompt,
+        tools=tools,
+        base_url=base_url,
+        force_tool_name=force_tool_name,
+        temperature=temperature,
+        seed=seed,
+        provider_preferences=provider_preferences,
+        max_tokens=max_tokens,
+    )
+    return tool_call
+
+
+def request_tool_call_with_payload(
+    *,
+    model: str,
+    prompt: str,
+    tools: list[Mapping[str, Any]],
+    base_url: str | None = None,
+    force_tool_name: str | None = None,
+    temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
+    max_tokens: int = 256,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    return _request_tool_call_payload(
+        model=model,
+        prompt=prompt,
+        tools=tools,
+        base_url=base_url,
+        force_tool_name=force_tool_name,
+        temperature=temperature,
+        seed=seed,
+        provider_preferences=provider_preferences,
+        max_tokens=max_tokens,
+    )
+
+
+def _request_json_tool_call_payload(
     *,
     model: str,
     prompt: str,
     base_url: str | None = None,
     temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
     max_tokens: int = 256,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], dict[str, Any]]:
     body = {
         "model": model,
         "messages": [
@@ -208,16 +280,63 @@ def request_json_tool_call(
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
+    if seed is not None:
+        body["seed"] = int(seed)
+    if provider_preferences:
+        body["provider"] = dict(provider_preferences)
     payload = _request_payload(body, base_url=base_url)
     choices = list(payload.get("choices", []))
     if not choices:
-        return {"name": "", "arguments": {}}
+        return {"name": "", "arguments": {}}, payload
 
     message = dict(choices[0].get("message", {}))
     parsed = _extract_json_dict(_read_message_content(message))
     if not parsed:
-        return {"name": "", "arguments": {}}
+        return {"name": "", "arguments": {}}, payload
     return {
         "name": str(parsed.get("name", parsed.get("tool", ""))),
         "arguments": dict(parsed.get("arguments", {})),
-    }
+    }, payload
+
+
+def request_json_tool_call(
+    *,
+    model: str,
+    prompt: str,
+    base_url: str | None = None,
+    temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
+    max_tokens: int = 256,
+) -> dict[str, Any]:
+    tool_call, _ = _request_json_tool_call_payload(
+        model=model,
+        prompt=prompt,
+        base_url=base_url,
+        temperature=temperature,
+        seed=seed,
+        provider_preferences=provider_preferences,
+        max_tokens=max_tokens,
+    )
+    return tool_call
+
+
+def request_json_tool_call_with_payload(
+    *,
+    model: str,
+    prompt: str,
+    base_url: str | None = None,
+    temperature: float = 0.0,
+    seed: int | None = None,
+    provider_preferences: Mapping[str, Any] | None = None,
+    max_tokens: int = 256,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    return _request_json_tool_call_payload(
+        model=model,
+        prompt=prompt,
+        base_url=base_url,
+        temperature=temperature,
+        seed=seed,
+        provider_preferences=provider_preferences,
+        max_tokens=max_tokens,
+    )

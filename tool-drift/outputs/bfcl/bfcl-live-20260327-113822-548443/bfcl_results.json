@@ -1,0 +1,3558 @@
+{
+  "summary": {
+    "benchmark": "bfcl",
+    "demo_mode": false,
+    "run_id": "bfcl-live-20260327-113822-548443",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-live-20260327-113822-548443",
+    "sample_count": 20,
+    "scoring_policy": "normalized_semantic_match_v2",
+    "original_score": 0.65,
+    "drifted_score": 0.8,
+    "repaired_score": 0.85,
+    "recovery_rate": 0.0,
+    "validation_failures": 3,
+    "repaired_failures": 1,
+    "error_breakdown": {
+      "clean": 17,
+      "missing_field": 3
+    },
+    "drifted_stats": {
+      "mean": 0.8,
+      "min": 0.8,
+      "max": 0.8
+    },
+    "repaired_stats": {
+      "mean": 0.85,
+      "min": 0.85,
+      "max": 0.85
+    },
+    "originally_correct_count": 13,
+    "drifted_score_on_originally_correct": 1,
+    "repaired_score_on_originally_correct": 1,
+    "recovery_rate_on_originally_correct": 0.0,
+    "drift_misses_on_originally_correct": 0,
+    "repair_recoveries_on_originally_correct": 0,
+    "repair_harms_on_originally_correct": 0
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "bfcl",
+      "mode": "live",
+      "output_dir": "outputs/bfcl"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-9b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions"
+    },
+    "data": {
+      "bfcl_subset_path": "data/bfcl_pilot_subset.json"
+    },
+    "drift": {
+      "description_modes": [
+        "verbose",
+        "formal",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_all_parameters",
+        "camel_case",
+        "alias_enums"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "candidate_extra_candidates": 3,
+      "severity": "medium"
+    },
+    "evaluation": {
+      "sample_count": 20,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "bfcl_pilot_subset"
+    }
+  },
+  "results": [
+    {
+      "id": "simple_python_1",
+      "prompt": "user: Calculate the factorial of 5 using math functions.",
+      "original_tool": "math.factorial",
+      "original_tool_schema": {
+        "name": "math.factorial",
+        "description": "Calculate the factorial of a given number.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "number": {
+              "type": "integer",
+              "description": "The number for which factorial needs to be calculated."
+            }
+          },
+          "required": [
+            "number"
+          ]
+        }
+      },
+      "drifted_tool": "math.factorial",
+      "drifted_tool_schema": {
+        "name": "math.factorial",
+        "description": "Function: math.factorial. Purpose: math.factorial should be used when the user needs the following capability. Calculate the factorial of a given number.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "numberV2": {
+              "type": "integer",
+              "description": "The number for which factorial needs to be calculated."
+            }
+          },
+          "required": [
+            "numberV2"
+          ],
+          "x_rename_map": {
+            "number": "numberV2",
+            "number_v2": "numberV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "math.factorial",
+        "math.factorial_alt_1",
+        "math.factorial_alt_2",
+        "math.factorial_alt_3"
+      ],
+      "original_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "number": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "numberV2": 5
+        }
+      },
+      "pred_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "numberV2": 5
+        }
+      },
+      "repaired_call": {
+        "name": "math.factorial",
+        "arguments": {
+          "numberV2": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_3",
+      "prompt": "user: Find the roots of a quadratic equation with coefficients a=1, b=-3, c=2.",
+      "original_tool": "algebra.quadratic_roots",
+      "original_tool_schema": {
+        "name": "algebra.quadratic_roots",
+        "description": "Find the roots of a quadratic equation ax^2 + bx + c = 0.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "Coefficient of x^2."
+            },
+            "b": {
+              "type": "integer",
+              "description": "Coefficient of x."
+            },
+            "c": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      "drifted_tool": "algebra.quadratic_roots",
+      "drifted_tool_schema": {
+        "name": "algebra.quadratic_roots",
+        "description": "Function: algebra.quadratic_roots. Purpose: algebra.quadratic_roots should be used when the user needs the following capability. Find the roots of a quadratic equation ax^2 + bx + c = 0.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "aV2": {
+              "type": "integer",
+              "description": "Coefficient of x^2."
+            },
+            "bV2": {
+              "type": "integer",
+              "description": "Coefficient of x."
+            },
+            "cV2": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "aV2",
+            "bV2",
+            "cV2"
+          ],
+          "x_rename_map": {
+            "a": "aV2",
+            "b": "bV2",
+            "c": "cV2",
+            "a_v2": "aV2",
+            "b_v2": "bV2",
+            "c_v2": "cV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "algebra.quadratic_roots",
+        "algebra.quadratic_roots_alt_1",
+        "algebra.quadratic_roots_alt_2",
+        "algebra.quadratic_roots_alt_3"
+      ],
+      "original_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b": -3,
+          "c": 2
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "a": 1,
+          "b": -3,
+          "c": 2
+        }
+      },
+      "drifted_gold_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "aV2": 1,
+          "bV2": -3,
+          "cV2": 2
+        }
+      },
+      "pred_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "aV2": 1,
+          "bV2": -3,
+          "cV2": 2
+        }
+      },
+      "repaired_call": {
+        "name": "algebra.quadratic_roots",
+        "arguments": {
+          "aV2": 1,
+          "bV2": -3,
+          "cV2": 2
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_4",
+      "prompt": "user: Solve a quadratic equation where a=2, b=6, and c=5",
+      "original_tool": "solve_quadratic_equation",
+      "original_tool_schema": {
+        "name": "solve_quadratic_equation",
+        "description": "Function solves the quadratic equation and returns its roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "Coefficient of x squared"
+            },
+            "b": {
+              "type": "integer",
+              "description": "Coefficient of x"
+            },
+            "c": {
+              "type": "integer",
+              "description": "Constant term in the quadratic equation."
+            }
+          },
+          "required": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      "drifted_tool": "solve_quadratic_equation",
+      "drifted_tool_schema": {
+        "name": "solve_quadratic_equation",
+        "description": "Function: solve_quadratic_equation. Purpose: solve_quadratic_equation should be used when the user needs the following capability. Function solves the quadratic equation and returns its roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "aV2": {
+              "type": "integer",
+              "description": "Coefficient of x squared"
+            },
+            "bV2": {
+              "type": "integer",
+              "description": "Coefficient of x"
+            },
+            "cV2": {
+              "type": "integer",
+              "description": "Constant term in the quadratic equation."
+            }
+          },
+          "required": [
+            "aV2",
+            "bV2",
+            "cV2"
+          ],
+          "x_rename_map": {
+            "a": "aV2",
+            "b": "bV2",
+            "c": "cV2",
+            "a_v2": "aV2",
+            "b_v2": "bV2",
+            "c_v2": "cV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "solve_quadratic_equation",
+        "solve_quadratic_equation_alt_1",
+        "solve_quadratic_equation_alt_2",
+        "solve_quadratic_equation_alt_3"
+      ],
+      "original_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b": 6,
+          "c": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "a": 2,
+          "b": 6,
+          "c": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 6,
+          "cV2": 5
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 6,
+          "cV2": 5
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic_equation",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 6,
+          "cV2": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_5",
+      "prompt": "user: Find all the roots of a quadratic equation given coefficients a = 3, b = -11, and c = -4.",
+      "original_tool": "solve_quadratic",
+      "original_tool_schema": {
+        "name": "solve_quadratic",
+        "description": "Solve a quadratic equation given coefficients a, b, and c. If optional 'root_type' is 'real', the function will only return real roots. If not specified, function may return complex roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "The coefficient of the squared term in the quadratic equation."
+            },
+            "b": {
+              "type": "integer",
+              "description": "The coefficient of the linear term in the quadratic equation."
+            },
+            "c": {
+              "type": "integer",
+              "description": "The constant term in the quadratic equation."
+            },
+            "root_type": {
+              "type": "string",
+              "description": "The type of roots to return: 'real' for real roots, 'all' for both real and complex roots. Default value is 'real'."
+            }
+          },
+          "required": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      "drifted_tool": "solve_quadratic",
+      "drifted_tool_schema": {
+        "name": "solve_quadratic",
+        "description": "Function: solve_quadratic. Purpose: solve_quadratic should be used when the user needs the following capability. Solve a quadratic equation given coefficients a, b, and c. If optional 'root_type' is 'real', the function will only return real roots. If not specified, function may return complex roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "aV2": {
+              "type": "integer",
+              "description": "The coefficient of the squared term in the quadratic equation."
+            },
+            "bV2": {
+              "type": "integer",
+              "description": "The coefficient of the linear term in the quadratic equation."
+            },
+            "cV2": {
+              "type": "integer",
+              "description": "The constant term in the quadratic equation."
+            },
+            "rootTypeV2": {
+              "type": "string",
+              "description": "The type of roots to return: 'real' for real roots, 'all' for both real and complex roots. Default value is 'real'."
+            }
+          },
+          "required": [
+            "aV2",
+            "bV2",
+            "cV2"
+          ],
+          "x_rename_map": {
+            "a": "aV2",
+            "b": "bV2",
+            "c": "cV2",
+            "root_type": "rootTypeV2",
+            "a_v2": "aV2",
+            "b_v2": "bV2",
+            "c_v2": "cV2",
+            "root_type_v2": "rootTypeV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "solve_quadratic",
+        "solve_quadratic_alt_1",
+        "solve_quadratic_alt_2",
+        "solve_quadratic_alt_3"
+      ],
+      "original_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b": -11,
+          "c": -4,
+          "root_type": "all"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 3,
+          "b": -11,
+          "c": -4,
+          "root_type": "all"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 3,
+          "bV2": -11,
+          "cV2": -4,
+          "rootTypeV2": "all"
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 3,
+          "bV2": -11,
+          "cV2": -4,
+          "rootTypeV2": "all"
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 3,
+          "bV2": -11,
+          "cV2": -4,
+          "rootTypeV2": "all"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "simple_python_6",
+      "prompt": "user: What are the roots of the quadratic equation where a=2, b=5 and c=3 ?",
+      "original_tool": "solve_quadratic",
+      "original_tool_schema": {
+        "name": "solve_quadratic",
+        "description": "Find the roots of a quadratic equation. Returns both roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "Coefficient of x\u00b2."
+            },
+            "b": {
+              "type": "integer",
+              "description": "Coefficient of x."
+            },
+            "c": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      "drifted_tool": "solve_quadratic",
+      "drifted_tool_schema": {
+        "name": "solve_quadratic",
+        "description": "Function: solve_quadratic. Purpose: solve_quadratic should be used when the user needs the following capability. Find the roots of a quadratic equation. Returns both roots.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "aV2": {
+              "type": "integer",
+              "description": "Coefficient of x\u00b2."
+            },
+            "bV2": {
+              "type": "integer",
+              "description": "Coefficient of x."
+            },
+            "cV2": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "aV2",
+            "bV2",
+            "cV2"
+          ],
+          "x_rename_map": {
+            "a": "aV2",
+            "b": "bV2",
+            "c": "cV2",
+            "a_v2": "aV2",
+            "b_v2": "bV2",
+            "c_v2": "cV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "solve_quadratic",
+        "solve_quadratic_alt_1",
+        "solve_quadratic_alt_2",
+        "solve_quadratic_alt_3"
+      ],
+      "original_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b": 5,
+          "c": 3
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "a": 2,
+          "b": 5,
+          "c": 3
+        }
+      },
+      "drifted_gold_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 5,
+          "cV2": 3
+        }
+      },
+      "pred_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 5,
+          "cV2": 3
+        }
+      },
+      "repaired_call": {
+        "name": "solve_quadratic",
+        "arguments": {
+          "aV2": 2,
+          "bV2": 5,
+          "cV2": 3
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_1",
+      "prompt": "user: Calculate the area of a triangle, given the lengths of its three sides: 3, 4, and 5.",
+      "original_tool": "math.triangle_area_heron",
+      "original_tool_schema": {
+        "name": "math.triangle_area_heron",
+        "description": "Calculates the area of a triangle using Heron's formula, given the lengths of its three sides.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "side1": {
+              "type": "integer",
+              "description": "Length of the first side of the triangle."
+            },
+            "side2": {
+              "type": "integer",
+              "description": "Length of the second side of the triangle."
+            },
+            "side3": {
+              "type": "integer",
+              "description": "Length of the third side of the triangle."
+            }
+          },
+          "required": [
+            "side1",
+            "side2",
+            "side3"
+          ]
+        }
+      },
+      "drifted_tool": "math.triangle_area_heron",
+      "drifted_tool_schema": {
+        "name": "math.triangle_area_heron",
+        "description": "Function: math.triangle_area_heron. Purpose: math.triangle_area_heron should be used when the user needs the following capability. Calculates the area of a triangle using Heron's formula, given the lengths of its three sides.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "side1V2": {
+              "type": "integer",
+              "description": "Length of the first side of the triangle."
+            },
+            "side2V2": {
+              "type": "integer",
+              "description": "Length of the second side of the triangle."
+            },
+            "side3V2": {
+              "type": "integer",
+              "description": "Length of the third side of the triangle."
+            }
+          },
+          "required": [
+            "side1V2",
+            "side2V2",
+            "side3V2"
+          ],
+          "x_rename_map": {
+            "side1": "side1V2",
+            "side2": "side2V2",
+            "side3": "side3V2",
+            "side1_v2": "side1V2",
+            "side2_v2": "side2V2",
+            "side3_v2": "side3V2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "math.triangle_area_heron",
+        "math.circle_area",
+        "math.triangle_area_base_height",
+        "math.triangle_area_heron_alt_1",
+        "math.circle_area_alt_2",
+        "math.triangle_area_base_height_alt_3"
+      ],
+      "original_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2": 4,
+          "side3": 5
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1": 3,
+          "side2": 4,
+          "side3": 5
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1V2": 3,
+          "side2V2": 4,
+          "side3V2": 5
+        }
+      },
+      "pred_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1V2": 3,
+          "side2V2": 4,
+          "side3V2": 5
+        }
+      },
+      "repaired_call": {
+        "name": "math.triangle_area_heron",
+        "arguments": {
+          "side1V2": 3,
+          "side2V2": 4,
+          "side3V2": 5
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_2",
+      "prompt": "user: What is the capital of Brazil?",
+      "original_tool": "country_info.capital",
+      "original_tool_schema": {
+        "name": "country_info.capital",
+        "description": "Fetch the capital city of a specified country.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Name of the country."
+            }
+          },
+          "required": [
+            "country"
+          ]
+        }
+      },
+      "drifted_tool": "country_info.capital",
+      "drifted_tool_schema": {
+        "name": "country_info.capital",
+        "description": "Function: country_info.capital. Purpose: country_info.capital should be used when the user needs the following capability. Fetch the capital city of a specified country.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "countryV2": {
+              "type": "string",
+              "description": "Name of the country."
+            }
+          },
+          "required": [
+            "countryV2"
+          ],
+          "x_rename_map": {
+            "country": "countryV2",
+            "country_v2": "countryV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "country_info.largest_city",
+        "country_info.capital",
+        "country_info.population",
+        "country_info.largest_city_alt_1",
+        "country_info.capital_alt_2",
+        "country_info.population_alt_3"
+      ],
+      "original_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "country": "Brazil"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "countryV2": "Brazil"
+        }
+      },
+      "pred_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "countryV2": "Brazil"
+        }
+      },
+      "repaired_call": {
+        "name": "country_info.capital",
+        "arguments": {
+          "countryV2": "Brazil"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_5",
+      "prompt": "user: What is the wind speed and temperature in location given by coordinates 46.603354,1.8883340 on December 13, 2019?",
+      "original_tool": "weather.get_by_coordinates_date",
+      "original_tool_schema": {
+        "name": "weather.get_by_coordinates_date",
+        "description": "Retrieves the historical weather data based on coordinates and date.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "string",
+              "items": {
+                "type": "float"
+              },
+              "description": "The geographical coordinates for which to retrieve the weather. The first element of the tuple is the latitude and the second is the longitude."
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "description": "The date for which to retrieve the historical weather data in the format YYYY-MM-DD."
+            }
+          },
+          "required": [
+            "coordinates",
+            "date"
+          ]
+        }
+      },
+      "drifted_tool": "weather.get_by_coordinates_date",
+      "drifted_tool_schema": {
+        "name": "weather.get_by_coordinates_date",
+        "description": "Function: weather.get_by_coordinates_date. Purpose: weather.get_by_coordinates_date should be used when the user needs the following capability. Retrieves the historical weather data based on coordinates and date.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "coordinatesV2": {
+              "type": "string",
+              "items": {
+                "type": "float"
+              },
+              "description": "The geographical coordinates for which to retrieve the weather. The first element of the tuple is the latitude and the second is the longitude."
+            },
+            "dateV2": {
+              "type": "string",
+              "format": "date",
+              "description": "The date for which to retrieve the historical weather data in the format YYYY-MM-DD."
+            }
+          },
+          "required": [
+            "coordinatesV2",
+            "dateV2"
+          ],
+          "x_rename_map": {
+            "coordinates": "coordinatesV2",
+            "date": "dateV2",
+            "coordinates_v2": "coordinatesV2",
+            "date_v2": "dateV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "weather.get_by_city_date",
+        "weather.get_forecast_by_coordinates",
+        "weather.get_by_coordinates_date",
+        "weather.get_by_city_date_alt_1",
+        "weather.get_forecast_by_coordinates_alt_2",
+        "weather.get_by_coordinates_date_alt_3"
+      ],
+      "original_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "coordinatesV2",
+            "message": "Missing required field: coordinatesV2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "dateV2",
+            "message": "Missing required field: dateV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "coordinatesV2",
+            "message": "Missing required field: coordinatesV2"
+          }
+        ]
+      },
+      "repaired_valid": false,
+      "repair_used": true,
+      "repair_strategy": "json_fallback_forced_tool",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: weather.get_by_coordinates_date\n\nTask: user: What is the wind speed and temperature in location given by coordinates 46.603354,1.8883340 on December 13, 2019?\n\nTool: weather.get_by_coordinates_date\nDescription: Function: weather.get_by_coordinates_date. Purpose: weather.get_by_coordinates_date should be used when the user needs the following capability. Retrieves the historical weather data based on coordinates and date.\nRequired: coordinatesV2, dateV2\nFields:\n- coordinatesV2: type=string\n- dateV2: type=string\n\nInvalid tool call:\n{\n  \"name\": \"weather.get_by_coordinates_date\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"dateV2\",\n      \"message\": \"Missing required field: dateV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"coordinatesV2\",\n      \"message\": \"Missing required field: coordinatesV2\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly weather.get_by_coordinates_date.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "weather.get_by_coordinates_date",
+        "tool_call_extracted": {
+          "name": "weather.get_by_coordinates_date",
+          "arguments": {}
+        },
+        "tool_call_raw_output": {
+          "id": "gen-1774591739-Nd3Y78M3xBE3IngBKbFZ",
+          "object": "chat.completion",
+          "created": 1774591739,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Venice",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "tool_calls",
+              "native_finish_reason": "length",
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "reasoning": "The user wants to get weather data for coordinates 46.603354,1.8883340 on December 13, 2019.\n\nLooking at the tool requirements:\n- name: weather.get_by_coordinates_date\n- Required fields: coordinatesV2 (string), dateV2 (string)\n\nFrom the user's request:\n- Coordinates: 46.603354,1.8883340 (latitude, longitude)\n- Date: December 13, 2019 (should be in YYYY-MM-DD format: 2019-12-13)\n\nThe coordinatesV2 should be a string containing the coordinates. Looking at the tool description, it says \"The first element of the tuple is the latitude and the second is the longitude.\" So I need to format this as a string representation of the coordinates.\n\nFor dateV2, it should be in YYYY-MM-DD format, so \"2019-12-13\".\n\nLet me construct the correct tool call:\n",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "index": 0,
+                    "id": "chatcmpl-tool-a869d94951e2cd46",
+                    "function": {
+                      "name": "weather.get_by_coordinates_date",
+                      "arguments": "{\n  \"coordinatesV2\": \"[46.603354, "
+                    }
+                  }
+                ],
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user wants to get weather data for coordinates 46.603354,1.8883340 on December 13, 2019.\n\nLooking at the tool requirements:\n- name: weather.get_by_coordinates_date\n- Required fields: coordinatesV2 (string), dateV2 (string)\n\nFrom the user's request:\n- Coordinates: 46.603354,1.8883340 (latitude, longitude)\n- Date: December 13, 2019 (should be in YYYY-MM-DD format: 2019-12-13)\n\nThe coordinatesV2 should be a string containing the coordinates. Looking at the tool description, it says \"The first element of the tuple is the latitude and the second is the longitude.\" So I need to format this as a string representation of the coordinates.\n\nFor dateV2, it should be in YYYY-MM-DD format, so \"2019-12-13\".\n\nLet me construct the correct tool call:\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 821,
+            "completion_tokens": 256,
+            "total_tokens": 1077,
+            "cost": 7.945e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 7.945e-05,
+              "upstream_inference_prompt_cost": 4.105e-05,
+              "upstream_inference_completions_cost": 3.84e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 199,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "json_fallback_extracted": {
+          "name": "",
+          "arguments": {}
+        },
+        "json_fallback_raw_output": {
+          "id": "gen-1774591742-EXr9ftpYorm0ITS9Xq9i",
+          "object": "chat.completion",
+          "created": 1774591742,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Together",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "length",
+              "native_finish_reason": "length",
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "reasoning": "Okay, let's tackle this problem. The user wants to know the wind speed and temperature at specific coordinates on a certain date. The tool they need is weather.get_by_coordinates_date. The original tool call was missing the required fields: coordinatesV2 and dateV2.\n\nFirst, I need to check the required fields. The tool requires coordinatesV2 and dateV2, both as strings. The user provided coordinates as 46.603354,1.8883340. Wait, the coordinates are given as two numbers separated by a comma. But the field expects a string. So I should format them as a string, maybe \"46.603354,1.8883340\".\n\nNext, the date is December 13, 2019. The dateV2 field needs to be a string. The correct format is probably \"YYYY-MM-DD\", so that would be \"2019-12-13\".\n\nI need to make sure there are no typos in the field names. The tool's required fields are coordinatesV2 and dateV2. The original call had an empty arguments object, so I need to",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, let's tackle this problem. The user wants to know the wind speed and temperature at specific coordinates on a certain date. The tool they need is weather.get_by_coordinates_date. The original tool call was missing the required fields: coordinatesV2 and dateV2.\n\nFirst, I need to check the required fields. The tool requires coordinatesV2 and dateV2, both as strings. The user provided coordinates as 46.603354,1.8883340. Wait, the coordinates are given as two numbers separated by a comma. But the field expects a string. So I should format them as a string, maybe \"46.603354,1.8883340\".\n\nNext, the date is December 13, 2019. The dateV2 field needs to be a string. The correct format is probably \"YYYY-MM-DD\", so that would be \"2019-12-13\".\n\nI need to make sure there are no typos in the field names. The tool's required fields are coordinatesV2 and dateV2. The original call had an empty arguments object, so I need to",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 403,
+            "completion_tokens": 256,
+            "total_tokens": 659,
+            "cost": 7.87e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 7.87e-05,
+              "upstream_inference_prompt_cost": 4.03e-05,
+              "upstream_inference_completions_cost": 3.84e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 236,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      },
+      "gold_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {
+          "coordinates": [
+            46.603354,
+            1.888334
+          ],
+          "date": "2019-12-13"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {
+          "coordinatesV2": [
+            46.603354,
+            1.888334
+          ],
+          "dateV2": "2019-12-13"
+        }
+      },
+      "pred_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "weather.get_by_coordinates_date",
+        "arguments": {}
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "coordinates",
+          "date"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "coordinatesV2",
+          "dateV2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "coordinatesV2",
+          "dateV2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "multiple_9",
+      "prompt": "user: Calculate the average grade for student John who has these scores {'math':90, 'science':75, 'history':82, 'music':89} across different subjects.",
+      "original_tool": "calculate_average",
+      "original_tool_schema": {
+        "name": "calculate_average",
+        "description": "This function calculates the average grade across different subjects for a specific student.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gradeDict": {
+              "type": "object",
+              "description": "A dictionary where keys represent subjects and values represent scores"
+            }
+          },
+          "required": [
+            "gradeDict"
+          ]
+        }
+      },
+      "drifted_tool": "calculate_average",
+      "drifted_tool_schema": {
+        "name": "calculate_average",
+        "description": "Function: calculate_average. Purpose: calculate_average should be used when the user needs the following capability. This function calculates the average grade across different subjects for a specific student.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gradeDictV2": {
+              "type": "object",
+              "description": "A dictionary where keys represent subjects and values represent scores"
+            }
+          },
+          "required": [
+            "gradeDictV2"
+          ],
+          "x_rename_map": {
+            "gradeDict": "gradeDictV2",
+            "gradeDict_v2": "gradeDictV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "calculate_standard_deviation",
+        "calculate_average",
+        "highest_grade",
+        "calculate_standard_deviation_alt_1",
+        "calculate_average_alt_2",
+        "highest_grade_alt_3"
+      ],
+      "original_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDict": {
+            "math": [
+              90
+            ],
+            "science": [
+              75
+            ],
+            "history": [
+              82
+            ],
+            "music": [
+              89
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDictV2": {
+            "math": [
+              90
+            ],
+            "science": [
+              75
+            ],
+            "history": [
+              82
+            ],
+            "music": [
+              89
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDictV2": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "repaired_call": {
+        "name": "calculate_average",
+        "arguments": {
+          "gradeDictV2": {
+            "math": 90,
+            "science": 75,
+            "history": 82,
+            "music": 89
+          }
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "multiple_11",
+      "prompt": "user: Calculate the roots of a quadratic equation with coefficients 5, 20, and -25",
+      "original_tool": "math_roots.quadratic",
+      "original_tool_schema": {
+        "name": "math_roots.quadratic",
+        "description": "Calculate the roots of a quadratic equation.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "Coefficient of the second-degree term."
+            },
+            "b": {
+              "type": "integer",
+              "description": "Coefficient of the first-degree term."
+            },
+            "c": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      "drifted_tool": "math_roots.quadratic",
+      "drifted_tool_schema": {
+        "name": "math_roots.quadratic",
+        "description": "Function: math_roots.quadratic. Purpose: math_roots.quadratic should be used when the user needs the following capability. Calculate the roots of a quadratic equation.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "aV2": {
+              "type": "integer",
+              "description": "Coefficient of the second-degree term."
+            },
+            "bV2": {
+              "type": "integer",
+              "description": "Coefficient of the first-degree term."
+            },
+            "cV2": {
+              "type": "integer",
+              "description": "Constant term."
+            }
+          },
+          "required": [
+            "aV2",
+            "bV2",
+            "cV2"
+          ],
+          "x_rename_map": {
+            "a": "aV2",
+            "b": "bV2",
+            "c": "cV2",
+            "a_v2": "aV2",
+            "b_v2": "bV2",
+            "c_v2": "cV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "math_roots.quadratic",
+        "math.roots.cubic",
+        "math.roots.polynomial",
+        "math_roots.quadratic_alt_1",
+        "math.roots.cubic_alt_2",
+        "math.roots.polynomial_alt_3"
+      ],
+      "original_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b": 20,
+          "c": -25
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "a": 5,
+          "b": 20,
+          "c": -25
+        }
+      },
+      "drifted_gold_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "aV2": 5,
+          "bV2": 20,
+          "cV2": -25
+        }
+      },
+      "pred_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "aV2": 5,
+          "bV2": 20,
+          "cV2": -25
+        }
+      },
+      "repaired_call": {
+        "name": "math_roots.quadratic",
+        "arguments": {
+          "aV2": 5,
+          "bV2": 20,
+          "cV2": -25
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_0-0-0",
+      "prompt": "user: Can you retrieve the details for the user with the ID 7890, who has black as their special request?",
+      "original_tool": "get_user_info",
+      "original_tool_schema": {
+        "name": "get_user_info",
+        "description": "Retrieve details for a specific user by their unique identifier.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "user_id"
+          ],
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "description": "The unique identifier of the user. It is used to fetch the specific user details from the database."
+            },
+            "special": {
+              "type": "string",
+              "description": "Any special information or parameters that need to be considered while fetching user details.",
+              "default": "none"
+            }
+          }
+        }
+      },
+      "drifted_tool": "get_user_info",
+      "drifted_tool_schema": {
+        "name": "get_user_info",
+        "description": "Function: get_user_info. Purpose: get_user_info should be used when the user needs the following capability. Retrieve details for a specific user by their unique identifier.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "userIdV2"
+          ],
+          "properties": {
+            "userIdV2": {
+              "type": "integer",
+              "description": "The unique identifier of the user. It is used to fetch the specific user details from the database."
+            },
+            "specialV2": {
+              "type": "string",
+              "description": "Any special information or parameters that need to be considered while fetching user details.",
+              "default": "none"
+            }
+          },
+          "x_rename_map": {
+            "user_id": "userIdV2",
+            "special": "specialV2",
+            "user_id_v2": "userIdV2",
+            "special_v2": "specialV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "get_user_info",
+        "get_user_info_alt_1",
+        "get_user_info_alt_2",
+        "get_user_info_alt_3"
+      ],
+      "original_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special": "black"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "user_id": 7890,
+          "special": "black"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "userIdV2": 7890,
+          "specialV2": "black"
+        }
+      },
+      "pred_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "userIdV2": 7890,
+          "specialV2": "black"
+        }
+      },
+      "repaired_call": {
+        "name": "get_user_info",
+        "arguments": {
+          "userIdV2": 7890,
+          "specialV2": "black"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_1-1-0",
+      "prompt": "user: I want to see the star history of ShishirPatil/gorilla and gorilla-llm/gorilla-cli, with the timelines aligned, so that I can more clearly observe the rate of change from their initial releases.",
+      "original_tool": "github_star",
+      "original_tool_schema": {
+        "name": "github_star",
+        "description": "Generates a URL for tracking the star history of specified GitHub repositories, with the option to align them on the same timeline.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "repos"
+          ],
+          "properties": {
+            "repos": {
+              "type": "string",
+              "description": "A comma-separated list of GitHub repositories to track, each in the 'owner/repo' format, such as 'octocat/Hello-World,octo-org/octo-repo'."
+            },
+            "aligned": {
+              "type": "boolean",
+              "description": "Whether to align the repositories on the same timeline for comparison. If true, the star history of all repositories will start from the same point.",
+              "default": false
+            }
+          }
+        }
+      },
+      "drifted_tool": "github_star",
+      "drifted_tool_schema": {
+        "name": "github_star",
+        "description": "Function: github_star. Purpose: github_star should be used when the user needs the following capability. Generates a URL for tracking the star history of specified GitHub repositories, with the option to align them on the same timeline.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "reposV2"
+          ],
+          "properties": {
+            "reposV2": {
+              "type": "string",
+              "description": "A comma-separated list of GitHub repositories to track, each in the 'owner/repo' format, such as 'octocat/Hello-World,octo-org/octo-repo'."
+            },
+            "alignedV2": {
+              "type": "boolean",
+              "description": "Whether to align the repositories on the same timeline for comparison. If true, the star history of all repositories will start from the same point.",
+              "default": false
+            }
+          },
+          "x_rename_map": {
+            "repos": "reposV2",
+            "aligned": "alignedV2",
+            "repos_v2": "reposV2",
+            "aligned_v2": "alignedV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "github_star",
+        "github_star_alt_1",
+        "github_star_alt_2",
+        "github_star_alt_3"
+      ],
+      "original_call": {
+        "name": "github_star",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "github_star",
+        "arguments": {
+          "repos": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "aligned": true
+        }
+      },
+      "drifted_gold_call": {
+        "name": "github_star",
+        "arguments": {
+          "reposV2": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "alignedV2": true
+        }
+      },
+      "pred_call": {
+        "name": "github_star",
+        "arguments": {
+          "reposV2": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "alignedV2": true
+        }
+      },
+      "repaired_call": {
+        "name": "github_star",
+        "arguments": {
+          "reposV2": "ShishirPatil/gorilla,gorilla-llm/gorilla-cli",
+          "alignedV2": true
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "aligned",
+          "repos"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_2-2-0",
+      "prompt": "user: I need a Comfort Uber ride from 2020 Addison Street, Berkeley, CA, USA, and I can wait up to 600 seconds for it.",
+      "original_tool": "uber.ride",
+      "original_tool_schema": {
+        "name": "uber.ride",
+        "description": "Finds a suitable Uber ride for customers based on their location, desired ride type, and maximum wait time.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "loc",
+            "type",
+            "time"
+          ],
+          "properties": {
+            "loc": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State (abbr), Country'."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of Uber ride the user is requesting.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "time": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, specified in seconds."
+            }
+          }
+        }
+      },
+      "drifted_tool": "uber.ride",
+      "drifted_tool_schema": {
+        "name": "uber.ride",
+        "description": "Function: uber.ride. Purpose: uber.ride should be used when the user needs the following capability. Finds a suitable Uber ride for customers based on their location, desired ride type, and maximum wait time.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locV2",
+            "typeV2",
+            "timeV2"
+          ],
+          "properties": {
+            "locV2": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State (abbr), Country'."
+            },
+            "typeV2": {
+              "type": "string",
+              "description": "The type of Uber ride the user is requesting.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "timeV2": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, specified in seconds."
+            }
+          },
+          "x_rename_map": {
+            "loc": "locV2",
+            "type": "typeV2",
+            "time": "timeV2",
+            "loc_v2": "locV2",
+            "type_v2": "typeV2",
+            "time_v2": "timeV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "uber.ride",
+        "uber.ride_alt_1",
+        "uber.ride_alt_2",
+        "uber.ride_alt_3"
+      ],
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "locV2",
+            "message": "Missing required field: locV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "timeV2",
+            "message": "Missing required field: timeV2"
+          },
+          {
+            "code": "missing_field",
+            "field": "typeV2",
+            "message": "Missing required field: typeV2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "json_fallback_forced_tool",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: uber.ride\n\nTask: user: I need a Comfort Uber ride from 2020 Addison Street, Berkeley, CA, USA, and I can wait up to 600 seconds for it.\n\nTool: uber.ride\nDescription: Function: uber.ride. Purpose: uber.ride should be used when the user needs the following capability. Finds a suitable Uber ride for customers based on their location, desired ride type, and maximum wait time.\nRequired: locV2, typeV2, timeV2\nFields:\n- locV2: type=string\n- typeV2: type=string enum=['plus', 'comfort', 'black']\n- timeV2: type=integer\n\nInvalid tool call:\n{\n  \"name\": \"uber.ride\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"locV2\",\n      \"message\": \"Missing required field: locV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"timeV2\",\n      \"message\": \"Missing required field: timeV2\"\n    },\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"typeV2\",\n      \"message\": \"Missing required field: typeV2\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly uber.ride.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "uber.ride",
+        "tool_call_extracted": {
+          "name": "",
+          "arguments": {}
+        },
+        "tool_call_raw_output": {
+          "id": "gen-1774591773-QyOHdxI4Sp5CxNdVsyNT",
+          "object": "chat.completion",
+          "created": 1774591773,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Venice",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "length",
+              "native_finish_reason": "length",
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "reasoning": "The user wants to book a Comfort Uber ride from \"2020 Addison Street, Berkeley, CA, USA\" with a maximum wait time of 600 seconds.\n\nLooking at the tool requirements:\n- locV2: The starting location in format 'Street Address, City, State (abbr), Country'\n- typeV2: The type of Uber ride (enum: ['plus', 'comfort', 'black'])\n- timeV2: Maximum wait time in seconds (integer)\n\nFrom the user's request:\n- Location: \"2020 Addison Street, Berkeley, CA, USA\" - I need to format this properly. The format should be 'Street Address, City, State (abbr), Country'. So it should be \"2020 Addison Street, Berkeley, CA, USA\"\n- Type: \"Comfort\" - this should be \"comfort\" (lowercase, from the enum)\n- Time: 600 seconds - this is already an integer\n\nLet me construct the correct tool call:\n\n```json\n{\n  \"name\": \"uber.ride\",\n  \"arguments\": {\n    \"locV2\": \"2020 Addison Street, Berkeley, CA,",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user wants to book a Comfort Uber ride from \"2020 Addison Street, Berkeley, CA, USA\" with a maximum wait time of 600 seconds.\n\nLooking at the tool requirements:\n- locV2: The starting location in format 'Street Address, City, State (abbr), Country'\n- typeV2: The type of Uber ride (enum: ['plus', 'comfort', 'black'])\n- timeV2: Maximum wait time in seconds (integer)\n\nFrom the user's request:\n- Location: \"2020 Addison Street, Berkeley, CA, USA\" - I need to format this properly. The format should be 'Street Address, City, State (abbr), Country'. So it should be \"2020 Addison Street, Berkeley, CA, USA\"\n- Type: \"Comfort\" - this should be \"comfort\" (lowercase, from the enum)\n- Time: 600 seconds - this is already an integer\n\nLet me construct the correct tool call:\n\n```json\n{\n  \"name\": \"uber.ride\",\n  \"arguments\": {\n    \"locV2\": \"2020 Addison Street, Berkeley, CA,",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 923,
+            "completion_tokens": 256,
+            "total_tokens": 1179,
+            "cost": 8.455e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 8.455e-05,
+              "upstream_inference_prompt_cost": 4.615e-05,
+              "upstream_inference_completions_cost": 3.84e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 231,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "json_fallback_extracted": {
+          "name": "uber.ride",
+          "arguments": {
+            "locV2": "2020 Addison Street, Berkeley, CA, USA",
+            "typeV2": "comfort",
+            "timeV2": 600
+          }
+        },
+        "json_fallback_raw_output": {
+          "id": "gen-1774591776-NmczP9vWXWGLd1N21hrn",
+          "object": "chat.completion",
+          "created": 1774591776,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Venice",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "stop",
+              "native_finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"name\": \"uber.ride\",\n  \"arguments\": {\n    \"locV2\": \"2020 Addison Street, Berkeley, CA, USA\",\n    \"typeV2\": \"comfort\",\n    \"timeV2\": 600\n  }\n}",
+                "refusal": null,
+                "reasoning": "The user wants to book a Comfort Uber ride from 2020 Addison Street, Berkeley, CA, USA with a maximum wait time of 600 seconds.\n\nLooking at the tool requirements:\n- locV2: string (location)\n- typeV2: string enum=['plus', 'comfort', 'black'] (ride type)\n- timeV2: integer (wait time in seconds)\n\nFrom the user request:\n- Location: \"2020 Addison Street, Berkeley, CA, USA\"\n- Type: \"Comfort\" (should be \"comfort\" based on the enum)\n- Time: 600 seconds\n\nI need to create a valid JSON with the correct field names and values.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user wants to book a Comfort Uber ride from 2020 Addison Street, Berkeley, CA, USA with a maximum wait time of 600 seconds.\n\nLooking at the tool requirements:\n- locV2: string (location)\n- typeV2: string enum=['plus', 'comfort', 'black'] (ride type)\n- timeV2: integer (wait time in seconds)\n\nFrom the user request:\n- Location: \"2020 Addison Street, Berkeley, CA, USA\"\n- Type: \"Comfort\" (should be \"comfort\" based on the enum)\n- Time: 600 seconds\n\nI need to create a valid JSON with the correct field names and values.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 454,
+            "completion_tokens": 221,
+            "total_tokens": 675,
+            "cost": 5.585e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 5.585e-05,
+              "upstream_inference_prompt_cost": 2.27e-05,
+              "upstream_inference_completions_cost": 3.315e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 140,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      },
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2020 Addison Street, Berkeley, CA, USA",
+          "type": "comfort",
+          "time": 600
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "2020 Addison Street, Berkeley, CA, USA",
+          "typeV2": "comfort",
+          "timeV2": 600
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "2020 Addison Street, Berkeley, CA, USA",
+          "typeV2": "comfort",
+          "timeV2": 600
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "loc",
+          "time",
+          "type"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "locV2",
+          "timeV2",
+          "typeV2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "live_simple_3-2-1",
+      "prompt": "user: I need a 'Plus' type Uber from 221B Baker Street, Berkeley, CA, USA, and I can wait up to 600 seconds for it.",
+      "original_tool": "uber.ride",
+      "original_tool_schema": {
+        "name": "uber.ride",
+        "description": "Finds a suitable Uber ride for customers based on their location, desired ride type, and maximum wait time.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "loc",
+            "type",
+            "time"
+          ],
+          "properties": {
+            "loc": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State (abbr), Country'."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of Uber ride the user is requesting.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "time": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, specified in seconds."
+            }
+          }
+        }
+      },
+      "drifted_tool": "uber.ride",
+      "drifted_tool_schema": {
+        "name": "uber.ride",
+        "description": "Function: uber.ride. Purpose: uber.ride should be used when the user needs the following capability. Finds a suitable Uber ride for customers based on their location, desired ride type, and maximum wait time.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locV2",
+            "typeV2",
+            "timeV2"
+          ],
+          "properties": {
+            "locV2": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State (abbr), Country'."
+            },
+            "typeV2": {
+              "type": "string",
+              "description": "The type of Uber ride the user is requesting.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "timeV2": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, specified in seconds."
+            }
+          },
+          "x_rename_map": {
+            "loc": "locV2",
+            "type": "typeV2",
+            "time": "timeV2",
+            "loc_v2": "locV2",
+            "type_v2": "typeV2",
+            "time_v2": "timeV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "uber.ride",
+        "uber.ride_alt_1",
+        "uber.ride_alt_2",
+        "uber.ride_alt_3"
+      ],
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type": "plus",
+          "time": 600
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "221B Baker Street, Berkeley, CA, USA",
+          "type": "plus",
+          "time": 600
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "221B Baker Street, Berkeley, CA, USA",
+          "typeV2": "plus",
+          "timeV2": 600
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "221B Baker Street, Berkeley, CA, USA",
+          "typeV2": "plus",
+          "timeV2": 600
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "221B Baker Street, Berkeley, CA, USA",
+          "typeV2": "plus",
+          "timeV2": 600
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_simple_10-3-6",
+      "prompt": "user: Could you tell me the current weather in Yosemite National Park which locates at Mariposa, CA, and make sure to give me the temperature in Celsius?",
+      "original_tool": "get_current_weather",
+      "original_tool_schema": {
+        "name": "get_current_weather",
+        "description": "Retrieves the current weather conditions for a specified city and state. If using state, then use short form like CA.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "location"
+          ],
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The location for which to get the weather, in the format of 'City, State (abbr)' or 'Location, State', such as 'San Francisco, CA' if State exists. 'City, Country' if State for the city doesn't exist. "
+            },
+            "unit": {
+              "type": "string",
+              "description": "The unit of temperature for the weather report.",
+              "enum": [
+                "celsius",
+                "fahrenheit"
+              ],
+              "default": "fahrenheit"
+            }
+          }
+        }
+      },
+      "drifted_tool": "get_current_weather",
+      "drifted_tool_schema": {
+        "name": "get_current_weather",
+        "description": "Function: get_current_weather. Purpose: get_current_weather should be used when the user needs the following capability. Retrieves the current weather conditions for a specified city and state. If using state, then use short form like CA.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locationV2"
+          ],
+          "properties": {
+            "locationV2": {
+              "type": "string",
+              "description": "The location for which to get the weather, in the format of 'City, State (abbr)' or 'Location, State', such as 'San Francisco, CA' if State exists. 'City, Country' if State for the city doesn't exist. "
+            },
+            "unitV2": {
+              "type": "string",
+              "description": "The unit of temperature for the weather report.",
+              "enum": [
+                "celsius",
+                "fahrenheit"
+              ],
+              "default": "fahrenheit"
+            }
+          },
+          "x_rename_map": {
+            "location": "locationV2",
+            "unit": "unitV2",
+            "location_v2": "locationV2",
+            "unit_v2": "unitV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "get_current_weather",
+        "get_current_weather_alt_1",
+        "get_current_weather_alt_2",
+        "get_current_weather_alt_3"
+      ],
+      "original_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Yosemite National Park, CA",
+          "unit": "celsius"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "location": "Mariposa, CA",
+          "unit": "celsius"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "locationV2": "Mariposa, CA",
+          "unitV2": "celsius"
+        }
+      },
+      "pred_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "locationV2": "Mariposa, CA",
+          "unitV2": "celsius"
+        }
+      },
+      "repaired_call": {
+        "name": "get_current_weather",
+        "arguments": {
+          "locationV2": "Mariposa, CA",
+          "unitV2": "celsius"
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "location"
+        ]
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_0-0-0",
+      "prompt": "user: update my latte to a large size with coconut milk and make it extra sweet? make it served 'boiling hot' as the special request. The drink id is 'latte'",
+      "original_tool": "ChaDri.change_drink",
+      "original_tool_schema": {
+        "name": "ChaDri.change_drink",
+        "description": "Modifies the existing drink order to accommodate the customer's new request, ensuring the drink is updated according to the specified preferences.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "new_preferences"
+          ],
+          "properties": {
+            "drink_id": {
+              "type": "string",
+              "description": "The unique identifier of the drink to be changed.",
+              "default": "0000-0000-0000"
+            },
+            "new_preferences": {
+              "type": "object",
+              "description": "The updated preferences for the drink order.",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "The size of the drink the customer prefers.",
+                  "enum": [
+                    "small",
+                    "medium",
+                    "large"
+                  ],
+                  "default": "medium"
+                },
+                "temperature": {
+                  "type": "string",
+                  "description": "The temperature at which the drink should be served.",
+                  "enum": [
+                    "cold",
+                    "warm",
+                    "hot"
+                  ],
+                  "default": "cold"
+                },
+                "sweetness_level": {
+                  "type": "string",
+                  "description": "The sweetness level the customer requests for the drink.",
+                  "enum": [
+                    "none",
+                    "light",
+                    "regular",
+                    "extra"
+                  ],
+                  "default": "regular"
+                },
+                "milk_type": {
+                  "type": "string",
+                  "description": "The type of milk to be used in the drink, if applicable.",
+                  "enum": [
+                    "regular",
+                    "soy",
+                    "almond",
+                    "coconut"
+                  ],
+                  "default": "regular"
+                },
+                "special_instructions": {
+                  "type": "string",
+                  "description": "Any additional instructions provided by the customer for the drink preparation.",
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "drifted_tool": "ChaDri.change_drink",
+      "drifted_tool_schema": {
+        "name": "ChaDri.change_drink",
+        "description": "Function: ChaDri.change_drink. Purpose: ChaDri.change_drink should be used when the user needs the following capability. Modifies the existing drink order to accommodate the customer's new request, ensuring the drink is updated according to the specified preferences.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "newPreferencesV2"
+          ],
+          "properties": {
+            "drinkIdV2": {
+              "type": "string",
+              "description": "The unique identifier of the drink to be changed.",
+              "default": "0000-0000-0000"
+            },
+            "newPreferencesV2": {
+              "type": "object",
+              "description": "The updated preferences for the drink order.",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "The size of the drink the customer prefers.",
+                  "enum": [
+                    "small",
+                    "medium",
+                    "large"
+                  ],
+                  "default": "medium"
+                },
+                "temperature": {
+                  "type": "string",
+                  "description": "The temperature at which the drink should be served.",
+                  "enum": [
+                    "cold",
+                    "warm",
+                    "hot"
+                  ],
+                  "default": "cold"
+                },
+                "sweetness_level": {
+                  "type": "string",
+                  "description": "The sweetness level the customer requests for the drink.",
+                  "enum": [
+                    "none",
+                    "light",
+                    "regular",
+                    "extra"
+                  ],
+                  "default": "regular"
+                },
+                "milk_type": {
+                  "type": "string",
+                  "description": "The type of milk to be used in the drink, if applicable.",
+                  "enum": [
+                    "regular",
+                    "soy",
+                    "almond",
+                    "coconut"
+                  ],
+                  "default": "regular"
+                },
+                "special_instructions": {
+                  "type": "string",
+                  "description": "Any additional instructions provided by the customer for the drink preparation.",
+                  "default": ""
+                }
+              }
+            }
+          },
+          "x_rename_map": {
+            "drink_id": "drinkIdV2",
+            "new_preferences": "newPreferencesV2",
+            "drink_id_v2": "drinkIdV2",
+            "new_preferences_v2": "newPreferencesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "ChaFod",
+        "ChaDri.change_drink",
+        "ChaFod_alt_1",
+        "ChaDri.change_drink_alt_2",
+        "ChaFod_alt_3"
+      ],
+      "original_call": {
+        "name": "",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "missing_field",
+            "field": "newPreferencesV2",
+            "message": "Missing required field: newPreferencesV2"
+          }
+        ]
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": true,
+      "repair_strategy": "forced_tool_call",
+      "repair_prompt": "You are repairing a tool call.\nReturn only corrected JSON with keys: name, arguments.\nOutput schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}\nYou must return the exact tool name: ChaDri.change_drink\n\nTask: user: update my latte to a large size with coconut milk and make it extra sweet? make it served 'boiling hot' as the special request. The drink id is 'latte'\n\nTool: ChaDri.change_drink\nDescription: Function: ChaDri.change_drink. Purpose: ChaDri.change_drink should be used when the user needs the following capability. Modifies the existing drink order to accommodate the customer's new request, ensuring the drink is updated according to the specified preferences.\nRequired: newPreferencesV2\nFields:\n- drinkIdV2: type=string\n- newPreferencesV2: type=object\n\nInvalid tool call:\n{\n  \"name\": \"ChaDri.change_drink\",\n  \"arguments\": {}\n}\n\nValidation errors:\n{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"code\": \"missing_field\",\n      \"field\": \"newPreferencesV2\",\n      \"message\": \"Missing required field: newPreferencesV2\"\n    }\n  ]\n}\n\nConstraints:\n- The name must be exactly ChaDri.change_drink.\n- Do not switch to any other tool.\n- If fields were renamed, use the renamed field names from the tool card.\n- Fix fields, types, and enum values.\n- Do not add explanations.",
+      "repair_debug": {
+        "target_tool_name": "ChaDri.change_drink",
+        "tool_call_extracted": {
+          "name": "ChaDri.change_drink",
+          "arguments": {
+            "newPreferencesV2": {
+              "size": "large",
+              "temperature": "hot",
+              "sweetness_level": "extra",
+              "milk_type": "coconut",
+              "special_instructions": "boiling hot"
+            }
+          }
+        },
+        "tool_call_raw_output": {
+          "id": "gen-1774591798-WWHhI9eqq0cpTCZxHdRz",
+          "object": "chat.completion",
+          "created": 1774591798,
+          "model": "qwen/qwen3.5-9b-20260310",
+          "provider": "Venice",
+          "system_fingerprint": null,
+          "choices": [
+            {
+              "index": 0,
+              "logprobs": null,
+              "finish_reason": "tool_calls",
+              "native_finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "reasoning": "The user wants to update their latte with the following specifications:\n- Size: large\n- Milk type: coconut milk\n- Sweetness level: extra sweet (extra)\n- Special instructions: \"boiling hot\"\n- Drink ID: 'latte'\n\nI need to construct the correct tool call with:\n- name: \"ChaDri.change_drink\"\n- arguments with:\n  - drinkIdV2: \"latte\"\n  - newPreferencesV2: an object containing:\n    - size: \"large\"\n    - temperature: \"hot\" (the user said \"boiling hot\" but the enum only has \"hot\" as the closest match)\n    - sweetness_level: \"extra\"\n    - milk_type: \"coconut\"\n    - special_instructions: \"boiling hot\"\n\nLet me construct this properly.\n",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "index": 0,
+                    "id": "chatcmpl-tool-aea4f9bfadad15ab",
+                    "function": {
+                      "name": "ChaDri.change_drink",
+                      "arguments": "{\n  \"newPreferencesV2\": {\n    \"size\": \"large\",\n    \"temperature\": \"hot\",\n    \"sweetness_level\": \"extra\",\n    \"milk_type\": \"coconut\",\n    \"special_instructions\": \"boiling hot\"\n  }\n}"
+                    }
+                  }
+                ],
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user wants to update their latte with the following specifications:\n- Size: large\n- Milk type: coconut milk\n- Sweetness level: extra sweet (extra)\n- Special instructions: \"boiling hot\"\n- Drink ID: 'latte'\n\nI need to construct the correct tool call with:\n- name: \"ChaDri.change_drink\"\n- arguments with:\n  - drinkIdV2: \"latte\"\n  - newPreferencesV2: an object containing:\n    - size: \"large\"\n    - temperature: \"hot\" (the user said \"boiling hot\" but the enum only has \"hot\" as the closest match)\n    - sweetness_level: \"extra\"\n    - milk_type: \"coconut\"\n    - special_instructions: \"boiling hot\"\n\nLet me construct this properly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              }
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1011,
+            "completion_tokens": 248,
+            "total_tokens": 1259,
+            "cost": 8.775e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 8.775e-05,
+              "upstream_inference_prompt_cost": 5.055e-05,
+              "upstream_inference_completions_cost": 3.72e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 172,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "json_fallback_extracted": null,
+        "json_fallback_raw_output": null
+      },
+      "gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "latte",
+          "new_preferences": {
+            "size": [
+              "large"
+            ],
+            "milk_type": [
+              "coconut"
+            ],
+            "sweetness_level": [
+              "extra"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "special_instructions": [
+              "served boiling hot",
+              "serve boiling hot",
+              "boiling hot",
+              "served 'boiling hot'"
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drinkIdV2": "latte",
+          "newPreferencesV2": {
+            "size": [
+              "large"
+            ],
+            "milk_type": [
+              "coconut"
+            ],
+            "sweetness_level": [
+              "extra"
+            ],
+            "temperature": [
+              "hot"
+            ],
+            "special_instructions": [
+              "served boiling hot",
+              "serve boiling hot",
+              "boiling hot",
+              "served 'boiling hot'"
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {}
+      },
+      "repaired_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "newPreferencesV2": {
+            "size": "large",
+            "temperature": "hot",
+            "sweetness_level": "extra",
+            "milk_type": "coconut",
+            "special_instructions": "boiling hot"
+          }
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": false,
+        "missing_fields": [
+          "drink_id",
+          "new_preferences"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "drinkIdV2",
+          "newPreferencesV2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "drinkIdV2"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "schema_or_description_drift"
+    },
+    {
+      "id": "live_multiple_1-0-1",
+      "prompt": "system: You are an agent that is used for ordering food on your customers behalf using your functions\nuser: NO SUGAR in my coffee loll. Can you change my drink with drink id '1234' order to have no sweetness, and also make sure it's served hot?",
+      "original_tool": "ChaDri.change_drink",
+      "original_tool_schema": {
+        "name": "ChaDri.change_drink",
+        "description": "Modifies the existing drink order to accommodate the customer's new request, ensuring the drink is updated according to the specified preferences.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "drink_id",
+            "new_preferences"
+          ],
+          "properties": {
+            "drink_id": {
+              "type": "string",
+              "description": "The unique identifier of the drink to be changed."
+            },
+            "new_preferences": {
+              "type": "object",
+              "description": "The updated preferences for the drink order.",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "The size of the drink the customer prefers.",
+                  "enum": [
+                    "small",
+                    "medium",
+                    "large"
+                  ],
+                  "default": "medium"
+                },
+                "temperature": {
+                  "type": "string",
+                  "description": "The temperature at which the drink should be served.",
+                  "enum": [
+                    "cold",
+                    "warm",
+                    "hot"
+                  ],
+                  "default": "cold"
+                },
+                "sweetness_level": {
+                  "type": "string",
+                  "description": "The sweetness level the customer requests for the drink.",
+                  "enum": [
+                    "none",
+                    "light",
+                    "regular",
+                    "extra"
+                  ],
+                  "default": "regular"
+                },
+                "milk_type": {
+                  "type": "string",
+                  "description": "The type of milk to be used in the drink, if applicable.",
+                  "enum": [
+                    "regular",
+                    "soy",
+                    "almond",
+                    "coconut"
+                  ],
+                  "default": "regular"
+                },
+                "special_instructions": {
+                  "type": "string",
+                  "description": "Any additional instructions provided by the customer for the drink preparation.",
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "drifted_tool": "ChaDri.change_drink",
+      "drifted_tool_schema": {
+        "name": "ChaDri.change_drink",
+        "description": "Function: ChaDri.change_drink. Purpose: ChaDri.change_drink should be used when the user needs the following capability. Modifies the existing drink order to accommodate the customer's new request, ensuring the drink is updated according to the specified preferences.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "drinkIdV2",
+            "newPreferencesV2"
+          ],
+          "properties": {
+            "drinkIdV2": {
+              "type": "string",
+              "description": "The unique identifier of the drink to be changed."
+            },
+            "newPreferencesV2": {
+              "type": "object",
+              "description": "The updated preferences for the drink order.",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "The size of the drink the customer prefers.",
+                  "enum": [
+                    "small",
+                    "medium",
+                    "large"
+                  ],
+                  "default": "medium"
+                },
+                "temperature": {
+                  "type": "string",
+                  "description": "The temperature at which the drink should be served.",
+                  "enum": [
+                    "cold",
+                    "warm",
+                    "hot"
+                  ],
+                  "default": "cold"
+                },
+                "sweetness_level": {
+                  "type": "string",
+                  "description": "The sweetness level the customer requests for the drink.",
+                  "enum": [
+                    "none",
+                    "light",
+                    "regular",
+                    "extra"
+                  ],
+                  "default": "regular"
+                },
+                "milk_type": {
+                  "type": "string",
+                  "description": "The type of milk to be used in the drink, if applicable.",
+                  "enum": [
+                    "regular",
+                    "soy",
+                    "almond",
+                    "coconut"
+                  ],
+                  "default": "regular"
+                },
+                "special_instructions": {
+                  "type": "string",
+                  "description": "Any additional instructions provided by the customer for the drink preparation.",
+                  "default": ""
+                }
+              }
+            }
+          },
+          "x_rename_map": {
+            "drink_id": "drinkIdV2",
+            "new_preferences": "newPreferencesV2",
+            "drink_id_v2": "drinkIdV2",
+            "new_preferences_v2": "newPreferencesV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "ChaFod",
+        "ChaDri.change_drink",
+        "ChaFod_alt_1",
+        "ChaDri.change_drink_alt_2",
+        "ChaFod_alt_3"
+      ],
+      "original_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drink_id": "1234",
+          "new_preferences": {
+            "sweetness_level": [
+              "none"
+            ],
+            "temperature": [
+              "hot"
+            ]
+          }
+        }
+      },
+      "drifted_gold_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drinkIdV2": "1234",
+          "newPreferencesV2": {
+            "sweetness_level": [
+              "none"
+            ],
+            "temperature": [
+              "hot"
+            ]
+          }
+        }
+      },
+      "pred_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drinkIdV2": "1234",
+          "newPreferencesV2": {
+            "sweetness_level": "none",
+            "temperature": "hot"
+          }
+        }
+      },
+      "repaired_call": {
+        "name": "ChaDri.change_drink",
+        "arguments": {
+          "drinkIdV2": "1234",
+          "newPreferencesV2": {
+            "sweetness_level": "none",
+            "temperature": "hot"
+          }
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "new_preferences"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_2-1-0",
+      "prompt": "user: T\u00f4i c\u1ea7n m\u1ed9t chuy\u1ebfn xe Uber lo\u1ea1i 'Plus' t\u1eeb \u0111\u1ecba ch\u1ec9 '2150 Shattuck Ave, Berkeley, CA' v\u00e0 t\u00f4i c\u00f3 th\u1ec3 ch\u1edd t\u1ed1i \u0111a 10 ph\u00fat.",
+      "original_tool": "uber.ride",
+      "original_tool_schema": {
+        "name": "uber.ride",
+        "description": "T\u00ecm chuy\u1ebfn \u0111i ph\u00f9 h\u1ee3p cho kh\u00e1ch h\u00e0ng d\u1ef1a tr\u00ean v\u1ecb tr\u00ed, lo\u1ea1i chuy\u1ebfn \u0111i v\u00e0 kho\u1ea3ng th\u1eddi gian kh\u00e1ch h\u00e0ng s\u1eb5n s\u00e0ng ch\u1edd \u0111\u1ee3i l\u00e0m th\u00f4ng s\u1ed1",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "loc",
+            "type",
+            "time"
+          ],
+          "properties": {
+            "loc": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State'. Example: '123 Main St, San Francisco, CA'."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of Uber ride requested by the user.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "time": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, in minutes."
+            }
+          }
+        }
+      },
+      "drifted_tool": "uber.ride",
+      "drifted_tool_schema": {
+        "name": "uber.ride",
+        "description": "Function: uber.ride. Purpose: uber.ride should be used when the user needs the following capability. T\u00ecm chuy\u1ebfn \u0111i ph\u00f9 h\u1ee3p cho kh\u00e1ch h\u00e0ng d\u1ef1a tr\u00ean v\u1ecb tr\u00ed, lo\u1ea1i chuy\u1ebfn \u0111i v\u00e0 kho\u1ea3ng th\u1eddi gian kh\u00e1ch h\u00e0ng s\u1eb5n s\u00e0ng ch\u1edd \u0111\u1ee3i l\u00e0m th\u00f4ng s\u1ed1",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locV2",
+            "typeV2",
+            "timeV2"
+          ],
+          "properties": {
+            "locV2": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State'. Example: '123 Main St, San Francisco, CA'."
+            },
+            "typeV2": {
+              "type": "string",
+              "description": "The type of Uber ride requested by the user.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "timeV2": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, in minutes."
+            }
+          },
+          "x_rename_map": {
+            "loc": "locV2",
+            "type": "typeV2",
+            "time": "timeV2",
+            "loc_v2": "locV2",
+            "type_v2": "typeV2",
+            "time_v2": "timeV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "uber.ride",
+        "uber.ride2",
+        "uber.ride_alt_1",
+        "uber.ride2_alt_2",
+        "uber.ride_alt_3"
+      ],
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "2150 Shattuck Ave, Berkeley, CA",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "2150 Shattuck Ave, Berkeley, CA",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "2150 Shattuck Ave, Berkeley, CA",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "2150 Shattuck Ave, Berkeley, CA",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_3-2-0",
+      "prompt": "user: Get weather of Ha Noi for me",
+      "original_tool": "api.weather",
+      "original_tool_schema": {
+        "name": "api.weather",
+        "description": "Retrieve current weather information for a specified location.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "loc"
+          ],
+          "properties": {
+            "loc": {
+              "type": "string",
+              "description": "The location for which weather information is to be retrieved, in the format of 'City, Country' (e.g., 'Paris, France')."
+            }
+          }
+        }
+      },
+      "drifted_tool": "api.weather",
+      "drifted_tool_schema": {
+        "name": "api.weather",
+        "description": "Function: api.weather. Purpose: api.weather should be used when the user needs the following capability. Retrieve current weather information for a specified location.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locV2"
+          ],
+          "properties": {
+            "locV2": {
+              "type": "string",
+              "description": "The location for which weather information is to be retrieved, in the format of 'City, Country' (e.g., 'Paris, France')."
+            }
+          },
+          "x_rename_map": {
+            "loc": "locV2",
+            "loc_v2": "locV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "uber.ride",
+        "api.weather",
+        "uber.ride_alt_1",
+        "api.weather_alt_2",
+        "uber.ride_alt_3"
+      ],
+      "original_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "api.weather",
+        "arguments": {
+          "loc": "Ha Noi, Vietnam"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "api.weather",
+        "arguments": {
+          "locV2": "Ha Noi, Vietnam"
+        }
+      },
+      "pred_call": {
+        "name": "api.weather",
+        "arguments": {
+          "locV2": "Ha Noi, Vietnam"
+        }
+      },
+      "repaired_call": {
+        "name": "api.weather",
+        "arguments": {
+          "locV2": "Ha Noi, Vietnam"
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    },
+    {
+      "id": "live_multiple_4-2-1",
+      "prompt": "user: T\u00ecm chuy\u1ebfn xe cho t\u00f4i t\u1eeb H\u00e0 N\u1ed9i lo\u1ea1i Plus trong 10 ph\u00fat n\u1eefa. Address: 123 Hanoi Street",
+      "original_tool": "uber.ride",
+      "original_tool_schema": {
+        "name": "uber.ride",
+        "description": "Finds a suitable Uber ride for the customer based on the starting location, the desired ride type, and the maximum wait time the customer is willing to accept.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "loc",
+            "type",
+            "time"
+          ],
+          "properties": {
+            "loc": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State', such as '123 Main St, Springfield, IL'."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of Uber ride the user is ordering.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "time": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, in minutes."
+            }
+          }
+        }
+      },
+      "drifted_tool": "uber.ride",
+      "drifted_tool_schema": {
+        "name": "uber.ride",
+        "description": "Function: uber.ride. Purpose: uber.ride should be used when the user needs the following capability. Finds a suitable Uber ride for the customer based on the starting location, the desired ride type, and the maximum wait time the customer is willing to accept.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "locV2",
+            "typeV2",
+            "timeV2"
+          ],
+          "properties": {
+            "locV2": {
+              "type": "string",
+              "description": "The starting location for the Uber ride, in the format of 'Street Address, City, State', such as '123 Main St, Springfield, IL'."
+            },
+            "typeV2": {
+              "type": "string",
+              "description": "The type of Uber ride the user is ordering.",
+              "enum": [
+                "plus",
+                "comfort",
+                "black"
+              ]
+            },
+            "timeV2": {
+              "type": "integer",
+              "description": "The maximum amount of time the customer is willing to wait for the ride, in minutes."
+            }
+          },
+          "x_rename_map": {
+            "loc": "locV2",
+            "type": "typeV2",
+            "time": "timeV2",
+            "loc_v2": "locV2",
+            "type_v2": "typeV2",
+            "time_v2": "timeV2"
+          }
+        }
+      },
+      "candidate_tool_names": [
+        "uber.ride",
+        "api.weather",
+        "uber.ride_alt_1",
+        "api.weather_alt_2",
+        "uber.ride_alt_3"
+      ],
+      "original_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street, Hanoi, Vietnam",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "loc": "123 Hanoi Street",
+          "type": "plus",
+          "time": 10
+        }
+      },
+      "drifted_gold_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "123 Hanoi Street",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "pred_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "123 Hanoi Street, Hanoi, Vietnam",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "repaired_call": {
+        "name": "uber.ride",
+        "arguments": {
+          "locV2": "123 Hanoi Street, Hanoi, Vietnam",
+          "typeV2": "plus",
+          "timeV2": 10
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "loc"
+        ]
+      },
+      "drifted_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "locV2"
+        ]
+      },
+      "repaired_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": [
+          "locV2"
+        ]
+      },
+      "error_type": "clean"
+    }
+  ]
+}

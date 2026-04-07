@@ -1,0 +1,240 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "run_id": "dice-bench-live-20260405-202728-979456",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-202728-979456",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 0,
+    "drifted_score": 1,
+    "repaired_score": 1,
+    "recovery_rate": 0.0,
+    "validation_failures": 0,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "clean": 1
+    },
+    "drifted_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "repaired_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "originally_correct_count": 0,
+    "drifted_score_on_originally_correct": 0.0,
+    "repaired_score_on_originally_correct": 0.0,
+    "recovery_rate_on_originally_correct": 0.0,
+    "drift_misses_on_originally_correct": 0,
+    "repair_recoveries_on_originally_correct": 0,
+    "repair_harms_on_originally_correct": 0
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "dice-bench",
+      "mode": "live",
+      "output_dir": "outputs/dice"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-35b-a3b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "temperature": 0.0,
+      "repair_max_tokens": 512,
+      "provider_preferences": {
+        "only": [
+          "venice"
+        ],
+        "allow_fallbacks": false
+      }
+    },
+    "data": {
+      "dice_subset_path": "data/dice_single_15.json"
+    },
+    "drift": {
+      "description_modes": [
+        "legacy_example",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "reorder_parameters"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 1,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "dice_stage2_50_qwen35_35b"
+    }
+  },
+  "results": [
+    {
+      "id": "dice_round_1_15",
+      "prompt": "user: I think staying at a hotel in New York during the holiday season would be an excellent idea. What do you think about booking The Ritz-Carlton for our stay?\nuser: The Ritz-Carlton sounds luxurious, but I'm wondering if the price fits our budget. What are your thoughts on the timing? Would Christmas Day, December 25th, work for you?\nuser: December 25th works perfectly for me, as it\u2019s a festive time and the city will be beautifully decorated. How about checking in around 4 PM to enjoy the evening?\nuser: Checking in at 4 PM seems perfect. It gives us enough time to travel and settle in before dinner. Are you agreeable with the location being New York, or did you have another city in mind?\nuser: I believe New York is ideal, considering all the holiday activities we can experience. Does this plan fit your expectations for a balance between comfort and cost?\nuser: It certainly does. The Ritz-Carlton should offer excellent service, making the experience worth every penny. Shall we move forward with this plan?\nuser: Absolutely, it seems like we have a solid agreement. Let's proceed with the arrangement, ensuring we have everything confirmed for a memorable stay. AI, please assist us with the reservation details.",
+      "original_tool": "book_hotel",
+      "original_tool_schema": {
+        "name": "book_hotel",
+        "description": "Book a specific hotel on a given date and location.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "hotel_name": {
+              "type": "string",
+              "description": "Name of the hotel to book (e.g. 'Grand Hyatt')."
+            },
+            "location": {
+              "type": "string",
+              "description": "City or region of the hotel (e.g. 'Las Vegas')."
+            },
+            "check_in_date": {
+              "type": "string",
+              "description": "Check-in date in MM-DD format (e.g. '10-05')."
+            },
+            "check_in_time": {
+              "type": "string",
+              "description": "Approximate check-in time (HH:MM, 24-hour) (e.g. '15:00')."
+            }
+          },
+          "required": [
+            "hotel_name",
+            "location",
+            "check_in_date",
+            "check_in_time"
+          ]
+        }
+      },
+      "drifted_tool": "book_hotel",
+      "drifted_tool_schema": {
+        "name": "book_hotel",
+        "description": "Book a specific hotel on a given date and location. Legacy integration note: older examples may still show payloads like {\"location\": \"value\", \"check_in_date\": \"value\", \"check_in_time\": \"value\"}.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "hotel_name": {
+              "type": "string",
+              "description": "Name of the hotel to book (e.g. 'Grand Hyatt')."
+            },
+            "location_v2": {
+              "type": "string",
+              "description": "City or region of the hotel (e.g. 'Las Vegas')."
+            },
+            "check_in_date_v2": {
+              "type": "string",
+              "description": "Check-in date in MM-DD format (e.g. '10-05')."
+            },
+            "check_in_time_v2": {
+              "type": "string",
+              "description": "Approximate check-in time (HH:MM, 24-hour) (e.g. '15:00')."
+            }
+          },
+          "required": [
+            "hotel_name",
+            "location_v2",
+            "check_in_date_v2",
+            "check_in_time_v2"
+          ],
+          "x_rename_map": {
+            "hotel_name": "hotel_name",
+            "location": "location_v2",
+            "check_in_date": "check_in_date_v2",
+            "check_in_time": "check_in_time_v2"
+          }
+        }
+      },
+      "original_call": {
+        "name": "book_hotel",
+        "arguments": {}
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "book_hotel",
+        "arguments": {
+          "hotel_name": "The Ritz-Carlton",
+          "location": "New York",
+          "check_in_date": "12-25",
+          "check_in_time": "16:00"
+        }
+      },
+      "drifted_gold_call": {
+        "name": "book_hotel",
+        "arguments": {
+          "hotel_name": "The Ritz-Carlton",
+          "location_v2": "New York",
+          "check_in_date_v2": "12-25",
+          "check_in_time_v2": "16:00"
+        }
+      },
+      "pred_call": {
+        "name": "book_hotel",
+        "arguments": {
+          "hotel_name": "The Ritz-Carlton",
+          "location_v2": "New York",
+          "check_in_date_v2": "12-25",
+          "check_in_time_v2": "16:00"
+        }
+      },
+      "repaired_call": {
+        "name": "book_hotel",
+        "arguments": {
+          "hotel_name": "The Ritz-Carlton",
+          "location_v2": "New York",
+          "check_in_date_v2": "12-25",
+          "check_in_time_v2": "16:00"
+        }
+      },
+      "original_match": {
+        "matched": false,
+        "name_match": true,
+        "missing_fields": [
+          "check_in_date",
+          "check_in_time",
+          "hotel_name",
+          "location"
+        ],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    }
+  ]
+}

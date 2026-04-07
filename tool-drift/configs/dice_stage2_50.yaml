@@ -1,42 +1,40 @@
 project:
   name: schema-shield-lite
-  benchmark: bfcl
+  benchmark: dice-bench
   mode: live
-  output_dir: outputs/bfcl
+  output_dir: outputs/dice
 
 model:
   name: qwen/qwen3.5-9b
   provider: openrouter
   endpoint: https://openrouter.ai/api/v1/chat/completions
   temperature: 0.0
+  repair_max_tokens: 512
   provider_preferences:
     only:
       - venice
     allow_fallbacks: false
 
 data:
-  bfcl_subset_path: data/bfcl_pilot_subset.json
+  dice_subset_path: data/dice_stage2_subset_50.json
 
 drift:
   description_modes:
     - legacy_example
     - marketing
-    - formal
   schema_modes:
-    - rename_all_parameters
-    - camel_case
-    - alias_enums
+    - rename_parameters
+    - reorder_parameters
   candidate_modes:
     - distractors
-  candidate_extra_candidates: 3
-  severity: medium
+  severity: mild
 
 evaluation:
-  sample_count: 20
+  sample_count: 50
   seed: 42
   use_repair: true
   run_naive_retry: true
 
 pilot:
   demo_mode: false
-  benchmark_subset: bfcl_pilot_subset
+  benchmark_subset: dice_stage2_50

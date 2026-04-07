@@ -28,6 +28,13 @@ def summarize_file(path: Path) -> dict[str, Any]:
         "drifted_score": summary.get("drifted_score", 0.0),
         "repaired_score": summary.get("repaired_score", 0.0),
         "recovery_rate": summary.get("recovery_rate", 0.0),
+        "originally_correct_count": summary.get("originally_correct_count"),
+        "drifted_score_on_originally_correct": summary.get("drifted_score_on_originally_correct"),
+        "repaired_score_on_originally_correct": summary.get("repaired_score_on_originally_correct"),
+        "recovery_rate_on_originally_correct": summary.get("recovery_rate_on_originally_correct"),
+        "drift_misses_on_originally_correct": summary.get("drift_misses_on_originally_correct"),
+        "repair_recoveries_on_originally_correct": summary.get("repair_recoveries_on_originally_correct"),
+        "repair_harms_on_originally_correct": summary.get("repair_harms_on_originally_correct"),
         "error_breakdown": summary.get("error_breakdown", {}),
     }
 

@@ -1,20 +1,26 @@
 project:
   name: schema-shield-lite
   benchmark: dice-bench
-  mode: demo
+  mode: live
   output_dir: outputs/dice
 
 model:
   name: qwen/qwen3.5-9b
   provider: openrouter
   endpoint: https://openrouter.ai/api/v1/chat/completions
+  temperature: 0.0
+  repair_max_tokens: 512
+  provider_preferences:
+    only:
+      - venice
+    allow_fallbacks: false
 
 data:
   dice_subset_path: data/dice_pilot_subset.json
 
 drift:
   description_modes:
-    - verbose
+    - legacy_example
     - marketing
   schema_modes:
     - rename_parameters
@@ -24,11 +30,11 @@ drift:
   severity: mild
 
 evaluation:
-  sample_count: 8
+  sample_count: 20
   seed: 42
   use_repair: true
   run_naive_retry: true
 
 pilot:
-  demo_mode: true
+  demo_mode: false
   benchmark_subset: dice_sample

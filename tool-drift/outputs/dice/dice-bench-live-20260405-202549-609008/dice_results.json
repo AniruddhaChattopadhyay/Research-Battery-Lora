@@ -1,0 +1,240 @@
+{
+  "summary": {
+    "benchmark": "dice-bench",
+    "demo_mode": false,
+    "run_id": "dice-bench-live-20260405-202549-609008",
+    "output_dir": "/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-202549-609008",
+    "sample_count": 1,
+    "scoring_policy": "normalized_semantic_match_v1",
+    "original_score": 1,
+    "drifted_score": 1,
+    "repaired_score": 1,
+    "recovery_rate": 0.0,
+    "validation_failures": 0,
+    "repaired_failures": 0,
+    "error_breakdown": {
+      "clean": 1
+    },
+    "drifted_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "repaired_stats": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "originally_correct_count": 1,
+    "drifted_score_on_originally_correct": 1,
+    "repaired_score_on_originally_correct": 1,
+    "recovery_rate_on_originally_correct": 0.0,
+    "drift_misses_on_originally_correct": 0,
+    "repair_recoveries_on_originally_correct": 0,
+    "repair_harms_on_originally_correct": 0
+  },
+  "config": {
+    "project": {
+      "name": "schema-shield-lite",
+      "benchmark": "dice-bench",
+      "mode": "live",
+      "output_dir": "outputs/dice"
+    },
+    "model": {
+      "name": "qwen/qwen3.5-35b-a3b",
+      "provider": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "temperature": 0.0,
+      "repair_max_tokens": 512,
+      "provider_preferences": {
+        "only": [
+          "venice"
+        ],
+        "allow_fallbacks": false
+      }
+    },
+    "data": {
+      "dice_subset_path": "data/dice_single_36.json"
+    },
+    "drift": {
+      "description_modes": [
+        "legacy_example",
+        "marketing"
+      ],
+      "schema_modes": [
+        "rename_parameters",
+        "reorder_parameters"
+      ],
+      "candidate_modes": [
+        "distractors"
+      ],
+      "severity": "mild"
+    },
+    "evaluation": {
+      "sample_count": 1,
+      "seed": 42,
+      "use_repair": true,
+      "run_naive_retry": true
+    },
+    "pilot": {
+      "demo_mode": false,
+      "benchmark_subset": "dice_stage2_50_qwen35_35b"
+    }
+  },
+  "results": [
+    {
+      "id": "dice_round_1_36",
+      "prompt": "user: I understand that you're looking to schedule an appointment for a haircut. Could we start by discussing what day you might be free?\nuser: How about November 10th? Does that fit into your schedule?\nuser: November 10th works for me. Let's consider a time that won't interfere with your daily commitments. What about 10:00 in the morning?\nuser: 10:00 AM sounds perfect, as it leaves the rest of the day free. Do you have a preferred location in mind?\nuser: I was thinking of 456 Salon Ave., as it's quite central and convenient. Does that work for you?\nuser: That location is great, as it's easy to reach for both of us. Should we finalize this arrangement, or is there anything else we need to consider?\nuser: It seems like we've agreed on all the details. AI, please go ahead and arrange the appointment accordingly.",
+      "original_tool": "schedule_appointment",
+      "original_tool_schema": {
+        "name": "schedule_appointment",
+        "description": "Schedule an appointment for a service at a date/time/location.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "type": "string",
+              "description": "Type of service (e.g. 'dentist')."
+            },
+            "date": {
+              "type": "string",
+              "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+            },
+            "time": {
+              "type": "string",
+              "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+            },
+            "location": {
+              "type": "string",
+              "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+            }
+          },
+          "required": [
+            "service",
+            "date",
+            "time",
+            "location"
+          ]
+        }
+      },
+      "drifted_tool": "schedule_appointment",
+      "drifted_tool_schema": {
+        "name": "schedule_appointment",
+        "description": "Schedule an appointment for a service at a date/time/location. Legacy integration note: older examples may still show payloads like {\"date\": \"value\", \"time\": \"value\", \"location\": \"value\"}.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "type": "string",
+              "description": "Type of service (e.g. 'dentist')."
+            },
+            "date_v2": {
+              "type": "string",
+              "description": "Date of the appointment in MM-DD format (e.g. '08-23')."
+            },
+            "time_v2": {
+              "type": "string",
+              "description": "Time of the appointment in HH:MM (24-hour) format (e.g. '14:30')."
+            },
+            "location_v2": {
+              "type": "string",
+              "description": "Physical location or address for the appointment (e.g. '123 Dental St.')."
+            }
+          },
+          "required": [
+            "service",
+            "date_v2",
+            "time_v2",
+            "location_v2"
+          ],
+          "x_rename_map": {
+            "service": "service",
+            "date": "date_v2",
+            "time": "time_v2",
+            "location": "location_v2"
+          }
+        }
+      },
+      "original_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date": "11-10",
+          "time": "10:00",
+          "location": "456 Salon Ave."
+        }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_validation": {
+        "valid": true,
+        "issues": []
+      },
+      "repaired_valid": true,
+      "repair_used": false,
+      "repair_strategy": "not_needed",
+      "repair_prompt": null,
+      "repair_debug": null,
+      "gold_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date": "11-10",
+          "time": "10:00",
+          "location": "456 Salon Ave."
+        }
+      },
+      "drifted_gold_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date_v2": "11-10",
+          "time_v2": "10:00",
+          "location_v2": "456 Salon Ave."
+        }
+      },
+      "pred_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date_v2": "11-10",
+          "time_v2": "10:00",
+          "location_v2": "456 Salon Ave."
+        }
+      },
+      "repaired_call": {
+        "name": "schedule_appointment",
+        "arguments": {
+          "service": "haircut",
+          "date_v2": "11-10",
+          "time_v2": "10:00",
+          "location_v2": "456 Salon Ave."
+        }
+      },
+      "original_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "drifted_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "repaired_match": {
+        "matched": true,
+        "name_match": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "mismatched_fields": []
+      },
+      "error_type": "clean"
+    }
+  ]
+}

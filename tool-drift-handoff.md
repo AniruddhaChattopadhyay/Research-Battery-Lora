@@ -48,6 +48,8 @@ Important files:
 - [configs/pilot_dice.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/pilot_dice.yaml)
 - [scripts/run_pilot_bfcl.py](/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_bfcl.py)
 - [scripts/run_pilot_dice.py](/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py)
+- [scripts/rescore_bfcl_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/rescore_bfcl_results.py)
+- [scripts/rescore_dice_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/rescore_dice_results.py)
 - [scripts/summarize_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/summarize_results.py)
 - [scripts/export_bfcl_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_bfcl_subset.py)
 - [scripts/export_dice_subset.py](/Users/aniruddha/Documents/research/tool-drift/scripts/export_dice_subset.py)
@@ -310,11 +312,14 @@ Added:
 - simple date normalization,
 - integer/number coercion for semantic comparison,
 - unordered normalization for attendee-like lists,
+- BFCL-aware scalar-vs-singleton-list matching,
+- BFCL nested acceptable-values matching,
+- coordinate string vs numeric-pair equivalence,
 - per-example field mismatch diagnostics.
 
 The current score label is:
 
-- `normalized_semantic_match_v1`
+- `normalized_semantic_match_v2`
 
 ## 5.9 Added JSON repair fallback and improved repair prompt
 
@@ -374,6 +379,27 @@ Notebook updated:
 - the notebook uses the real pilot subset files by default
 - `refresh_subsets = True` is available if the exporter scripts need to be rerun inside Colab
 
+## 5.12 Added offline BFCL rescoring and richer BFCL summaries
+
+Implemented in:
+
+- [scripts/rescore_bfcl_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/rescore_bfcl_results.py)
+- [scripts/run_pilot_bfcl.py](/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_bfcl.py)
+- [scripts/summarize_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/summarize_results.py)
+
+Behavior:
+
+- older BFCL result JSONs can be rescored in place without new model calls,
+- BFCL runs now store `original_tool_schema` and `drifted_tool_schema` per example,
+- BFCL summaries now include an `originally_correct` slice:
+  - `originally_correct_count`
+  - `drifted_score_on_originally_correct`
+  - `repaired_score_on_originally_correct`
+  - `recovery_rate_on_originally_correct`
+  - `drift_misses_on_originally_correct`
+  - `repair_recoveries_on_originally_correct`
+  - `repair_harms_on_originally_correct`
+
 ---
 
 ## 6. Known Issues
@@ -415,84 +441,118 @@ What may still need improvement:
 - DICE currently uses only `round_1` single-function examples,
 - future work may want a harder DICE subset or support for multi-call dialogues.
 
-## 6.3 BFCL repair is still not effective
+## 6.3 BFCL repair is no longer harmful, but drift recovery on originally-correct cases is still weak
 
-Observed in the BFCL smoke case:
+Status in the latest BFCL pilots:
 
-- original call was valid,
-- drifted call failed,
-- repair still failed even after adding JSON fallback.
+- global BFCL moved to `original = 0.75`, `drifted = 0.70`, `repaired = 0.80`
+- on the `originally_correct` slice, BFCL is still `0.93 -> 0.93`
+- `repair_harms_on_originally_correct = 0`
+- `repair_recoveries_on_originally_correct = 0`
+- a later Venice-locked BFCL run still failed to produce useful drift harm and instead landed at `0.65 -> 0.80 -> 0.90`
 
-Likely reasons:
+Interpretation:
 
-- the BFCL failure starts from an empty or missing tool call,
-- the repair prompt still may not provide enough structure for hard rename cases,
-- raw repair responses are not yet stored, so detailed diagnosis is still manual.
-
-Fix needed:
-
-- persist raw repair responses or raw provider payloads for failed cases,
-- test a stricter repair format with field-by-field extraction,
-- consider a deterministic canonicalizer/field-mapper before calling repair.
-
-## 6.4 The current DICE pilot subset may still be too easy
-
-The smoke example is easy, and the current round-1 pilot subset may also be easier than what the paper eventually needs.
+- the earlier BFCL runner bug around distractor-tool validation is fixed,
+- BFCL repair no longer makes correct drifted cases worse,
+- current global BFCL gains partly come from scorer normalization and partly from repairing baseline-borderline cases,
+- BFCL currently has a benchmark-design problem, not a repair-plumbing problem: the chosen drift often helps rather than hurts.
 
 Fix needed:
 
-- run the actual 20-example DICE pilot subset,
-- inspect whether rename/reorder/distractor drift causes enough degradation,
-- if not, move to harder rounds or add multi-call evaluation support.
+- treat BFCL as secondary/diagnostic until it shows `original > drifted`,
+- if BFCL is revisited, use the new stale-doc drift ideas or a different BFCL slice,
+- keep using the `originally_correct` slice to avoid overstating repair gains.
+
+## 6.4 DICE is now the primary promising benchmark, but the clean-slice effect is still narrow
+
+The newer Venice-locked DICE runs with stale-doc drift now show the right global shape.
+
+Best current run:
+
+- [dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-112603-236556/dice_results.json)
+
+- `original = 0.80`
+- `drifted = 0.72`
+- `repaired = 0.88`
+
+On the `originally_correct` slice:
+
+- `0.85 -> 1.0`
+- `repair_recoveries_on_originally_correct = 6`
+- `repair_harms_on_originally_correct = 0`
+
+Second comparison run:
+
+- [dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-202744-978292/dice_results.json)
+- model: `qwen/qwen3.5-35b-a3b`
+- global: `0.66 -> 0.68 -> 0.86`
+- originally-correct slice: `0.7879 -> 1.0`
+- `repair_recoveries_on_originally_correct = 7`
+- `repair_harms_on_originally_correct = 0`
+
+Fix needed:
+
+- DICE is now strong enough to serve as the primary benchmark for the short paper,
+- the next highest-value step is adding one more model or one more DICE slice for comparison,
+- keep BFCL as secondary evidence rather than the primary pilot benchmark.
 
 ---
 
 ## 7. Current Result Snapshot
 
-From the latest non-demo smoke outputs:
+From the latest real 20-example pilot runs:
 
-### BFCL smoke
-
-Summary currently written in:
-
-- [outputs/bfcl/bfcl-live-20260327-062422-930874/bfcl_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-live-20260327-062422-930874/bfcl_results.json)
-
-Observed:
-
-- `original_score = 1.0`
-- `drifted_score = 0.0`
-- `repaired_score = 0.0`
-- `validation_failures = 1`
-- `repaired_failures = 1`
-- `error_breakdown = {"wrong_tool": 1}`
-
-Interpretation:
-
-- endpoint path works,
-- drift can break the tool call,
-- normalized scoring is not hiding the failure,
-- repair path is still not good enough for BFCL.
-
-### DICE smoke
+### BFCL pilot
 
 Summary currently written in:
 
-- [outputs/dice/dice-bench-live-20260327-062613-009920/dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260327-062613-009920/dice_results.json)
+- [outputs/bfcl/bfcl-live-20260329-195054-776296/bfcl_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/bfcl/bfcl-live-20260329-195054-776296/bfcl_results.json)
 
-Observed:
+Observed on the latest Venice-locked run:
 
-- `original_score = 1.0`
-- `drifted_score = 1.0`
-- `repaired_score = 1.0`
-- `validation_failures = 0`
+- `original_score = 0.65`
+- `drifted_score = 0.80`
+- `repaired_score = 0.90`
+- `validation_failures = 3`
 - `repaired_failures = 0`
-- `error_breakdown = {"clean": 1}`
+- `error_breakdown = {"clean": 17, "missing_field": 3}`
+- `originally_correct_count = 13`
+- `drifted_score_on_originally_correct = 1.0`
+- `repaired_score_on_originally_correct = 1.0`
+- `repair_harms_on_originally_correct = 0`
 
 Interpretation:
 
-- normalized scoring fixed the earlier false negative,
-- this smoke example is now mostly a scorer/inference sanity check,
-- the benchmark slice still needs harder examples.
+- BFCL infrastructure is working, but the current drift recipe is not suitable for the paper claim,
+- the benchmark is currently showing drift-help behavior, which weakens BFCL as the lead experiment,
+- BFCL should be kept as secondary analysis until a better damaging drift is found.
+
+### DICE pilot
+
+Summary currently written in:
+
+- [outputs/dice/dice-bench-live-20260405-112603-236556/dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-112603-236556/dice_results.json)
+
+Observed:
+
+- `original_score = 0.80`
+- `drifted_score = 0.72`
+- `repaired_score = 0.88`
+- `validation_failures = 10`
+- `repaired_failures = 0`
+- `error_breakdown = {"clean": 40, "wrong_tool": 7, "missing_field": 3}`
+- `originally_correct_count = 40`
+- `drifted_score_on_originally_correct = 0.85`
+- `repaired_score_on_originally_correct = 1.0`
+- `repair_recoveries_on_originally_correct = 6`
+- `repair_harms_on_originally_correct = 0`
+
+Interpretation:
+
+- DICE is now the strongest current primary benchmark,
+- the forced-tool repair plus higher repair token budget produces a clean recovery result on a 50-example slice,
+- this run is strong enough to anchor the paper’s main empirical table.
 
 ---
 
@@ -500,32 +560,31 @@ Interpretation:
 
 The next agent should do these in order:
 
-### Step 1: Run the real pilot subsets
+### Step 1: Treat the 50-example DICE stage-2 run as the main baseline
 
-Use the current default configs, which already point at the exported subset files.
+Use:
+
+- [outputs/dice/dice-bench-live-20260405-112603-236556/dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-112603-236556/dice_results.json)
+- [outputs/dice/dice-bench-live-20260405-202744-978292/dice_results.json](/Users/aniruddha/Documents/research/tool-drift/outputs/dice/dice-bench-live-20260405-202744-978292/dice_results.json)
+- [scripts/rescore_dice_results.py](/Users/aniruddha/Documents/research/tool-drift/scripts/rescore_dice_results.py)
+- [configs/dice_stage2_50.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/dice_stage2_50.yaml)
+- [configs/dice_stage2_50_qwen35_35b.yaml](/Users/aniruddha/Documents/research/tool-drift/configs/dice_stage2_50_qwen35_35b.yaml)
+- [tool-drift-stage2-results.md](/Users/aniruddha/Documents/research/tool-drift-stage2-results.md)
 
 Goal:
 
-- get the first real 20-example BFCL and 20-example DICE result tables,
-- identify whether DICE is already informative enough,
-- use BFCL failures to drive repair improvements.
+- keep future comparisons against the 50-example stage-2 setup,
+- measure progress primarily on the DICE originally-correct slice.
 
-### Step 2: Strengthen BFCL repair diagnosis
+### Step 2: If there is time, add breadth rather than more repair tuning
 
-Investigate why the BFCL repair call still fails after JSON fallback.
+- add one more model on the same 50-example stage-2 config,
+- or add one more 50-example DICE slice with the same stale-doc drift recipe.
 
-Likely path:
+### Step 3: Keep BFCL as secondary evidence
 
-- log raw repaired response,
-- store the raw provider message or parsed JSON fallback attempt,
-- compare tool-calling vs JSON-only repair on the same failure,
-- maybe add a stricter field-by-field repair prompt.
-
-### Step 3: Replace the DICE subset with a harder slice if needed
-
-- keep the normalized scorer,
-- extend beyond round 1 if the pilot needs harder dialogue settings,
-- or add support for evaluating multi-call DICE rounds.
+- use BFCL for failure-analysis examples or appendix-style results,
+- do not let BFCL drive the main pilot decision until it shows real drift harm.
 
 Only after those runs should the team decide whether to scale further.
 
@@ -567,6 +626,24 @@ cd /Users/aniruddha/Documents/research/tool-drift
 ./.venv/bin/python scripts/summarize_results.py --results-dir outputs
 ```
 
+### Offline BFCL rescore
+
+```bash
+cd /Users/aniruddha/Documents/research/tool-drift
+./.venv/bin/python scripts/rescore_bfcl_results.py \
+  --results-file outputs/bfcl/bfcl-live-20260327-074641-563864/bfcl_results.json \
+  --in-place
+```
+
+### Offline DICE rescore
+
+```bash
+cd /Users/aniruddha/Documents/research/tool-drift
+./.venv/bin/python scripts/rescore_dice_results.py \
+  --results-file outputs/dice/dice-bench-live-20260329-195614-876520/dice_results.json \
+  --in-place
+```
+
 ### Optional smoke checks
 
 ```bash
@@ -603,5 +680,6 @@ PY
 - OpenRouter-backed local execution is working.
 - Run isolation and normalized scoring are in place.
 - Real benchmark subset export is in place.
-- The codebase is now at the "first true pilot run" stage, not just the "smoke validation" stage.
-- The next agent should focus on **running the real pilot subsets and improving BFCL repair diagnosis**, not broad architecture changes.
+- BFCL rescoring and BFCL-only summary slices are in place.
+- The codebase is now past the first true pilot run stage and into BFCL iteration.
+- The next agent should focus on **one targeted BFCL iteration with the `originally_correct` slice as the main yardstick**, not broad architecture changes.
