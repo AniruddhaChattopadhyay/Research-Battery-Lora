@@ -1,0 +1,35 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{faghih2025gaming}
+Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
+  S., Hosseini, P., Feizi, S.: Gaming tool preferences in agentic llms. arXiv
+  preprint arXiv:2505.18135  (2025)
+
+\bibitem{guo2026rewrite}
+Guo, Y., et~al.: Learning to rewrite tool descriptions for reliable llm-agent
+  tool use. arXiv preprint arXiv:2602.20426  (2026)
+
+\bibitem{jang2025dicebench}
+Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: Dice-bench:
+  Evaluating the tool-use capabilities of large language models in multi-round,
+  multi-party dialogues. arXiv preprint arXiv:2506.22853  (2025)
+
+\bibitem{liu2024apigen}
+Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
+  Liu, Z., Feng, Y., Murthy, R., Yang, L., Savarese, S., Niebles, J.C., Wang,
+  H., Heinecke, S., Xiong, C.: Apigen: Automated pipeline for generating
+  verifiable and diverse function-calling datasets. arXiv preprint
+  arXiv:2406.18518  (2024)
+
+\bibitem{zhang2026fission}
+Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint
+  arXiv:2601.15625  (2026)
+
+\bibitem{zhong2025complexfuncbench}
+Zhong, Y., et~al.: Complexfuncbench: Exploring multi-function calling in large
+  language models. arXiv preprint arXiv:2501.10132  (2025)
+
+\end{thebibliography}
