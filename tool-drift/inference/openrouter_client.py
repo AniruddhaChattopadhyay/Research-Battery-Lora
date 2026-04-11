@@ -59,6 +59,17 @@ def _extract_json_dict(text: str) -> dict[str, Any]:
     return {}
 
 
+def extract_usage(payload: Mapping[str, Any]) -> dict[str, int]:
+    usage = payload.get("usage", {})
+    if not isinstance(usage, dict):
+        return {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    return {
+        "prompt_tokens": int(usage.get("prompt_tokens", 0)),
+        "completion_tokens": int(usage.get("completion_tokens", 0)),
+        "total_tokens": int(usage.get("total_tokens", 0)),
+    }
+
+
 def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
     choices = list(payload.get("choices", []))
     if not choices:
@@ -111,7 +122,7 @@ def _retry_delay_seconds(
             if isinstance(retry_after_seconds, int | float):
                 return max(float(retry_after_seconds), 0.0)
 
-    return min(2**attempt, 30.0)
+    return min(2**attempt, 60.0)
 
 
 def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> dict[str, Any]:
@@ -129,8 +140,8 @@ def _request_payload(body: Mapping[str, Any], base_url: str | None = None) -> di
         method="POST",
     )
 
-    max_attempts = 6
-    retryable_status_codes = {408, 429, 500, 502, 503, 504}
+    max_attempts = 12
+    retryable_status_codes = {400, 408, 429, 500, 502, 503, 504}
     for attempt in range(max_attempts):
         try:
             with urllib.request.urlopen(request, timeout=180) as response:

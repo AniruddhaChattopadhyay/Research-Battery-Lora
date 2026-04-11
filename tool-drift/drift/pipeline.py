@@ -38,7 +38,8 @@ def candidate_count_for_severity(drift_cfg: Mapping[str, Any]) -> int:
 
 def apply_drift_pipeline(tool: Mapping[str, Any], *, description_modes: list[str], schema_modes: list[str]) -> dict[str, Any]:
     drifted = deepcopy(dict(tool))
-    drifted = apply_schema_drift_sequence(drifted, schema_modes)
+    if schema_modes:
+        drifted = apply_schema_drift_sequence(drifted, schema_modes)
     for mode in description_modes:
         drifted = apply_description_drift(drifted, mode)
     return drifted

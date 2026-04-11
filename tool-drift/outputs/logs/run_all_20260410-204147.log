@@ -1,0 +1,30 @@
+[20:41:47] ==========================================
+[20:41:47] Tool-Drift Full Experiment Suite
+[20:41:47] ==========================================
+[20:41:47] SKIP   dice_300_qwen9b (already completed)
+[20:41:47] SKIP   dice_ablation_desc_only (already completed)
+[20:41:47] START  dice_ablation_schema_only
+[21:10:37] PASS   dice_ablation_schema_only
+[21:10:37] START  dice_ablation_candidates_only
+[21:42:09] PASS   dice_ablation_candidates_only
+[21:42:09] START  dice_ablation_all_combined
+[22:14:14] PASS   dice_ablation_all_combined
+[22:14:14] START  dice_ablation_card_only
+[22:41:44] PASS   dice_ablation_card_only
+[22:41:44] START  dice_ablation_validation_retry
+[23:16:35] PASS   dice_ablation_validation_retry
+[23:16:35] START  dice_300_qwen35b
+[23:28:30] FAIL   dice_300_qwen35b (see outputs/logs/dice_300_qwen35b_20260410-204147.log)
+[23:28:30] START  dice_300_llama4scout
+[23:38:44] FAIL   dice_300_llama4scout (see outputs/logs/dice_300_llama4scout_20260410-204147.log)
+[23:38:44] START  dice_300_mistral
+[23:54:11] PASS   dice_300_mistral
+[23:54:11] START  bfcl_200_qwen9b
+[23:59:28] FAIL   bfcl_200_qwen9b (see outputs/logs/bfcl_200_qwen9b_20260410-204147.log)
+[23:59:28] START  bfcl_200_llama4scout
+[00:01:22] FAIL   bfcl_200_llama4scout (see outputs/logs/bfcl_200_llama4scout_20260410-204147.log)
+[00:01:22] ==========================================
+[00:01:22] DONE  passed=6  failed=4
+[00:01:22] Failed: dice_300_qwen35b dice_300_llama4scout bfcl_200_qwen9b bfcl_200_llama4scout
+[00:01:22] Master log: outputs/logs/run_all_20260410-204147.log
+[00:01:22] ==========================================

@@ -1,0 +1,6 @@
+[19:53:55] ==========================================
+[19:53:55] Tool-Drift Full Experiment Suite
+[19:53:55] ==========================================
+[19:53:55] SKIP   dice_300_qwen9b (already completed)
+[19:53:55] START  dice_ablation_desc_only
+[20:29:21] PASS   dice_ablation_desc_only

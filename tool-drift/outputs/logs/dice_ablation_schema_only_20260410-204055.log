@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 438, in <module>
+    main()
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 434, in main
+    run(config, demo=args.demo or bool(config.get("pilot", {}).get("demo_mode", False)))
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 350, in run
+    call, drifted_usage = predict_call(
+                          ^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 63, in predict_call
+    call, payload = request_tool_call_with_payload(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 256, in request_tool_call_with_payload
+    return _request_tool_call_payload(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 214, in _request_tool_call_payload
+    payload = _request_payload(body, base_url=base_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 147, in _request_payload
+    with urllib.request.urlopen(request, timeout=180) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/http/client.py", line 1430, in getresponse
+    response.begin()
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/ssl.py", line 1251, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/ssl.py", line 1103, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

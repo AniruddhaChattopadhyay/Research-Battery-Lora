@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 147, in _request_payload
+    with urllib.request.urlopen(request, timeout=180) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 400: Bad Request
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 438, in <module>
+    main()
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 434, in main
+    run(config, demo=args.demo or bool(config.get("pilot", {}).get("demo_mode", False)))
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 365, in run
+    repaired, repair_prompt_text, repair_strategy, repair_debug = repair_call(
+                                                                  ^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/scripts/run_pilot_dice.py", line 176, in repair_call
+    repaired, tool_call_payload = request_tool_call_with_payload(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 256, in request_tool_call_with_payload
+    return _request_tool_call_payload(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 214, in _request_tool_call_payload
+    payload = _request_payload(body, base_url=base_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/tool-drift/inference/openrouter_client.py", line 160, in _request_payload
+    raise RuntimeError(f"OpenRouter HTTP error {exc.code}: {detail}") from exc
+RuntimeError: OpenRouter HTTP error 400: {"error":{"message":"Provider returned error","code":400,"metadata":{"raw":"[{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Unable to submit request because the forced function calling (mode = ANY) is not supported for this model. Learn more: https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n]","provider_name":"Google","is_byok":false}},"user_id":"org_39bVZTRvyxdfsjZEVYK6tuhaek5"}

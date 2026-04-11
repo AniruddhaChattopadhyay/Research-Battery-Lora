@@ -1,0 +1,31 @@
+[21:32:11] ==========================================
+[21:32:11] Tool-Drift Full Experiment Suite
+[21:32:11] ==========================================
+[21:32:11] SKIP   dice_300_qwen9b (already completed)
+[21:32:11] START  dice_ablation_desc_only
+[21:39:47] FAIL   dice_ablation_desc_only (see outputs/logs/dice_ablation_desc_only_20260409-213211.log)
+[21:39:47] START  dice_ablation_schema_only
+[21:39:49] FAIL   dice_ablation_schema_only (see outputs/logs/dice_ablation_schema_only_20260409-213211.log)
+[21:39:49] START  dice_ablation_candidates_only
+[21:39:50] FAIL   dice_ablation_candidates_only (see outputs/logs/dice_ablation_candidates_only_20260409-213211.log)
+[21:39:50] START  dice_ablation_all_combined
+[21:39:50] FAIL   dice_ablation_all_combined (see outputs/logs/dice_ablation_all_combined_20260409-213211.log)
+[21:39:50] START  dice_ablation_card_only
+[21:39:53] FAIL   dice_ablation_card_only (see outputs/logs/dice_ablation_card_only_20260409-213211.log)
+[21:39:53] START  dice_ablation_validation_retry
+[21:39:53] FAIL   dice_ablation_validation_retry (see outputs/logs/dice_ablation_validation_retry_20260409-213211.log)
+[21:39:53] START  dice_300_qwen35b
+[21:39:54] FAIL   dice_300_qwen35b (see outputs/logs/dice_300_qwen35b_20260409-213211.log)
+[21:39:54] START  dice_300_llama4scout
+[21:39:54] FAIL   dice_300_llama4scout (see outputs/logs/dice_300_llama4scout_20260409-213211.log)
+[21:39:54] START  dice_300_mistral
+[21:39:54] FAIL   dice_300_mistral (see outputs/logs/dice_300_mistral_20260409-213211.log)
+[21:39:54] START  bfcl_200_qwen9b
+[21:39:54] FAIL   bfcl_200_qwen9b (see outputs/logs/bfcl_200_qwen9b_20260409-213211.log)
+[21:39:54] START  bfcl_200_llama4scout
+[21:39:54] FAIL   bfcl_200_llama4scout (see outputs/logs/bfcl_200_llama4scout_20260409-213211.log)
+[21:39:54] ==========================================
+[21:39:54] DONE  passed=0  failed=11
+[21:39:54] Failed: dice_ablation_desc_only dice_ablation_schema_only dice_ablation_candidates_only dice_ablation_all_combined dice_ablation_card_only dice_ablation_validation_retry dice_300_qwen35b dice_300_llama4scout dice_300_mistral bfcl_200_qwen9b bfcl_200_llama4scout
+[21:39:54] Master log: outputs/logs/run_all_20260409-213211.log
+[21:39:54] ==========================================

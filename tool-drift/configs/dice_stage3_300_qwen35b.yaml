@@ -1,0 +1,41 @@
+project:
+  name: schema-shield-lite
+  benchmark: dice-bench
+  mode: live
+  output_dir: outputs/dice
+
+model:
+  name: qwen/qwen3.5-35b-a3b
+  provider: openrouter
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  temperature: 0.0
+  repair_max_tokens: 512
+  provider_preferences:
+    allow_fallbacks: true
+    ignore:
+      - AtlasCloud
+
+data:
+  dice_subset_path: data/dice_stage3_subset_300.json
+
+drift:
+  description_modes:
+    - legacy_example
+    - marketing
+  schema_modes:
+    - rename_parameters
+    - reorder_parameters
+  candidate_modes:
+    - distractors
+  severity: mild
+
+evaluation:
+  sample_count: 300
+  seed: 42
+  use_repair: true
+  run_naive_retry: false
+  ablation_mode: full
+
+pilot:
+  demo_mode: false
+  benchmark_subset: dice_stage3_300

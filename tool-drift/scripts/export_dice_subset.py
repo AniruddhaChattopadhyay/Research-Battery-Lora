@@ -75,7 +75,7 @@ def render_prompt(conversation: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def iter_round_tasks(round_file: Path, max_count: int) -> list[dict[str, Any]]:
+def iter_round_tasks(round_file: Path, max_count: int, *, allow_duplicates: bool = False) -> list[dict[str, Any]]:
     tools_by_name = load_tool_docs()
     selected: list[dict[str, Any]] = []
     seen_functions: set[str] = set()
@@ -92,7 +92,9 @@ def iter_round_tasks(round_file: Path, max_count: int) -> list[dict[str, Any]]:
             call = dict(params_ret_val[0])
             function_name = str(call.get("function", ""))
             tool = tools_by_name.get(function_name)
-            if tool is None or function_name in seen_functions:
+            if tool is None:
+                continue
+            if not allow_duplicates and function_name in seen_functions:
                 continue
 
             selected.append(
@@ -118,6 +120,18 @@ def iter_round_tasks(round_file: Path, max_count: int) -> list[dict[str, Any]]:
     return selected
 
 
+def iter_multi_round_tasks(round_files: list[Path], max_count: int, *, allow_duplicates: bool = False) -> list[dict[str, Any]]:
+    selected: list[dict[str, Any]] = []
+    for round_file in round_files:
+        if not round_file.exists():
+            continue
+        remaining = max_count - len(selected)
+        if remaining <= 0:
+            break
+        selected.extend(iter_round_tasks(round_file, remaining, allow_duplicates=allow_duplicates))
+    return selected[:max_count]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -126,10 +140,21 @@ def main() -> None:
         help="Path to the DICE round file to export from.",
     )
     parser.add_argument(
+        "--rounds",
+        nargs="+",
+        default=None,
+        help="Multiple round files to draw from (overrides --round-file).",
+    )
+    parser.add_argument(
         "--count",
         type=int,
         default=20,
         help="Number of diverse single-function examples to export.",
+    )
+    parser.add_argument(
+        "--allow-duplicates",
+        action="store_true",
+        help="Allow multiple examples per function name (needed for >122 examples).",
     )
     parser.add_argument(
         "--output",
@@ -138,7 +163,11 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    subset = iter_round_tasks(Path(args.round_file), int(args.count))
+    if args.rounds:
+        round_files = [Path(f) for f in args.rounds]
+        subset = iter_multi_round_tasks(round_files, int(args.count), allow_duplicates=args.allow_duplicates)
+    else:
+        subset = iter_round_tasks(Path(args.round_file), int(args.count), allow_duplicates=args.allow_duplicates)
     output_path = Path(args.output)
     dump_json(output_path, subset)
     print(f"Wrote {len(subset)} DICE tasks to {output_path}")

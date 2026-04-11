@@ -54,6 +54,21 @@ def normalize_type(value: Any) -> str:
     return TYPE_MAP.get(str(value).strip().lower(), "string")
 
 
+def _normalize_spec(spec: Any) -> Any:
+    if not isinstance(spec, dict):
+        return spec
+    normalized = dict(spec)
+    if "type" in normalized:
+        normalized["type"] = normalize_type(normalized.get("type", "string"))
+    if "items" in normalized:
+        normalized["items"] = _normalize_spec(normalized["items"])
+    if "properties" in normalized and isinstance(normalized["properties"], dict):
+        normalized["properties"] = {
+            str(k): _normalize_spec(v) for k, v in normalized["properties"].items()
+        }
+    return normalized
+
+
 def normalize_tool(raw_tool: dict[str, Any]) -> dict[str, Any]:
     tool = deepcopy(raw_tool)
     schema = dict(tool.get("parameters", {}))
@@ -61,9 +76,7 @@ def normalize_tool(raw_tool: dict[str, Any]) -> dict[str, Any]:
     normalized_properties: dict[str, Any] = {}
 
     for field, raw_spec in properties.items():
-        spec = dict(raw_spec)
-        spec["type"] = normalize_type(spec.get("type", "string"))
-        normalized_properties[str(field)] = spec
+        normalized_properties[str(field)] = _normalize_spec(raw_spec)
 
     schema["type"] = "object"
     schema["properties"] = normalized_properties

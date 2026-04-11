@@ -1,0 +1,14 @@
+[01:46:45] ==========================================
+[01:46:45] Tool-Drift Retry: 3 remaining experiments
+[01:46:45] ==========================================
+[01:46:45] START  dice_300_llama4scout
+[01:52:27] PASS   dice_300_llama4scout
+[01:52:27] START  bfcl_200_qwen9b
+[02:27:10] PASS   bfcl_200_qwen9b
+[02:27:10] START  bfcl_200_llama4scout
+[02:34:04] FAIL   bfcl_200_llama4scout (see outputs/logs/bfcl_200_llama4scout_20260411-014645.log)
+[02:34:04] ==========================================
+[02:34:04] DONE  passed=2  failed=1
+[02:34:04] Failed: bfcl_200_llama4scout
+[02:34:04] Master log: outputs/logs/run_all_20260411-014645.log
+[02:34:04] ==========================================
