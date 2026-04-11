@@ -24,6 +24,11 @@ Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
   verifiable and diverse function-calling datasets. arXiv preprint
   arXiv:2406.18518  (2024)
 
+\bibitem{bfcl2024}
+Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,
+  J.E.: Berkeley function calling leaderboard.
+  \url{https://gorilla.cs.berkeley.edu/leaderboard.html} (2024)
+
 \bibitem{zhang2026fission}
 Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint
   arXiv:2601.15625  (2026)
