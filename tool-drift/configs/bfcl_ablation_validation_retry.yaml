@@ -1,0 +1,43 @@
+project:
+  name: schema-shield-lite
+  benchmark: bfcl
+  mode: live
+  output_dir: outputs/bfcl
+
+model:
+  name: qwen/qwen3.5-9b
+  provider: openrouter
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  temperature: 0.0
+  repair_max_tokens: 512
+  provider_preferences:
+    allow_fallbacks: true
+    ignore:
+      - Together
+
+data:
+  bfcl_subset_path: data/bfcl_stage3_subset_200.json
+
+drift:
+  description_modes:
+    - legacy_example
+    - marketing
+    - formal
+  schema_modes:
+    - rename_all_parameters
+    - camel_case
+    - alias_enums
+  candidate_modes:
+    - distractors
+  severity: medium
+
+evaluation:
+  sample_count: 200
+  seed: 42
+  use_repair: true
+  run_naive_retry: false
+  ablation_mode: validation_retry
+
+pilot:
+  demo_mode: false
+  benchmark_subset: bfcl_ablation_validation_retry

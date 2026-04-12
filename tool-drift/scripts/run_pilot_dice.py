@@ -151,7 +151,7 @@ def repair_call(
     config: dict[str, Any],
     demo: bool,
     ablation_mode: str = "full",
-) -> tuple[dict[str, Any], str, str, dict[str, Any]]:
+) -> tuple[dict[str, Any], str, str, dict[str, Any], dict[str, int]]:
     from defense.repair_prompt import build_repair_prompt_no_card
     if ablation_mode == "validation_retry":
         repair_prompt = build_repair_prompt_no_card(task, tool, invalid_call, validation.to_dict())
@@ -166,8 +166,15 @@ def repair_call(
         "json_fallback_extracted": None,
         "json_fallback_raw_output": None,
     }
+    repair_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+
+    def _accumulate(payload: Any) -> None:
+        usage = extract_usage(payload)
+        for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
+            repair_usage[key] = repair_usage.get(key, 0) + int(usage.get(key, 0) or 0)
+
     if demo:
-        return build_example_call(tool), repair_prompt, "demo", repair_debug
+        return build_example_call(tool), repair_prompt, "demo", repair_debug, repair_usage
 
     model_cfg = config.get("model", {})
     seed = config.get("evaluation", {}).get("seed") if bool(model_cfg.get("use_seed", False)) else None
@@ -198,12 +205,13 @@ def repair_call(
             provider_preferences=model_cfg.get("provider_preferences"),
             max_tokens=repair_max_tokens,
         )
+    _accumulate(tool_call_payload)
     repair_debug["tool_call_extracted"] = repaired
     repair_debug["tool_call_raw_output"] = tool_call_payload
     repaired = force_tool_name(tool, repaired)
     first_pass = validate_tool_call(tool, repaired)
     if first_pass.valid:
-        return repaired, repair_prompt, "forced_tool_call", repair_debug
+        return repaired, repair_prompt, "forced_tool_call", repair_debug, repair_usage
 
     repaired, json_fallback_payload = request_json_tool_call_with_payload(
         model=str(model_cfg.get("name", "")),
@@ -214,10 +222,11 @@ def repair_call(
         provider_preferences=model_cfg.get("provider_preferences"),
         max_tokens=repair_max_tokens,
     )
+    _accumulate(json_fallback_payload)
     repair_debug["json_fallback_extracted"] = repaired
     repair_debug["json_fallback_raw_output"] = json_fallback_payload
     repaired = force_tool_name(tool, repaired)
-    return repaired, repair_prompt, "json_fallback_forced_tool", repair_debug
+    return repaired, repair_prompt, "json_fallback_forced_tool", repair_debug, repair_usage
 
 
 def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path, run_id: str) -> dict[str, Any]:
@@ -362,7 +371,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
             repair_strategy = "not_needed"
             repair_debug = None
         else:
-            repaired, repair_prompt_text, repair_strategy, repair_debug = repair_call(
+            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_call(
                 task=task,
                 tool=drifted_eval_tool,
                 invalid_call=call,

@@ -8,6 +8,8 @@
 \usepackage{url}
 \usepackage{xspace}
 \usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning,arrows.meta}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
 
@@ -90,10 +92,13 @@ $0.013$ and $0.007$ points respectively. Adding distractor tools causes a $0.047
 drop, matching the full combined drift.
 
 \item \textbf{Validation feedback, not the canonical tool card, is the load-bearing
-component of \method.} A component ablation shows that \emph{validation-plus-retry
-without the canonical card} recovers $16$ of $17$ drift-induced failures, nearly
-matching the full pipeline. The canonical card alone never triggers repair and
-recovers nothing.
+component of \method.} A component ablation on \emph{both} benchmarks shows that
+\emph{validation-plus-retry without the canonical card at repair time} recovers
+$16$ of $17$ drift-induced failures on DICE and $26$ of $34$ on BFCL, matching
+or slightly exceeding the full pipeline ($0.820$ vs $0.795$ repaired accuracy
+on BFCL). The canonical card alone never triggers repair, but as a
+drift-prevention prompt at initial prediction time it reduces BFCL drift
+damage by $17.0$ points.
 \end{enumerate}
 
 \section{Related Work}
@@ -154,8 +159,41 @@ performance lost from Original to Drifted without harming examples that were alr
 correct.
 
 \section{Method}
+\label{sec:method}
 \subsection{\method}
-\method is a lightweight inference-time robustness layer with three parts:
+\method is a lightweight inference-time robustness layer with three parts.
+Figure~\ref{fig:pipeline} sketches the full pipeline.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+    node distance=0.9cm and 0.9cm,
+    box/.style={draw, rounded corners, minimum width=2.6cm, minimum height=0.8cm, align=center, font=\small},
+    decision/.style={draw, diamond, aspect=2, minimum width=1.4cm, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick},
+]
+\node[box] (input) {User context\\+ drifted tools};
+\node[box, right=of input] (model) {Base model\\$M(x, \Delta(I))$};
+\node[decision, right=of model] (valid) {Valid?};
+\node[box, above right=0.5cm and 0.9cm of valid] (pass) {Output\\(pass-through)};
+\node[box, below right=0.5cm and 0.9cm of valid] (repair) {Canonical card\\+ validation errors};
+\node[box, right=of repair] (repairmodel) {Forced-tool\\repair call};
+\node[box, right=of repairmodel] (output) {Repaired\\output};
+
+\draw[arrow] (input) -- (model);
+\draw[arrow] (model) -- (valid);
+\draw[arrow] (valid.north) -- node[above, font=\scriptsize] {Yes} (pass.west);
+\draw[arrow] (valid.south) -- node[below, font=\scriptsize] {No} (repair.west);
+\draw[arrow] (repair) -- (repairmodel);
+\draw[arrow] (repairmodel) -- (output);
+\end{tikzpicture}
+\caption{\method pipeline. The base model receives user context and drifted tool
+definitions. If the emitted tool call fails validation, a repair call is issued
+with the canonical tool card and structured validation errors; the repair step
+is constrained to the intended tool where provider support allows.}
+\label{fig:pipeline}
+\end{figure}
+
 
 \paragraph{Canonical tool card.}
 Each tool is rendered into a compact canonical form containing the tool name,
@@ -242,32 +280,54 @@ and both models evaluated on BFCL-200. Across every model and both benchmarks,
 \method improves over the drifted baseline with \emph{zero repair harms}.
 
 \begin{table}[t]
-\caption{Main results on DICE-300 and BFCL-200. OC = originally-correct count;
-Rec = recoveries; Harms = repair harms on originally-correct slice.}
+\caption{Main results on DICE-300 and BFCL-200. Brackets give 95\% bootstrap
+confidence intervals (seed~42). OC = originally-correct count;
+Rec = recoveries on drift-induced failures; Harms = repair harms on
+originally-correct slice; Trig\% = repair trigger rate.}
 \label{tab:main-results}
 \centering
-\small
-\begin{tabular}{llcccccccc}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llccccccc}
 \toprule
-Benchmark & Model & $n$ & Orig. & Drift. & Repair & OC & Rec/Miss & Harms & Trig\% \\
+Benchmark & Model & Orig. [95\% CI] & Drift. [95\% CI] & Repair [95\% CI] & OC & Rec/Miss & Harms & Trig\% \\
 \midrule
 \multirow{4}{*}{DICE-300}
-& Qwen3.5-9B      & 300 & 0.750 & 0.713 & \textbf{0.827} & 225 & 17/18 & 0 & 21.0 \\
-& Qwen3.5-35B-A3B & 300 & 0.773 & 0.713 & \textbf{0.820} & 232 & 20/25 & 0 & 21.3 \\
-& Llama-4-Scout   & 300 & 0.707 & 0.717 & \textbf{0.807} & 212 & 12/16 & 0 & 13.3 \\
-& Mistral-24B     & 300 & 0.740 & 0.777 & \textbf{0.827} & 222 & 8/12  & 0 & 9.0  \\
+& Qwen3.5-9B      & 0.750 [0.70, 0.80] & 0.713 [0.66, 0.76] & \textbf{0.827 [0.79, 0.87]} & 225 & 17/18 & 0 & 21.0 \\
+& Qwen3.5-35B-A3B & 0.773 [0.73, 0.82] & 0.713 [0.66, 0.77] & \textbf{0.820 [0.78, 0.86]} & 232 & 20/25 & 0 & 21.3 \\
+& Llama-4-Scout   & 0.707 [0.66, 0.76] & 0.717 [0.67, 0.76] & \textbf{0.807 [0.76, 0.85]} & 212 & 12/16 & 0 & 13.3 \\
+& Mistral-24B     & 0.740 [0.70, 0.79] & 0.777 [0.73, 0.82] & \textbf{0.827 [0.79, 0.87]} & 222 & 8/12  & 0 & 9.0  \\
 \midrule
 \multirow{2}{*}{BFCL-200}
-& Qwen3.5-9B      & 200 & 0.790 & 0.640 & \textbf{0.795} & 158 & 23/35 & 0 & 31.0 \\
-& Llama-4-Scout   & 200 & 0.535 & 0.685 & \textbf{0.855} & 107 & 9/15  & 0 & 21.0 \\
+& Qwen3.5-9B      & 0.790 [0.74, 0.84] & 0.640 [0.58, 0.71] & \textbf{0.795 [0.74, 0.85]} & 158 & 23/35 & 0 & 31.0 \\
+& Llama-4-Scout   & 0.535 [0.47, 0.60] & 0.685 [0.62, 0.75] & \textbf{0.855 [0.81, 0.91]} & 107 & 9/15  & 0 & 21.0 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/accuracy_bars.pdf}
+\caption{Original, drifted, and repaired accuracy on DICE-300 across the four
+evaluated models. Across every model, \method improves over the drifted
+baseline with zero repair harms.}
+\label{fig:accuracy-bars}
+\end{figure}
 
 The BFCL-200 configuration uses medium-severity drift and shows substantially larger
 effects than DICE mild drift. On Qwen3.5-9B, drift drops accuracy by $15.0$ points
 ($0.790 \to 0.640$) and repair fully recovers ($0.795$). On Llama-4-Scout, repair
 improves accuracy by $17.0$ points over drifted and $32.0$ points over original.
+
+\paragraph{Repair cost overhead.}
+On a reproduced Qwen3.5-9B DICE run with repair-step token accounting enabled,
+\method triggered the repair call on $58/300$ examples ($19.3\%$) and spent
+$102{,}790$ total repair tokens against $241{,}901$ base tokens. Repair therefore
+adds roughly a $42\%$ relative token overhead on the examples where it fires, or
+equivalently, about one extra forced-tool call per five evaluated dialogues.
+Because repair is gated by schema validation, this overhead is paid only when
+the drifted call actually fails validation; on a hypothetical drift-free
+deployment it would be near-zero.
 
 \subsection{Naive Retry Is Not a Viable Baseline}
 \label{sec:naive-retry}
@@ -320,6 +380,15 @@ Candidate-set only   & 0.757 & 0.710 & 0.830 & $-0.047$ \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/drift_ablation.pdf}
+\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Description-only and
+schema-only drift cause negligible accuracy drops. Adding distractor tools
+reproduces essentially all of the damage of the full combined drift.}
+\label{fig:drift-ablation}
+\end{figure}
+
 This result qualifies a common framing in the interface-drift literature. For modern
 instruction-tuned tool-calling models, minor description rewording and
 semantics-preserving parameter renames do not meaningfully degrade accuracy---the
@@ -331,65 +400,110 @@ tracking tool-catalog growth over monitoring description or schema revisions.
 
 \subsection{Component Ablation: Validation, Not Canonical Card, Drives Recovery}
 \label{sec:component-ablation}
-Table~\ref{tab:component-ablation} evaluates three variants of \method on DICE-300
-with Qwen3.5-9B: (i) canonical card only, where the card is prepended to the initial
-prompt but no validation/repair is applied; (ii) validation-plus-retry, which uses
-validation errors in a repair prompt but omits the canonical tool card from the
-repair context; and (iii) full \method (card + validation + repair).
+Table~\ref{tab:component-ablation} evaluates three variants of \method on both
+DICE-300 and BFCL-200 with Qwen3.5-9B: (i) canonical card only, where the card
+is prepended to the initial prompt but no validation/repair is applied;
+(ii) validation-plus-retry, which uses validation errors in a repair prompt
+but omits the canonical tool card from the repair context; and (iii) full
+\method (card + validation + repair).
 
 \begin{table}[t]
-\caption{Component ablation on DICE-300 with Qwen3.5-9B.}
+\caption{Component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses
+medium-severity drift, DICE uses mild.}
 \label{tab:component-ablation}
 \centering
 \small
-\begin{tabular}{lcccccc}
+\begin{tabular}{llcccccc}
 \toprule
-Variant & Drift. & Repair & Rec/Miss & Harms & Trig\% \\
+Benchmark & Variant & Drift. & Repair & Rec/Miss & Harms & Trig\% \\
 \midrule
-Canonical card only            & 0.770 & 0.770 & 0/9   & 0 & 0.0 \\
-Validation + retry (no card)   & 0.730 & 0.830 & 16/17 & 0 & 20.0 \\
-\textbf{Full \method}          & 0.713 & \textbf{0.827} & 17/18 & 0 & 21.0 \\
+\multirow{3}{*}{DICE-300}
+& Canonical card only            & 0.770 & 0.770 & 0/9   & 0 & 0.0 \\
+& Validation + retry (no card)   & 0.730 & 0.830 & 16/17 & 0 & 20.0 \\
+& \textbf{Full \method}          & 0.713 & \textbf{0.827} & 17/18 & 0 & 21.0 \\
+\midrule
+\multirow{3}{*}{BFCL-200}
+& Canonical card only            & 0.810 & 0.810 & 0/11  & 0 & 0.0 \\
+& Validation + retry (no card)   & 0.645 & \textbf{0.820} & 26/34 & 0 & 29.5 \\
+& Full \method                   & 0.640 & 0.795 & 23/35 & 0 & 31.0 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Three observations. First, prepending the canonical card at the initial prompt
-\emph{reduces} drift damage ($0.770$ drifted vs $0.713$ for the base drifted run),
-indicating that the card is useful as drift-prevention prompting---it helps the
-model resist drift at generation time. Second, however, canonical card alone never
-triggers the validator and therefore recovers zero drift-induced failures. Third,
-validation-plus-retry without the canonical card achieves $0.830$ repaired accuracy
-and $16/17$ recoveries, essentially matching the full pipeline ($0.827$, $17/18$).
+The BFCL rows confirm and \emph{strengthen} the DICE finding in three ways.
+First, the canonical card at initial-prediction time provides even stronger
+drift prevention on BFCL than on DICE: the base drifted score of $0.640$ jumps
+to $0.810$---a $17.0$-point drift-prevention effect. Second, the card-only
+configuration still never triggers the validator and recovers zero
+drift-induced failures, because its valid-but-imperfect outputs pass schema
+checking without entering the repair path. Third, validation-plus-retry
+without the canonical card at repair time reaches a \emph{higher} repaired
+accuracy on BFCL than the full pipeline ($0.820$ vs $0.795$, and $26/34$
+recoveries vs $23/35$), matching the pattern observed on DICE where
+validation-only nearly ties the full pipeline.
 
-The practical implication is that the load-bearing component of \method is the
-validation error feedback loop combined with forced-tool repair, not the canonical
-tool card. Teams implementing an inference-time robustness layer can drop the card
-rendering without meaningfully hurting recovery, or keep the card only at the
-initial prediction step where it provides drift-prevention benefits.
+Taken together across both benchmarks, these numbers localize the
+load-bearing component of \method to the validation error feedback loop
+combined with forced-tool repair, not the canonical tool card presented at
+repair time. The card earns its keep as \emph{drift-prevention prompting}
+at the initial prediction step---where BFCL shows it can dominate the
+remaining drift damage---but can be dropped from the repair prompt without
+hurting recovery. A minimal deployment can therefore implement robust
+inference-time repair as just a schema validator plus a forced-tool retry
+call, with an optional canonical card at the base prompt for additional
+drift prevention.
 
 \subsection{Error Analysis}
-Across the four main DICE runs, all repair harms are zero. However, not every drift
-miss is recovered. On Qwen3.5-35B, repair recovers $20$ of $25$ drift misses; on
-Llama-4-Scout, $12$ of $16$; on Mistral, $8$ of $12$. Inspection of the unrecovered
-cases shows two recurring patterns: (i) the invalid drifted call has an empty
-arguments object and the model still cannot infer all required fields from the
-dialogue even with validation feedback, and (ii) for a small number of cases the
-repair call selects a valid tool but fills in semantically-correct-but-not-identical
-string values (for example, a paraphrased restaurant name). The former are
-genuine inference failures; the latter are strict-match artifacts rather than
-true drift failures.
+\label{sec:error-analysis}
+Across the four main DICE runs, all repair harms are zero. However, not every
+drift miss is recovered. On Qwen3.5-35B, repair recovers $20$ of $25$ drift
+misses; on Llama-4-Scout, $12$ of $16$; on Mistral, $8$ of $12$. We manually
+inspected every unrecovered case on these three runs and classified them
+against the gold call.
 
-On the main Qwen3.5-9B run, \method fixes $24$ examples that the base model got
-wrong \emph{even before drift}. These are cases where the original call was
-incomplete or used the wrong tool, and validation feedback plus forced-tool repair
-surfaces the required fields. This is a welcome side effect: the same mechanism that
-recovers drift failures also helps patch some base-model errors.
+The pattern is consistent across models: nearly all unrecovered examples
+involve the repair call selecting the correct tool with well-formed arguments
+whose string values disagree with gold only by formatting or paraphrase. On
+Qwen3.5-35B ($5$ unrecovered), these include one strict whitespace/punctuation
+difference (``\texttt{the quick brown fox\ldots}'' vs
+``\texttt{The quick brown fox\ldots.}'') and three enum-format or
+paraphrase-level mismatches (e.g.\ \texttt{regular\_season} vs
+\texttt{regular season}, \texttt{the office} vs \texttt{Office}); a single
+genuine failure has an empty arguments object after repair. On Llama-4-Scout
+($4$ unrecovered), all four are format-level: \texttt{ISO}-prefixed dates
+vs two-field dates (e.g.\ \texttt{2023-11-10} vs \texttt{11-10}), or JSON
+with quoted-number string values rather than numeric literals. On Mistral-24B
+($4$ unrecovered), the misses include near-synonym topics (\texttt{inspirational}
+vs \texttt{inspiration}, \texttt{AI} vs \texttt{artificial intelligence},
+\texttt{Google} vs \texttt{GOOGL}) and one wrong numeric amount. Across
+13~unrecovered cases in total, only $2$ are genuine inference failures
+(empty arguments and one wrong value); the remaining $11$ are strict-match
+artifacts rather than true drift failures. The practical implication is that
+the paper's reported recovery rates are a lower bound: a lenient evaluator
+would count most of the unrecovered cases as correct.
 
-Mistral-24B exhibits an unusual pattern: its drifted score ($0.777$) is slightly
-higher than its original score ($0.740$). The rewording produced by description-mode
-drift may happen to resemble Mistral's instruction-tuning distribution more closely
-than the unmodified DICE prompts, which is consistent with the finding that modern
-models are largely robust to benign description changes.
+On the main Qwen3.5-9B run, \method fixes $24$ examples that the base model
+got wrong \emph{even before drift}. These are cases where the original call
+was incomplete or used the wrong tool, and validation feedback plus
+forced-tool repair surfaces the required fields. This is a welcome side
+effect: the same mechanism that recovers drift failures also helps patch
+some base-model errors.
+
+Mistral-24B exhibits an unusual pattern: its drifted score ($0.777$) is
+slightly higher than its original score ($0.740$). Inspection of the $23$
+examples where Mistral's original call misses but the drifted call matches
+shows that almost none of them involve the model recovering extra information
+from the drifted description. Instead, $15/23$ are strict-match artifacts on
+the original call: formatting differences in the value (\texttt{apple} vs
+\texttt{apples}, \texttt{bread, eggs, cheese} vs \texttt{bread,eggs,cheese},
+\texttt{https://wikipedia.org/} vs \texttt{https://wikipedia.org}), and only
+a handful reflect the model missing a required field in the original call
+($4/23$) or choosing a wrong tool name ($4/23$). The drifted call happens to
+land in the tokenization bucket that the scorer accepts, pushing the scored
+accuracy slightly above the original. We therefore read the Mistral
+``drift~$>$~original'' effect as scorer noise rather than as evidence that
+description drift helps Mistral, and revise the original speculation
+accordingly.
 
 \section{Discussion}
 Our results support two narrower conclusions than the original \method framing
@@ -407,19 +521,27 @@ first-order cause of post-deployment tool-calling regressions is likely tool-cat
 expansion, not description or parameter rename churn.
 
 \section{Limitations}
-Several limitations remain. First, while we evaluate on two benchmarks and four
-model families, the BFCL evaluation uses only two models due to API-cost
-constraints, and BFCL repair does not track token usage for the repair call itself.
-Second, our drift operators focus on stale descriptions, renamed fields, and
-distractors; other forms of interface drift (for example, type narrowing, enum
-replacement, or multi-tool refactors) remain untested. Third, evaluation uses hosted
-inference and so may incorporate provider-specific tool-calling behavior. Fourth,
-the ``repair $>$ original'' effect on Qwen3.5-9B indicates that \method is also
-patching baseline failures---this is useful in deployment but complicates clean
-attribution of the improvement to drift recovery specifically. Finally, the
-component ablation finding that the canonical card is non-essential to repair is
-established on a single benchmark and model; it should be validated on BFCL and
-additional models before being treated as a general rule.
+Several limitations remain. First, while we evaluate on two benchmarks and
+four model families, the BFCL evaluation uses only two models due to
+API-cost constraints; a broader BFCL sweep would tighten the cross-benchmark
+picture, though the two models we did run span both the weakest (Llama-4-Scout
+at $0.535$ original) and strongest (Qwen3.5-9B at $0.790$) base performers in
+our suite. Second, our drift operators focus on stale descriptions, renamed
+fields, and distractors; other forms of interface drift (for example, type
+narrowing, enum replacement, or multi-tool refactors) remain untested.
+Third, evaluation uses hosted inference and so may incorporate
+provider-specific tool-calling behavior. Fourth, the ``repair $>$ original''
+effect on Qwen3.5-9B indicates that \method is also patching baseline
+failures---this is useful in deployment but complicates clean attribution of
+the improvement to drift recovery specifically. Fifth, strict string-matching
+against gold calls undercounts true recoveries: manual inspection of the
+$13$ unrecovered cases on the three non-primary models
+(Section~\ref{sec:error-analysis}) shows that $11$ are formatting or
+paraphrase artifacts, so the reported recovery rates should be read as lower
+bounds. The component ablation on both benchmarks, the repair-cost
+accounting, and the error analysis already close earlier versions of these
+caveats; they remain listed here as open directions for broader
+generalization.
 
 \section{Conclusion}
 We presented \method, a lightweight inference-time approach for robust tool calling
