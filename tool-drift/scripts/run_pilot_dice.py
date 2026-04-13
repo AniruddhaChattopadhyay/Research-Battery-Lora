@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from copy import deepcopy
 from pathlib import Path
+import time
 from typing import Any
 
 CURRENT = Path(__file__).resolve().parents[1]
@@ -12,7 +14,8 @@ if str(CURRENT) not in sys.path:
     sys.path.insert(0, str(CURRENT))
 
 from benchmarks.dice_adapter import load_dice_tasks
-from defense.repair_prompt import build_repair_prompt
+from defense.repair_prompt import build_candidate_repair_prompt, build_repair_prompt
+from defense.repair_targeting import resolve_repair_target
 from defense.validator import validate_tool_call
 from drift.pipeline import apply_drift_pipeline, build_drifted_toolset, candidate_count_for_severity, resolve_mode_sequence
 from eval.error_taxonomy import summarize_errors
@@ -229,6 +232,51 @@ def repair_call(
     return repaired, repair_prompt, "json_fallback_forced_tool", repair_debug, repair_usage
 
 
+def repair_missing_tool_call(
+    *,
+    task: dict[str, Any],
+    candidate_tools: list[dict[str, Any]],
+    invalid_call: dict[str, Any],
+    validation: Any,
+    config: dict[str, Any],
+    demo: bool,
+    ablation_mode: str = "full",
+) -> tuple[dict[str, Any], str, str, dict[str, Any], dict[str, int]]:
+    repair_prompt = build_candidate_repair_prompt(task, candidate_tools, invalid_call, validation.to_dict())
+    repair_debug: dict[str, Any] = {
+        "candidate_tool_names": [str(tool.get("name", "")) for tool in candidate_tools],
+        "tool_call_extracted": None,
+        "tool_call_raw_output": None,
+    }
+    repair_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+
+    def _accumulate(payload: Any) -> None:
+        usage = extract_usage(payload)
+        for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
+            repair_usage[key] = repair_usage.get(key, 0) + int(usage.get(key, 0) or 0)
+
+    if demo:
+        return build_example_call(candidate_tools[0]), repair_prompt, "demo", repair_debug, repair_usage
+
+    model_cfg = config.get("model", {})
+    seed = config.get("evaluation", {}).get("seed") if bool(model_cfg.get("use_seed", False)) else None
+    repair_max_tokens = int(model_cfg.get("repair_max_tokens", 512))
+    repaired, tool_call_payload = request_tool_call_with_payload(
+        model=str(model_cfg.get("name", "")),
+        prompt=repair_prompt,
+        tools=candidate_tools,
+        base_url=model_cfg.get("endpoint"),
+        temperature=float(model_cfg.get("temperature", 0.0)),
+        seed=seed,
+        provider_preferences=model_cfg.get("provider_preferences"),
+        max_tokens=repair_max_tokens,
+    )
+    _accumulate(tool_call_payload)
+    repair_debug["tool_call_extracted"] = repaired
+    repair_debug["tool_call_raw_output"] = tool_call_payload
+    return repaired, repair_prompt, "candidate_tool_retry", repair_debug, repair_usage
+
+
 def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path, run_id: str) -> dict[str, Any]:
     from eval.metrics import bootstrap_ci
 
@@ -241,6 +289,7 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
     repaired_values = [float(record["repaired_match"]["matched"]) for record in results]
 
     originally_correct = [record for record in results if record["original_match"]["matched"]]
+    originally_incorrect = [record for record in results if not record["original_match"]["matched"]]
     drifted_score_on_originally_correct = accuracy(
         record["drifted_match"]["matched"] for record in originally_correct
     )
@@ -258,14 +307,50 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
         record["drifted_match"]["matched"] and (not record["repaired_match"]["matched"])
         for record in originally_correct
     )
+    drifted_score_on_originally_incorrect = accuracy(
+        record["drifted_match"]["matched"] for record in originally_incorrect
+    )
+    repaired_score_on_originally_incorrect = accuracy(
+        record["repaired_match"]["matched"] for record in originally_incorrect
+    )
+    repair_improvements_total = sum(
+        (not record["drifted_match"]["matched"]) and record["repaired_match"]["matched"]
+        for record in results
+    )
+    repair_improvements_from_drift_recovery = sum(
+        record["original_match"]["matched"]
+        and (not record["drifted_match"]["matched"])
+        and record["repaired_match"]["matched"]
+        for record in results
+    )
+    repair_improvements_from_baseline_patching = sum(
+        (not record["original_match"]["matched"])
+        and (not record["drifted_match"]["matched"])
+        and record["repaired_match"]["matched"]
+        for record in results
+    )
 
     repair_triggered = sum(1 for record in results if record.get("repair_used", False))
     repair_trigger_rate = repair_triggered / len(results) if results else 0.0
+    repair_target_mode = results[0].get("repair_target_mode", "oracle_target") if results else "oracle_target"
+    repair_target_source_counts = dict(
+        Counter(record.get("repair_target_source", "unknown") for record in results)
+    )
+    repair_target_unresolved_count = sum(
+        not record.get("repair_target_resolved", True) for record in results
+    )
 
     token_usage_records = [record.get("token_usage", {}) for record in results]
     total_original_tokens = sum(r.get("original_tokens", 0) for r in token_usage_records)
     total_drifted_tokens = sum(r.get("drifted_tokens", 0) for r in token_usage_records)
     total_repair_tokens = sum(r.get("repair_tokens", 0) for r in token_usage_records)
+    latency_records = [record.get("latency_ms", {}) for record in results]
+    avg_original_latency_ms = sum(r.get("original", 0.0) for r in latency_records) / len(latency_records) if latency_records else 0.0
+    avg_drifted_latency_ms = sum(r.get("drifted", 0.0) for r in latency_records) / len(latency_records) if latency_records else 0.0
+    repair_latencies = [float(r.get("repair", 0.0)) for r in latency_records if r.get("repair", 0.0)]
+    avg_repair_latency_ms = sum(repair_latencies) / len(repair_latencies) if repair_latencies else 0.0
+    naive_latencies = [float(r.get("naive_retry", 0.0)) for r in latency_records if r.get("naive_retry", 0.0)]
+    avg_naive_retry_latency_ms = sum(naive_latencies) / len(naive_latencies) if naive_latencies else 0.0
 
     summary: dict[str, Any] = {
         "benchmark": "dice-bench",
@@ -287,8 +372,11 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
         "drifted_stats": summarize_series([drifted_score]),
         "repaired_stats": summarize_series([repaired_score]),
         "originally_correct_count": len(originally_correct),
+        "originally_incorrect_count": len(originally_incorrect),
         "drifted_score_on_originally_correct": drifted_score_on_originally_correct,
         "repaired_score_on_originally_correct": repaired_score_on_originally_correct,
+        "drifted_score_on_originally_incorrect": drifted_score_on_originally_incorrect,
+        "repaired_score_on_originally_incorrect": repaired_score_on_originally_incorrect,
         "recovery_rate_on_originally_correct": recovery_rate(
             1.0,
             drifted_score_on_originally_correct,
@@ -297,11 +385,20 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
         "drift_misses_on_originally_correct": drift_misses_on_originally_correct,
         "repair_recoveries_on_originally_correct": repair_recoveries_on_originally_correct,
         "repair_harms_on_originally_correct": repair_harms_on_originally_correct,
+        "repair_improvements_total": repair_improvements_total,
+        "repair_improvements_from_drift_recovery": repair_improvements_from_drift_recovery,
+        "repair_improvements_from_baseline_patching": repair_improvements_from_baseline_patching,
         "repair_trigger_rate": repair_trigger_rate,
         "repair_triggered_count": repair_triggered,
+        "repair_target_mode": repair_target_mode,
+        "repair_target_source_counts": repair_target_source_counts,
+        "repair_target_unresolved_count": repair_target_unresolved_count,
         "total_original_tokens": total_original_tokens,
         "total_drifted_tokens": total_drifted_tokens,
         "total_repair_tokens": total_repair_tokens,
+        "avg_original_latency_ms": avg_original_latency_ms,
+        "avg_drifted_latency_ms": avg_drifted_latency_ms,
+        "avg_repair_latency_ms": avg_repair_latency_ms,
     }
 
     has_naive = any("naive_retry_match" in record for record in results)
@@ -312,6 +409,7 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
         )
         summary["naive_retry_score"] = naive_score
         summary["naive_retry_score_on_originally_correct"] = naive_on_correct
+        summary["avg_naive_retry_latency_ms"] = avg_naive_retry_latency_ms
 
     return summary
 
@@ -329,6 +427,8 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
     run_naive_retry = bool(eval_cfg.get("run_naive_retry", False))
     ablation_mode = str(eval_cfg.get("ablation_mode", "full"))
     use_repair = bool(eval_cfg.get("use_repair", True)) and ablation_mode != "card_only"
+    repair_target_mode = str(eval_cfg.get("repair_target_mode", "oracle_target"))
+    unresolved_repair_mode = str(eval_cfg.get("unresolved_repair_mode", "skip"))
 
     output_dir, run_id = prepare_output_dir(config, demo)
     if demo:
@@ -339,12 +439,14 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
 
     for task in tasks:
         original_tools = prepare_original_tools(task)
+        original_start = time.perf_counter()
         original_call, original_usage = predict_call(
             prompt=task["prompt"],
             tools=original_tools,
             config=config,
             demo=demo,
         )
+        original_latency_ms = (time.perf_counter() - original_start) * 1000.0
 
         drifted_tool, tools = prepare_drifted_tools(task, config)
         drifted_gold_call = adapt_gold_call_to_tool(task["gold_call"], drifted_tool)
@@ -355,33 +457,103 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
         if demo:
             call = deepcopy(original_call)
             drifted_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+            drifted_latency_ms = 0.0
         else:
+            drifted_start = time.perf_counter()
             call, drifted_usage = predict_call(
                 prompt=drifted_prompt,
                 tools=tools,
                 config=config,
                 demo=demo,
             )
+            drifted_latency_ms = (time.perf_counter() - drifted_start) * 1000.0
 
-        validation = validate_tool_call(drifted_eval_tool, call)
+        candidate_tool_names = [str(tool.get("name", "")) for tool in tools]
+        repair_target = resolve_repair_target(
+            oracle_tool=drifted_eval_tool,
+            candidate_tools=tools,
+            predicted_call=call,
+            mode=repair_target_mode,
+        )
+        validation = repair_target.validation
         repair_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+        repair_latency_ms = 0.0
         if not use_repair or validation.valid:
             repaired = call
             repair_prompt_text = None
             repair_strategy = "not_needed"
             repair_debug = None
-        else:
-            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_call(
+        elif (
+            not repair_target.resolved
+            and unresolved_repair_mode == "candidate_retry"
+            and repair_target.source == "missing_tool_name"
+        ):
+            repair_start = time.perf_counter()
+            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_missing_tool_call(
                 task=task,
-                tool=drifted_eval_tool,
+                candidate_tools=tools,
                 invalid_call=call,
                 validation=validation,
                 config=config,
                 demo=demo,
                 ablation_mode=ablation_mode,
             )
+            repair_target = resolve_repair_target(
+                oracle_tool=drifted_eval_tool,
+                candidate_tools=tools,
+                predicted_call=repaired,
+                mode=repair_target_mode,
+            )
+            if repair_target.resolved:
+                repaired_validation = repair_target.validation
+                if not repaired_validation.valid:
+                    forced_repaired, forced_prompt_text, forced_strategy, forced_debug, forced_usage = repair_call(
+                        task=task,
+                        tool=repair_target.tool,
+                        invalid_call=repaired,
+                        validation=repaired_validation,
+                        config=config,
+                        demo=demo,
+                        ablation_mode=ablation_mode,
+                    )
+                    repaired = forced_repaired
+                    repair_prompt_text = f"{repair_prompt_text}\n\n---\n\n{forced_prompt_text}"
+                    repair_strategy = f"{repair_strategy}+{forced_strategy}"
+                    repair_debug = {
+                        "candidate_retry": repair_debug,
+                        "forced_followup": forced_debug,
+                    }
+                    for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
+                        repair_usage[key] = repair_usage.get(key, 0) + forced_usage.get(key, 0)
+            else:
+                repair_debug = {
+                    "candidate_retry": repair_debug,
+                    "post_retry_target_resolution": repair_target.to_dict(),
+                }
+            repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
+        elif not repair_target.resolved:
+            repaired = call
+            repair_prompt_text = None
+            repair_strategy = "skipped_unresolved_target"
+            repair_debug = {"skip_reason": repair_target.source}
+        else:
+            repair_start = time.perf_counter()
+            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_call(
+                task=task,
+                tool=repair_target.tool,
+                invalid_call=call,
+                validation=validation,
+                config=config,
+                demo=demo,
+                ablation_mode=ablation_mode,
+            )
+            repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
 
-        repaired_validation = validate_tool_call(drifted_eval_tool, repaired)
+        repaired_validation = (
+            validate_tool_call(repair_target.tool, repaired)
+            if repair_target.resolved
+            else validation
+        )
         original_match = compare_tool_calls(original_call, task["gold_call"], task["tool"])
         drifted_match = compare_tool_calls(call, drifted_gold_call, drifted_eval_tool)
         repaired_match = compare_tool_calls(repaired, drifted_gold_call, drifted_eval_tool)
@@ -393,12 +565,17 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
             "original_tool_schema": deepcopy(task["tool"]),
             "drifted_tool": drifted_eval_tool["name"],
             "drifted_tool_schema": deepcopy(drifted_eval_tool),
+            "candidate_tool_names": candidate_tool_names,
             "original_call": original_call,
             "validation": validation.to_dict(),
             "repaired_validation": repaired_validation.to_dict(),
             "repaired_valid": repaired_validation.valid,
-            "repair_used": use_repair and not validation.valid,
+            "repair_used": use_repair and (not validation.valid) and repair_target.resolved,
             "repair_strategy": repair_strategy,
+            "repair_target_mode": repair_target.mode,
+            "repair_target_source": repair_target.source,
+            "repair_target_resolved": repair_target.resolved,
+            "repair_target": repair_target.to_dict(),
             "repair_prompt": repair_prompt_text,
             "repair_debug": repair_debug,
             "gold_call": task["gold_call"],
@@ -414,9 +591,15 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
                 "drifted_tokens": drifted_usage.get("total_tokens", 0),
                 "repair_tokens": repair_usage.get("total_tokens", 0),
             },
+            "latency_ms": {
+                "original": original_latency_ms,
+                "drifted": drifted_latency_ms,
+                "repair": repair_latency_ms,
+            },
         }
 
         if run_naive_retry and not demo:
+            naive_start = time.perf_counter()
             naive_call, naive_usage = predict_call(
                 prompt=task["prompt"],
                 tools=tools,
@@ -426,6 +609,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
             record["naive_retry_call"] = naive_call
             record["naive_retry_match"] = compare_tool_calls(naive_call, drifted_gold_call, drifted_eval_tool)
             record["token_usage"]["naive_retry_tokens"] = naive_usage.get("total_tokens", 0)
+            record["latency_ms"]["naive_retry"] = (time.perf_counter() - naive_start) * 1000.0
 
         results.append(record)
 

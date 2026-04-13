@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
@@ -24,10 +24,30 @@ Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
   verifiable and diverse function-calling datasets. arXiv preprint
   arXiv:2406.18518  (2024)
 
+\bibitem{patil2023gorilla}
+Patil, S.G., Zhang, T., Wang, X., Gonzalez, J.E.: Gorilla: Large language model
+  connected with massive apis. arXiv preprint arXiv:2305.15334  (2023)
+
+\bibitem{qin2023toolllm}
+Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang,
+  X., Qian, B., Zhao, S., Hong, L., Tian, R., Xie, R., Zhou, J., Gerstein, M.,
+  Li, D., Liu, Z., Sun, M.: Toolllm: Facilitating large language models to
+  master 16000+ real-world apis. arXiv preprint arXiv:2307.16789  (2023)
+
+\bibitem{shinn2023reflexion}
+Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., Yao, S.:
+  Reflexion: Language agents with verbal reinforcement learning. arXiv preprint
+  arXiv:2303.11366  (2023)
+
 \bibitem{bfcl2024}
 Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,
   J.E.: Berkeley function calling leaderboard.
   \url{https://gorilla.cs.berkeley.edu/leaderboard.html} (2024)
+
+\bibitem{yao2022react}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.: React:
+  Synergizing reasoning and acting in language models. arXiv preprint
+  arXiv:2210.03629  (2022)
 
 \bibitem{zhang2026fission}
 Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint

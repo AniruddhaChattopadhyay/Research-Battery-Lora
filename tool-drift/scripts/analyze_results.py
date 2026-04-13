@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
+from math import comb
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +36,21 @@ def ci_str(values: list[float]) -> str:
     return f"{mean_val:.3f} [{lo:.3f}, {hi:.3f}]"
 
 
+def discordant_counts(left: list[bool], right: list[bool]) -> tuple[int, int]:
+    left_only = sum(bool(l) and (not bool(r)) for l, r in zip(left, right, strict=True))
+    right_only = sum((not bool(l)) and bool(r) for l, r in zip(left, right, strict=True))
+    return left_only, right_only
+
+
+def exact_mcnemar_pvalue(left_only: int, right_only: int) -> float:
+    n = left_only + right_only
+    if n == 0:
+        return 1.0
+    k = min(left_only, right_only)
+    tail = sum(comb(n, i) for i in range(k + 1)) / (2 ** n)
+    return min(1.0, 2.0 * tail)
+
+
 def analyze_main_results(data: dict[str, Any]) -> None:
     results = data["results"]
     summary = data["summary"]
@@ -49,6 +66,7 @@ def analyze_main_results(data: dict[str, Any]) -> None:
     print(f"  Original:  {ci_str(original_values)}")
     print(f"  Drifted:   {ci_str(drifted_values)}")
     print(f"  Repaired:  {ci_str(repaired_values)}")
+    print(f"  Repair target mode: {summary.get('repair_target_mode', 'oracle_target')}")
 
     if "naive_retry_score" in summary:
         naive_values = [float(r["naive_retry_match"]["matched"]) for r in results if "naive_retry_match" in r]
@@ -71,9 +89,21 @@ def analyze_main_results(data: dict[str, Any]) -> None:
     print(f"  Repair recoveries: {recoveries}")
     print(f"  Repair harms: {harms}")
 
+    if "originally_incorrect_count" in summary:
+        print(f"\n  Originally incorrect: {summary['originally_incorrect_count']}/{n}")
+        print(
+            "  Repair improvements over drifted: "
+            f"{summary.get('repair_improvements_total', 0)} "
+            f"(drift recovery={summary.get('repair_improvements_from_drift_recovery', 0)}, "
+            f"baseline patching={summary.get('repair_improvements_from_baseline_patching', 0)})"
+        )
+    strategy_counts = Counter(r.get("repair_strategy", "unknown") for r in results)
+    print(f"\n  Repair strategies: {dict(strategy_counts)}")
+
 
 def analyze_repair_overhead(data: dict[str, Any]) -> None:
     results = data["results"]
+    summary = data["summary"]
     n = len(results)
 
     repair_used = sum(1 for r in results if r.get("repair_used", False))
@@ -90,11 +120,45 @@ def analyze_repair_overhead(data: dict[str, Any]) -> None:
     print(f"  Total original tokens: {total_orig:,}")
     print(f"  Total drifted tokens:  {total_drift:,}")
     print(f"  Total repair tokens:   {total_repair:,}")
+    if "avg_original_latency_ms" in summary:
+        print(f"  Avg original latency: {summary['avg_original_latency_ms']:.1f} ms")
+        print(f"  Avg drifted latency:  {summary['avg_drifted_latency_ms']:.1f} ms")
+        print(f"  Avg repair latency:   {summary['avg_repair_latency_ms']:.1f} ms")
+    unresolved = summary.get("repair_target_unresolved_count")
+    if unresolved is not None:
+        print(f"  Unresolved repair targets: {unresolved}")
     if total_naive > 0:
         print(f"  Total naive retry tokens: {total_naive:,}")
+        if "avg_naive_retry_latency_ms" in summary:
+            print(f"  Avg naive retry latency: {summary['avg_naive_retry_latency_ms']:.1f} ms")
     if total_drift > 0:
         overhead = total_repair / total_drift
         print(f"  Repair token overhead: {overhead:.1%} of drifted tokens")
+    if "avg_repair_latency_ms" in summary and "repair_trigger_rate" in summary:
+        expected_added_latency = summary["avg_repair_latency_ms"] * summary["repair_trigger_rate"]
+        print(f"  Expected added latency per example: {expected_added_latency:.1f} ms")
+
+
+def analyze_pairwise_significance(data: dict[str, Any]) -> None:
+    results = data["results"]
+    drifted = [bool(r["drifted_match"]["matched"]) for r in results]
+    repaired = [bool(r["repaired_match"]["matched"]) for r in results]
+    drift_only, repair_only = discordant_counts(drifted, repaired)
+    print(f"\n--- Paired Significance ---")
+    print(
+        "  Drifted vs repaired: "
+        f"repair_only={repair_only}, drift_only={drift_only}, "
+        f"exact McNemar p={exact_mcnemar_pvalue(drift_only, repair_only):.3g}"
+    )
+
+    if all("naive_retry_match" in r for r in results):
+        naive = [bool(r["naive_retry_match"]["matched"]) for r in results]
+        naive_only, repair_only_vs_naive = discordant_counts(naive, repaired)
+        print(
+            "  Naive retry vs repaired: "
+            f"repair_only={repair_only_vs_naive}, naive_only={naive_only}, "
+            f"exact McNemar p={exact_mcnemar_pvalue(naive_only, repair_only_vs_naive):.3g}"
+        )
 
 
 def analyze_repair_beyond_drift(data: dict[str, Any]) -> None:
@@ -173,6 +237,7 @@ def main() -> None:
         data = load_results(path)
         analyze_main_results(data)
         analyze_repair_overhead(data)
+        analyze_pairwise_significance(data)
         analyze_repair_beyond_drift(data)
 
     if args.drift_ablation:

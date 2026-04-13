@@ -1,0 +1,45 @@
+project:
+  name: schema-shield-lite
+  benchmark: bfcl
+  mode: live
+  output_dir: outputs/bfcl
+
+model:
+  name: meta-llama/llama-4-scout
+  provider: openrouter
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  temperature: 0.0
+  repair_max_tokens: 512
+  provider_preferences:
+    allow_fallbacks: true
+    ignore:
+      - Google
+
+data:
+  bfcl_subset_path: data/bfcl_stage3_subset_200.json
+
+drift:
+  description_modes:
+    - legacy_example
+    - marketing
+    - example_heavy
+  schema_modes:
+    - rename_parameters
+    - rename_all_parameters
+    - reorder_parameters
+  candidate_modes:
+    - distractors
+  severity: medium
+
+evaluation:
+  sample_count: 200
+  seed: 42
+  use_repair: true
+  run_naive_retry: false
+  ablation_mode: full
+  repair_target_mode: predicted_tool
+  unresolved_repair_mode: candidate_retry
+
+pilot:
+  demo_mode: false
+  benchmark_subset: bfcl_stage3_200

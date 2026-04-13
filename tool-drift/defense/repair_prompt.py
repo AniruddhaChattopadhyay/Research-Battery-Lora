@@ -72,3 +72,41 @@ def build_repair_prompt_no_card(
             "- Do not add explanations.",
         ]
     )
+
+
+def build_candidate_repair_prompt(
+    task: Mapping[str, Any],
+    tools: list[Mapping[str, Any]],
+    invalid_call: Mapping[str, Any],
+    validation_result: Mapping[str, Any],
+) -> str:
+    available_tools = [
+        f"- {tool.get('name', 'tool')}: {tool.get('description', '')}".strip()
+        for tool in tools
+    ]
+    return "\n".join(
+        [
+            "You are repairing a tool call.",
+            "The previous attempt omitted or failed to resolve the tool name.",
+            "Return only corrected JSON with keys: name, arguments.",
+            "Output schema: {\"name\": \"<tool_name>\", \"arguments\": {\"field\": \"value\"}}",
+            "",
+            f"Task: {task.get('prompt', '')}",
+            "",
+            "Available tools:",
+            *available_tools,
+            "",
+            "Invalid tool call:",
+            json.dumps(invalid_call, indent=2, ensure_ascii=True),
+            "",
+            "Validation errors:",
+            json.dumps(validation_result, indent=2, ensure_ascii=True),
+            "",
+            "Constraints:",
+            "- Choose exactly one tool from the available tools.",
+            "- Infer missing required fields from the task, even if the invalid call is empty.",
+            "- Use the field names required by the selected tool schema.",
+            "- Fix fields, types, and enum values.",
+            "- Do not add explanations.",
+        ]
+    )
