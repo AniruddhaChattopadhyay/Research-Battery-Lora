@@ -20,7 +20,7 @@
 
 \author{Anonymous Authors}
 \authorrunning{Anonymous Authors}
-\institute{Draft prepared for NGEN-AI 2026}
+\institute{Anonymous Submission}
 
 \maketitle
 
@@ -44,7 +44,11 @@ In the non-oracle setting, missing tool names are a major bottleneck; adding a
 candidate-set retry reduces unresolved repair targets from $35$ to $15$ on DICE
 and from $34$ to $9$ on BFCL. Additional oracle-constrained sweeps across other
 models serve as upper bounds and error-analysis context, but we treat the
-non-oracle Qwen3.5-9B results as the primary deployment-facing evidence.
+non-oracle Qwen3.5-9B results as the primary deployment-facing evidence. A
+closed-model BFCL sanity check on GPT-4o-mini shows much smaller drift damage
+($0.865 \rightarrow 0.840$) and a smaller, non-significant repair gain to $0.860$
+with zero harms, suggesting stronger closed models are less brittle but still
+compatible with the same repair layer.
 \keywords{tool calling \and language models \and robustness \and interface drift \and repair}
 \end{abstract}
 
@@ -134,6 +138,13 @@ improve tool-using systems \cite{yao2022react,shinn2023reflexion}. Our setting i
 narrower: we isolate a deployment-time robustness problem in which tool semantics are
 fixed but interface surface form changes after release.
 
+This setting also connects to software-engineering work on API evolution and
+contract checking. AutoGuard, for example, compares OpenAPI descriptions across
+versions and flags changes to methods, parameters, responses, and schemas
+\cite{lercher2025autoguard}. We borrow the intuition that interface evolution is a
+first-class engineering concern, but study its effect on LLM tool use rather than
+on conventional API clients.
+
 Compared with dataset-generation work such as APIGen \cite{liu2024apigen}, our
 objective is different. We do not create new large-scale tool-calling training data.
 Instead, we evaluate whether a lightweight repair layer can stabilize existing models
@@ -145,6 +156,15 @@ $I = (d, s, C)$, where $d$ is the natural-language description, $s$ is the argum
 schema, and $C$ is the candidate tool set shown to the model. The underlying tool
 semantics are assumed fixed. An \emph{interface drift} operator $\Delta$ maps $I$ to
 a new interface $\Delta(I)$ that preserves tool semantics but perturbs surface form.
+For clarity, we view $\Delta$ as a composition of three operators,
+\[
+\Delta = \delta_c \circ \delta_s \circ \delta_d,
+\]
+where $\delta_d$ edits only the description text $d$, $\delta_s$ edits only the
+schema surface form $s$, and $\delta_c$ edits only the visible candidate set $C$.
+Each operator is semantics-preserving with respect to the benchmark gold tool call;
+the evaluation question is whether the model remains robust to these surface-form
+changes at inference time.
 
 We study three drift types:
 \begin{itemize}
@@ -275,7 +295,19 @@ For DICE main runs, we use \emph{mild} severity: two description modes
 tool. For BFCL we use \emph{medium} severity: three description modes, three schema
 modes, and three distractors, reflecting a more aggressive drift scenario. These
 operators are author-designed and deployment-motivated rather than mined from real
-API changelogs; we return to that limitation in Section~8.
+API changelogs; we return to that limitation in Section~8. Still, the change
+families do match public API-evolution practice. GitHub's versioned REST API
+explicitly treats removed or renamed parameters, added required parameters, removed
+response fields, and added operations as standard compatibility events
+\cite{githubbreaking2026}. Stripe changelog entries similarly replace older field
+groups with consolidated ones (for example, replacing Checkout Session line-item
+fields with \texttt{price}/\texttt{price\_data}) and later add new optional
+parameters to existing endpoints \cite{stripecheckout2022,stripedefaultvalue2025}.
+If each operation is wrapped as a tool, such additive API changes directly map to
+candidate-set growth. What remains less accessible from public changelogs is
+description/example drift: documentation-example edits are rarely versioned as
+cleanly as schema or operation changes, so our stale-example perturbation remains a
+heuristic rather than a mined distribution.
 
 \subsection{Repair Protocols}
 We use two repair protocols. Our \emph{primary} protocol is non-oracle and is the
@@ -364,7 +396,11 @@ Table~\ref{tab:main-results} support the main claim that structured repair helps
 but they do not justify strong claims about minor oracle-vs-non-oracle differences.
 Paired exact McNemar tests on the final non-oracle runs also support the main
 repair effect: repaired beats drifted with $p=3.7\times 10^{-9}$ on DICE and
-$p=5.7\times 10^{-14}$ on BFCL.
+$p=5.7\times 10^{-14}$ on BFCL. On shared examples, the repaired-score difference
+between the oracle upper bound and the final non-oracle protocol is itself not
+significant on either benchmark (DICE exact McNemar $p=0.125$; BFCL
+$p=0.754$), which is consistent with the small raw score gaps in
+Table~\ref{tab:main-results}.
 
 The candidate-set retry is load-bearing in the non-oracle setting. Relative to an
 earlier non-oracle run that simply skipped unresolved tool names, candidate retry
@@ -408,6 +444,32 @@ Benchmark & Drifted & Naive Retry & \method & $\Delta$ over Drifted \\
 \midrule
 DICE-300   & 0.717 & 0.707 & \textbf{0.813} & $+0.097$ \\
 BFCL-200   & 0.580 & 0.585 & \textbf{0.805} & $+0.225$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Repair Gains Are Mostly Drift Recovery, Not Only Baseline Patching}
+\label{sec:gain-decomposition}
+The ``repair $>$ original'' effect is real, but it does not dominate the main
+story. Table~\ref{tab:gain-decomposition} decomposes every repaired improvement over
+the drifted call into either \emph{drift recovery} on the originally-correct slice
+or \emph{baseline patching} on examples the base model already missed before drift.
+Most repaired gains still come from genuine drift recovery: $19/29$ on DICE and
+$33/45$ on BFCL. Baseline patching is material, especially on BFCL, and should be
+read as a secondary benefit rather than the paper's central causal claim.
+
+\begin{table}[t]
+\caption{Decomposition of repaired improvements on the primary non-oracle
+Qwen3.5-9B runs.}
+\label{tab:gain-decomposition}
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & Total gains & Drift recovery & Baseline patching & Harms \\
+\midrule
+DICE-300 & 29 & 19 & 10 & 0 \\
+BFCL-200 & 45 & 33 & 12 & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -542,6 +604,26 @@ artifacts rather than true drift failures. The practical implication is that
 the paper's reported recovery rates are a lower bound: a lenient evaluator
 would count most of the unrecovered cases as correct.
 
+\begin{table}[t]
+\caption{Compact summary of unrecovered oracle-constrained DICE cases on the
+three non-primary models. ``Artifact'' includes formatting/paraphrase mismatches
+that appear semantically correct under manual inspection.}
+\label{tab:unrecovered-summary}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Model & Unrecovered & Artifact-like & Genuine failure \\
+\midrule
+Qwen3.5-35B-A3B & 5 & 4 & 1 \\
+Llama-4-Scout   & 4 & 4 & 0 \\
+Mistral-24B     & 4 & 3 & 1 \\
+\midrule
+Total           & 13 & 11 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 On the primary non-oracle Qwen3.5-9B runs, repair improves over the drifted call on
 $29$ DICE examples and $45$ BFCL examples in total. Not all of these are pure drift
 recovery: $10$ of the DICE gains and $12$ of the BFCL gains are baseline-error
@@ -582,12 +664,50 @@ tool is resolved already recover most of the damage we observe. And the monitori
 story is clearer: the first-order cause of post-deployment tool-calling regressions
 is likely tool-catalog expansion, not description or parameter rename churn.
 
+These same results also matter for adversarial interface manipulation. Faghih
+et al.~\cite{faghih2025gaming} show that small description edits can steer tool
+selection even when semantics are unchanged. Our ablation suggests that the more
+serious surface to monitor is not just description wording in isolation, but the
+combination of description overlap and candidate-set expansion: once distractor
+tools enter the visible set, routing degrades quickly. In that sense, the
+non-oracle validator-plus-repair stack is relevant not only to benign interface
+drift but also to description-surface attacks that aim to induce tool confusion.
+
+\subsection{Second Non-Oracle Replication: Llama-4-Scout on BFCL}
+\label{sec:llama-replication}
+To reduce the single-model dependence of the primary story, we also ran the same
+BFCL-200 non-oracle candidate-retry protocol on Llama-4-Scout. Repair still
+improves over the drifted call ($0.635 \rightarrow 0.665$, exact McNemar
+$p=0.031$) and again produces zero repair harms on the originally-correct slice.
+However, this run exposes an important portability failure mode: the model omits the
+tool name frequently, leaving $43$ unresolved repair targets and limiting recovery
+on the originally-correct slice to just $1/11$ drift misses. The run therefore
+supports some portability of the repair effect, but also reinforces that non-oracle
+repair quality depends heavily on the base model's ability to emit a usable tool
+name. We keep Qwen3.5-9B as the clean primary evidence and treat this Llama result
+as a secondary replication plus failure-mode analysis.
+
+\subsection{Closed-Model Sanity Check: GPT-4o-mini on BFCL}
+\label{sec:gpt-sanity}
+Finally, we ran a BFCL-200 non-oracle sanity check on GPT-4o-mini after adding
+provider-safe tool-name aliasing for OpenAI-style tool schemas. On this stronger
+closed model, drift damage is much smaller to begin with: accuracy falls only from
+$0.865$ to $0.840$. Repair lifts the score to $0.860$ with zero harms and zero
+unresolved repair targets, but the gain is small and not significant on this
+200-example slice (exact McNemar $p=0.125$). We therefore read the GPT-4o-mini
+result as a useful credibility check rather than as a new headline number: the
+problem appears less severe on a stronger closed model, yet the same non-oracle
+repair stack does not appear to hurt it.
+
 \section{Limitations}
-Several limitations remain. First, our primary non-oracle deployment-facing
-evaluation is currently on a single model, Qwen3.5-9B; the broader multi-model
-results retained in the paper are oracle-constrained upper bounds rather than
+Several limitations remain. First, although we now include a second non-oracle
+BFCL replication on Llama-4-Scout, the cleanest deployment-facing evidence still
+comes from a single primary model, Qwen3.5-9B; the broader multi-model results
+retained in the paper remain mostly oracle-constrained upper bounds rather than
 full non-oracle replications. Second, the BFCL evaluation still covers only two
-models due to API-cost constraints. Third, our drift operators focus on stale
+successful open-model non-oracle replications, and one of them is materially
+bottlenecked by missing tool names; we also include one closed-model BFCL sanity
+check, but not yet a broader closed-model sweep. Third, our drift operators focus on stale
 descriptions, renamed fields, and distractors; other forms of interface drift
 (for example, type narrowing, enum replacement, or multi-tool refactors) remain
 untested, and the perturbations are author-designed rather than mined from real
@@ -599,10 +719,10 @@ specifically. Sixth, strict string-matching against gold calls undercounts true
 recoveries: manual inspection of the $13$ unrecovered cases on the three
 non-primary models (Section~\ref{sec:error-analysis}) shows that $11$ are
 formatting or paraphrase artifacts, so the reported recovery rates should be
-read as lower bounds. Finally, we currently report paired significance only for
-the main drifted-vs-repaired and naive-vs-repaired contrasts; broader
-cross-protocol significance testing and a broader wall-clock latency sweep across
-benchmarks and providers remain important deployment-facing measurements.
+read as lower bounds. Finally, while we now report broader cross-protocol
+significance for oracle-vs-non-oracle repaired outcomes on the shared Qwen slices,
+we still lack a broader wall-clock latency sweep across benchmarks, providers, and
+models.
 
 \section{Conclusion}
 We studied \method, a lightweight inference-time validation-and-repair stack for
@@ -616,8 +736,9 @@ non-oracle setting, missing tool names are the main repair bottleneck: a
 candidate-set retry over the visible tools substantially reduces unresolved cases
 and closes most of the gap to oracle-constrained upper bounds. Additional
 oracle-constrained sweeps across other models and upper-bound ablations remain
-useful context, but the paper's main evidence is the non-oracle deployment-facing
-protocol.
+useful context, and a BFCL sanity check on GPT-4o-mini suggests that stronger
+closed models suffer less drift damage to begin with. Still, the paper's main
+evidence is the non-oracle deployment-facing Qwen protocol.
 
 \bibliographystyle{splncs04}
 \bibliography{references}

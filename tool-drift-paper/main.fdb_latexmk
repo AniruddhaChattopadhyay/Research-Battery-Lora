@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1776090445.96174 "main.aux" "main.bbl" "main" 1776090446.8323 0
-  "./references.bib" 1776018301.50409 3347 23975e685cef99d3e265eb757f7aa3fc ""
+["bibtex main"] 1776093273.78801 "main.aux" "main.bbl" "main" 1776101856.71143 0
+  "./references.bib" 1776092571.88596 4601 fc3e9beb381a817046132889c1369ef4 ""
   "/usr/local/texlive/2026/texmf-dist/bibtex/bst/llncs/splncs04.bst" 1698954974 32146 aadf770ded437d161532035219ea6f45 ""
-  "main.aux" 1776090446.54256 6840 5bb4885febceff517426fdc5f0d8031a "pdflatex"
+  "main.aux" 1776101856.40717 8359 b1352122297f984d6525acd3fbedb068 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1776090446.07876 "main.tex" "main.pdf" "main" 1776090446.83248 0
+["pdflatex"] 1776101855.88794 "main.tex" "main.pdf" "main" 1776101856.71165 0
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -35,6 +35,7 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm" 1136768653 1116 25a7bf822c58caf309a702ef79f4afbb ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1248133631 36094 798f80770b3b148ceedd006d487db67c ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
@@ -155,9 +156,9 @@
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
   "figures/accuracy_bars.pdf" 1775933094.45902 16882 2ede5e72df8dc29037f4b83da9d7cea0 ""
   "figures/drift_ablation.pdf" 1775933094.9098 15153 a41f280b81ace05c4e3a60b694b25a88 ""
-  "main.aux" 1776090446.54256 6840 5bb4885febceff517426fdc5f0d8031a "pdflatex"
-  "main.bbl" 1776090446.07631 2572 5c27e4f268a3fe66d4b71fa6b868e27c "bibtex main"
-  "main.tex" 1776090428.25332 34033 826cbf827a0c92107d9f907641f7ec36 ""
+  "main.aux" 1776101856.40717 8359 b1352122297f984d6525acd3fbedb068 "pdflatex"
+  "main.bbl" 1776093273.87928 3603 21bc5a66cb8f5e5a35ec46ad0c62681b "bibtex main"
+  "main.tex" 1776101844.03461 40718 004a7e5095da7daa87d57830a28c9873 ""
   (generated)
   "main.aux"
   "main.log"

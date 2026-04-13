@@ -433,6 +433,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
         tasks = synthetic_tasks("bfcl", sample_count)
     else:
         tasks = load_bfcl_tasks(config)
+        tasks = tasks[:sample_count]
     results = []
 
     for task in tasks:

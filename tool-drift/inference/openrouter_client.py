@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import socket
 import time
 import urllib.error
@@ -8,6 +9,40 @@ import urllib.request
 from typing import Any, Mapping
 
 from scripts.common import load_dotenv, require_env
+
+
+_SAFE_TOOL_NAME_RE = re.compile(r"[^a-zA-Z0-9_-]+")
+
+
+def _normalize_tool_name(name: str) -> str:
+    normalized = _SAFE_TOOL_NAME_RE.sub("_", name).strip("_")
+    return normalized or "tool"
+
+
+def _alias_tools(
+    tools: list[Mapping[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, str], dict[str, str]]:
+    aliased_tools: list[dict[str, Any]] = []
+    original_to_alias: dict[str, str] = {}
+    alias_to_original: dict[str, str] = {}
+    used_aliases: set[str] = set()
+
+    for index, tool in enumerate(tools, start=1):
+        original_name = str(tool.get("name", "tool"))
+        base_alias = _normalize_tool_name(original_name)
+        alias = base_alias
+        suffix = 2
+        while alias in used_aliases:
+            alias = f"{base_alias}_{suffix}"
+            suffix += 1
+        used_aliases.add(alias)
+        original_to_alias[original_name] = alias
+        alias_to_original[alias] = original_name
+        aliased_tool = dict(tool)
+        aliased_tool["name"] = alias
+        aliased_tools.append(aliased_tool)
+
+    return aliased_tools, original_to_alias, alias_to_original
 
 
 def _tool_to_openai_schema(tool: Mapping[str, Any]) -> dict[str, Any]:
@@ -70,7 +105,16 @@ def extract_usage(payload: Mapping[str, Any]) -> dict[str, int]:
     }
 
 
-def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
+def _restore_tool_name(name: str, alias_to_original: Mapping[str, str]) -> str:
+    return str(alias_to_original.get(name, name))
+
+
+def _extract_tool_call(
+    payload: Mapping[str, Any],
+    *,
+    alias_to_original: Mapping[str, str] | None = None,
+) -> dict[str, Any]:
+    alias_lookup = alias_to_original or {}
     choices = list(payload.get("choices", []))
     if not choices:
         return {"name": "", "arguments": {}}
@@ -86,7 +130,7 @@ def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
             except json.JSONDecodeError:
                 arguments = {}
         return {
-            "name": str(function.get("name", "")),
+            "name": _restore_tool_name(str(function.get("name", "")), alias_lookup),
             "arguments": arguments if isinstance(arguments, dict) else {},
         }
 
@@ -94,7 +138,7 @@ def _extract_tool_call(payload: Mapping[str, Any]) -> dict[str, Any]:
     parsed = _extract_json_dict(_read_message_content(message))
     if parsed:
         return {
-            "name": str(parsed.get("name", parsed.get("tool", ""))),
+            "name": _restore_tool_name(str(parsed.get("name", parsed.get("tool", ""))), alias_lookup),
             "arguments": dict(parsed.get("arguments", {})),
         }
 
@@ -184,6 +228,7 @@ def _request_tool_call_payload(
     provider_preferences: Mapping[str, Any] | None = None,
     max_tokens: int = 256,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    aliased_tools, original_to_alias, alias_to_original = _alias_tools(tools)
     body = {
         "model": model,
         "messages": [
@@ -196,7 +241,7 @@ def _request_tool_call_payload(
             },
             {"role": "user", "content": prompt},
         ],
-        "tools": [_tool_to_openai_schema(tool) for tool in tools],
+        "tools": [_tool_to_openai_schema(tool) for tool in aliased_tools],
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
@@ -207,12 +252,12 @@ def _request_tool_call_payload(
     if force_tool_name:
         body["tool_choice"] = {
             "type": "function",
-            "function": {"name": force_tool_name},
+            "function": {"name": original_to_alias.get(force_tool_name, force_tool_name)},
         }
     else:
         body["tool_choice"] = "auto"
     payload = _request_payload(body, base_url=base_url)
-    return _extract_tool_call(payload), payload
+    return _extract_tool_call(payload, alias_to_original=alias_to_original), payload
 
 
 def request_tool_call(

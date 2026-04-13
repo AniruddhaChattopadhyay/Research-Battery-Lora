@@ -161,6 +161,42 @@ def analyze_pairwise_significance(data: dict[str, Any]) -> None:
         )
 
 
+def extract_metric_match(record: dict[str, Any], metric: str) -> bool:
+    key = f"{metric}_match"
+    if key not in record:
+        raise KeyError(f"Metric '{metric}' not found in record keys")
+    return bool(record[key]["matched"])
+
+
+def compare_runs(path_a: Path, path_b: Path, metric: str) -> None:
+    data_a = load_results(path_a)
+    data_b = load_results(path_b)
+    records_a = {str(r["id"]): r for r in data_a["results"]}
+    records_b = {str(r["id"]): r for r in data_b["results"]}
+    common_ids = sorted(set(records_a) & set(records_b))
+    if not common_ids:
+        raise ValueError("No overlapping example IDs between the two runs")
+
+    vals_a = [extract_metric_match(records_a[idx], metric) for idx in common_ids]
+    vals_b = [extract_metric_match(records_b[idx], metric) for idx in common_ids]
+    a_only, b_only = discordant_counts(vals_a, vals_b)
+    score_a = accuracy(vals_a)
+    score_b = accuracy(vals_b)
+
+    print(f"\n{'='*60}")
+    print(f"Pairwise comparison on {len(common_ids)} shared examples")
+    print(f"{'='*60}")
+    print(f"  Run A: {path_a}")
+    print(f"  Run B: {path_b}")
+    print(f"  Metric: {metric}")
+    print(f"  Score A: {score_a:.3f}")
+    print(f"  Score B: {score_b:.3f}")
+    print(
+        "  Exact McNemar: "
+        f"a_only={a_only}, b_only={b_only}, p={exact_mcnemar_pvalue(a_only, b_only):.3g}"
+    )
+
+
 def analyze_repair_beyond_drift(data: dict[str, Any]) -> None:
     results = data["results"]
     bonus = []
@@ -230,6 +266,8 @@ def main() -> None:
     parser.add_argument("--results", nargs="+", required=True, help="Result JSON files to analyze")
     parser.add_argument("--drift-ablation", nargs="*", default=None, help="Drift ablation result files")
     parser.add_argument("--component-ablation", nargs="*", default=None, help="Component ablation result files")
+    parser.add_argument("--compare", nargs=2, default=None, metavar=("RUN_A", "RUN_B"), help="Compare two result files on aligned example IDs")
+    parser.add_argument("--compare-metric", default="repaired", choices=["original", "drifted", "repaired", "naive_retry"], help="Metric to compare when using --compare")
     args = parser.parse_args()
 
     for path_str in args.results:
@@ -245,6 +283,9 @@ def main() -> None:
 
     if args.component_ablation:
         analyze_component_ablation([Path(p) for p in args.component_ablation])
+
+    if args.compare:
+        compare_runs(Path(args.compare[0]), Path(args.compare[1]), args.compare_metric)
 
 
 if __name__ == "__main__":

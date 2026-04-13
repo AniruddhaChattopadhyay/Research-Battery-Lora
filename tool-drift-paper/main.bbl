@@ -8,6 +8,11 @@ Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
   S., Hosseini, P., Feizi, S.: Gaming tool preferences in agentic llms. arXiv
   preprint arXiv:2505.18135  (2025)
 
+\bibitem{githubbreaking2026}
+{GitHub}: Breaking changes.
+  \url{https://docs.github.com/en/rest/about-the-rest-api/breaking-changes}
+  (2026), gitHub REST API documentation, accessed 2026-04-13
+
 \bibitem{guo2026rewrite}
 Guo, Y., et~al.: Learning to rewrite tool descriptions for reliable llm-agent
   tool use. arXiv preprint arXiv:2602.20426  (2026)
@@ -16,6 +21,12 @@ Guo, Y., et~al.: Learning to rewrite tool descriptions for reliable llm-agent
 Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: Dice-bench:
   Evaluating the tool-use capabilities of large language models in multi-round,
   multi-party dialogues. arXiv preprint arXiv:2506.22853  (2025)
+
+\bibitem{lercher2025autoguard}
+Lercher, A., Bauer, C., Macho, C., Pinzger, M.: Autoguard: Reporting breaking
+  changes of rest apis from java spring boot source code. In: 2025 IEEE 32nd
+  International Conference on Software Analysis, Evolution and Reengineering
+  (SANER) (2025). \doi{10.1109/SANER64311.2025.00083}
 
 \bibitem{liu2024apigen}
 Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
@@ -38,6 +49,17 @@ Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang,
 Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., Yao, S.:
   Reflexion: Language agents with verbal reinforcement learning. arXiv preprint
   arXiv:2303.11366  (2023)
+
+\bibitem{stripecheckout2022}
+{Stripe}: Replaces line item parameters from the create checkout session
+  endpoint.
+  \url{https://docs.stripe.com/changelog/2022-08-01/replaces-line-item-create-checkout-session}
+  (2022), stripe changelog entry, accessed 2026-04-13
+
+\bibitem{stripedefaultvalue2025}
+{Stripe}: Adds default value to custom fields on payment links.
+  \url{https://docs.stripe.com/changelog/basil/2025-03-31/default-value-payment-links-custom-fields}
+  (2025), stripe changelog entry, accessed 2026-04-13
 
 \bibitem{bfcl2024}
 Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,

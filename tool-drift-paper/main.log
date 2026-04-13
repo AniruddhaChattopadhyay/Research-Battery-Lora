@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.7)  13 APR 2026 19:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.7)  13 APR 2026 23:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,15 +648,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Overfull \hbox (1.81323pt too wide) in paragraph at lines 28--48
+Overfull \hbox (1.81323pt too wide) in paragraph at lines 28--52
 \T1/cmr/m/n/9 are han-dled by retry-ing over only the vis-i-ble can-di-date too
 ls. On Qwen3.5-
- []
-
-
-Overfull \hbox (2.97093pt too wide) in paragraph at lines 61--65
-[]\T1/cmr/m/n/10 We study this prob-lem as \T1/cmr/m/it/10 in-ter-face drift\T1
-/cmr/m/n/10 : be-nign, semantics-preserving changes
  []
 
 [1
@@ -664,82 +658,136 @@ Overfull \hbox (2.97093pt too wide) in paragraph at lines 61--65
 {/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 /texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (6.06798pt too wide) in paragraph at lines 81--85
+Overfull \hbox (2.97093pt too wide) in paragraph at lines 65--69
+[]\T1/cmr/m/n/10 We study this prob-lem as \T1/cmr/m/it/10 in-ter-face drift\T1
+/cmr/m/n/10 : be-nign, semantics-preserving changes
+ []
+
+
+Overfull \hbox (6.06798pt too wide) in paragraph at lines 85--89
 []\T1/cmr/bx/n/10 Non-oracle inference-time re-pair re-cov-ers drift-induced fa
 il-ures with
  []
 
 [2] [3] [4]
-Overfull \hbox (13.14848pt too wide) in paragraph at lines 272--279
+Overfull \hbox (13.14848pt too wide) in paragraph at lines 292--311
 \T1/cmr/m/n/10 For DICE main runs, we use \T1/cmr/m/it/10 mild \T1/cmr/m/n/10 s
 ever-ity: two de-scrip-tion modes (\T1/cmtt/m/n/10 legacy_example\T1/cmr/m/n/10
  ,
  []
 
-[5]
-<figures/accuracy_bars.pdf, id=36, 626.05457pt x 315.30545pt>
+[5] [6]
+<figures/accuracy_bars.pdf, id=42, 626.05457pt x 315.30545pt>
 File: figures/accuracy_bars.pdf Graphic file (type pdf)
 <use figures/accuracy_bars.pdf>
-Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 345.
+Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 377.
 (pdftex.def)             Requested size: 312.40906pt x 157.34442pt.
- [6] [7 <./figures/accuracy_bars.pdf>]
-<figures/drift_ablation.pdf, id=92, 568.23854pt x 315.33777pt>
+ [7 <./figures/accuracy_bars.pdf>] [8]
+<figures/drift_ablation.pdf, id=97, 568.23854pt x 315.33777pt>
 File: figures/drift_ablation.pdf Graphic file (type pdf)
 <use figures/drift_ablation.pdf>
-Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 446.
+Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 508.
 (pdftex.def)             Requested size: 284.64383pt x 157.962pt.
- [8] [9 <./figures/drift_ablation.pdf>] [10] [11]
-Overfull \hbox (0.56934pt too wide) in paragraph at lines 608--621
+ [9] [10 <./figures/drift_ablation.pdf>] [11] [12] [13]
+Overfull \hbox (0.56934pt too wide) in paragraph at lines 728--742
 \T1/cmr/m/n/10 We stud-ied SchemaShield-Lite, a lightweight inference-time vali
 dation-and-repair
  []
 
 
-Overfull \hbox (1.50267pt too wide) in paragraph at lines 608--621
+Overfull \hbox (1.50267pt too wide) in paragraph at lines 728--742
 \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 813$ \T1/cmr/m/n/10 and BFCL
 -200 from $\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 580$ \T1/cmr/m/n/
 10 to $\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 805$\T1/cmr/m/n/10 , 
 with zero re-pair harms on the originally-
  []
 
-(./main.bbl [12]) [13] (./main.aux)
+(./main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 12--15
+[]\T1/cmr/m/n/9 GitHub: Break-ing changes. $\T1/cmtt/m/n/9 https : / / docs . g
+ithub . com / en / rest /
+ []
+
+
+Underfull \hbox (badness 4531) in paragraph at lines 12--15
+\T1/cmtt/m/n/9 about-[]the-[]rest-[]api / breaking-[]changes$ \T1/cmr/m/n/9 (20
+26), gitHub REST API doc-u-
+ []
+
+[14]
+Underfull \hbox (badness 7308) in paragraph at lines 54--58
+[]\T1/cmr/m/n/9 Stripe: Re-places line item pa-ram-e-ters from the cre-ate chec
+k-out ses-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--58
+\T1/cmr/m/n/9 sion end-point. $\T1/cmtt/m/n/9 https : / / docs . stripe . com /
+ changelog / 2022-[]08-[]01 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--58
+\T1/cmtt/m/n/9 replaces-[]line-[]item-[]create-[]checkout-[]session$ \T1/cmr/m/
+n/9 (2022), stripe changelog
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--63
+[]\T1/cmr/m/n/9 Stripe: Adds de-fault value to cus-tom fields on pay-ment
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--63
+\T1/cmr/m/n/9 links. $\T1/cmtt/m/n/9 https : / / docs . stripe . com / changelo
+g / basil / 2025-[]03-[]31 /
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 60--63
+\T1/cmtt/m/n/9 default-[]value-[]payment-[]links-[]custom-[]fields$ \T1/cmr/m/n
+/9 (2025), stripe changelog en-
+ []
+
+) [15] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 14535 strings out of 467525
- 296379 string characters out of 5418983
- 697200 words of memory out of 5000000
- 43191 multiletter control sequences out of 15000+600000
+ 14546 strings out of 467525
+ 296639 string characters out of 5418983
+ 696973 words of memory out of 5000000
+ 43202 multiletter control sequences out of 15000+600000
  640497 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,104p,585b,765s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
-/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
-al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
-texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/te
-xlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texl
-ive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texliv
-e/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/
-2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/20
-26/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2026/t
-exmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2026/tex
-mf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2026/texmf
--dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2026/texmf-d
-ist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2026/texmf-dis
-t/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2026/texmf-dist/
-fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on main.pdf (13 pages, 416106 bytes).
+></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
+sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
+cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local
+/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texl
+ive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texliv
+e/2026/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/
+2026/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/20
+26/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2026
+/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2026/t
+exmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2026/texmf-dist/
+fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2026/texmf-dist/fo
+nts/type1/public/cm-super/sftt1000.pfb>
+Output written on main.pdf (15 pages, 435864 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 250 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

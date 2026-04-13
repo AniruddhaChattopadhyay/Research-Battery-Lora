@@ -14,18 +14,39 @@ The current state is:
 - `main.tex` has been rewritten around the non-oracle protocol
 - confidence intervals, figures, and expanded related work are in the paper
 - paired significance for the main non-oracle contrasts is now in the paper
+- broader oracle-vs-non-oracle repaired comparisons are now in the paper
 - a refreshed BFCL live rerun now provides wall-clock latency context
 - drift recovery vs baseline patching is explicitly separated in the discussion
+- a secondary BFCL non-oracle replication on Llama-4-Scout is now in the paper
+- a BFCL closed-model sanity check on GPT-4o-mini is now in the paper
+- the drift-realism discussion now cites public GitHub/Stripe API-evolution docs
 - the paper compiles cleanly to `main.pdf`
 
 The main remaining risks are now evidence gaps rather than protocol mismatch:
 
-- only one model currently anchors the primary non-oracle story
+- the clean primary non-oracle story is still mostly anchored on Qwen3.5-9B,
+  even though there is now a weaker BFCL replication on Llama-4-Scout
 - wall-clock latency is only measured on a refreshed BFCL rerun, not yet as a
   broader sweep
 - the synthetic nature of the drift operators remains a real limitation
+- the closed-model evidence is still only one BFCL sanity slice
 
-## Current Read
+## Current Active Experiment
+
+No critical live experiment is blocking the draft now.
+
+Most recent completed evidence upgrade:
+
+- run: `bfcl-live-20260413-203305-358013`
+- model: `GPT-4o-mini`
+- protocol: BFCL-200, non-oracle candidate-retry
+- result: `0.865 -> 0.840 -> 0.860`
+- note: the initial OpenRouter attempt failed because the OpenAI provider
+  rejected BFCL tool names that did not match `^[a-zA-Z0-9_-]+$`; the rerun
+  succeeded after adding provider-safe tool-name aliasing in
+  `tool-drift/inference/openrouter_client.py`
+
+## Historical Review Snapshot
 
 The paper has a real problem setting, strong internal structure, useful controls,
 and several genuinely interesting empirical findings:
@@ -36,7 +57,10 @@ and several genuinely interesting empirical findings:
 - repair harms are zero in the reported runs
 - the manual error analysis is better than average for a draft at this stage
 
-At the same time, the paper is not submission-ready yet. The largest issues are:
+This section reflects the pre-fix review snapshot that originally drove the work.
+Several items below have since been resolved in the manuscript and codebase.
+
+At the time of those reviews, the largest issues were:
 
 - the current evaluation may rely on oracle knowledge of the correct tool during repair
 - the method contribution is thin if reduced to validation plus retry
@@ -44,9 +68,9 @@ At the same time, the paper is not submission-ready yet. The largest issues are:
 - the drift-recovery story is confounded by the fact that repair also fixes baseline errors
 - the related work and evaluation framing need expansion
 
-## Submission Recommendation
+## Historical Recommendation
 
-Do not submit the current draft as-is.
+At that stage, the correct recommendation was not to submit the draft as-is.
 
 The fastest path to a defensible submission is:
 

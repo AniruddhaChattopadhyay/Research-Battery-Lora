@@ -35,8 +35,13 @@ Included changes:
 - title reframed around a non-oracle study of validation and repair
 - abstract/introduction rewritten around the non-oracle protocol
 - results split into primary non-oracle evidence vs oracle upper bounds
-- limitations updated to explicitly call out synthetic drift, single-model
-  non-oracle evidence, and missing latency
+- limitations updated to explicitly call out synthetic drift, still-limited
+  latency coverage, and the gap between the clean Qwen primary story and the
+  weaker Llama non-oracle replication
+- a compact decomposition table now separates drift recovery from baseline
+  patching
+- the discussion now includes adversarial-drift context, a formal drift-operator
+  view, and real API-evolution examples from public GitHub/Stripe docs
 
 ### C.3 Presentation upgrades
 
@@ -58,25 +63,59 @@ Current paired exact McNemar results on the final completed non-oracle runs:
 - DICE naive retry vs repaired: `p = 4.1e-9`
 - BFCL naive retry vs repaired: `p = 1.1e-13`
 
+### C.5 Broader protocol comparisons
+
+Completed and incorporated into `main.tex`.
+
+On shared examples, repaired oracle-vs-non-oracle differences are not
+significant on the primary Qwen runs:
+- DICE repaired oracle vs repaired non-oracle: `0.827` vs `0.813`, `p = 0.125`
+- BFCL repaired oracle vs repaired non-oracle: `0.795` vs `0.805`, `p = 0.754`
+
+### C.6 Second non-oracle replication
+
+Completed and incorporated into `main.tex` as secondary evidence.
+
+Current supporting run:
+- `bfcl-live-20260413-202008-710245` (`Llama-4-Scout`, BFCL-200, non-oracle)
+
+Key outcome:
+- `0.520 -> 0.635 -> 0.665`
+- exact McNemar drifted vs repaired: `p = 0.031`
+- zero repair harms on the originally-correct slice
+- but `43` unresolved repair targets and only `1/11` recoveries on the
+  originally-correct slice
+
+Paper impact:
+- This reduces the literal “single non-oracle model” limitation.
+- It does not replace Qwen3.5-9B as the clean primary evidence, because the run
+  is dominated by missing-tool-name failures.
+
+### C.7 Closed-model sanity check
+
+Completed and incorporated into `main.tex` as a secondary credibility check.
+
+Current supporting run:
+- `bfcl-live-20260413-203305-358013` (`GPT-4o-mini`, BFCL-200, non-oracle)
+
+Key outcome:
+- `0.865 -> 0.840 -> 0.860`
+- exact McNemar drifted vs repaired: `p = 0.125`
+- zero repair harms and zero unresolved repair targets
+- repair trigger rate only `2.0%`
+
+Paper impact:
+- This answers the reviewer-style question about whether the problem matters on a
+  stronger closed model.
+- The answer is nuanced: drift damage is much smaller, repair is directionally
+  helpful but not significant on this slice, and the repair layer still appears
+  safe.
+
 ---
 
 ## Priority 1 — Best Remaining Evidence Upgrades
 
-### 1.1 Add one more non-oracle replication
-
-Why:
-- The main remaining substantive limitation is that the primary non-oracle story
-  is still centered on Qwen3.5-9B.
-
-Best next move:
-- Add one more non-oracle candidate-retry run on an existing benchmark.
-- Prefer BFCL, since that benchmark is thinner in the paper.
-
-Current status:
-- `tool-drift/configs/bfcl_stage3_200_llama4scout_non_oracle.yaml` has been added.
-- Check whether the live run finished before deciding on manuscript updates.
-
-### 1.2 Report wall-clock latency
+### 1.1 Report wall-clock latency
 
 Why:
 - The paper now reports one real BFCL live latency measurement, but not yet a
@@ -91,54 +130,39 @@ Current status:
 - Current paper-ready numbers: original `8.8s`, drifted `9.3s`, repair `13.0s`,
   about `3.5s` expected added latency per example at a `27.0%` trigger rate.
 
-### 1.3 BFCL component ablation
+### 1.2 BFCL component ablation
 
-Why:
-- The “validation matters more than the canonical card” result is stronger now
-  that BFCL rows exist in the oracle upper-bound table, but a dedicated BFCL
-  ablation remains useful support.
+Completed in the paper already.
 
-How:
-1. Run `bfcl_ablation_card_only.yaml`
-2. Run `bfcl_ablation_validation_retry.yaml`
-3. Fold the result into the ablation section if it materially helps
+Current supporting runs:
+- `bfcl-live-20260412-001432-682965` (`card_only`)
+- `bfcl-live-20260412-002045-495346` (`validation_retry`)
+
+Paper impact:
+- BFCL rows are already present in the upper-bound component ablation table.
+- This item no longer needs new runs unless we want a second replication.
 
 ---
 
 ## Priority 2 — Nice Strengthening If Time Allows
 
-### 2.1 Broader paired significance testing
+### 2.1 Error-analysis appendix
 
 Why:
-- The paper now reports paired significance for the main contrasts, but not for
-  broader protocol-to-protocol comparisons.
+- The current error analysis is solid. A dedicated appendix would still be nice,
+  but the main paper now includes a compact unrecovered-case summary table.
 
-### 2.2 Error-analysis appendix
-
-Why:
-- The current error analysis is solid, but an appendix table of unrecovered-case
-  categories would make reviewer pushback easier to answer.
-
-### 2.3 Frontier-model sanity check
+### 2.2 Second-provider or second-benchmark latency sweep
 
 Why:
-- Even a small closed-model slice would help answer “does this matter on models
-  people deploy?”
+- The paper has one real BFCL latency measurement, but still not a broader
+  deployment-facing latency sweep.
 
 ---
 
 ## Priority 3 — Optional Polish
 
-### 3.1 Adversarial-drift discussion paragraph
-
-Tie the paper more explicitly to description-surface manipulation / adversarial
-tool routing work.
-
-### 3.2 Formalize the drift operators in Section 3
-
-Nice for reproducibility, but not necessary for a short submission.
-
-### 3.3 Reconsider the method name
+### 3.1 Reconsider the method name
 
 Only worth doing if we want the paper to foreground the minimal
 validation-and-repair stack instead of `SchemaShield-Lite`.
@@ -148,9 +172,9 @@ validation-and-repair stack instead of `SchemaShield-Lite`.
 ## Recommended Order
 
 If only a few more hours are available:
-1. Check the Llama-4-Scout BFCL non-oracle run.
-2. Re-run at least one primary non-oracle config for wall-clock latency.
-3. Decide whether BFCL component ablation is still needed after those results.
+1. Decide whether a second latency sweep is worth the time.
+2. Otherwise freeze the paper and move to submission packaging.
+3. Only add more runs if they materially change the reviewer story.
 
 At this point, additional work should be judged by how much it changes reviewer
 confidence, not by whether it adds another experiment for its own sake.
