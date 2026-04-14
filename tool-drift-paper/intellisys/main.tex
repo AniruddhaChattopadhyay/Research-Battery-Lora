@@ -1,4 +1,4 @@
-\documentclass[runningheads]{llncs}
+\documentclass{svproc}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{url}
+\def\UrlFont{\rmfamily}
 \usepackage{xspace}
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -14,24 +15,26 @@
 \newcommand{\method}{SchemaShield-Lite\xspace}
 
 \begin{document}
+\mainmatter
 
 \title{Tool Calling Under Interface Drift: A Non-Oracle Study of Validation and Repair}
 \titlerunning{Tool Calling Under Interface Drift}
 
 \author{Anonymous Authors}
 \authorrunning{Anonymous Authors}
+\tocauthor{Anonymous Authors}
 \institute{Anonymous Submission}
 
 \maketitle
 
 \begin{abstract}
 Tool-calling language models depend on surface-form tool
-interfaces---descriptions, schemas, and candidate tool lists---that can drift
+interfaces---descriptions, schemas, and tool lists---that can drift
 after deployment even when tool semantics do not. We study this problem as
 \emph{interface drift} and evaluate whether a lightweight, training-free
 inference-time repair layer can recover reliability without retraining.
 Our method, \method, combines schema validation with a candidate-set retry
-for missing tool names and a one-shot constrained repair call. On our primary
+when tool names are missing and a one-shot constrained repair call. On our primary
 model (Qwen3.5-9B), it raises DICE-300 accuracy from $0.717$ to $0.813$ and
 BFCL-200 from $0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced
 failures with no observed repair harms. A naive-retry baseline does not explain
@@ -42,7 +45,7 @@ non-oracle setting, missing tool names emerge as the main repair bottleneck.
 A same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
 supports the effect within the Qwen family, though cross-family portability
 remains limited.
-\keywords{tool calling \and language models \and robustness \and interface drift \and repair}
+\keywords{tool calling, language models, robustness, interface drift, repair}
 \end{abstract}
 
 \section{Introduction}
@@ -80,9 +83,10 @@ same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
 confirms the effect is not confined to a single model size, though the cleanest
 non-oracle evidence remains within the Qwen family.
 
-\item \textbf{Naive retry does not explain the gains.} On DICE-300, naive retry
-reaches $0.707$ versus repaired $0.813$; on BFCL, $0.585$ versus $0.805$. A second
-attempt alone therefore cannot explain the recovery.
+\item \textbf{Naive retry does not explain the gains.} In the separate baseline
+runs reported in Section~\ref{sec:naive-retry}, naive retry reaches $0.727$
+versus repaired $0.813$ on DICE-300 and $0.610$ versus $0.795$ on BFCL-200.
+A second attempt alone therefore cannot explain the recovery.
 
 \item \textbf{Missing tool names are the main non-oracle bottleneck, and most
 primary-model drift misses remain validator-visible.} In the non-oracle setting,
@@ -281,8 +285,8 @@ inference may still exhibit provider-side nondeterminism.
 
 \subsection{Drift Configurations}
 For DICE main runs, we use \emph{mild} severity: two description modes
-(\texttt{legacy\_example}, \texttt{marketing}), two schema modes
-(\texttt{rename\_parameters}, \texttt{reorder\_parameters}), and one distractor
+(legacy-example and marketing), two schema modes
+(rename-parameters and reorder-parameters), and one distractor
 tool. For BFCL we use \emph{medium} severity: three description modes, three schema
 modes, and three distractors, reflecting a more aggressive drift scenario. These
 operators are author-designed and deployment-motivated rather than mined from real
@@ -445,7 +449,8 @@ repaired-vs-naive contrast is highly significant on both benchmarks
 runs; minor differences from Table~\ref{tab:main-results} reflect run-level variance.}
 \label{tab:naive-retry}
 \centering
-\small
+\scriptsize
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{lccccc}
 \toprule
 Benchmark & Drifted & Naive Retry & Tool-List Re-prompt & \method & $\Delta$ over Drifted \\
@@ -785,7 +790,7 @@ Generative AI tools (Claude, ChatGPT) were used during manuscript preparation fo
 drafting assistance and code review. All AI-generated content was reviewed, edited,
 and verified by the authors, who take full responsibility for the final text.
 
-\bibliographystyle{splncs04}
+\bibliographystyle{splncs03}
 \bibliography{references}
 
 \end{document}

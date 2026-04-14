@@ -1,7 +1,6 @@
 \begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
-\providecommand{\doi}[1]{https://doi.org/#1}
 
 \bibitem{faghih2025gaming}
 Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
@@ -26,7 +25,7 @@ Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: Dice-bench:
 Lercher, A., Bauer, C., Macho, C., Pinzger, M.: Autoguard: Reporting breaking
   changes of rest apis from java spring boot source code. In: 2025 IEEE 32nd
   International Conference on Software Analysis, Evolution and Reengineering
-  (SANER) (2025). \doi{10.1109/SANER64311.2025.00083}
+  (SANER) (2025)
 
 \bibitem{liu2024apigen}
 Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
@@ -50,8 +49,7 @@ Rabinovich, E., Anaby-Tavor, A.: On the robustness of agentic function calling.
 
 \bibitem{serbout2023versioning}
 Serbout, S., Pautasso, C.: An empirical study of web api versioning practices.
-  In: Web Engineering. Lecture Notes in Computer Science (2023).
-  \doi{10.1007/978-3-031-34444-2_22}
+  In: Web Engineering. Lecture Notes in Computer Science (2023)
 
 \bibitem{stripecheckout2022}
 {Stripe}: Replaces line item parameters from the create checkout session
