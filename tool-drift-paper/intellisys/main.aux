@@ -1,0 +1,94 @@
+\relax 
+\citation{guo2026rewrite,faghih2025gaming}
+\citation{jang2025dicebench}
+\citation{bfcl2024}
+\@writefile{toc}{\contentsline {title}{Tool Calling Under Interface Drift: A Non-Oracle Study of Validation and Repair}{1}{}\protected@file@percent }
+\@writefile{toc}{\authcount {1}}
+\@writefile{toc}{\contentsline {author}{Anonymous Authors}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{guo2026rewrite}
+\citation{faghih2025gaming}
+\citation{rabinovich2025robustness}
+\citation{zhang2026fission}
+\citation{geng2023grammar,park2024grammar}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\citation{zhong2025complexfuncbench}
+\citation{jang2025dicebench}
+\citation{bfcl2024}
+\citation{lercher2025autoguard}
+\citation{serbout2023versioning}
+\citation{liu2024apigen}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SchemaShield-Lite\xspace  pipeline. The base model receives user context and drifted tool definitions. If the emitted tool call fails validation, a repair call is issued with structured validation errors. In the primary non-oracle protocol, missing tool names are first resolved by retrying over the visible candidate tools; once a visible target tool is resolved, a repair step may be constrained to that selected tool where provider support allows.}}{4}{}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{4}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{4}{}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}SchemaShield-Lite\xspace  }{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canonical tool card.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validation.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{One-shot repair.}{4}{}\protected@file@percent }
+\citation{jang2025dicebench}
+\citation{bfcl2024}
+\citation{notionchangelog2026,stripecheckout2022}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repair Prompting Details}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmarks and Data Slices}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Models}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Drift Configurations}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Repair Protocols}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Metrics}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle-constrained upper bounds for reference. Rows come from separate completed runs on the same fixed benchmark slices, so Original scores may differ slightly across protocols. Brackets give 95\% bootstrap confidence intervals (seed~42). OC = originally-correct count; Rec = recoveries on drift-induced failures; Harms = repair harms on originally-correct slice; Trig\% = repair trigger rate.}}{7}{}\protected@file@percent }
+\newlabel{tab:main-results}{{1}{7}{}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Release}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Primary Non-Oracle Results}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Oracle-constrained upper-bound DICE sweep across the four evaluated models. We retain these runs as secondary cross-model context; the paper's primary deployment-facing evidence is the non-oracle Qwen3.5-9B protocol in Table~\ref {tab:main-results}.}}{8}{}\protected@file@percent }
+\newlabel{fig:accuracy-bars}{{2}{8}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Oracle upper bounds for context.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repair cost overhead.}{8}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Naive retry vs the primary non-oracle SchemaShield-Lite\xspace  protocol on Qwen3.5-9B.}}{9}{}\protected@file@percent }
+\newlabel{tab:naive-retry}{{2}{9}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs.}}{9}{}\protected@file@percent }
+\newlabel{tab:gain-decomposition}{{3}{9}{}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Naive Retry Does Not Explain the Gains}{9}{}\protected@file@percent }
+\newlabel{sec:naive-retry}{{6.2}{9}{}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{9}{}\protected@file@percent }
+\newlabel{sec:repair-coverage}{{6.3}{9}{}{subsection.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Orig./Drift. scores come from the base model. Because every baseline DICE task has a singleton candidate set, the description-only and schema-only repair rows are identical under oracle-target and predicted-tool repair; only the distractor-bearing rows require fresh non-oracle repair numbers.}}{10}{}\protected@file@percent }
+\newlabel{tab:drift-ablation}{{4}{10}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Drift-Type Ablation: Candidate-Set Drift Dominates}{10}{}\protected@file@percent }
+\newlabel{sec:drift-ablation}{{6.4}{10}{}{subsection.6.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{10}{}\protected@file@percent }
+\newlabel{sec:component-ablation}{{6.5}{10}{}{subsection.6.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Description-only and schema-only drift cause negligible accuracy drops. Adding distractor tools reproduces essentially all of the damage of the full combined drift.}}{11}{}\protected@file@percent }
+\newlabel{fig:drift-ablation}{{3}{11}{}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild.}}{11}{}\protected@file@percent }
+\newlabel{tab:component-ablation}{{5}{11}{}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Error Analysis}{12}{}\protected@file@percent }
+\newlabel{sec:error-analysis}{{6.6}{12}{}{subsection.6.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Compact summary of unrecovered oracle-constrained DICE cases on the three non-primary models. ``Artifact'' includes formatting/paraphrase mismatches that appear semantically correct under manual inspection.}}{13}{}\protected@file@percent }
+\newlabel{tab:unrecovered-summary}{{6}{13}{}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Additional Non-Oracle Replications}{13}{}\protected@file@percent }
+\newlabel{sec:additional-replications}{{6.7}{13}{}{subsection.6.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{13}{}\protected@file@percent }
+\citation{faghih2025gaming}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{14}{}\protected@file@percent }
+\newlabel{sec:limitations}{{8}{14}{}{section.8}{}}
+\bibstyle{splncs04}
+\bibdata{references}
+\bibcite{faghih2025gaming}{1}
+\bibcite{geng2023grammar}{2}
+\bibcite{guo2026rewrite}{3}
+\bibcite{jang2025dicebench}{4}
+\bibcite{lercher2025autoguard}{5}
+\bibcite{liu2024apigen}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{15}{}\protected@file@percent }
+\bibcite{notionchangelog2026}{7}
+\bibcite{park2024grammar}{8}
+\bibcite{rabinovich2025robustness}{9}
+\bibcite{serbout2023versioning}{10}
+\bibcite{stripecheckout2022}{11}
+\bibcite{bfcl2024}{12}
+\bibcite{zhang2026fission}{13}
+\bibcite{zhong2025complexfuncbench}{14}
+\gdef \@abspage@last{16}

@@ -25,19 +25,23 @@
 \maketitle
 
 \begin{abstract}
-Tool-calling language models depend on surface-form tool interfaces that can drift
+Tool-calling language models depend on surface-form tool
+interfaces---descriptions, schemas, and candidate tool lists---that can drift
 after deployment even when tool semantics do not. We study this problem as
-\emph{interface drift} and evaluate \method, a training-free non-oracle repair
-stack built from validation, candidate-set retry, and one-shot repair. On
-Qwen3.5-9B, \method improves DICE-300 from $0.717$ to $0.813$ and BFCL-200 from
-$0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced failures on the
-originally-correct slice with no observed repair harms. A BFCL-200 replication on
-Qwen3.5-35B-A3B similarly improves from $0.635$ to $0.845$. Naive retry remains
-far below structured repair, so the gains do not come from a second attempt alone.
-Additional analyses show that most primary-model drift misses remain
-validator-visible and that missing tool names are the main non-oracle bottleneck.
-Our DICE-300 upper-bound ablation further suggests that candidate-set drift, not
-minor description or schema edits, is the dominant source of damage on this slice.
+\emph{interface drift} and evaluate whether a lightweight, training-free
+inference-time repair layer can recover reliability without retraining.
+Our method, \method, combines schema validation with a candidate-set retry
+for missing tool names and a one-shot constrained repair call. On our primary
+model (Qwen3.5-9B), it raises DICE-300 accuracy from $0.717$ to $0.813$ and
+BFCL-200 from $0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced
+failures with no observed repair harms. A naive-retry baseline does not explain
+the gains. Ablation reveals that candidate-set drift---adding distractor
+tools---accounts for nearly all observed damage on our DICE slice, while
+description and schema edits alone cause negligible degradation. In the
+non-oracle setting, missing tool names emerge as the main repair bottleneck.
+A same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
+supports the effect within the Qwen family, though cross-family portability
+remains limited.
 \keywords{tool calling \and language models \and robustness \and interface drift \and repair}
 \end{abstract}
 
@@ -64,13 +68,17 @@ slice \cite{bfcl2024} under a deployment-realistic non-oracle repair protocol.
 Earlier oracle-constrained sweeps on additional open models are retained only as
 upper-bound context and for secondary analyses.
 
-This paper makes three empirical contributions:
+This paper makes three empirical contributions, demonstrated primarily on
+Qwen3.5-9B with a supporting replication on Qwen3.5-35B-A3B:
 
 \begin{enumerate}
 \item \textbf{Non-oracle inference-time repair recovers drift-induced failures on
 the primary model.} On Qwen3.5-9B, \method raises DICE-300 accuracy from $0.717$
 to $0.813$ and BFCL-200 accuracy from $0.580$ to $0.805$, while showing no
-observed repair harms on the originally-correct slice in either benchmark.
+observed repair harms on the originally-correct slice in either benchmark. A
+same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
+confirms the effect is not confined to a single model size, though the cleanest
+non-oracle evidence remains within the Qwen family.
 
 \item \textbf{Naive retry does not explain the gains.} On DICE-300, naive retry
 reaches $0.707$ versus repaired $0.813$; on BFCL, $0.585$ versus $0.805$. A second
@@ -446,13 +454,13 @@ BFCL-200   & 0.580 & 0.585 & \textbf{0.805} & $+0.225$ \\
 \end{tabular}
 \end{table}
 
-\subsection{Repair Gains Are Mostly Drift Recovery, Not Only Baseline Patching}
-\label{sec:gain-decomposition}
+\subsection{Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}
+\label{sec:repair-coverage}
 The ``repair $>$ original'' effect is real, but it does not dominate the main
 story. Table~\ref{tab:gain-decomposition} decomposes every repaired improvement over
 the drifted call into either \emph{drift recovery} on the originally-correct slice
 or \emph{baseline patching} on examples the base model already missed before drift.
-Most repaired gains still come from genuine drift recovery: $19/29$ on DICE and
+Most repaired gains come from genuine drift recovery: $19/29$ on DICE and
 $33/45$ on BFCL. Baseline patching is material, especially on BFCL, and should be
 read as a secondary benefit rather than the paper's central causal claim.
 
@@ -472,16 +480,14 @@ BFCL-200 & 45 & 33 & 12 & 0 \\
 \end{tabular}
 \end{table}
 
-\subsection{Most Primary-Model Drift Misses Remain Validator-Visible}
-\label{sec:repairability}
-The current primary non-oracle runs also let us test whether the dominant misses
-actually enter the repair path. On the originally-correct slice, $20/22$ DICE drift
-misses and all $45/45$ BFCL drift misses are validator-visible invalid or
-incomplete calls. Only two DICE misses remain validator-invisible valid-but-wrong
-outputs, and BFCL has none. Across the full benchmark slices, $63/85$ DICE drift
-misses and $73/84$ BFCL drift misses are validator-visible. In our primary setting,
-the repair stack therefore addresses most observed drift failures; valid-but-wrong
-calls that bypass validation are a residual rather than dominant failure mode.
+These runs also reveal whether drift misses actually enter the repair path.
+On the originally-correct slice, $20/22$ DICE drift misses and all $45/45$ BFCL
+drift misses are validator-visible invalid or incomplete calls. Only two DICE
+misses remain validator-invisible valid-but-wrong outputs, and BFCL has none.
+Across the full benchmark slices, $63/85$ DICE drift misses and $73/84$ BFCL
+drift misses are validator-visible. The repair stack therefore addresses most
+observed drift failures; valid-but-wrong calls that bypass validation are a
+residual rather than dominant failure mode.
 
 \subsection{Drift-Type Ablation: Candidate-Set Drift Dominates}
 \label{sec:drift-ablation}
@@ -607,7 +613,7 @@ validator-invisible value mismatches that never trigger repair. On BFCL, most
 unrecovered cases remain validator-visible missing-field failures after repair,
 while two cases remain unresolved because the model never supplies a usable tool
 name. These patterns are consistent with the main bottleneck story in
-Section~\ref{sec:repairability}: the dominant remaining failure modes are either
+Section~\ref{sec:repair-coverage}: the dominant remaining failure modes are either
 missing-tool-name resolution or persistent argument completion failures.
 
 Across the oracle-constrained DICE upper-bound sweeps, no repair harms are observed.
@@ -657,28 +663,11 @@ Total           & 13 & 11 & 2 \\
 \end{tabular}
 \end{table}
 
-On the primary non-oracle Qwen3.5-9B runs, repair improves over the drifted call on
-$29$ DICE examples and $45$ BFCL examples in total. Not all of these are pure drift
-recovery: $10$ of the DICE gains and $12$ of the BFCL gains are baseline-error
-patching on examples the base model already missed before drift. This side effect is
-useful in deployment, but it reinforces the need to separate drift recovery from
-general post-hoc correction in the paper's reporting.
-
-Mistral-24B exhibits an unusual pattern: its drifted score ($0.777$) is
-slightly higher than its original score ($0.740$). Inspection of the $23$
-examples where Mistral's original call misses but the drifted call matches
-shows that almost none of them involve the model recovering extra information
-from the drifted description. Instead, $15/23$ are strict-match artifacts on
-the original call: formatting differences in the value (\texttt{apple} vs
-\texttt{apples}, \texttt{bread, eggs, cheese} vs \texttt{bread,eggs,cheese},
-\texttt{https://wikipedia.org/} vs \texttt{https://wikipedia.org}), and only
-a handful reflect the model missing a required field in the original call
-($4/23$) or choosing a wrong tool name ($4/23$). The drifted call happens to
-land in the tokenization bucket that the scorer accepts, pushing the scored
-accuracy slightly above the original. We therefore read the Mistral
-``drift~$>$~original'' effect as scorer noise rather than as evidence that
-description drift helps Mistral, and revise the original speculation
-accordingly.
+Mistral-24B exhibits an unusual pattern: its drifted score ($0.777$) slightly
+exceeds its original score ($0.740$). Inspection shows that $15/23$ apparent
+drift ``gains'' are strict-match artifacts on the original call (formatting
+differences in string values) rather than information recovered from the drifted
+description. We read this as scorer noise, not evidence that drift helps.
 
 \subsection{Additional Non-Oracle Replications}
 \label{sec:additional-replications}
