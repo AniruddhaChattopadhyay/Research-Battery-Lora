@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.7)  14 APR 2026 18:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.7)  14 APR 2026 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -671,7 +671,7 @@ Overfull \hbox (2.97093pt too wide) in paragraph at lines 60--64
 al/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 /texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2]
 [3] [4]
-Overfull \hbox (13.14848pt too wide) in paragraph at lines 287--302
+Overfull \hbox (13.14848pt too wide) in paragraph at lines 285--300
 \T1/cmr/m/n/10 For DICE main runs, we use \T1/cmr/m/it/10 mild \T1/cmr/m/n/10 s
 ever-ity: two de-scrip-tion modes (\T1/cmtt/m/n/10 legacy_example\T1/cmr/m/n/10
  ,
@@ -681,38 +681,45 @@ ever-ity: two de-scrip-tion modes (\T1/cmtt/m/n/10 legacy_example\T1/cmr/m/n/10
 <figures/accuracy_bars.pdf, id=43, 484.74977pt x 267.97176pt>
 File: figures/accuracy_bars.pdf Graphic file (type pdf)
 <use figures/accuracy_bars.pdf>
-Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 379.
+Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 376.
 (pdftex.def)             Requested size: 312.40906pt x 172.71164pt.
- [7] [8 <./figures/accuracy_bars.pdf>]
-Overfull \hbox (10.63641pt too wide) in paragraph at lines 457--465
+ [7 <./figures/accuracy_bars.pdf>]
+Overfull \hbox (10.63641pt too wide) in paragraph at lines 451--459
  [][] 
  []
 
-[9]
+[8] [9]
 <figures/drift_ablation.pdf, id=97, 484.74977pt x 267.97176pt>
 File: figures/drift_ablation.pdf Graphic file (type pdf)
 <use figures/drift_ablation.pdf>
-Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 545.
+Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 536.
 (pdftex.def)             Requested size: 284.64383pt x 157.36186pt.
- [10] [11 <./figures/drift_ablation.pdf>] [12] [13]
-Overfull \hbox (0.26276pt too wide) in paragraph at lines 742--769
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <./figures/drift_ablation.pdf>] [11]
+Underfull \vbox (badness 5274) has occurred while \output is active []
+
+ [12]
+[13]
+Overfull \hbox (0.26276pt too wide) in paragraph at lines 731--758
 \T1/cmr/m/n/10 oracle repli-ca-tion on Qwen3.5-35B-A3B and a weaker porta-bil-i
 ty check on Llama-
  []
 
-[14]
-Overfull \hbox (0.56934pt too wide) in paragraph at lines 771--789
+
+Overfull \hbox (0.56934pt too wide) in paragraph at lines 760--778
 \T1/cmr/m/n/10 We stud-ied SchemaShield-Lite, a lightweight inference-time vali
 dation-and-repair
  []
 
-(./main.bbl [15]
+[14] (./main.bbl
 Underfull \hbox (badness 1072) in paragraph at lines 39--41
 []\T1/cmr/m/n/9 Notion: Changelog. $\T1/cmtt/m/n/9 https : / / developers . not
 ion . com / page / changelog$ \T1/cmr/m/n/9 (2026),
  []
 
-
+[15]
 Underfull \hbox (badness 3009) in paragraph at lines 52--55
 \T1/cmr/m/n/9 tices. In: Web En-gi-neer-ing. Lec-ture Notes in Com-puter Sci-en
 ce (2023).
@@ -745,11 +752,11 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  14544 strings out of 467525
  296484 string characters out of 5418983
- 696964 words of memory out of 5000000
+ 696963 words of memory out of 5000000
  43201 multiletter control sequences out of 15000+600000
  640497 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,104p,597b,765s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,442b,765s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
 /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
@@ -771,7 +778,7 @@ ist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2026/texmf-dis
 t/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2026/texmf-dist/
 fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2026/texmf-dist/fo
 nts/type1/public/cm-super/sftt1000.pfb>
-Output written on main.pdf (16 pages, 439662 bytes).
+Output written on main.pdf (16 pages, 440972 bytes).
 PDF statistics:
  250 PDF objects out of 1000 (max. 8388607)
  117 compressed objects within 2 object streams

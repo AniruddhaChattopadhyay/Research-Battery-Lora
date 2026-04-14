@@ -128,6 +128,8 @@ complementary settings: DICE-BENCH exercises conversational multi-turn dialogues
 while BFCL tests single-turn tool calls across diverse APIs.
 
 Broader tool-use work has focused on scaling tool coverage and agent behavior rather
+than on robustness under interface changes.
+
 This setting also connects to software-engineering work on API evolution and
 contract checking. AutoGuard, for example, compares OpenAPI descriptions across
 versions and flags changes to methods, parameters, responses, and schemas
@@ -209,12 +211,8 @@ Figure~\ref{fig:pipeline} sketches the full pipeline.
 \draw[arrow] (repairmodel) -- (output);
 \end{tikzpicture}
 }
-\caption{\method pipeline. The base model receives user context and drifted tool
-definitions. If the emitted tool call fails validation, a repair call is issued
-with structured validation errors. In the primary non-oracle protocol, missing tool
-names are first resolved by retrying over the visible candidate tools; once a
-visible target tool is resolved, a repair step may be constrained to that selected
-tool where provider support allows.}
+\caption{\method pipeline. Invalid tool calls trigger structured validation and
+constrained repair; missing tool names are first resolved via candidate-set retry.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -345,12 +343,7 @@ originally-correct slice.
 
 \begin{table}[t]
 \caption{Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with
-oracle-constrained upper bounds for reference. Rows come from separate completed
-runs on the same fixed benchmark slices, so Original scores may differ slightly
-across protocols. Brackets give 95\% bootstrap
-confidence intervals (seed~42). OC = originally-correct count;
-Rec = recoveries on drift-induced failures; Harms = repair harms on
-originally-correct slice; Trig\% = repair trigger rate.}
+oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42).}
 \label{tab:main-results}
 \centering
 \scriptsize
@@ -370,15 +363,17 @@ Benchmark & Protocol & Orig. [95\% CI] & Drift. [95\% CI] & Repair [95\% CI] & O
 \bottomrule
 \end{tabular}
 }
+\par\smallskip\raggedright\scriptsize
+OC\,=\,originally-correct count; Rec\,=\,recoveries on drift-induced failures;
+Harms\,=\,repair harms on originally-correct slice; Trig\%\,=\,repair trigger rate.
+Rows come from separate runs, so Original scores may differ slightly across protocols.
 \end{table}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.9\linewidth]{figures/accuracy_bars.pdf}
-\caption{Oracle-constrained upper-bound DICE sweep across the four evaluated
-models. We retain these runs as secondary cross-model context; the paper's primary
-deployment-facing evidence is the non-oracle Qwen3.5-9B protocol in
-Table~\ref{tab:main-results}.}
+\caption{Oracle-constrained upper-bound DICE sweep across four models. Primary
+evidence is the non-oracle protocol in Table~\ref{tab:main-results}.}
 \label{fig:accuracy-bars}
 \end{figure}
 
@@ -446,9 +441,8 @@ repaired-vs-naive contrast is highly significant on both benchmarks
 (exact McNemar $p=4.1\times 10^{-9}$ on DICE; $p=1.1\times 10^{-13}$ on BFCL).
 
 \begin{table}[t]
-\caption{Baselines vs the primary non-oracle \method protocol on Qwen3.5-9B.
-Tool-list re-prompt tells the model the call was invalid and lists available
-tool names but provides no validation errors or canonical card.}
+\caption{Baselines vs \method on Qwen3.5-9B (non-oracle). Scores from separate
+runs; minor differences from Table~\ref{tab:main-results} reflect run-level variance.}
 \label{tab:naive-retry}
 \centering
 \small
@@ -518,11 +512,8 @@ source of damage, and non-oracle repair stays close to the earlier oracle upper
 bounds.
 
 \begin{table}[t]
-\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Orig./Drift. scores come
-from the base model. Because every baseline DICE task has a singleton candidate
-set, the description-only and schema-only repair rows are identical under
-oracle-target and predicted-tool repair; only the distractor-bearing rows require
-fresh non-oracle repair numbers.}
+\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks
+make description/schema-only repair equivalent to oracle-target.}
 \label{tab:drift-ablation}
 \centering
 \small
@@ -541,9 +532,8 @@ Candidate-set only   & 0.757 & 0.710 & 0.817 & $-0.047$ \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.82\linewidth]{figures/drift_ablation.pdf}
-\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Description-only and
-schema-only drift cause negligible accuracy drops. Adding distractor tools
-reproduces essentially all of the damage of the full combined drift.}
+\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools
+account for nearly all drift damage; description and schema drift are negligible.}
 \label{fig:drift-ablation}
 \end{figure}
 
@@ -652,9 +642,8 @@ the paper's reported recovery rates are a lower bound: a lenient evaluator
 would count most of the unrecovered cases as correct.
 
 \begin{table}[t]
-\caption{Compact summary of unrecovered oracle-constrained DICE cases on the
-three non-primary models. ``Artifact'' includes formatting/paraphrase mismatches
-that appear semantically correct under manual inspection.}
+\caption{Unrecovered oracle-constrained DICE cases on non-primary models.
+``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection.}
 \label{tab:unrecovered-summary}
 \centering
 \small
@@ -784,6 +773,12 @@ the main claim, but the cleanest successful non-oracle evidence is still
 concentrated in the Qwen family. The paper should therefore be read as a
 controlled study of drift sensitivity and inference-time repair rather than as a
 complete account of production interface drift.
+
+\paragraph{Broader impact.}
+The same repair stack that recovers benign drift could in principle mask adversarial
+tool injection, where a malicious distractor tool is added to the candidate set.
+Practitioners deploying inference-time repair should pair it with provenance checks
+on newly added tools.
 
 \paragraph{GenAI disclosure.}
 Generative AI tools (Claude, ChatGPT) were used during manuscript preparation for
