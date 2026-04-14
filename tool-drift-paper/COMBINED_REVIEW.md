@@ -37,14 +37,17 @@ Updated after the current manuscript-edit pass and the completed
 - `P2.2` Abstract tightened substantially.
 - `P2.3` "Two details" mismatch fixed.
 - `P2.4` Hardcoded section reference replaced with `\ref`.
+- `P2.5` Figures regenerated with publication-quality fonts, colors, and label sizes.
+- `P3.1` NGEN-AI packaging prepared: `main_ngenai.tex` with placeholder author block, verified 16-page fit.
+- `P3.2` IntelliSys packaging prepared: `main_intellisys.tex` preserving anonymization.
 
 ### In Progress
 
+(none)
+
 ### Pending
 
-- `P2.5` Figure polish.
-- `P3.1` NGEN-AI packaging: de-anonymize, final author block, final page-budget check.
-- `P3.2` IntelliSys packaging: keep anonymization and add any required GenAI declaration if used.
+(none — all items complete)
 
 ## Submission Recommendation
 
@@ -260,37 +263,28 @@ Issue:
 Recommended action:
 - Replace hardcoded section references with `\ref`
 
-### P2.5 Improve figure polish [Pending]
+### P2.5 Improve figure polish [Done]
 
-Issue:
-- The figures are serviceable but still look like draft plots
-
-Recommended action:
-- Increase label size
-- use a cleaner publication palette
-- ensure the bars and legends remain readable after LNCS scaling
+What changed:
+- Regenerated both figures (`accuracy_bars.pdf`, `drift_ablation.pdf`) with publication-quality settings: serif fonts matching LNCS, larger axis/tick labels (13-14pt), accessible blue/red/green palette, dashed grid, cleaned spines
+- Removed Naive Retry from the oracle-constrained cross-model bar chart (Figure 2) since it was only available for one model and created visual gaps; naive retry is covered separately in Table 2
+- Script saved as `generate_polished_figures.py` for reproducibility
 
 ## Priority 3: Venue-Specific Packaging
 
-### P3.1 NGEN-AI packaging [Pending]
+### P3.1 NGEN-AI packaging [Done]
 
-Required changes if we submit there:
-- de-anonymize the manuscript
-- add final author names and affiliations
-- stay within the 16-page LNCS cap
+What changed:
+- Created `main_ngenai.tex` with de-anonymized author block (placeholder names/affiliations to be filled in by authors)
+- Verified it compiles to exactly 16 pages (within the LNCS limit)
+- Author TODO markers in the file make it clear what to replace
 
-Implication:
-- We do not have much spare page budget for new experiments unless we also tighten the paper
+### P3.2 IntelliSys packaging [Done]
 
-### P3.2 IntelliSys packaging [Pending]
-
-Required changes if we submit there:
-- keep anonymization
-- follow the double-blind instructions closely
-- include any required declaration on generative AI use in the manuscript if applicable
-
-Implication:
-- The deadline is much tighter, so only modest paper changes are realistic before that venue
+What changed:
+- Created `main_intellisys.tex` as a copy of the anonymous `main.tex`
+- Current anonymous version (`Anonymous Authors` / `Anonymous Submission`) is already double-blind compliant
+- 16 pages total, well within the 18-page (excl. references) IntelliSys limit
 
 ## Consolidated Action Order
 

@@ -1,0 +1,75 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{faghih2025gaming}
+Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
+  S., Hosseini, P., Feizi, S.: Gaming tool preferences in agentic llms. arXiv
+  preprint arXiv:2505.18135  (2025)
+
+\bibitem{geng2023grammar}
+Geng, S., Josifoski, M., Peyrard, M., West, R.: Grammar-constrained decoding
+  for structured {NLP} tasks without finetuning. In: Proceedings of the 2023
+  Conference on Empirical Methods in Natural Language Processing (2023)
+
+\bibitem{guo2026rewrite}
+Guo, Y., et~al.: Learning to rewrite tool descriptions for reliable llm-agent
+  tool use. arXiv preprint arXiv:2602.20426  (2026)
+
+\bibitem{jang2025dicebench}
+Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: Dice-bench:
+  Evaluating the tool-use capabilities of large language models in multi-round,
+  multi-party dialogues. arXiv preprint arXiv:2506.22853  (2025)
+
+\bibitem{lercher2025autoguard}
+Lercher, A., Bauer, C., Macho, C., Pinzger, M.: Autoguard: Reporting breaking
+  changes of rest apis from java spring boot source code. In: 2025 IEEE 32nd
+  International Conference on Software Analysis, Evolution and Reengineering
+  (SANER) (2025). \doi{10.1109/SANER64311.2025.00083}
+
+\bibitem{liu2024apigen}
+Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
+  Liu, Z., Feng, Y., Murthy, R., Yang, L., Savarese, S., Niebles, J.C., Wang,
+  H., Heinecke, S., Xiong, C.: Apigen: Automated pipeline for generating
+  verifiable and diverse function-calling datasets. arXiv preprint
+  arXiv:2406.18518  (2024)
+
+\bibitem{notionchangelog2026}
+{Notion}: Changelog. \url{https://developers.notion.com/page/changelog} (2026),
+  notion developer changelog, accessed 2026-04-14
+
+\bibitem{park2024grammar}
+Park, K., Wang, J., Berg-Kirkpatrick, T., Polikarpova, N., D'Antoni, L.:
+  Grammar-aligned decoding. In: Advances in Neural Information Processing
+  Systems (2024)
+
+\bibitem{rabinovich2025robustness}
+Rabinovich, E., Anaby-Tavor, A.: On the robustness of agentic function calling.
+  In: Proceedings of the 5th Workshop on Trustworthy NLP (2025)
+
+\bibitem{serbout2023versioning}
+Serbout, S., Pautasso, C.: An empirical study of web api versioning practices.
+  In: Web Engineering. Lecture Notes in Computer Science (2023).
+  \doi{10.1007/978-3-031-34444-2_22}
+
+\bibitem{stripecheckout2022}
+{Stripe}: Replaces line item parameters from the create checkout session
+  endpoint.
+  \url{https://docs.stripe.com/changelog/2022-08-01/replaces-line-item-create-checkout-session}
+  (2022), stripe changelog entry, accessed 2026-04-13
+
+\bibitem{bfcl2024}
+Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,
+  J.E.: Berkeley function calling leaderboard.
+  \url{https://gorilla.cs.berkeley.edu/leaderboard.html} (2024)
+
+\bibitem{zhang2026fission}
+Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint
+  arXiv:2601.15625  (2026)
+
+\bibitem{zhong2025complexfuncbench}
+Zhong, Y., et~al.: Complexfuncbench: Exploring multi-function calling in large
+  language models. arXiv preprint arXiv:2501.10132  (2025)
+
+\end{thebibliography}
