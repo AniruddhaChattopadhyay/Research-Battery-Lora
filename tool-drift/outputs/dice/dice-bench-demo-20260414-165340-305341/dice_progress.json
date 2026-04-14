@@ -1,0 +1,15 @@
+{
+  "run_id": "dice-bench-demo-20260414-165340-305341",
+  "status": "completed",
+  "completed": 300,
+  "total": 300,
+  "current_task_id": null,
+  "updated_at": "2026-04-14T11:23:40.750063+00:00",
+  "scores_so_far": {
+    "original": 1,
+    "drifted": 0.3333333333333333,
+    "repaired": 0.3333333333333333
+  },
+  "repair_triggered_count": 200,
+  "repair_target_unresolved_count": 0
+}

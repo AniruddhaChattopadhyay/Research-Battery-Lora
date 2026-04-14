@@ -1,0 +1,15 @@
+{
+  "run_id": "bfcl-live-20260414-170241-830717",
+  "status": "completed",
+  "completed": 200,
+  "total": 200,
+  "current_task_id": null,
+  "updated_at": "2026-04-14T12:33:25.030878+00:00",
+  "scores_so_far": {
+    "original": 0.805,
+    "drifted": 0.59,
+    "repaired": 0.795
+  },
+  "repair_triggered_count": 61,
+  "repair_target_unresolved_count": 5
+}

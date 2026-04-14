@@ -16,7 +16,7 @@ if str(CURRENT) not in sys.path:
 
 from benchmarks.bfcl_adapter import load_bfcl_tasks
 from defense.canonicalizer import render_canonical_tool_card
-from defense.repair_prompt import build_candidate_repair_prompt, build_repair_prompt
+from defense.repair_prompt import build_candidate_repair_prompt, build_repair_prompt, build_tool_list_reprompt
 from defense.repair_targeting import resolve_repair_target
 from defense.validator import validate_tool_call
 from drift.pipeline import apply_drift_pipeline, build_drifted_toolset, candidate_count_for_severity, resolve_mode_sequence
@@ -444,6 +444,21 @@ def build_summary(results: list[dict[str, Any]], *, demo: bool, output_dir: Path
         summary["naive_retry_score_on_originally_correct"] = naive_on_correct
         summary["avg_naive_retry_latency_ms"] = avg_naive_retry_latency_ms
 
+    has_reprompt = any("tool_list_reprompt_match" in record for record in results)
+    if has_reprompt:
+        reprompt_score = accuracy(
+            record["tool_list_reprompt_match"]["matched"]
+            for record in results
+            if "tool_list_reprompt_match" in record
+        )
+        reprompt_on_correct = accuracy(
+            record["tool_list_reprompt_match"]["matched"]
+            for record in originally_correct
+            if "tool_list_reprompt_match" in record
+        )
+        summary["tool_list_reprompt_score"] = reprompt_score
+        summary["tool_list_reprompt_score_on_originally_correct"] = reprompt_on_correct
+
     return summary
 
 
@@ -458,6 +473,7 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
     sample_count = int(config.get("evaluation", {}).get("sample_count", 8))
     eval_cfg = config.get("evaluation", {})
     run_naive_retry = bool(eval_cfg.get("run_naive_retry", False))
+    run_tool_list_reprompt = bool(eval_cfg.get("run_tool_list_reprompt", False))
     ablation_mode = str(eval_cfg.get("ablation_mode", "full"))
     use_repair = bool(eval_cfg.get("use_repair", True)) and ablation_mode != "card_only"
     repair_target_mode = str(eval_cfg.get("repair_target_mode", "oracle_target"))
@@ -662,6 +678,24 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
                 record["naive_retry_match"] = compare_tool_calls(naive_call, drifted_gold_call, drifted_eval_tool)
                 record["token_usage"]["naive_retry_tokens"] = naive_usage.get("total_tokens", 0)
                 record["latency_ms"]["naive_retry"] = (time.perf_counter() - naive_start) * 1000.0
+
+            if run_tool_list_reprompt and not demo:
+                if not validation.valid:
+                    reprompt_start = time.perf_counter()
+                    reprompt_prompt = build_tool_list_reprompt(task, tools)
+                    reprompt_call, reprompt_usage = predict_call(
+                        prompt=reprompt_prompt,
+                        tools=tools,
+                        config=config,
+                        demo=demo,
+                    )
+                    record["tool_list_reprompt_call"] = reprompt_call
+                    record["tool_list_reprompt_match"] = compare_tool_calls(reprompt_call, drifted_gold_call, drifted_eval_tool)
+                    record["token_usage"]["tool_list_reprompt_tokens"] = reprompt_usage.get("total_tokens", 0)
+                    record["latency_ms"]["tool_list_reprompt"] = (time.perf_counter() - reprompt_start) * 1000.0
+                else:
+                    record["tool_list_reprompt_call"] = call
+                    record["tool_list_reprompt_match"] = drifted_match
 
             results.append(record)
             print(

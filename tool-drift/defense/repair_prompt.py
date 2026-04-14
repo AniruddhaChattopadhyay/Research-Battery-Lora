@@ -74,6 +74,29 @@ def build_repair_prompt_no_card(
     )
 
 
+def build_tool_list_reprompt(
+    task: Mapping[str, Any],
+    tools: list[Mapping[str, Any]],
+) -> str:
+    """Minimal re-prompt baseline: tells the model the call was invalid and lists
+    available tool names, but provides no canonical card, no validation errors,
+    and no view of the invalid call.  Used to isolate whether gains come from
+    structured feedback vs. simply flagging the error and listing tools."""
+    tool_names = [str(tool.get("name", "tool")) for tool in tools]
+    return "\n".join(
+        [
+            "Your previous tool call was invalid. Please try again.",
+            "",
+            f"Task: {task.get('prompt', '')}",
+            "",
+            "Available tools:",
+            *[f"- {name}" for name in tool_names],
+            "",
+            "Select the correct tool and provide the required arguments.",
+        ]
+    )
+
+
 def build_candidate_repair_prompt(
     task: Mapping[str, Any],
     tools: list[Mapping[str, Any]],

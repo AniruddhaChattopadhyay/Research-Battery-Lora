@@ -1,0 +1,9 @@
+{
+  "run_id": "bfcl-live-20260414-165433-542119",
+  "status": "failed",
+  "completed": 0,
+  "total": 200,
+  "current_task_id": "simple_python_1",
+  "updated_at": "2026-04-14T11:30:37.028431+00:00",
+  "error": "RuntimeError: OpenRouter request failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+}

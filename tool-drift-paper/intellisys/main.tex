@@ -427,29 +427,37 @@ and average repair-call latency when repair fires is $13.0$s. With a $27.0\%$
 repair trigger rate on that rerun, this corresponds to roughly $3.5$s expected
 added latency per example.
 
-\subsection{Naive Retry Does Not Explain the Gains}
+\subsection{Baselines Do Not Explain the Gains}
 \label{sec:naive-retry}
 A first-order alternative explanation is that repair works simply because the model
-gets a second attempt. We test this by running a \emph{naive retry} call that uses
-the same drifted tools but without the canonical card or the validation error
-report. Table~\ref{tab:naive-retry} shows that naive retry remains far below
-structured repair: $0.707$ vs $0.813$ on DICE and $0.585$ vs $0.805$ on BFCL.
-Naive retry is therefore insufficient to explain the gains, even though it is nearly
-flat with drifted performance on BFCL. The paired repaired-vs-naive contrast is
-also highly significant on both benchmarks (exact McNemar $p=4.1\times 10^{-9}$
-on DICE; $p=1.1\times 10^{-13}$ on BFCL).
+gets a second attempt. We test this with two baselines
+(Table~\ref{tab:naive-retry}). \emph{Naive retry} re-runs the identical drifted
+prompt with no new information. \emph{Tool-list re-prompt} tells the model the
+call was invalid and lists the available tool names, but provides no canonical
+card, no validation errors, and no view of the invalid call. This second baseline
+isolates whether simply flagging the error and listing tools explains the gains.
+
+Neither baseline approaches \method. Naive retry reaches $0.727$ on DICE and
+$0.610$ on BFCL; tool-list re-prompt improves only marginally to $0.753$ and
+$0.625$ respectively. Both remain far below \method ($0.813$ and $0.795$).
+The structured validation feedback---not merely knowing which tools are
+available---is therefore the load-bearing component. The paired
+repaired-vs-naive contrast is highly significant on both benchmarks
+(exact McNemar $p=4.1\times 10^{-9}$ on DICE; $p=1.1\times 10^{-13}$ on BFCL).
 
 \begin{table}[t]
-\caption{Naive retry vs the primary non-oracle \method protocol on Qwen3.5-9B.}
+\caption{Baselines vs the primary non-oracle \method protocol on Qwen3.5-9B.
+Tool-list re-prompt tells the model the call was invalid and lists available
+tool names but provides no validation errors or canonical card.}
 \label{tab:naive-retry}
 \centering
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Benchmark & Drifted & Naive Retry & \method & $\Delta$ over Drifted \\
+Benchmark & Drifted & Naive Retry & Tool-List Re-prompt & \method & $\Delta$ over Drifted \\
 \midrule
-DICE-300   & 0.717 & 0.707 & \textbf{0.813} & $+0.097$ \\
-BFCL-200   & 0.580 & 0.585 & \textbf{0.805} & $+0.225$ \\
+DICE-300   & 0.713 & 0.727 & 0.753 & \textbf{0.813} & $+0.100$ \\
+BFCL-200   & 0.590 & 0.610 & 0.625 & \textbf{0.795} & $+0.205$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -776,6 +784,11 @@ the main claim, but the cleanest successful non-oracle evidence is still
 concentrated in the Qwen family. The paper should therefore be read as a
 controlled study of drift sensitivity and inference-time repair rather than as a
 complete account of production interface drift.
+
+\paragraph{GenAI disclosure.}
+Generative AI tools (Claude, ChatGPT) were used during manuscript preparation for
+drafting assistance and code review. All AI-generated content was reviewed, edited,
+and verified by the authors, who take full responsibility for the final text.
 
 \bibliographystyle{splncs04}
 \bibliography{references}
