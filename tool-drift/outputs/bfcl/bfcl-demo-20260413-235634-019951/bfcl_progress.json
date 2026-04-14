@@ -1,0 +1,15 @@
+{
+  "run_id": "bfcl-demo-20260413-235634-019951",
+  "status": "completed",
+  "completed": 20,
+  "total": 20,
+  "current_task_id": null,
+  "updated_at": "2026-04-13T18:26:34.074649+00:00",
+  "scores_so_far": {
+    "original": 1,
+    "drifted": 0,
+    "repaired": 0
+  },
+  "repair_triggered_count": 20,
+  "repair_target_unresolved_count": 0
+}

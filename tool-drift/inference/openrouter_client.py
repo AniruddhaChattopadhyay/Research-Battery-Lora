@@ -163,7 +163,7 @@ def _retry_delay_seconds(
         metadata = error.get("metadata", {})
         if isinstance(metadata, dict):
             retry_after_seconds = metadata.get("retry_after_seconds")
-            if isinstance(retry_after_seconds, int | float):
+            if isinstance(retry_after_seconds, (int, float)):
                 return max(float(retry_after_seconds), 0.0)
 
     return min(2**attempt, 60.0)

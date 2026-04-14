@@ -1,0 +1,15 @@
+{
+  "run_id": "dice-bench-live-20260414-081634-817770",
+  "status": "completed",
+  "completed": 300,
+  "total": 300,
+  "current_task_id": null,
+  "updated_at": "2026-04-14T03:47:08.777562+00:00",
+  "scores_so_far": {
+    "original": 0.76,
+    "drifted": 0.73,
+    "repaired": 0.8166666666666667
+  },
+  "repair_triggered_count": 42,
+  "repair_target_unresolved_count": 17
+}

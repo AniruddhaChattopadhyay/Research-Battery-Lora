@@ -1,0 +1,16 @@
+{
+  "run_id": "dice-bench-live-20260414-081207-541909",
+  "status": "failed",
+  "completed": 3,
+  "total": 300,
+  "current_task_id": "dice_round_1_3",
+  "updated_at": "2026-04-14T02:43:02.002897+00:00",
+  "error": "unsupported operand type(s) for |: 'type' and 'type'",
+  "scores_so_far": {
+    "original": 1,
+    "drifted": 1,
+    "repaired": 1
+  },
+  "repair_triggered_count": 0,
+  "repair_target_unresolved_count": 0
+}

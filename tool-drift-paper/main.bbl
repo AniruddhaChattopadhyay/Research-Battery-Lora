@@ -8,10 +8,10 @@ Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
   S., Hosseini, P., Feizi, S.: Gaming tool preferences in agentic llms. arXiv
   preprint arXiv:2505.18135  (2025)
 
-\bibitem{githubbreaking2026}
-{GitHub}: Breaking changes.
-  \url{https://docs.github.com/en/rest/about-the-rest-api/breaking-changes}
-  (2026), gitHub REST API documentation, accessed 2026-04-13
+\bibitem{geng2023grammar}
+Geng, S., Josifoski, M., Peyrard, M., West, R.: Grammar-constrained decoding
+  for structured {NLP} tasks without finetuning. In: Proceedings of the 2023
+  Conference on Empirical Methods in Natural Language Processing (2023)
 
 \bibitem{guo2026rewrite}
 Guo, Y., et~al.: Learning to rewrite tool descriptions for reliable llm-agent
@@ -35,20 +35,23 @@ Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
   verifiable and diverse function-calling datasets. arXiv preprint
   arXiv:2406.18518  (2024)
 
-\bibitem{patil2023gorilla}
-Patil, S.G., Zhang, T., Wang, X., Gonzalez, J.E.: Gorilla: Large language model
-  connected with massive apis. arXiv preprint arXiv:2305.15334  (2023)
+\bibitem{notionchangelog2026}
+{Notion}: Changelog. \url{https://developers.notion.com/page/changelog} (2026),
+  notion developer changelog, accessed 2026-04-14
 
-\bibitem{qin2023toolllm}
-Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang,
-  X., Qian, B., Zhao, S., Hong, L., Tian, R., Xie, R., Zhou, J., Gerstein, M.,
-  Li, D., Liu, Z., Sun, M.: Toolllm: Facilitating large language models to
-  master 16000+ real-world apis. arXiv preprint arXiv:2307.16789  (2023)
+\bibitem{park2024grammar}
+Park, K., Wang, J., Berg-Kirkpatrick, T., Polikarpova, N., D'Antoni, L.:
+  Grammar-aligned decoding. In: Advances in Neural Information Processing
+  Systems (2024)
 
-\bibitem{shinn2023reflexion}
-Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., Yao, S.:
-  Reflexion: Language agents with verbal reinforcement learning. arXiv preprint
-  arXiv:2303.11366  (2023)
+\bibitem{rabinovich2025robustness}
+Rabinovich, E., Anaby-Tavor, A.: On the robustness of agentic function calling.
+  In: Proceedings of the 5th Workshop on Trustworthy NLP (2025)
+
+\bibitem{serbout2023versioning}
+Serbout, S., Pautasso, C.: An empirical study of web api versioning practices.
+  In: Web Engineering. Lecture Notes in Computer Science (2023).
+  \doi{10.1007/978-3-031-34444-2_22}
 
 \bibitem{stripecheckout2022}
 {Stripe}: Replaces line item parameters from the create checkout session
@@ -56,20 +59,10 @@ Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., Yao, S.:
   \url{https://docs.stripe.com/changelog/2022-08-01/replaces-line-item-create-checkout-session}
   (2022), stripe changelog entry, accessed 2026-04-13
 
-\bibitem{stripedefaultvalue2025}
-{Stripe}: Adds default value to custom fields on payment links.
-  \url{https://docs.stripe.com/changelog/basil/2025-03-31/default-value-payment-links-custom-fields}
-  (2025), stripe changelog entry, accessed 2026-04-13
-
 \bibitem{bfcl2024}
 Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,
   J.E.: Berkeley function calling leaderboard.
   \url{https://gorilla.cs.berkeley.edu/leaderboard.html} (2024)
-
-\bibitem{yao2022react}
-Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.: React:
-  Synergizing reasoning and acting in language models. arXiv preprint
-  arXiv:2210.03629  (2022)
 
 \bibitem{zhang2026fission}
 Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 from copy import deepcopy
+from datetime import datetime, timezone
 from pathlib import Path
 import time
 from typing import Any
@@ -28,6 +29,40 @@ from inference.openrouter_client import (
     request_tool_call_with_payload,
 )
 from scripts.common import adapt_gold_call_to_tool, build_example_call, dump_json, load_yaml, prepare_output_dir, synthetic_tools
+
+
+def dump_progress(
+    output_dir: Path,
+    *,
+    run_id: str,
+    status: str,
+    completed: int,
+    total: int,
+    results: list[dict[str, Any]] | None = None,
+    current_task_id: str | None = None,
+    error: str | None = None,
+) -> None:
+    payload: dict[str, Any] = {
+        "run_id": run_id,
+        "status": status,
+        "completed": completed,
+        "total": total,
+        "current_task_id": current_task_id,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    if error is not None:
+        payload["error"] = error
+    if results:
+        payload["scores_so_far"] = {
+            "original": accuracy(record["original_match"]["matched"] for record in results),
+            "drifted": accuracy(record["drifted_match"]["matched"] for record in results),
+            "repaired": accuracy(record["repaired_match"]["matched"] for record in results),
+        }
+        payload["repair_triggered_count"] = sum(1 for record in results if record.get("repair_used"))
+        payload["repair_target_unresolved_count"] = sum(
+            1 for record in results if not record.get("repair_target_resolved", True)
+        )
+    dump_json(output_dir / "bfcl_progress.json", payload)
 
 
 def synthetic_tasks(kind: str, sample_count: int) -> list[dict[str, Any]]:
@@ -429,192 +464,253 @@ def run(config: dict[str, Any], demo: bool = False) -> dict[str, Any]:
     unresolved_repair_mode = str(eval_cfg.get("unresolved_repair_mode", "skip"))
 
     output_dir, run_id = prepare_output_dir(config, demo)
+    print(
+        f"[bfcl] start run_id={run_id} model={config.get('model', {}).get('name', '')} "
+        f"output_dir={output_dir}",
+        flush=True,
+    )
+    dump_progress(output_dir, run_id=run_id, status="starting", completed=0, total=sample_count)
     if demo:
         tasks = synthetic_tasks("bfcl", sample_count)
     else:
         tasks = load_bfcl_tasks(config)
         tasks = tasks[:sample_count]
+    total_tasks = len(tasks)
+    print(
+        f"[bfcl] loaded tasks total={total_tasks} repair_target_mode={repair_target_mode} "
+        f"unresolved_repair_mode={unresolved_repair_mode}",
+        flush=True,
+    )
+    dump_progress(output_dir, run_id=run_id, status="running", completed=0, total=total_tasks)
     results = []
+    current_task_id: str | None = None
 
-    for task in tasks:
-        original_tools = prepare_original_tools(task)
-        original_start = time.perf_counter()
-        original_call, original_usage = predict_call(
-            prompt=task["prompt"],
-            tools=original_tools,
-            config=config,
-            demo=demo,
-        )
-        original_latency_ms = (time.perf_counter() - original_start) * 1000.0
+    try:
+        for index, task in enumerate(tasks, start=1):
+            current_task_id = str(task["id"])
+            print(f"[bfcl] [{index}/{total_tasks}] start task={current_task_id}", flush=True)
 
-        drifted_tool, tools = prepare_drifted_tools(task, config)
-        drifted_gold_call = adapt_gold_call_to_tool(task["gold_call"], drifted_tool)
-        drifted_eval_tool = drifted_tool
-        candidate_tool_names = [str(candidate.get("name", "")) for candidate in tools]
-
-        drifted_prompt = _maybe_prepend_card(task["prompt"], drifted_eval_tool, ablation_mode)
-
-        if demo:
-            call = deepcopy(original_call)
-            drifted_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
-            drifted_latency_ms = 0.0
-        else:
-            drifted_start = time.perf_counter()
-            call, drifted_usage = predict_call(
-                prompt=drifted_prompt,
-                tools=tools,
+            original_tools = prepare_original_tools(task)
+            original_start = time.perf_counter()
+            original_call, original_usage = predict_call(
+                prompt=task["prompt"],
+                tools=original_tools,
                 config=config,
                 demo=demo,
             )
-            drifted_latency_ms = (time.perf_counter() - drifted_start) * 1000.0
+            original_latency_ms = (time.perf_counter() - original_start) * 1000.0
 
-        repair_target = resolve_repair_target(
-            oracle_tool=drifted_eval_tool,
-            candidate_tools=tools,
-            predicted_call=call,
-            mode=repair_target_mode,
-        )
-        validation = repair_target.validation
-        repair_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
-        repair_latency_ms = 0.0
-        if not use_repair or validation.valid:
-            repaired = call
-            repair_prompt_text = None
-            repair_strategy = "not_needed"
-            repair_debug = None
-        elif (
-            not repair_target.resolved
-            and unresolved_repair_mode == "candidate_retry"
-            and repair_target.source == "missing_tool_name"
-        ):
-            repair_start = time.perf_counter()
-            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_missing_tool_call(
-                task=task,
-                candidate_tools=tools,
-                invalid_call=call,
-                validation=validation,
-                config=config,
-                demo=demo,
-                ablation_mode=ablation_mode,
-            )
+            drifted_tool, tools = prepare_drifted_tools(task, config)
+            drifted_gold_call = adapt_gold_call_to_tool(task["gold_call"], drifted_tool)
+            drifted_eval_tool = drifted_tool
+            candidate_tool_names = [str(candidate.get("name", "")) for candidate in tools]
+
+            drifted_prompt = _maybe_prepend_card(task["prompt"], drifted_eval_tool, ablation_mode)
+
+            if demo:
+                call = deepcopy(original_call)
+                drifted_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+                drifted_latency_ms = 0.0
+            else:
+                drifted_start = time.perf_counter()
+                call, drifted_usage = predict_call(
+                    prompt=drifted_prompt,
+                    tools=tools,
+                    config=config,
+                    demo=demo,
+                )
+                drifted_latency_ms = (time.perf_counter() - drifted_start) * 1000.0
+
             repair_target = resolve_repair_target(
                 oracle_tool=drifted_eval_tool,
                 candidate_tools=tools,
-                predicted_call=repaired,
+                predicted_call=call,
                 mode=repair_target_mode,
             )
-            if repair_target.resolved:
-                repaired_validation = repair_target.validation
-                if not repaired_validation.valid:
-                    forced_repaired, forced_prompt_text, forced_strategy, forced_debug, forced_usage = repair_call(
-                        task=task,
-                        tool=repair_target.tool,
-                        invalid_call=repaired,
-                        validation=repaired_validation,
-                        config=config,
-                        demo=demo,
-                        ablation_mode=ablation_mode,
-                    )
-                    repaired = forced_repaired
-                    repair_prompt_text = f"{repair_prompt_text}\n\n---\n\n{forced_prompt_text}"
-                    repair_strategy = f"{repair_strategy}+{forced_strategy}"
+            validation = repair_target.validation
+            repair_usage: dict[str, int] = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+            repair_latency_ms = 0.0
+            if not use_repair or validation.valid:
+                repaired = call
+                repair_prompt_text = None
+                repair_strategy = "not_needed"
+                repair_debug = None
+            elif (
+                not repair_target.resolved
+                and unresolved_repair_mode == "candidate_retry"
+                and repair_target.source == "missing_tool_name"
+            ):
+                repair_start = time.perf_counter()
+                repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_missing_tool_call(
+                    task=task,
+                    candidate_tools=tools,
+                    invalid_call=call,
+                    validation=validation,
+                    config=config,
+                    demo=demo,
+                    ablation_mode=ablation_mode,
+                )
+                repair_target = resolve_repair_target(
+                    oracle_tool=drifted_eval_tool,
+                    candidate_tools=tools,
+                    predicted_call=repaired,
+                    mode=repair_target_mode,
+                )
+                if repair_target.resolved:
+                    repaired_validation = repair_target.validation
+                    if not repaired_validation.valid:
+                        forced_repaired, forced_prompt_text, forced_strategy, forced_debug, forced_usage = repair_call(
+                            task=task,
+                            tool=repair_target.tool,
+                            invalid_call=repaired,
+                            validation=repaired_validation,
+                            config=config,
+                            demo=demo,
+                            ablation_mode=ablation_mode,
+                        )
+                        repaired = forced_repaired
+                        repair_prompt_text = f"{repair_prompt_text}\n\n---\n\n{forced_prompt_text}"
+                        repair_strategy = f"{repair_strategy}+{forced_strategy}"
+                        repair_debug = {
+                            "candidate_retry": repair_debug,
+                            "forced_followup": forced_debug,
+                        }
+                        for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
+                            repair_usage[key] = repair_usage.get(key, 0) + forced_usage.get(key, 0)
+                else:
                     repair_debug = {
                         "candidate_retry": repair_debug,
-                        "forced_followup": forced_debug,
+                        "post_retry_target_resolution": repair_target.to_dict(),
                     }
-                    for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
-                        repair_usage[key] = repair_usage.get(key, 0) + forced_usage.get(key, 0)
+                repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
+            elif not repair_target.resolved:
+                repaired = call
+                repair_prompt_text = None
+                repair_strategy = "skipped_unresolved_target"
+                repair_debug = {"skip_reason": repair_target.source}
             else:
-                repair_debug = {
-                    "candidate_retry": repair_debug,
-                    "post_retry_target_resolution": repair_target.to_dict(),
-                }
-            repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
-        elif not repair_target.resolved:
-            repaired = call
-            repair_prompt_text = None
-            repair_strategy = "skipped_unresolved_target"
-            repair_debug = {"skip_reason": repair_target.source}
-        else:
-            repair_start = time.perf_counter()
-            repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_call(
-                task=task,
-                tool=repair_target.tool,
-                invalid_call=call,
-                validation=validation,
-                config=config,
-                demo=demo,
-                ablation_mode=ablation_mode,
-            )
-            repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
+                repair_start = time.perf_counter()
+                repaired, repair_prompt_text, repair_strategy, repair_debug, repair_usage = repair_call(
+                    task=task,
+                    tool=repair_target.tool,
+                    invalid_call=call,
+                    validation=validation,
+                    config=config,
+                    demo=demo,
+                    ablation_mode=ablation_mode,
+                )
+                repair_latency_ms = (time.perf_counter() - repair_start) * 1000.0
 
-        repaired_validation = (
-            validate_tool_call(repair_target.tool, repaired)
-            if repair_target.resolved
-            else validation
+            repaired_validation = (
+                validate_tool_call(repair_target.tool, repaired)
+                if repair_target.resolved
+                else validation
+            )
+            original_match = compare_tool_calls(original_call, task["gold_call"], task["tool"])
+            drifted_match = compare_tool_calls(call, drifted_gold_call, drifted_eval_tool)
+            repaired_match = compare_tool_calls(repaired, drifted_gold_call, drifted_eval_tool)
+
+            record: dict[str, Any] = {
+                "id": task["id"],
+                "prompt": task["prompt"],
+                "original_tool": task["tool"]["name"],
+                "original_tool_schema": deepcopy(task["tool"]),
+                "drifted_tool": drifted_eval_tool["name"],
+                "drifted_tool_schema": deepcopy(drifted_eval_tool),
+                "candidate_tool_names": candidate_tool_names,
+                "original_call": original_call,
+                "validation": validation.to_dict(),
+                "repaired_validation": repaired_validation.to_dict(),
+                "repaired_valid": repaired_validation.valid,
+                "repair_used": use_repair and (not validation.valid) and repair_target.resolved,
+                "repair_strategy": repair_strategy,
+                "repair_target_mode": repair_target.mode,
+                "repair_target_source": repair_target.source,
+                "repair_target_resolved": repair_target.resolved,
+                "repair_target": repair_target.to_dict(),
+                "repair_prompt": repair_prompt_text,
+                "repair_debug": repair_debug,
+                "gold_call": task["gold_call"],
+                "drifted_gold_call": drifted_gold_call,
+                "pred_call": call,
+                "repaired_call": repaired,
+                "original_match": original_match,
+                "drifted_match": drifted_match,
+                "repaired_match": repaired_match,
+                "error_type": "clean" if validation.valid else "schema_or_description_drift",
+                "token_usage": {
+                    "original_tokens": original_usage.get("total_tokens", 0),
+                    "drifted_tokens": drifted_usage.get("total_tokens", 0),
+                    "repair_tokens": repair_usage.get("total_tokens", 0),
+                },
+                "latency_ms": {
+                    "original": original_latency_ms,
+                    "drifted": drifted_latency_ms,
+                    "repair": repair_latency_ms,
+                },
+            }
+
+            if run_naive_retry and not demo:
+                naive_start = time.perf_counter()
+                naive_call, naive_usage = predict_call(
+                    prompt=task["prompt"],
+                    tools=tools,
+                    config=config,
+                    demo=demo,
+                )
+                record["naive_retry_call"] = naive_call
+                record["naive_retry_match"] = compare_tool_calls(naive_call, drifted_gold_call, drifted_eval_tool)
+                record["token_usage"]["naive_retry_tokens"] = naive_usage.get("total_tokens", 0)
+                record["latency_ms"]["naive_retry"] = (time.perf_counter() - naive_start) * 1000.0
+
+            results.append(record)
+            print(
+                f"[bfcl] [{index}/{total_tasks}] done task={current_task_id} "
+                f"drifted={int(drifted_match['matched'])} repaired={int(repaired_match['matched'])} "
+                f"strategy={repair_strategy} target_resolved={repair_target.resolved}",
+                flush=True,
+            )
+            dump_progress(
+                output_dir,
+                run_id=run_id,
+                status="running",
+                completed=index,
+                total=total_tasks,
+                results=results,
+                current_task_id=current_task_id,
+            )
+
+        summary = build_summary(results, demo=demo, output_dir=output_dir, run_id=run_id)
+        dump_json(output_dir / "bfcl_results.json", {"summary": summary, "config": config, "results": results})
+        dump_progress(
+            output_dir,
+            run_id=run_id,
+            status="completed",
+            completed=total_tasks,
+            total=total_tasks,
+            results=results,
         )
-        original_match = compare_tool_calls(original_call, task["gold_call"], task["tool"])
-        drifted_match = compare_tool_calls(call, drifted_gold_call, drifted_eval_tool)
-        repaired_match = compare_tool_calls(repaired, drifted_gold_call, drifted_eval_tool)
-
-        record: dict[str, Any] = {
-            "id": task["id"],
-            "prompt": task["prompt"],
-            "original_tool": task["tool"]["name"],
-            "original_tool_schema": deepcopy(task["tool"]),
-            "drifted_tool": drifted_eval_tool["name"],
-            "drifted_tool_schema": deepcopy(drifted_eval_tool),
-            "candidate_tool_names": candidate_tool_names,
-            "original_call": original_call,
-            "validation": validation.to_dict(),
-            "repaired_validation": repaired_validation.to_dict(),
-            "repaired_valid": repaired_validation.valid,
-            "repair_used": use_repair and (not validation.valid) and repair_target.resolved,
-            "repair_strategy": repair_strategy,
-            "repair_target_mode": repair_target.mode,
-            "repair_target_source": repair_target.source,
-            "repair_target_resolved": repair_target.resolved,
-            "repair_target": repair_target.to_dict(),
-            "repair_prompt": repair_prompt_text,
-            "repair_debug": repair_debug,
-            "gold_call": task["gold_call"],
-            "drifted_gold_call": drifted_gold_call,
-            "pred_call": call,
-            "repaired_call": repaired,
-            "original_match": original_match,
-            "drifted_match": drifted_match,
-            "repaired_match": repaired_match,
-            "error_type": "clean" if validation.valid else "schema_or_description_drift",
-            "token_usage": {
-                "original_tokens": original_usage.get("total_tokens", 0),
-                "drifted_tokens": drifted_usage.get("total_tokens", 0),
-                "repair_tokens": repair_usage.get("total_tokens", 0),
-            },
-            "latency_ms": {
-                "original": original_latency_ms,
-                "drifted": drifted_latency_ms,
-                "repair": repair_latency_ms,
-            },
-        }
-
-        if run_naive_retry and not demo:
-            naive_start = time.perf_counter()
-            naive_call, naive_usage = predict_call(
-                prompt=task["prompt"],
-                tools=tools,
-                config=config,
-                demo=demo,
-            )
-            record["naive_retry_call"] = naive_call
-            record["naive_retry_match"] = compare_tool_calls(naive_call, drifted_gold_call, drifted_eval_tool)
-            record["token_usage"]["naive_retry_tokens"] = naive_usage.get("total_tokens", 0)
-            record["latency_ms"]["naive_retry"] = (time.perf_counter() - naive_start) * 1000.0
-
-        results.append(record)
-
-    summary = build_summary(results, demo=demo, output_dir=output_dir, run_id=run_id)
-    dump_json(output_dir / "bfcl_results.json", {"summary": summary, "config": config, "results": results})
-    return {"summary": summary, "results": results}
+        print(
+            f"[bfcl] completed run_id={run_id} output={output_dir / 'bfcl_results.json'}",
+            flush=True,
+        )
+        return {"summary": summary, "results": results}
+    except Exception as exc:
+        dump_progress(
+            output_dir,
+            run_id=run_id,
+            status="failed",
+            completed=len(results),
+            total=total_tasks,
+            results=results,
+            current_task_id=current_task_id,
+            error=f"{type(exc).__name__}: {exc}",
+        )
+        print(
+            f"[bfcl] failed run_id={run_id} task={current_task_id} error={type(exc).__name__}: {exc}",
+            flush=True,
+        )
+        raise
 
 
 def main() -> None:
