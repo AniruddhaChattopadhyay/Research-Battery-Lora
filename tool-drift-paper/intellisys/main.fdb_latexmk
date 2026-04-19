@@ -1,15 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1776606148.1528 "main.aux" "main.bbl" "main" 1776606149.10941 0
-  "./references.bib" 1776171545.19514 6551 e6305d912221e768e342322874516949 ""
-  "./splncs04.bst" 1776163751.60025 32146 aadf770ded437d161532035219ea6f45 ""
-  "main.aux" 1776606148.83149 11374 bff50e58178f31af89b215a37995c875 "pdflatex"
+["bibtex main"] 1776606148.15262 "main.aux" "main.bbl" "main" 1776606149.11276 0
+  "./references.bib" 1776163727.68761 6551 e6305d912221e768e342322874516949 ""
+  "./splncs03.bst" 1776174447.59003 33098 4ef5df5462ae7c3cec476a39dec1b7bb ""
+  "main.aux" 1776606148.83944 11323 eee109d8412b809596468c58fdd9f172 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1776606148.24696 "main.tex" "main.pdf" "main" 1776606149.10973 0
+["pdflatex"] 1776606148.24322 "main.tex" "main.pdf" "main" 1776606149.11294 0
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
-  "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecbx0700.tfm" 1136768653 3584 ca0c423beaacd28d53ddce5a826cd558 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1136768653 3584 1a7de6c99457381c64abc1a7c545505f ""
@@ -23,9 +22,7 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm" 1136768653 3584 3169d30142b88a27d4ab0e3468e963a2 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecti0900.tfm" 1136768653 3072 a603fa6d934ebc72197ed1c389943d86 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm" 1136768653 3072 3bce340d4c075dffe6d4ec732b4c32fe ""
-  "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ectt0900.tfm" 1136768653 1536 ae7aab2f8a4bc9edfce2899f53ba88c3 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1136768653 1536 06717a2b50de47d4087ac0e6cd759455 ""
-  "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/tcrm0900.tfm" 1136768653 1536 c4f439db76ef96a9c53bc437f35ffe20 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1246382020 996 a18840b13b499c08ac2de96a99eda4bc ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -53,7 +50,6 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1215737283 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb" 1215737283 183673 6df73819bb3e1246a6315a4913a2d331 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb" 1215737283 186554 e8f0fa8ca05e038f257a06405232745f ""
-  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb" 1215737283 170827 2e4b634de7b58578eae1dc93e51dfe48 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1215737283 169201 9ebf99020dde51a5086e186761a34e8f ""
   "/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -176,13 +172,13 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1775537343 5573038 b99aad5e4898a9034e953632f940512b ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775537283 3636772 bc571f212ef0797e083df5951fb5f4c0 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "figures/accuracy_bars.pdf" 1776163727.70151 18922 cf5adbef741b0d36035b7ac63b0123f4 ""
-  "figures/drift_ablation.pdf" 1776163727.70119 17615 40307f9ab280a03f5f55128a9bff44c9 ""
-  "llncs.cls" 1776163751.6027 43405 543b73320c367b0229b3cdfcddaedc46 ""
-  "main.aux" 1776606148.83149 11374 bff50e58178f31af89b215a37995c875 "pdflatex"
-  "main.bbl" 1776606148.24451 3230 0db1e7fd5aef2696d92ad790c91b60c7 "bibtex main"
-  "main.out" 1776606148.8323 471 dc071cbc781b8112709101ccc0cb84ae "pdflatex"
-  "main.tex" 1776606141.08419 56243 f08919f500de704a1001f0ec180f4ff0 ""
+  "figures/accuracy_bars.pdf" 1776163727.69113 18922 cf5adbef741b0d36035b7ac63b0123f4 ""
+  "figures/drift_ablation.pdf" 1776163727.69079 17615 40307f9ab280a03f5f55128a9bff44c9 ""
+  "main.aux" 1776606148.83944 11323 eee109d8412b809596468c58fdd9f172 "pdflatex"
+  "main.bbl" 1776606148.24074 3110 158a36ed1a837f11621b4da48f116338 "bibtex main"
+  "main.out" 1776606148.84018 471 dc071cbc781b8112709101ccc0cb84ae "pdflatex"
+  "main.tex" 1776606055.39283 56243 8791fb29d26b97b38029c5c9846683ea ""
+  "svproc.cls" 1776174447.50151 44207 84fdd998887838efe5e0273e7a029560 ""
   (generated)
   "main.aux"
   "main.log"
