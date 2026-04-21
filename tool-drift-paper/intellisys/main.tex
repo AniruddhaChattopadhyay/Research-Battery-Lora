@@ -41,7 +41,7 @@
 
 \begin{abstract}
 Tool-calling language models depend on surface-form tool
-interfaces---descriptions, schemas, and tool lists---that can drift
+interfaces (descriptions, schemas, and tool lists) that can drift
 after deployment even when tool semantics do not. We study this problem as
 \emph{interface drift} and evaluate whether a lightweight, training-free
 inference-time repair layer can recover reliability without retraining.
@@ -50,8 +50,8 @@ when tool names are missing and a one-shot constrained repair call. On our prima
 model (Qwen3.5-9B), it raises DICE-300 accuracy from $0.717$ to $0.813$ and
 BFCL-200 from $0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced
 failures with no observed repair harms. A naive-retry baseline does not explain
-the gains. Ablation reveals that candidate-set drift---adding distractor
-tools---accounts for nearly all observed damage on our DICE slice, while
+the gains. Ablation reveals that candidate-set drift (adding distractor
+tools) accounts for nearly all observed damage on our DICE slice, while
 description and schema edits alone cause negligible degradation. In the
 non-oracle setting, missing tool names emerge as the main repair bottleneck.
 A same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
@@ -454,8 +454,8 @@ isolates whether simply flagging the error and listing tools explains the gains.
 Neither baseline approaches \method. Naive retry reaches $0.727$ on DICE and
 $0.610$ on BFCL; tool-list re-prompt improves only marginally to $0.753$ and
 $0.625$ respectively. Both remain far below \method ($0.813$ and $0.795$).
-The structured validation feedback---not merely knowing which tools are
-available---is therefore the load-bearing component. The paired
+The structured validation feedback, not merely knowing which tools are
+available, is therefore the load-bearing component. The paired
 repaired-vs-naive contrast is highly significant on both benchmarks
 (exact McNemar $p=4.1\times 10^{-9}$ on DICE; $p=1.1\times 10^{-13}$ on BFCL).
 
@@ -517,7 +517,7 @@ Table~\ref{tab:drift-ablation} decomposes the drift pipeline into its three
 components and evaluates each in isolation at DICE-300 on Qwen3.5-9B. Description
 drift alone causes only a $0.013$ point accuracy drop. Schema drift alone causes
 only $0.007$. By contrast, candidate-set drift (adding a distractor tool) causes a
-$0.047$ drop---matching the full combined drift scenario ($0.050$). Because this
+$0.047$ drop, matching the full combined drift scenario ($0.050$). Because this
 ablation is about where the damage comes from, the main interpretation still rests
 on the Original-to-Drifted delta. For the repair column, however, only the
 distractor-bearing rows require fresh non-oracle evidence. In our DICE-300 slice,
@@ -559,7 +559,7 @@ account for nearly all drift damage; description and schema drift are negligible
 
 This result qualifies a common framing in the interface-drift literature. On this
 Qwen3.5-9B DICE-300 ablation, minor description rewording and
-semantics-preserving parameter renames do not meaningfully degrade accuracy---the
+semantics-preserving parameter renames do not meaningfully degrade accuracy; the
 model is evidently robust to this class of surface perturbation. The observed
 failure mode is \emph{candidate-set confusion}: when a distractor tool with an
 overlapping description is added to the candidate set, tool selection degrades.
@@ -603,7 +603,7 @@ Within this oracle-constrained setting, the BFCL rows confirm and \emph{strength
 the DICE finding in three ways.
 First, the canonical card at initial-prediction time provides even stronger
 drift prevention on BFCL than on DICE: the base drifted score of $0.640$ jumps
-to $0.810$---a $17.0$-point drift-prevention effect. Second, the card-only
+to $0.810$, a $17.0$-point drift-prevention effect. Second, the card-only
 configuration still never triggers the validator and recovers zero
 drift-induced failures, because its valid-but-imperfect outputs pass schema
 checking without entering the repair path. Third, validation-plus-retry
@@ -616,8 +616,8 @@ Taken together across both benchmarks, these upper-bound numbers localize the
 load-bearing component of \method to the validation error feedback loop
 combined with tool-constrained repair, not the canonical tool card presented at
 repair time. The card earns its keep as \emph{drift-prevention prompting}
-at the initial prediction step---where BFCL shows it can dominate the
-remaining drift damage---but can be dropped from the repair prompt without
+at the initial prediction step, where BFCL shows it can dominate the
+remaining drift damage, but can be dropped from the repair prompt without
 hurting recovery once the target tool has already been resolved. Because these
 ablations are oracle-constrained, we treat them as upper-bound mechanism evidence
 rather than as a full explanation of non-oracle portability.
@@ -763,7 +763,7 @@ larger empirical change distribution. Fourth, the drift-type and component ablat
 oracle-constrained upper bounds, so their mechanism-level conclusions may not fully
 transfer when non-oracle tool resolution fails. Fifth, evaluation uses hosted
 inference and so may incorporate provider-specific tool-calling behavior. Sixth, the ``repair $>$ original''
-effect indicates that \method is also patching baseline failures---useful in
+effect indicates that \method is also patching baseline failures, useful in
 deployment, but a complication for clean attribution to drift recovery
 specifically. Seventh, strict string-matching against gold calls undercounts true
 recoveries: manual inspection of the $13$ unrecovered cases on the three
