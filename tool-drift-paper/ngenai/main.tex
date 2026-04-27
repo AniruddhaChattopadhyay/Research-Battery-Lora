@@ -305,36 +305,29 @@ the headline Original, Drifted, and Repaired accuracies reported below.
 \SetKwFunction{FValidator}{validator}
 \SetKwFunction{FRepair}{repair}
 \SetKwFunction{FAggregate}{aggregate}
-\SetKwFunction{FRecord}{record}
+\SetKwFunction{FAppend}{append}
 
-\Input{benchmark $\mathcal{B}$; base model; drift configuration $\Delta$;
-       validator; one-shot repair function}
+\Input{benchmark $\mathcal{B}$, model, drift config $\Delta$, validator, repair}
 \Output{Original, Drifted, and Repaired accuracies over $\mathcal{B}$}
-\BlankLine
 
-\ForEach{example $(\textit{user\_context},\, \textit{tool\_interface},\, \textit{gold\_call}) \in \mathcal{B}$}{
-    \tcc{Stage 1: Original (clean interface)}
+$\textit{trace} \leftarrow [\,]$\;
+\ForEach{$(\textit{user\_context},\, \textit{tool\_interface},\, \textit{gold\_call}) \in \mathcal{B}$}{
     $\textit{original\_call} \leftarrow \FModel(\textit{user\_context},\, \textit{tool\_interface})$\;
-    $\textit{is\_original\_correct} \leftarrow \FScore(\textit{original\_call},\, \textit{gold\_call},\, \textit{tool\_interface})$\;
-    \BlankLine
-    \tcc{Stage 2: Drifted (perturb interface, re-express gold call)}
+    $\textit{is\_original\_correct} \leftarrow \FScore(\textit{original\_call},\, \textit{gold\_call})$\;
     $\textit{drifted\_interface} \leftarrow \FApplyDrift(\textit{tool\_interface},\, \Delta)$\;
-    $\textit{drifted\_gold\_call} \leftarrow \FAdaptGold(\textit{gold\_call},\, \textit{drifted\_interface})$\;
+    $\textit{drifted\_gold} \leftarrow \FAdaptGold(\textit{gold\_call},\, \textit{drifted\_interface})$\;
     $\textit{drifted\_call} \leftarrow \FModel(\textit{user\_context},\, \textit{drifted\_interface})$\;
-    $\textit{is\_drifted\_correct} \leftarrow \FScore(\textit{drifted\_call},\, \textit{drifted\_gold\_call},\, \textit{drifted\_interface})$\;
-    \BlankLine
-    \tcc{Stage 3: Repaired (only fires when validation fails)}
+    $\textit{is\_drifted\_correct} \leftarrow \FScore(\textit{drifted\_call},\, \textit{drifted\_gold})$\;
     $\textit{validation} \leftarrow \FValidator(\textit{drifted\_call},\, \textit{drifted\_interface})$\;
     \eIf{$\textit{validation.is\_valid}$}{
-        $\textit{repaired\_call} \leftarrow \textit{drifted\_call}$ \tcp*{pass-through}
+        $\textit{repaired\_call} \leftarrow \textit{drifted\_call}$\;
     }{
-        $\textit{repaired\_call} \leftarrow \FRepair(\textit{user\_context},\, \textit{drifted\_interface},\, \textit{drifted\_call},\, \textit{validation})$\;
+        $\textit{repaired\_call} \leftarrow \FRepair(\textit{drifted\_call},\, \textit{validation})$\;
     }
-    $\textit{is\_repaired\_correct} \leftarrow \FScore(\textit{repaired\_call},\, \textit{drifted\_gold\_call},\, \textit{drifted\_interface})$\;
-    \BlankLine
-    \FRecord{example, is\_original\_correct, is\_drifted\_correct, is\_repaired\_correct}\;
+    $\textit{is\_repaired\_correct} \leftarrow \FScore(\textit{repaired\_call},\, \textit{drifted\_gold})$\;
+    $\FAppend(\textit{trace},\, (\textit{is\_original\_correct},\, \textit{is\_drifted\_correct},\, \textit{is\_repaired\_correct}))$\;
 }
-\Return $\FAggregate(\textit{is\_original\_correct})$, $\FAggregate(\textit{is\_drifted\_correct})$, $\FAggregate(\textit{is\_repaired\_correct})$\;
+\Return $\FAggregate(\textit{trace})$\;
 \caption{Per-example evaluation under interface drift.}
 \label{alg:eval-loop}
 \end{algorithm}
