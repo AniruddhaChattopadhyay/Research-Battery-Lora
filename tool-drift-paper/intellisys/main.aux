@@ -22,73 +22,78 @@
 \citation{serbout2023versioning}
 \citation{liu2024apigen}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{3}{section.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SchemaShield-Lite\xspace  pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry.}}{4}{figure.1}\protected@file@percent }
-\newlabel{fig:pipeline}{{1}{4}{\method pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SchemaShield-Lite\xspace  pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry.}}{4}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline}{{1}{4}{\method pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry}{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Method}{4}{section.4}\protected@file@percent }
 \newlabel{sec:method}{{4}{4}{Method}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}SchemaShield-Lite\xspace  }{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Canonical tool card.}{4}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Validation.}{4}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{One-shot repair.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canonical tool card.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validation.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{One-shot repair.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repair Prompting Details}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Example Evaluation Loop}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:eval-loop}{{4.3}{5}{Per-Example Evaluation Loop}{subsection.4.3}{}}
+\newlabel{alg:eval-loop}{{1}{5}{Per-example evaluation under interface drift}{lstlisting.1.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Per-example evaluation under interface drift.}}{5}{lstlisting.1.1}\protected@file@percent }
 \citation{jang2025dicebench}
 \citation{bfcl2024}
 \citation{notionchangelog2026,stripecheckout2022}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repair Prompting Details}{5}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{5}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmarks and Data Slices}{5}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Models}{5}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Drift Configurations}{5}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Repair Protocols}{6}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Metrics}{6}{subsection.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Release}{6}{subsection.5.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42).}}{7}{table.1}\protected@file@percent }
-\newlabel{tab:main-results}{{1}{7}{Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42)}{table.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}.}}{7}{figure.2}\protected@file@percent }
-\newlabel{fig:accuracy-bars}{{2}{7}{Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmarks and Data Slices}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Models}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Drift Configurations}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Repair Protocols}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Metrics}{7}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Release}{7}{subsection.5.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Results}{7}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Primary Non-Oracle Results}{7}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Oracle upper bounds for context.}{8}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Repair cost overhead.}{8}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baselines Do Not Explain the Gains}{8}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:naive-retry}{{6.2}{8}{Baselines Do Not Explain the Gains}{subsection.6.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Baselines vs SchemaShield-Lite\xspace  on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance.}}{9}{table.2}\protected@file@percent }
-\newlabel{tab:naive-retry}{{2}{9}{Baselines vs \method on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance}{table.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs.}}{9}{table.3}\protected@file@percent }
-\newlabel{tab:gain-decomposition}{{3}{9}{Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{9}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:repair-coverage}{{6.3}{9}{Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{subsection.6.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target.}}{10}{table.4}\protected@file@percent }
-\newlabel{tab:drift-ablation}{{4}{10}{Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target}{table.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools account for nearly all drift damage; description and schema drift are negligible.}}{10}{figure.3}\protected@file@percent }
-\newlabel{fig:drift-ablation}{{3}{10}{Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools account for nearly all drift damage; description and schema drift are negligible}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42).}}{8}{table.caption.6}\protected@file@percent }
+\newlabel{tab:main-results}{{1}{8}{Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42)}{table.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}.}}{8}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:accuracy-bars}{{2}{8}{Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Oracle upper bounds for context.}{9}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repair cost overhead.}{9}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baselines Do Not Explain the Gains}{9}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:naive-retry}{{6.2}{9}{Baselines Do Not Explain the Gains}{subsection.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Baselines vs SchemaShield-Lite\xspace  on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance.}}{10}{table.caption.10}\protected@file@percent }
+\newlabel{tab:naive-retry}{{2}{10}{Baselines vs \method on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs.}}{10}{table.caption.11}\protected@file@percent }
+\newlabel{tab:gain-decomposition}{{3}{10}{Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{10}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:repair-coverage}{{6.3}{10}{Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{subsection.6.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Drift-Type Ablation: Candidate-Set Drift Dominates}{10}{subsection.6.4}\protected@file@percent }
 \newlabel{sec:drift-ablation}{{6.4}{10}{Drift-Type Ablation: Candidate-Set Drift Dominates}{subsection.6.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild.}}{11}{table.5}\protected@file@percent }
-\newlabel{tab:component-ablation}{{5}{11}{Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{11}{subsection.6.5}\protected@file@percent }
-\newlabel{sec:component-ablation}{{6.5}{11}{Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{subsection.6.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target.}}{11}{table.caption.12}\protected@file@percent }
+\newlabel{tab:drift-ablation}{{4}{11}{Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target}{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools account for nearly all drift damage; description and schema drift are negligible.}}{11}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:drift-ablation}{{3}{11}{Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools account for nearly all drift damage; description and schema drift are negligible}{figure.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild.}}{12}{table.caption.14}\protected@file@percent }
+\newlabel{tab:component-ablation}{{5}{12}{Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{12}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:component-ablation}{{6.5}{12}{Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{subsection.6.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Error Analysis}{12}{subsection.6.6}\protected@file@percent }
 \newlabel{sec:error-analysis}{{6.6}{12}{Error Analysis}{subsection.6.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection.}}{13}{table.6}\protected@file@percent }
-\newlabel{tab:unrecovered-summary}{{6}{13}{Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Additional Non-Oracle Replications}{13}{subsection.6.7}\protected@file@percent }
-\newlabel{sec:additional-replications}{{6.7}{13}{Additional Non-Oracle Replications}{subsection.6.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{13}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection.}}{13}{table.caption.15}\protected@file@percent }
+\newlabel{tab:unrecovered-summary}{{6}{13}{Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Additional Non-Oracle Replications}{14}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:additional-replications}{{6.7}{14}{Additional Non-Oracle Replications}{subsection.6.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{14}{section.7}\protected@file@percent }
 \citation{faghih2025gaming}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{14}{section.8}\protected@file@percent }
-\newlabel{sec:limitations}{{8}{14}{Limitations}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{15}{section.8}\protected@file@percent }
+\newlabel{sec:limitations}{{8}{15}{Limitations}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{15}{section.9}\protected@file@percent }
 \bibstyle{splncs03}
 \bibdata{references}
 \bibcite{faghih2025gaming}{1}
 \bibcite{geng2023grammar}{2}
 \bibcite{guo2026rewrite}{3}
 \bibcite{jang2025dicebench}{4}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{15}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Broader impact.}{15}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{GenAI disclosure.}{15}{section*.8}\protected@file@percent }
 \bibcite{lercher2025autoguard}{5}
 \bibcite{liu2024apigen}{6}
 \bibcite{notionchangelog2026}{7}
+\@writefile{toc}{\contentsline {paragraph}{Broader impact.}{16}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GenAI disclosure.}{16}{section*.17}\protected@file@percent }
 \bibcite{park2024grammar}{8}
 \bibcite{rabinovich2025robustness}{9}
 \bibcite{serbout2023versioning}{10}
@@ -96,13 +101,13 @@
 \bibcite{bfcl2024}{12}
 \bibcite{zhang2026fission}{13}
 \bibcite{zhong2025complexfuncbench}{14}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Worked Appendix Cases}{17}{section.app.A}\protected@file@percent }
-\newlabel{app:artifact-guide}{{A}{17}{Worked Appendix Cases}{section.app.A}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}How to read the case studies}{17}{subsection.app.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Case 1: DICE missing-tool-name failure under candidate-set drift}{17}{subsection.app.A.2}\protected@file@percent }
-\newlabel{app:dice-missing-tool}{{A.2}{17}{Case 1: DICE missing-tool-name failure under candidate-set drift}{subsection.app.A.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Case 2: DICE forced-tool repair after partial compliance}{18}{subsection.app.A.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Case 3: DICE limitation when validation sees no structural error}{19}{subsection.app.A.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Case 4: BFCL replication under heavier distractor pressure}{20}{subsection.app.A.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}What the four cases collectively show}{21}{subsection.app.A.6}\protected@file@percent }
-\gdef \@abspage@last{21}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Worked Appendix Cases}{18}{section.app.A}\protected@file@percent }
+\newlabel{app:artifact-guide}{{A}{18}{Worked Appendix Cases}{section.app.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}How to read the case studies}{18}{subsection.app.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Case 1: DICE missing-tool-name failure under candidate-set drift}{18}{subsection.app.A.2}\protected@file@percent }
+\newlabel{app:dice-missing-tool}{{A.2}{18}{Case 1: DICE missing-tool-name failure under candidate-set drift}{subsection.app.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Case 2: DICE forced-tool repair after partial compliance}{19}{subsection.app.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Case 3: DICE limitation when validation sees no structural error}{20}{subsection.app.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Case 4: BFCL replication under heavier distractor pressure}{21}{subsection.app.A.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}What the four cases collectively show}{22}{subsection.app.A.6}\protected@file@percent }
+\gdef \@abspage@last{22}

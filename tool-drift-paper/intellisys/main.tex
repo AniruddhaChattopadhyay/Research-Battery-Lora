@@ -11,6 +11,30 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{caption}
+\renewcommand{\lstlistingname}{Algorithm}
+\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{lstlisting}}}
+\captionsetup[lstlisting]{justification=raggedright,singlelinecheck=false,labelfont=bf,labelsep=period}
+\lstdefinestyle{algopy}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=8pt,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  xleftmargin=1em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}
+\newcommand{\algodoublerule}{%
+  \par\noindent\rule{\linewidth}{0.5pt}\par\nointerlineskip\vspace{1pt}\noindent\rule{\linewidth}{0.5pt}\par
+}
 \usepackage[hidelinks]{hyperref}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
@@ -27,6 +51,7 @@
 \newcommand{\openrouterlink}{\artifactlink{inference/openrouter_client.py}{\nolinkurl{openrouter_client.py}}}
 
 \begin{document}
+\raggedbottom
 \mainmatter
 
 \title{Tool Calling Under Interface Drift: A Non-Oracle Study of Validation and Repair}
@@ -273,6 +298,45 @@ visible tools is needed before tool-constrained repair can fire.
 Raising repair capacity from the earlier default to $512$ tokens fixed truncated
 repair outputs on longer DICE dialogues.
 \end{itemize}
+
+\subsection{Per-Example Evaluation Loop}
+\label{subsec:eval-loop}
+
+Algorithm~\ref{alg:eval-loop} runs each benchmark example through three stages
+(Original, Drifted, Repaired). Drift is injected at one point
+(\texttt{apply\_drift}); the gold call is re-expressed in the renamed schema
+via \texttt{adapt\_gold} before scoring; repair fires only when the validator
+flags the drifted call as invalid. The three per-example booleans are averaged
+over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
+accuracies.
+
+\algodoublerule
+\begin{lstlisting}[style=algopy,caption={Per-example evaluation under interface drift.},label={alg:eval-loop}]
+def evaluate(B, model, delta, validator, repair):
+    trace = []
+    for user_context, tool_interface, gold_call in B:
+        # Stage 1: Original
+        original_call = model(user_context, tool_interface)
+        is_original_correct = score(original_call, gold_call)
+
+        # Stage 2: Drifted
+        drifted_interface = apply_drift(tool_interface, delta)
+        drifted_gold = adapt_gold(gold_call, drifted_interface)
+        drifted_call = model(user_context, drifted_interface)
+        is_drifted_correct = score(drifted_call, drifted_gold)
+
+        # Stage 3: Repaired (only when validation fails)
+        validation = validator(drifted_call, drifted_interface)
+        if validation.is_valid:
+            repaired_call = drifted_call
+        else:
+            repaired_call = repair(drifted_call, validation)
+        is_repaired_correct = score(repaired_call, drifted_gold)
+
+        trace.append((is_original_correct, is_drifted_correct, is_repaired_correct))
+    return aggregate(trace)
+\end{lstlisting}
+\algodoublerule
 
 \section{Experimental Setup}
 \subsection{Benchmarks and Data Slices}
