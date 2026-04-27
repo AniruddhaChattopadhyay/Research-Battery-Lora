@@ -288,10 +288,10 @@ type or severity is used. Because the schema may be renamed, the gold call is
 re-expressed in the renamed schema via \texttt{adapt\_gold} before scoring, so
 a correct prediction under drift uses the new field names rather than the old
 ones. Repair is gated on validation: when the drifted call already validates,
-$\textit{repaired\_call}$ equals $\textit{drifted\_call}$ and Stage~3
+\texttt{repaired\_call} equals \texttt{drifted\_call} and Stage~3
 contributes nothing beyond Stage~2. The three booleans
-$\textit{is\_original\_correct}$, $\textit{is\_drifted\_correct}$, and
-$\textit{is\_repaired\_correct}$ are averaged across the benchmark to produce
+\texttt{is\_original\_correct}, \texttt{is\_drifted\_correct}, and
+\texttt{is\_repaired\_correct} are averaged across the benchmark to produce
 the headline Original, Drifted, and Repaired accuracies reported below.
 
 \begin{algorithm}[t]
