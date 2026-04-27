@@ -278,21 +278,30 @@ repair outputs on longer DICE dialogues.
 \label{subsec:eval-loop}
 
 Algorithm~\ref{alg:eval-loop} summarizes how a single benchmark example flows
-through the three evaluation stages. The same user context is sent through the
-base model up to three times: once on the clean interface (Stage~1), once on
-the drifted interface produced by $\Delta$ (Stage~2), and, only when the
-validator flags the drifted call as invalid, a third time through one-shot
-repair (Stage~3). Drift is injected at exactly one point,
-\texttt{apply\_drift}, so the rest of the loop is independent of which drift
-type or severity is used. Because the schema may be renamed, the gold call is
-re-expressed in the renamed schema via \texttt{adapt\_gold} before scoring, so
-a correct prediction under drift uses the new field names rather than the old
-ones. Repair is gated on validation: when the drifted call already validates,
-\texttt{repaired\_call} equals \texttt{drifted\_call} and Stage~3
-contributes nothing beyond Stage~2. The three booleans
-\texttt{is\_original\_correct}, \texttt{is\_drifted\_correct}, and
-\texttt{is\_repaired\_correct} are averaged across the benchmark to produce
-the headline Original, Drifted, and Repaired accuracies reported below.
+through three evaluation stages. The same user context is sent through the
+base model up to three times:
+
+\begin{itemize}
+\item \textbf{Stage~1 (Original).} The model is queried on the clean
+      interface, producing \texttt{original\_call}.
+\item \textbf{Stage~2 (Drifted).} The interface is perturbed by $\Delta$ and
+      the gold call is re-expressed in the renamed schema via
+      \texttt{adapt\_gold}, so scoring uses the new field names rather than
+      the old ones. The model is re-queried on the drifted interface,
+      producing \texttt{drifted\_call}.
+\item \textbf{Stage~3 (Repaired).} The validator inspects
+      \texttt{drifted\_call}. If it already validates, repair is skipped and
+      \texttt{repaired\_call} equals \texttt{drifted\_call} (Stage~3
+      contributes nothing beyond Stage~2). Otherwise, one-shot repair is
+      invoked.
+\end{itemize}
+
+\noindent Drift is injected at exactly one point, \texttt{apply\_drift}, so the
+rest of the loop is independent of which drift type or severity is used. The
+three per-example booleans \texttt{is\_original\_correct},
+\texttt{is\_drifted\_correct}, and \texttt{is\_repaired\_correct} are averaged
+over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
+accuracies reported below.
 
 \begin{algorithm}[t]
 \DontPrintSemicolon
