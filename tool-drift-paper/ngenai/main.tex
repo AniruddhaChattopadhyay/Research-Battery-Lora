@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage[hidelinks]{hyperref}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
@@ -272,6 +273,71 @@ visible tools is needed before tool-constrained repair can fire.
 Raising repair capacity from the earlier default to $512$ tokens fixed truncated
 repair outputs on longer DICE dialogues.
 \end{itemize}
+
+\subsection{Per-Example Evaluation Loop}
+\label{subsec:eval-loop}
+
+Algorithm~\ref{alg:eval-loop} summarizes how a single benchmark example flows
+through the three evaluation stages. The same user context is sent through the
+base model up to three times: once on the clean interface (Stage~1), once on
+the drifted interface produced by $\Delta$ (Stage~2), and, only when the
+validator flags the drifted call as invalid, a third time through one-shot
+repair (Stage~3). Drift is injected at exactly one point,
+\texttt{apply\_drift}, so the rest of the loop is independent of which drift
+type or severity is used. Because the schema may be renamed, the gold call is
+re-expressed in the renamed schema via \texttt{adapt\_gold} before scoring, so
+a correct prediction under drift uses the new field names rather than the old
+ones. Repair is gated on validation: when the drifted call already validates,
+$\textit{repaired\_call}$ equals $\textit{drifted\_call}$ and Stage~3
+contributes nothing beyond Stage~2. The three booleans
+$\textit{is\_original\_correct}$, $\textit{is\_drifted\_correct}$, and
+$\textit{is\_repaired\_correct}$ are averaged across the benchmark to produce
+the headline Original, Drifted, and Repaired accuracies reported below.
+
+\begin{algorithm}[t]
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwFunction{FModel}{model}
+\SetKwFunction{FScore}{score}
+\SetKwFunction{FApplyDrift}{apply\_drift}
+\SetKwFunction{FAdaptGold}{adapt\_gold}
+\SetKwFunction{FValidator}{validator}
+\SetKwFunction{FRepair}{repair}
+\SetKwFunction{FAggregate}{aggregate}
+\SetKwFunction{FRecord}{record}
+
+\Input{benchmark $\mathcal{B}$; base model; drift configuration $\Delta$;
+       validator; one-shot repair function}
+\Output{Original, Drifted, and Repaired accuracies over $\mathcal{B}$}
+\BlankLine
+
+\ForEach{example $(\textit{user\_context},\, \textit{tool\_interface},\, \textit{gold\_call}) \in \mathcal{B}$}{
+    \tcc{Stage 1: Original (clean interface)}
+    $\textit{original\_call} \leftarrow \FModel(\textit{user\_context},\, \textit{tool\_interface})$\;
+    $\textit{is\_original\_correct} \leftarrow \FScore(\textit{original\_call},\, \textit{gold\_call},\, \textit{tool\_interface})$\;
+    \BlankLine
+    \tcc{Stage 2: Drifted (perturb interface, re-express gold call)}
+    $\textit{drifted\_interface} \leftarrow \FApplyDrift(\textit{tool\_interface},\, \Delta)$\;
+    $\textit{drifted\_gold\_call} \leftarrow \FAdaptGold(\textit{gold\_call},\, \textit{drifted\_interface})$\;
+    $\textit{drifted\_call} \leftarrow \FModel(\textit{user\_context},\, \textit{drifted\_interface})$\;
+    $\textit{is\_drifted\_correct} \leftarrow \FScore(\textit{drifted\_call},\, \textit{drifted\_gold\_call},\, \textit{drifted\_interface})$\;
+    \BlankLine
+    \tcc{Stage 3: Repaired (only fires when validation fails)}
+    $\textit{validation} \leftarrow \FValidator(\textit{drifted\_call},\, \textit{drifted\_interface})$\;
+    \eIf{$\textit{validation.is\_valid}$}{
+        $\textit{repaired\_call} \leftarrow \textit{drifted\_call}$ \tcp*{pass-through}
+    }{
+        $\textit{repaired\_call} \leftarrow \FRepair(\textit{user\_context},\, \textit{drifted\_interface},\, \textit{drifted\_call},\, \textit{validation})$\;
+    }
+    $\textit{is\_repaired\_correct} \leftarrow \FScore(\textit{repaired\_call},\, \textit{drifted\_gold\_call},\, \textit{drifted\_interface})$\;
+    \BlankLine
+    \FRecord{example, is\_original\_correct, is\_drifted\_correct, is\_repaired\_correct}\;
+}
+\Return $\FAggregate(\textit{is\_original\_correct})$, $\FAggregate(\textit{is\_drifted\_correct})$, $\FAggregate(\textit{is\_repaired\_correct})$\;
+\caption{Per-example evaluation under interface drift.}
+\label{alg:eval-loop}
+\end{algorithm}
 
 \section{Experimental Setup}
 \subsection{Benchmarks and Data Slices}
