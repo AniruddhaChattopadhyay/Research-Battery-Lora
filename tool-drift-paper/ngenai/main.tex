@@ -11,8 +11,9 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
 \usepackage{float}
-\usepackage{algorithm}
 \usepackage{listings}
+\renewcommand{\lstlistingname}{Algorithm}
+\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{lstlisting}}}
 \lstdefinestyle{algopy}{
   language=Python,
   basicstyle=\ttfamily\small,
@@ -303,10 +304,7 @@ flags the drifted call as invalid. The three per-example booleans are averaged
 over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
 accuracies.
 
-\begin{algorithm}[H]
-\caption{Per-example evaluation under interface drift.}
-\label{alg:eval-loop}
-\begin{lstlisting}[style=algopy]
+\begin{lstlisting}[style=algopy,caption={Per-example evaluation under interface drift.},label={alg:eval-loop}]
 def evaluate(B, model, delta, validator, repair):
     trace = []
     for user_context, tool_interface, gold_call in B:
@@ -331,7 +329,6 @@ def evaluate(B, model, delta, validator, repair):
         trace.append((is_original_correct, is_drifted_correct, is_repaired_correct))
     return aggregate(trace)
 \end{lstlisting}
-\end{algorithm}
 
 \section{Experimental Setup}
 \subsection{Benchmarks and Data Slices}
