@@ -12,7 +12,22 @@
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
 \usepackage{float}
 \usepackage{algorithm}
-\usepackage{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{algopy}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=8pt,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  xleftmargin=1em,
+  aboveskip=0pt,
+  belowskip=0pt,
+}
 \usepackage[hidelinks]{hyperref}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
@@ -29,6 +44,7 @@
 \newcommand{\openrouterlink}{\artifactlink{inference/openrouter_client.py}{\nolinkurl{openrouter_client.py}}}
 
 \begin{document}
+\raggedbottom
 
 \title{Tool Calling Under Interface Drift: A Non-Oracle Study of Validation and Repair}
 \titlerunning{Tool Calling Under Interface Drift}
@@ -279,57 +295,42 @@ repair outputs on longer DICE dialogues.
 \subsection{Per-Example Evaluation Loop}
 \label{subsec:eval-loop}
 
-Algorithm~\ref{alg:eval-loop} summarizes how a single benchmark example flows
-through three evaluation stages. The same user context is sent through the
-base model up to three times:
-
-\begin{itemize}
-\item \textbf{Stage~1 (Original).} The model is queried on the clean
-      interface, producing \texttt{original\_call}.
-\item \textbf{Stage~2 (Drifted).} The interface is perturbed by $\Delta$ and
-      the gold call is re-expressed in the renamed schema via
-      \texttt{adapt\_gold}, so scoring uses the new field names rather than
-      the old ones. The model is re-queried on the drifted interface,
-      producing \texttt{drifted\_call}.
-\item \textbf{Stage~3 (Repaired).} The validator inspects
-      \texttt{drifted\_call}. If it already validates, repair is skipped and
-      \texttt{repaired\_call} equals \texttt{drifted\_call} (Stage~3
-      contributes nothing beyond Stage~2). Otherwise, one-shot repair is
-      invoked.
-\end{itemize}
-
-\noindent Drift is injected at exactly one point, \texttt{apply\_drift}, so the
-rest of the loop is independent of which drift type or severity is used. The
-three per-example booleans \texttt{is\_original\_correct},
-\texttt{is\_drifted\_correct}, and \texttt{is\_repaired\_correct} are averaged
+Algorithm~\ref{alg:eval-loop} runs each benchmark example through three stages
+(Original, Drifted, Repaired). Drift is injected at one point
+(\texttt{apply\_drift}); the gold call is re-expressed in the renamed schema
+via \texttt{adapt\_gold} before scoring; repair fires only when the validator
+flags the drifted call as invalid. The three per-example booleans are averaged
 over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
-accuracies reported below.
+accuracies.
 
 \begin{algorithm}[H]
 \caption{Per-example evaluation under interface drift.}
 \label{alg:eval-loop}
-\begin{algorithmic}[1]
-\Require benchmark $\mathcal{B}$, model, drift config $\Delta$, validator, repair
-\Ensure Original, Drifted, and Repaired accuracies over $\mathcal{B}$
-\State $\textit{trace} \gets [\,]$
-\ForAll{$(\textit{user\_context},\, \textit{tool\_interface},\, \textit{gold\_call}) \in \mathcal{B}$}
-    \State $\textit{original\_call} \gets \textsc{model}(\textit{user\_context},\, \textit{tool\_interface})$
-    \State $\textit{is\_original\_correct} \gets \textsc{score}(\textit{original\_call},\, \textit{gold\_call})$
-    \State $\textit{drifted\_interface} \gets \textsc{apply\_drift}(\textit{tool\_interface},\, \Delta)$
-    \State $\textit{drifted\_gold} \gets \textsc{adapt\_gold}(\textit{gold\_call},\, \textit{drifted\_interface})$
-    \State $\textit{drifted\_call} \gets \textsc{model}(\textit{user\_context},\, \textit{drifted\_interface})$
-    \State $\textit{is\_drifted\_correct} \gets \textsc{score}(\textit{drifted\_call},\, \textit{drifted\_gold})$
-    \State $\textit{validation} \gets \textsc{validator}(\textit{drifted\_call},\, \textit{drifted\_interface})$
-    \If{$\textit{validation.is\_valid}$}
-        \State $\textit{repaired\_call} \gets \textit{drifted\_call}$
-    \Else
-        \State $\textit{repaired\_call} \gets \textsc{repair}(\textit{drifted\_call},\, \textit{validation})$
-    \EndIf
-    \State $\textit{is\_repaired\_correct} \gets \textsc{score}(\textit{repaired\_call},\, \textit{drifted\_gold})$
-    \State $\textsc{append}(\textit{trace},\, (\textit{is\_original\_correct},\, \textit{is\_drifted\_correct},\, \textit{is\_repaired\_correct}))$
-\EndFor
-\State \Return $\textsc{aggregate}(\textit{trace})$
-\end{algorithmic}
+\begin{lstlisting}[style=algopy]
+def evaluate(B, model, delta, validator, repair):
+    trace = []
+    for user_context, tool_interface, gold_call in B:
+        # Stage 1: Original
+        original_call = model(user_context, tool_interface)
+        is_original_correct = score(original_call, gold_call)
+
+        # Stage 2: Drifted
+        drifted_interface = apply_drift(tool_interface, delta)
+        drifted_gold = adapt_gold(gold_call, drifted_interface)
+        drifted_call = model(user_context, drifted_interface)
+        is_drifted_correct = score(drifted_call, drifted_gold)
+
+        # Stage 3: Repaired (only when validation fails)
+        validation = validator(drifted_call, drifted_interface)
+        if validation.is_valid:
+            repaired_call = drifted_call
+        else:
+            repaired_call = repair(drifted_call, validation)
+        is_repaired_correct = score(repaired_call, drifted_gold)
+
+        trace.append((is_original_correct, is_drifted_correct, is_repaired_correct))
+    return aggregate(trace)
+\end{lstlisting}
 \end{algorithm}
 
 \section{Experimental Setup}
