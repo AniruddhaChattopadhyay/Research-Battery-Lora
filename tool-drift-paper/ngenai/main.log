@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  27 APR 2026 21:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  27 APR 2026 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -603,12 +603,7 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowlength=\dimen303
 \pgfarrowwidth=\dimen304
 \pgfarrowlinewidth=\dimen305
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
-nment
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count352
 \float@exts=\toks41
@@ -616,6 +611,10 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks42
 \@floatcapt=\box115
 )
+(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
 (/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
@@ -771,24 +770,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -812,20 +811,20 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 30.
+Package hyperref Info: Link coloring OFF on input line 31.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 
-Overfull \hbox (2.72127pt too wide) in paragraph at lines 44--61
+Overfull \hbox (2.72127pt too wide) in paragraph at lines 45--62
 \T1/cmr/m/n/9 SchemaShield-Lite, com-bines schema val-i-da-tion with a candidat
 e-set retry
  []
 
 
-Overfull \hbox (2.97093pt too wide) in paragraph at lines 74--78
+Overfull \hbox (2.97093pt too wide) in paragraph at lines 75--79
 []\T1/cmr/m/n/10 We study this prob-lem as \T1/cmr/m/it/10 in-ter-face drift\T1
 /cmr/m/n/10 : be-nign, semantics-preserving changes
  []
@@ -836,56 +835,57 @@ Overfull \hbox (2.97093pt too wide) in paragraph at lines 74--78
 al/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 /texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2]
 [3] [4]
-Overfull \hbox (3.54498pt too wide) in paragraph at lines 293--298
+Overfull \hbox (3.54498pt too wide) in paragraph at lines 294--299
 \T1/cmr/m/n/10 val-i-dates, re-pair is skipped and \T1/cmtt/m/n/10 repaired_cal
 l \T1/cmr/m/n/10 equals \T1/cmtt/m/n/10 drifted_call \T1/cmr/m/n/10 (Stage 3
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 308.
-[5] [6] [7]
-<figures/accuracy_bars.pdf, id=153, 484.74977pt x 267.97176pt>
+put line 309.
+
+Underfull \vbox (badness 1303) has occurred while \output is active []
+
+ [5]
+[6] [7]
+<figures/accuracy_bars.pdf, id=151, 484.74977pt x 267.97176pt>
 File: figures/accuracy_bars.pdf Graphic file (type pdf)
 <use figures/accuracy_bars.pdf>
-Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 450.
+Package pdftex.def Info: figures/accuracy_bars.pdf  used on input line 451.
 (pdftex.def)             Requested size: 312.40906pt x 172.71164pt.
- [8 <./figures/accuracy_bars.pdf>]
-Overfull \hbox (10.63641pt too wide) in paragraph at lines 525--533
+ [8] [9 <./figures/accuracy_bars.pdf>]
+Overfull \hbox (10.63641pt too wide) in paragraph at lines 526--534
  [][] 
  []
 
-[9] [10]
-<figures/drift_ablation.pdf, id=232, 484.74977pt x 267.97176pt>
+[10]
+<figures/drift_ablation.pdf, id=230, 484.74977pt x 267.97176pt>
 File: figures/drift_ablation.pdf Graphic file (type pdf)
 <use figures/drift_ablation.pdf>
-Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 610.
+Package pdftex.def Info: figures/drift_ablation.pdf  used on input line 611.
 (pdftex.def)             Requested size: 284.64383pt x 157.36186pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11 <./figures/drift_ablation.pdf>] [12]
-Underfull \vbox (badness 5274) has occurred while \output is active []
-
- [13]
-[14]
-Overfull \hbox (0.26276pt too wide) in paragraph at lines 805--832
+ [11]
+[12 <./figures/drift_ablation.pdf>] [13] [14]
+Overfull \hbox (0.26276pt too wide) in paragraph at lines 806--833
 \T1/cmr/m/n/10 oracle repli-ca-tion on Qwen3.5-35B-A3B and a weaker porta-bil-i
 ty check on Llama-
  []
 
-
-Overfull \hbox (0.56934pt too wide) in paragraph at lines 834--852
+[15]
+Overfull \hbox (0.56934pt too wide) in paragraph at lines 835--853
 \T1/cmr/m/n/10 We stud-ied SchemaShield-Lite, a lightweight inference-time vali
 dation-and-repair
  []
 
-[15] (./main.bbl
+(./main.bbl [16]
 Underfull \hbox (badness 1072) in paragraph at lines 39--41
 []\T1/cmr/m/n/9 Notion: Changelog. []$\T1/cmtt/m/n/9 https : / / developers . n
 otion . com / page / changelog$[] \T1/cmr/m/n/9 (2026),
  []
 
-[16]
+
 Underfull \hbox (badness 7308) in paragraph at lines 57--61
 []\T1/cmr/m/n/9 Stripe: Re-places line item pa-ram-e-ters from the cre-ate chec
 k-out ses-
@@ -905,15 +905,15 @@ m/n/9 (2022), stripe changelog
 
 ) [17]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 881.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 882.
 
-Overfull \hbox (62.8078pt too wide) in paragraph at lines 893--898
+Overfull \hbox (62.8078pt too wide) in paragraph at lines 894--899
 []\T1/cmr/m/n/10 The re-pair strate-gies men-tioned be-low have a sim-ple in-te
 r-pre-ta-tion. \T1/cmtt/m/n/10 candidate_tool_retry
  []
 
 
-Overfull \hbox (1.68018pt too wide) in paragraph at lines 893--898
+Overfull \hbox (1.68018pt too wide) in paragraph at lines 894--899
 \T1/cmr/m/n/10 sys-tem must first re-cover a tool from the vis-i-ble can-di-dat
 e set. \T1/cmtt/m/n/10 forced_tool_call
  []
@@ -921,13 +921,13 @@ e set. \T1/cmtt/m/n/10 forced_tool_call
 [18
 
 ]
-Overfull \hbox (20.28674pt too wide) in paragraph at lines 969--974
+Overfull \hbox (20.28674pt too wide) in paragraph at lines 970--975
 \T1/cmtt/m/n/10 pitching_leaders(results, sort_column, season, sports_code, gam
 e_type)
  []
 
 [19] [20]
-Overfull \hbox (14.78809pt too wide) in paragraph at lines 1059--1064
+Overfull \hbox (14.78809pt too wide) in paragraph at lines 1060--1065
 \T1/cmr/m/n/10 the tool is \T1/cmtt/m/n/10 calculate_displacement(initial_veloc
 ity, time, acceleration)\T1/cmr/m/n/10 . 
  []
@@ -943,7 +943,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  22297 strings out of 467525
  416058 string characters out of 5418982
- 826837 words of memory out of 5000000
+ 826838 words of memory out of 5000000
  50740 multiletter control sequences out of 15000+600000
  645430 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -970,7 +970,7 @@ t/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2026/texmf-dist/
 fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2026/texmf-dist/fo
 nts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2026/texmf-dist/font
 s/type1/public/cm-super/sftt1000.pfb>
-Output written on main.pdf (22 pages, 491459 bytes).
+Output written on main.pdf (22 pages, 491381 bytes).
 PDF statistics:
  503 PDF objects out of 1000 (max. 8388607)
  337 compressed objects within 4 object streams

@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
+\usepackage{float}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage[hidelinks]{hyperref}
@@ -304,7 +305,7 @@ three per-example booleans \texttt{is\_original\_correct},
 over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
 accuracies reported below.
 
-\begin{algorithm}[t]
+\begin{algorithm}[H]
 \caption{Per-example evaluation under interface drift.}
 \label{alg:eval-loop}
 \begin{algorithmic}[1]
