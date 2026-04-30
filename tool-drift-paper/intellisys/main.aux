@@ -17,7 +17,9 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
 \citation{zhong2025complexfuncbench}
 \citation{jang2025dicebench}
+\citation{li2023apibank,yao2024taubench,lu2024toolsandbox}
 \citation{bfcl2024}
+\citation{schick2023toolformer,patil2023gorilla,qin2023toolllm,yao2022react}
 \citation{lercher2025autoguard}
 \citation{serbout2023versioning}
 \citation{liu2024apigen}
@@ -38,7 +40,7 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Per-example evaluation under interface drift.}}{5}{lstlisting.1.1}\protected@file@percent }
 \citation{jang2025dicebench}
 \citation{bfcl2024}
-\citation{notionchangelog2026,stripecheckout2022}
+\citation{notionchangelog2026,stripecheckout2022,stripedefaultvalue2025,stripeinvoicepreview2025,stripedelaydays2025}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{6}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmarks and Data Slices}{6}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Models}{6}{subsection.5.2}\protected@file@percent }
@@ -46,12 +48,12 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Repair Protocols}{7}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Metrics}{7}{subsection.5.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Release}{7}{subsection.5.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{7}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Primary Non-Oracle Results}{7}{subsection.6.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42).}}{8}{table.caption.6}\protected@file@percent }
 \newlabel{tab:main-results}{{1}{8}{Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42)}{table.caption.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}.}}{8}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:accuracy-bars}{{2}{8}{Oracle-constrained upper-bound DICE sweep across four models. Primary evidence is the non-oracle protocol in Table~\ref {tab:main-results}}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Primary Non-Oracle Results}{8}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Oracle upper bounds for context.}{9}{section*.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Repair cost overhead.}{9}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baselines Do Not Explain the Gains}{9}{subsection.6.2}\protected@file@percent }
@@ -90,24 +92,34 @@
 \bibcite{guo2026rewrite}{3}
 \bibcite{jang2025dicebench}{4}
 \bibcite{lercher2025autoguard}{5}
-\bibcite{liu2024apigen}{6}
-\bibcite{notionchangelog2026}{7}
+\bibcite{li2023apibank}{6}
+\bibcite{liu2024apigen}{7}
 \@writefile{toc}{\contentsline {paragraph}{Broader impact.}{16}{section*.16}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{GenAI disclosure.}{16}{section*.17}\protected@file@percent }
-\bibcite{park2024grammar}{8}
-\bibcite{rabinovich2025robustness}{9}
-\bibcite{serbout2023versioning}{10}
-\bibcite{stripecheckout2022}{11}
-\bibcite{bfcl2024}{12}
-\bibcite{zhang2026fission}{13}
-\bibcite{zhong2025complexfuncbench}{14}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Worked Appendix Cases}{18}{section.app.A}\protected@file@percent }
-\newlabel{app:artifact-guide}{{A}{18}{Worked Appendix Cases}{section.app.A}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}How to read the case studies}{18}{subsection.app.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Case 1: DICE missing-tool-name failure under candidate-set drift}{18}{subsection.app.A.2}\protected@file@percent }
-\newlabel{app:dice-missing-tool}{{A.2}{18}{Case 1: DICE missing-tool-name failure under candidate-set drift}{subsection.app.A.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Case 2: DICE forced-tool repair after partial compliance}{19}{subsection.app.A.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Case 3: DICE limitation when validation sees no structural error}{20}{subsection.app.A.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Case 4: BFCL replication under heavier distractor pressure}{21}{subsection.app.A.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}What the four cases collectively show}{22}{subsection.app.A.6}\protected@file@percent }
-\gdef \@abspage@last{22}
+\bibcite{lu2024toolsandbox}{8}
+\bibcite{notionchangelog2026}{9}
+\bibcite{park2024grammar}{10}
+\bibcite{patil2023gorilla}{11}
+\bibcite{qin2023toolllm}{12}
+\bibcite{rabinovich2025robustness}{13}
+\bibcite{schick2023toolformer}{14}
+\bibcite{serbout2023versioning}{15}
+\bibcite{stripecheckout2022}{16}
+\bibcite{stripedefaultvalue2025}{17}
+\bibcite{stripedelaydays2025}{18}
+\bibcite{stripeinvoicepreview2025}{19}
+\bibcite{bfcl2024}{20}
+\bibcite{yao2024taubench}{21}
+\bibcite{yao2022react}{22}
+\bibcite{zhang2026fission}{23}
+\bibcite{zhong2025complexfuncbench}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Worked Appendix Cases}{19}{section.app.A}\protected@file@percent }
+\newlabel{app:artifact-guide}{{A}{19}{Worked Appendix Cases}{section.app.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}How to read the case studies}{19}{subsection.app.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Case 1: DICE missing-tool-name failure under candidate-set drift}{19}{subsection.app.A.2}\protected@file@percent }
+\newlabel{app:dice-missing-tool}{{A.2}{19}{Case 1: DICE missing-tool-name failure under candidate-set drift}{subsection.app.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Case 2: DICE forced-tool repair after partial compliance}{20}{subsection.app.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Case 3: DICE limitation when validation sees no structural error}{21}{subsection.app.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Case 4: BFCL replication under heavier distractor pressure}{22}{subsection.app.A.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}What the four cases collectively show}{23}{subsection.app.A.6}\protected@file@percent }
+\gdef \@abspage@last{23}

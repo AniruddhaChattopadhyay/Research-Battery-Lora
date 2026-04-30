@@ -25,6 +25,8 @@
   numbers=left,
   numberstyle=\tiny,
   numbersep=8pt,
+  breaklines=true,
+  breakatwhitespace=false,
   showstringspaces=false,
   columns=fullflexible,
   keepspaces=true,
@@ -38,12 +40,10 @@
 \usepackage[hidelinks]{hyperref}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
-\newcommand{\artifactrepo}{https://github.com/AniruddhaChattopadhyay/tool-drift}
-\newcommand{\artifactbase}{\artifactrepo/blob/main}
-\newcommand{\artifactrepolink}{\href{\artifactrepo}{public \texttt{tool-drift} repository}}
-\newcommand{\artifactlink}[2]{\href{\artifactbase/#1}{#2}}
-\newcommand{\artifactfile}[1]{\href{\artifactbase/#1}{\nolinkurl{#1}}}
-\newcommand{\artifactref}[2]{\href{\artifactbase/#1\#L#2}{\texttt{L#2}}}
+\newcommand{\artifactrepolink}{artifact package for camera-ready release}
+\newcommand{\artifactlink}[2]{#2}
+\newcommand{\artifactfile}[1]{\nolinkurl{#1}}
+\newcommand{\artifactref}[2]{\texttt{L#2}}
 \newcommand{\dicerunfile}{outputs/dice/dice-bench-live-20260414-170240-443375/dice_results.json}
 \newcommand{\bfclrunfile}{outputs/bfcl/bfcl-live-20260414-170241-830717/bfcl_results.json}
 \newcommand{\dicerunlink}{\artifactlink{\dicerunfile}{DICE JSON artifact}}
@@ -163,13 +163,18 @@ Benchmark work has also highlighted that realistic function calling is still far
 solved. ComplexFuncBench introduces multi-step and constrained long-context function
 calling \cite{zhong2025complexfuncbench}, while DICE-BENCH focuses on multi-round,
 multi-party dialogues with tool-related information dispersed across conversation
-turns \cite{jang2025dicebench}. We evaluate on both DICE-BENCH and the Berkeley
-Function Calling Leaderboard (BFCL) \cite{bfcl2024} because they capture
-complementary settings: DICE-BENCH exercises conversational multi-turn dialogues,
-while BFCL tests single-turn tool calls across diverse APIs.
+turns \cite{jang2025dicebench}. Other benchmarks, including API-Bank,
+$\tau$-bench, and ToolSandbox, similarly stress planning, state, and interaction
+in tool-use settings \cite{li2023apibank,yao2024taubench,lu2024toolsandbox}. We
+evaluate on both DICE-BENCH and the Berkeley Function Calling Leaderboard (BFCL)
+\cite{bfcl2024} because they capture complementary settings: DICE-BENCH exercises
+conversational multi-turn dialogues, while BFCL tests single-turn tool calls across
+diverse APIs.
 
-Broader tool-use work has focused on scaling tool coverage and agent behavior rather
-than on robustness under interface changes.
+Broader tool-use work has focused on teaching models to call APIs, retrieving
+relevant tools, and combining reasoning with action
+\cite{schick2023toolformer,patil2023gorilla,qin2023toolllm,yao2022react}. Our
+focus is different: robustness when an already-deployed tool interface changes.
 
 This setting also connects to software-engineering work on API evolution and
 contract checking. AutoGuard, for example, compares OpenAPI descriptions across
@@ -372,7 +377,8 @@ items from Notion and Stripe spanning 2022--2026. Six map directly to our
 documentation/example and parameter/schema operators, three more are close
 candidate-set analogues where vendors add or consolidate neighboring tools or
 endpoints, and two are larger structural refactors outside our
-semantics-preserving scope \cite{notionchangelog2026,stripecheckout2022}. We
+semantics-preserving scope
+\cite{notionchangelog2026,stripecheckout2022,stripedefaultvalue2025,stripeinvoicepreview2025,stripedelaydays2025}. We
 therefore treat the synthetic operators as a compact model of common surface-form
 churn rather than as a measured distribution over all API evolution events.
 
@@ -409,12 +415,13 @@ All reported results come from fixed benchmark slices, fixed drift configuration
 and fixed random seeds. The per-run JSON artifacts store example IDs, prompts,
 drifted tool schemas, validation outputs, repair targets, repair strategy, and
 token usage, and our evaluation uses the normalized semantic matching policy
-reported in each run summary. We release the experiment code, drift-generation
-scripts, prompts, configs, subset definitions, scoring/validation logic, and
-raw run artifacts in a public repository (\artifactrepolink). Appendix~\ref{app:artifact-guide}
-points reviewers to four representative, line-anchored case studies so the exact
-JSON traces behind the paper's main success and limitation modes can be checked
-without searching through the full run outputs.
+reported in each run summary. To preserve double-blind review, the initial
+submission omits author-identifying artifact links; we will release the experiment
+code, drift-generation scripts, prompts, configs, subset definitions,
+scoring/validation logic, and raw run artifacts in the \artifactrepolink.
+Appendix~\ref{app:artifact-guide} documents four representative case studies so
+the paper's main success and limitation modes can be checked without searching
+through the full run outputs.
 
 \section{Results}
 \subsection{Primary Non-Oracle Results}
@@ -879,9 +886,8 @@ and verified by the authors, who take full responsibility for the final text.
 \label{app:artifact-guide}
 This appendix is intended to be readable on its own. A reviewer should be able
 to understand the examples below without opening the raw JSON artifacts. The
-public repository is therefore optional and is included only to let readers
-audit the exact traces if they want to. Optional artifact access is available
-through the \artifactrepolink{}.
+full artifact trail is therefore optional and will be included in the
+\artifactrepolink{}.
 
 \subsection{How to read the case studies}
 Each case study uses the same five fields from the stored run artifacts.
@@ -899,7 +905,8 @@ the repaired output matches it.
 \end{itemize}
 
 The repair strategies mentioned below have a simple interpretation.
-\texttt{candidate\_tool\_retry} is used when the drifted prediction does not
+
+\noindent\texttt{candidate\_tool\_retry} is used when the drifted prediction does not
 provide a usable tool name, so the system must first recover a tool from the
 visible candidate set. \texttt{forced\_tool\_call} is used when the tool name is
 already known, allowing the repair stage to stay constrained to that tool.
@@ -977,8 +984,9 @@ code at \openrouterlink{} \artifactref{inference/openrouter_client.py}{112}.
 This second example shows a different and easier failure mode. The task is again
 multi-turn DICE dialogue, this time asking for the top MLB pitchers by ERA in the
 2023 regular season. On the clean interface the relevant tool is
-\texttt{pitching\_leaders(results, sort\_column, season, sports\_code,
-game\_type)} and the model is correct before drift.
+\texttt{pitching\_leaders}, with fields \texttt{results}, \texttt{sort\_column},
+\texttt{season}, \texttt{sports\_code}, and \texttt{game\_type}; the model is
+correct before drift.
 
 Under drift, the tool name stays the same but most required fields are renamed to
 \texttt{sort\_column\_v2}, \texttt{season\_v2}, \texttt{sports\_code\_v2}, and
@@ -1069,8 +1077,8 @@ Optional artifact trail: \dicerunlink{} at \artifactref{\dicerunfile}{38623},
 The final worked example shows that the same pattern is not confined to DICE. In
 BFCL, the task is single-turn rather than conversational: compute displacement
 from initial velocity 10, acceleration 9.8, and time 5. On the clean interface
-the tool is \texttt{calculate\_displacement(initial\_velocity, time,
-acceleration)}.
+the tool is \texttt{calculate\_displacement}, with fields
+\texttt{initial\_velocity}, \texttt{time}, and \texttt{acceleration}.
 
 Under the medium-severity BFCL drift setting, the interface becomes noticeably
 messier than in the DICE examples. Parameter renaming composes across multiple

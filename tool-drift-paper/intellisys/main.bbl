@@ -27,12 +27,24 @@ Lercher, A., Bauer, C., Macho, C., Pinzger, M.: Autoguard: Reporting breaking
   International Conference on Software Analysis, Evolution and Reengineering
   (SANER) (2025)
 
+\bibitem{li2023apibank}
+Li, M., Zhao, Y., Yu, B., Song, F., Li, H., Yu, H., Li, Z., Huang, F., Li, Y.:
+  {API}-bank: A comprehensive benchmark for tool-augmented {LLM}s. In:
+  Proceedings of the 2023 Conference on Empirical Methods in Natural Language
+  Processing. pp. 3102--3116 (2023)
+
 \bibitem{liu2024apigen}
 Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
   Liu, Z., Feng, Y., Murthy, R., Yang, L., Savarese, S., Niebles, J.C., Wang,
   H., Heinecke, S., Xiong, C.: Apigen: Automated pipeline for generating
   verifiable and diverse function-calling datasets. arXiv preprint
   arXiv:2406.18518  (2024)
+
+\bibitem{lu2024toolsandbox}
+Lu, J., Holleis, T., Zhang, Y., Aumayer, B., Nan, F., Bai, F., Ma, S., Ma, S.,
+  Li, M., Yin, G., Wang, Z., Pang, R.: Toolsandbox: A stateful, conversational,
+  interactive evaluation benchmark for {LLM} tool use capabilities. arXiv
+  preprint arXiv:2408.04682  (2024)
 
 \bibitem{notionchangelog2026}
 {Notion}: Changelog. \url{https://developers.notion.com/page/changelog} (2026),
@@ -43,9 +55,24 @@ Park, K., Wang, J., Berg-Kirkpatrick, T., Polikarpova, N., D'Antoni, L.:
   Grammar-aligned decoding. In: Advances in Neural Information Processing
   Systems (2024)
 
+\bibitem{patil2023gorilla}
+Patil, S.G., Zhang, T., Wang, X., Gonzalez, J.E.: Gorilla: Large language model
+  connected with massive apis. arXiv preprint arXiv:2305.15334  (2023)
+
+\bibitem{qin2023toolllm}
+Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang,
+  X., Qian, B., Zhao, S., Hong, L., Tian, R., Xie, R., Zhou, J., Gerstein, M.,
+  Li, D., Liu, Z., Sun, M.: Toolllm: Facilitating large language models to
+  master 16000+ real-world apis. arXiv preprint arXiv:2307.16789  (2023)
+
 \bibitem{rabinovich2025robustness}
 Rabinovich, E., Anaby-Tavor, A.: On the robustness of agentic function calling.
   In: Proceedings of the 5th Workshop on Trustworthy NLP (2025)
+
+\bibitem{schick2023toolformer}
+Schick, T., Dwivedi-Yu, J., Dessi, R., Raileanu, R., Lomeli, M., Zettlemoyer,
+  L., Cancedda, N., Scialom, T.: Toolformer: Language models can teach
+  themselves to use tools. arXiv preprint arXiv:2302.04761  (2023)
 
 \bibitem{serbout2023versioning}
 Serbout, S., Pautasso, C.: An empirical study of web api versioning practices.
@@ -57,10 +84,37 @@ Serbout, S., Pautasso, C.: An empirical study of web api versioning practices.
   \url{https://docs.stripe.com/changelog/2022-08-01/replaces-line-item-create-checkout-session}
   (2022), stripe changelog entry, accessed 2026-04-13
 
+\bibitem{stripedefaultvalue2025}
+{Stripe}: Adds default value to custom fields on payment links.
+  \url{https://docs.stripe.com/changelog/basil/2025-03-31/default-value-payment-links-custom-fields}
+  (2025), stripe changelog entry, accessed 2026-04-13
+
+\bibitem{stripedelaydays2025}
+{Stripe}: Renames the parameter for custom settlement timing on the balance
+  settings api.
+  \url{https://docs.stripe.com/changelog/basil/2025-07-30/balance-settings-delay-days-rename}
+  (2025), stripe changelog entry, accessed 2026-04-14
+
+\bibitem{stripeinvoicepreview2025}
+{Stripe}: Replaces upcoming invoice api methods with the create preview invoice
+  api.
+  \url{https://docs.stripe.com/changelog/basil/2025-03-31/invoice-preview-api-deprecations}
+  (2025), stripe changelog entry, accessed 2026-04-14
+
 \bibitem{bfcl2024}
 Yan, F., Mao, H., Ji, C.C.J., Zhang, T., Patil, S.G., Stoica, I., Gonzalez,
   J.E.: Berkeley function calling leaderboard.
   \url{https://gorilla.cs.berkeley.edu/leaderboard.html} (2024)
+
+\bibitem{yao2024taubench}
+Yao, S., Shinn, N., Razavi, P., Narasimhan, K.: $\tau$-bench: A benchmark for
+  tool-agent-user interaction in real-world domains. arXiv preprint
+  arXiv:2406.12045  (2024)
+
+\bibitem{yao2022react}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.: React:
+  Synergizing reasoning and acting in language models. arXiv preprint
+  arXiv:2210.03629  (2022)
 
 \bibitem{zhang2026fission}
 Zhang, Y., et~al.: Robust tool use via fission-grpo. arXiv preprint
