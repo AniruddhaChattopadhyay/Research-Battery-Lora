@@ -6,34 +6,12 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{url}
+\def\UrlFont{\rmfamily}
 \usepackage{xspace}
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,positioning,arrows.meta}
 \usepackage{float}
-\usepackage{listings}
-\usepackage{caption}
-\renewcommand{\lstlistingname}{Algorithm}
-\AtBeginDocument{\renewcommand{\thelstlisting}{\arabic{lstlisting}}}
-\captionsetup[lstlisting]{justification=raggedright,singlelinecheck=false,labelfont=bf,labelsep=period}
-\lstdefinestyle{algopy}{
-  language=Python,
-  basicstyle=\ttfamily\small,
-  keywordstyle=\bfseries,
-  commentstyle=\itshape,
-  numbers=left,
-  numberstyle=\tiny,
-  numbersep=8pt,
-  showstringspaces=false,
-  columns=fullflexible,
-  keepspaces=true,
-  xleftmargin=1em,
-  aboveskip=4pt,
-  belowskip=4pt,
-}
-\newcommand{\algodoublerule}{%
-  \par\noindent\rule{\linewidth}{0.5pt}\par\nointerlineskip\vspace{1pt}\noindent\rule{\linewidth}{0.5pt}\par
-}
 \usepackage[hidelinks]{hyperref}
 
 \newcommand{\method}{SchemaShield-Lite\xspace}
@@ -52,36 +30,34 @@
 \begin{document}
 \raggedbottom
 
-\title{Tool Calling Under Interface Drift: A Non-Oracle Study of Validation and Repair}
-\titlerunning{Tool Calling Under Interface Drift}
+\title{Robust Function Calling for LLM Agents Under Interface Drift}
+\titlerunning{Robust Function Calling Under Interface Drift}
 
 \author{Aniruddha Chattopadhyay\inst{1} \and
 Partha Sarathi Roy\inst{1} \and
 Kanishka Halder\inst{1}}
 \authorrunning{A. Chattopadhyay et al.}
-\institute{Indian Institute of Technology Kharagpur, Kharagpur, India}
+\institute{Independent Researcher}
 
 \maketitle
 
 \begin{abstract}
-Tool-calling language models depend on surface-form tool
-interfaces (descriptions, schemas, and tool lists) that can drift
-after deployment even when tool semantics do not. We study this problem as
-\emph{interface drift} and evaluate whether a lightweight, training-free
-inference-time repair layer can recover reliability without retraining.
-Our method, \method, combines schema validation with a candidate-set retry
-when tool names are missing and a one-shot constrained repair call. On our primary
-model (Qwen3.5-9B), it raises DICE-300 accuracy from $0.717$ to $0.813$ and
-BFCL-200 from $0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced
-failures with no observed repair harms. A naive-retry baseline does not explain
-the gains. Ablation reveals that candidate-set drift (adding distractor
-tools) accounts for nearly all observed damage on our DICE slice, while
-description and schema edits alone cause negligible degradation. In the
-non-oracle setting, missing tool names emerge as the main repair bottleneck.
-A same-protocol BFCL replication on Qwen3.5-35B-A3B ($0.635 \rightarrow 0.845$)
-supports the effect within the Qwen family, though cross-family portability
-remains limited.
-\keywords{tool calling \and language models \and robustness \and interface drift \and repair}
+Tool-augmented language-model agents rely on interface text: tool descriptions,
+argument schemas, and the candidate tool list shown at inference time. These
+interfaces often change after deployment even when the underlying tool semantics
+remain fixed, creating a practical reliability problem for function-calling
+systems. We study this failure mode as \emph{interface drift} and evaluate whether
+a lightweight, training-free repair layer can recover robustness without retraining
+the base model. Our method, \method, combines schema validation, candidate-set
+retry for missing tool names, and one-shot constrained repair. On Qwen3.5-9B, it
+raises DICE-300 accuracy from $0.717$ to $0.813$ and BFCL-200 accuracy from
+$0.580$ to $0.805$, recovering $19/22$ and $33/45$ drift-induced failures with no
+observed repair harms. Naive retry does not explain the gains. Ablations show that
+candidate-set drift, especially distractor tools, accounts for most observed
+damage, while description and schema edits alone are less harmful. The results
+position validation-and-repair as a practical robustness layer for deployed
+LLM-agent tool use.
+\keywords{tool-augmented large language models \and function calling \and interface drift \and agentic AI robustness \and inference-time validation and repair}
 \end{abstract}
 
 \section{Introduction}
@@ -162,13 +138,18 @@ Benchmark work has also highlighted that realistic function calling is still far
 solved. ComplexFuncBench introduces multi-step and constrained long-context function
 calling \cite{zhong2025complexfuncbench}, while DICE-BENCH focuses on multi-round,
 multi-party dialogues with tool-related information dispersed across conversation
-turns \cite{jang2025dicebench}. We evaluate on both DICE-BENCH and the Berkeley
-Function Calling Leaderboard (BFCL) \cite{bfcl2024} because they capture
-complementary settings: DICE-BENCH exercises conversational multi-turn dialogues,
-while BFCL tests single-turn tool calls across diverse APIs.
+turns \cite{jang2025dicebench}. Other benchmarks, including API-Bank,
+$\tau$-bench, and ToolSandbox, similarly stress planning, state, and interaction
+in tool-use settings \cite{li2023apibank,yao2024taubench,lu2024toolsandbox}. We
+evaluate on both DICE-BENCH and the Berkeley Function Calling Leaderboard (BFCL)
+\cite{bfcl2024} because they capture complementary settings: DICE-BENCH exercises
+conversational multi-turn dialogues, while BFCL tests single-turn tool calls across
+diverse APIs.
 
-Broader tool-use work has focused on scaling tool coverage and agent behavior rather
-than on robustness under interface changes.
+Broader tool-use work has focused on teaching models to call APIs, retrieving
+relevant tools, and combining reasoning with action
+\cite{schick2023toolformer,patil2023gorilla,qin2023toolllm,yao2022react}. Our
+focus is different: robustness when an already-deployed tool interface changes.
 
 This setting also connects to software-engineering work on API evolution and
 contract checking. AutoGuard, for example, compares OpenAPI descriptions across
@@ -301,41 +282,11 @@ repair outputs on longer DICE dialogues.
 \subsection{Per-Example Evaluation Loop}
 \label{subsec:eval-loop}
 
-Algorithm~\ref{alg:eval-loop} runs each benchmark example through three stages
-(Original, Drifted, Repaired). Drift is injected at one point
-(\texttt{apply\_drift}); the gold call is re-expressed in the renamed schema
-via \texttt{adapt\_gold} before scoring; repair fires only when the validator
-flags the drifted call as invalid. The three per-example booleans are averaged
-over $\mathcal{B}$ to produce the headline Original, Drifted, and Repaired
-accuracies.
-
-\algodoublerule
-\begin{lstlisting}[style=algopy,caption={Per-example evaluation under interface drift.},label={alg:eval-loop}]
-def evaluate(B, model, delta, validator, repair):
-    trace = []
-    for user_context, tool_interface, gold_call in B:
-        # Stage 1: Original
-        original_call = model(user_context, tool_interface)
-        is_original_correct = score(original_call, gold_call)
-
-        # Stage 2: Drifted
-        drifted_interface = apply_drift(tool_interface, delta)
-        drifted_gold = adapt_gold(gold_call, drifted_interface)
-        drifted_call = model(user_context, drifted_interface)
-        is_drifted_correct = score(drifted_call, drifted_gold)
-
-        # Stage 3: Repaired (only when validation fails)
-        validation = validator(drifted_call, drifted_interface)
-        if validation.is_valid:
-            repaired_call = drifted_call
-        else:
-            repaired_call = repair(drifted_call, validation)
-        is_repaired_correct = score(repaired_call, drifted_gold)
-
-        trace.append((is_original_correct, is_drifted_correct, is_repaired_correct))
-    return aggregate(trace)
-\end{lstlisting}
-\algodoublerule
+Each benchmark example is evaluated in three stages: Original, Drifted, and
+Repaired. Drift is injected once, the gold call is re-expressed in the renamed
+schema before scoring, and repair fires only when validation flags the drifted
+call as invalid. We average the three per-example correctness indicators over
+the benchmark slice to obtain the headline accuracies.
 
 \section{Experimental Setup}
 \subsection{Benchmarks and Data Slices}
@@ -371,7 +322,8 @@ items from Notion and Stripe spanning 2022--2026. Six map directly to our
 documentation/example and parameter/schema operators, three more are close
 candidate-set analogues where vendors add or consolidate neighboring tools or
 endpoints, and two are larger structural refactors outside our
-semantics-preserving scope \cite{notionchangelog2026,stripecheckout2022}. We
+semantics-preserving scope
+\cite{notionchangelog2026,stripecheckout2022,stripedefaultvalue2025,stripeinvoicepreview2025,stripedelaydays2025}. We
 therefore treat the synthetic operators as a compact model of common surface-form
 churn rather than as a measured distribution over all API evolution events.
 
@@ -410,10 +362,9 @@ drifted tool schemas, validation outputs, repair targets, repair strategy, and
 token usage, and our evaluation uses the normalized semantic matching policy
 reported in each run summary. We release the experiment code, drift-generation
 scripts, prompts, configs, subset definitions, scoring/validation logic, and
-raw run artifacts in a public repository (\artifactrepolink). Appendix~\ref{app:artifact-guide}
-points reviewers to four representative, line-anchored case studies so the exact
-JSON traces behind the paper's main success and limitation modes can be checked
-without searching through the full run outputs.
+raw run artifacts in a public repository (\artifactrepolink). The artifact package
+stores example-level traces for the main success and limitation modes, including
+prompts, validation errors, repaired calls, and gold calls.
 
 \section{Results}
 \subsection{Primary Non-Oracle Results}
@@ -451,14 +402,6 @@ Harms\,=\,repair harms on originally-correct slice; Trig\%\,=\,repair trigger ra
 Rows come from separate runs, so Original scores may differ slightly across protocols.
 \end{table}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.9\linewidth]{figures/accuracy_bars.pdf}
-\caption{Oracle-constrained upper-bound DICE sweep across four models. Primary
-evidence is the non-oracle protocol in Table~\ref{tab:main-results}.}
-\label{fig:accuracy-bars}
-\end{figure}
-
 The primary non-oracle results are strong on both benchmarks. On DICE-300, repair
 improves Qwen3.5-9B from $0.717$ to $0.813$ and recovers $19/22$ drift-induced
 failures on the originally-correct slice. On BFCL-200, repair improves from $0.580$
@@ -486,10 +429,9 @@ $0.805$ on BFCL, while reducing unresolved repair targets from $35$ to $15$ and
 from $34$ to $9$ respectively.
 
 \paragraph{Oracle upper bounds for context.}
-Figure~\ref{fig:accuracy-bars} and the oracle rows in
-Table~\ref{tab:main-results} remain useful as upper-bound context, but they are not
-the paper's main evidence. We use them to localize mechanisms and portability
-limits, not to define the deployment-facing claim.
+The oracle rows in Table~\ref{tab:main-results} remain useful as upper-bound
+context, but they are not the paper's main evidence. We use them to localize
+mechanisms and portability limits, not to define the deployment-facing claim.
 
 \paragraph{Repair cost overhead.}
 On the final non-oracle Qwen3.5-9B runs, \method triggers repair on $48/300$
@@ -610,14 +552,6 @@ Candidate-set only   & 0.757 & 0.710 & 0.817 & $-0.047$ \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.82\linewidth]{figures/drift_ablation.pdf}
-\caption{Drift-type ablation on DICE-300 with Qwen3.5-9B. Distractor tools
-account for nearly all drift damage; description and schema drift are negligible.}
-\label{fig:drift-ablation}
-\end{figure}
 
 This result qualifies a common framing in the interface-drift literature. On this
 Qwen3.5-9B DICE-300 ablation, minor description rewording and
@@ -869,257 +803,5 @@ and verified by the authors, who take full responsibility for the final text.
 
 \bibliographystyle{splncs04}
 \bibliography{references}
-
-\clearpage
-\appendix
-\renewcommand{\theHsection}{app.\Alph{section}}
-\section{Worked Appendix Cases}
-\label{app:artifact-guide}
-This appendix is intended to be readable on its own. A reviewer should be able
-to understand the examples below without opening the raw JSON artifacts. The
-public repository is therefore optional and is included only to let readers
-audit the exact traces if they want to. Optional artifact access is available
-through the \artifactrepolink{}.
-
-\subsection{How to read the case studies}
-Each case study uses the same five fields from the stored run artifacts.
-\begin{itemize}
-\item \textbf{\texttt{original\_call}}: the model's output on the clean interface
-before any drift is applied.
-\item \textbf{\texttt{pred\_call}}: the model's first output on the drifted
-interface, before repair.
-\item \textbf{\texttt{validation}}: the structured error report produced by the
-validator on the drifted prediction.
-\item \textbf{\texttt{repaired\_call}}: the output after the repair stack runs.
-\item \textbf{\texttt{drifted\_gold\_call}} and \textbf{\texttt{repaired\_match}}:
-the benchmark's expected answer under the renamed drifted schema, and whether
-the repaired output matches it.
-\end{itemize}
-
-The repair strategies mentioned below have a simple interpretation.
-\texttt{candidate\_tool\_retry} is used when the drifted prediction does not
-provide a usable tool name, so the system must first recover a tool from the
-visible candidate set. \texttt{forced\_tool\_call} is used when the tool name is
-already known, allowing the repair stage to stay constrained to that tool.
-
-\subsection{Case 1: DICE missing-tool-name failure under candidate-set drift}
-\label{app:dice-missing-tool}
-This is the clearest instance of the paper's main non-oracle bottleneck. The
-task is a multi-turn conversation in which the user gradually specifies a
-haircut appointment with four required fields: service, date, time, and
-location. On the clean interface, the tool is
-\texttt{schedule\_appointment(service, date, time, location)}, and the base
-model gets the example exactly right.
-
-\begin{verbatim}
-{
-  "name": "schedule_appointment",
-  "arguments": {
-    "service": "haircut",
-    "date": "11-10",
-    "time": "10:00",
-    "location": "456 Salon Ave."
-  }
-}
-\end{verbatim}
-
-Drift then changes the interface in two ways. First, the schema renames
-\texttt{date}, \texttt{time}, and \texttt{location} to
-\texttt{date\_v2}, \texttt{time\_v2}, and \texttt{location\_v2}. Second, the
-candidate set expands to include a distractor tool,
-\texttt{schedule\_appointment\_alt\_1}, while the description includes a legacy
-note that still mentions the older payload style. Under this drifted interface,
-the extracted prediction is not merely wrong; it is empty:
-
-\begin{verbatim}
-{
-  "name": "",
-  "arguments": {}
-}
-\end{verbatim}
-
-That empty prediction should be read carefully. It does not mean the benchmark
-gold answer was empty. It means the runtime could not extract any usable tool
-call from the provider response. In the implementation, the extraction routine in
-\openrouterlink{} returns this exact object when the response contains neither a
-usable \texttt{tool\_calls} structure nor parseable JSON fallback. The validator
-therefore records the failure as \texttt{missing\_tool\_name}.
-
-Once the validator sees that the tool name is missing, the repair stack switches
-to \texttt{candidate\_tool\_retry}. The repair prompt lists the two visible
-tools, asks the model to choose exactly one, and tells it to infer the required
-arguments from the dialogue context. That retry succeeds. The repaired call
-recovers the correct tool and the renamed argument fields:
-
-\begin{verbatim}
-{
-  "name": "schedule_appointment",
-  "arguments": {
-    "service": "haircut",
-    "date_v2": "11-10",
-    "time_v2": "10:00",
-    "location_v2": "456 Salon Ave."
-  }
-}
-\end{verbatim}
-
-The repaired output matches the drifted gold call exactly. This is the core
-failure-and-recovery story of the paper in one example: the dominant non-oracle
-problem is often not a slightly malformed argument list, but complete loss of the
-tool name under candidate-set drift. Optional artifact trail: \dicerunlink{} at
-\artifactref{\dicerunfile}{7423}, \artifactref{\dicerunfile}{7508},
-\artifactref{\dicerunfile}{7621}, and \artifactref{\dicerunfile}{7625}; parser
-code at \openrouterlink{} \artifactref{inference/openrouter_client.py}{112}.
-
-\subsection{Case 2: DICE forced-tool repair after partial compliance}
-This second example shows a different and easier failure mode. The task is again
-multi-turn DICE dialogue, this time asking for the top MLB pitchers by ERA in the
-2023 regular season. On the clean interface the relevant tool is
-\texttt{pitching\_leaders(results, sort\_column, season, sports\_code,
-game\_type)} and the model is correct before drift.
-
-Under drift, the tool name stays the same but most required fields are renamed to
-\texttt{sort\_column\_v2}, \texttt{season\_v2}, \texttt{sports\_code\_v2}, and
-\texttt{game\_type\_v2}. The field \texttt{results} is left unchanged, and the
-candidate set grows by one distractor tool,
-\texttt{pitching\_leaders\_alt\_1}. On this drifted interface the model still
-names the correct tool, but it collapses on the arguments:
-
-\begin{verbatim}
-{
-  "name": "pitching_leaders",
-  "arguments": {}
-}
-\end{verbatim}
-
-This is important because it means candidate resolution is no longer the hard
-part. The validator can already resolve the intended tool and simply reports a
-set of \texttt{missing\_field} errors for the required renamed fields. Because
-the tool target is already known, the system does not need
-\texttt{candidate\_tool\_retry}; it can go directly to
-\texttt{forced\_tool\_call} repair, keeping the repair stage constrained to
-\texttt{pitching\_leaders}.
-
-That constrained repair succeeds in one step. It reconstructs the full drifted
-call, including the renamed fields and the values implied by the conversation:
-
-\begin{verbatim}
-{
-  "name": "pitching_leaders",
-  "arguments": {
-    "results": 10,
-    "sort_column_v2": "ERA",
-    "season_v2": "2023",
-    "sports_code_v2": "MLB",
-    "game_type_v2": "regular season"
-  }
-}
-\end{verbatim}
-
-The repaired call matches the drifted gold call exactly. This example isolates a
-main mechanism claim of the paper: once the visible target tool has been
-resolved, the load-bearing part of the method is the validator error report plus
-tool-constrained repair, not tool search. Optional artifact trail:
-\dicerunlink{} at \artifactref{\dicerunfile}{1816},
-\artifactref{\dicerunfile}{1913}, \artifactref{\dicerunfile}{1949},
-\artifactref{\dicerunfile}{2060}, and \artifactref{\dicerunfile}{2064}.
-
-\subsection{Case 3: DICE limitation when validation sees no structural error}
-This example is included to make the boundary of the method explicit. The task is
-simple: play \texttt{Bohemian Rhapsody} on a \texttt{JBL Speaker}. The clean
-tool is \texttt{play\_music(music\_name, device\_name)}. Under drift,
-\texttt{device\_name} is renamed to \texttt{device\_name\_v2}, the description
-gains a legacy note that still mentions the old field name, and a distractor
-\texttt{play\_music\_alt\_1} is added.
-
-\begin{verbatim}
-{
-  "name": "play_music",
-  "arguments": {
-    "music_name": "Bohemian Rhapsody",
-    "device_name_v2": "JBL"
-  }
-}
-\end{verbatim}
-
-The drifted gold call, however, expects \texttt{"JBL Speaker"} rather than
-\texttt{"JBL"}. That difference is semantically important under the benchmark's
-strict matching policy, but it is not a structural error. The tool name is
-correct. All required fields are present. The field names match the drifted
-schema. As a result, the validator marks the call \texttt{valid = true}, the
-repair strategy is \texttt{not\_needed}, and the repaired call is identical to
-the drifted prediction.
-
-This limitation matters because it prevents overclaiming. \method is a
-structure-level repair layer. It is designed to catch missing tool names, missing
-required fields, and schema-level incompatibilities. It is not a general semantic
-correction oracle that can decide when a shorter device description like
-\texttt{"JBL"} should be expanded to \texttt{"JBL Speaker"}. The example
-therefore shows exactly where the method stops helping: once a call passes
-structural validation, value-level semantic mismatches can survive unchanged.
-Optional artifact trail: \dicerunlink{} at \artifactref{\dicerunfile}{38623},
-\artifactref{\dicerunfile}{38684}, \artifactref{\dicerunfile}{38694},
-\artifactref{\dicerunfile}{38720}, and \artifactref{\dicerunfile}{38741}.
-
-\subsection{Case 4: BFCL replication under heavier distractor pressure}
-The final worked example shows that the same pattern is not confined to DICE. In
-BFCL, the task is single-turn rather than conversational: compute displacement
-from initial velocity 10, acceleration 9.8, and time 5. On the clean interface
-the tool is \texttt{calculate\_displacement(initial\_velocity, time,
-acceleration)}.
-
-Under the medium-severity BFCL drift setting, the interface becomes noticeably
-messier than in the DICE examples. Parameter renaming composes across multiple
-steps, yielding the field names \texttt{initial\_velocity\_v2},
-\texttt{time\_v2\_v2}, and \texttt{acceleration\_v2\_v2}. At the same time, the
-visible tool set expands from one tool to four:
-\texttt{calculate\_displacement} plus three distractors
-\texttt{\_alt\_1}, \texttt{\_alt\_2}, and \texttt{\_alt\_3}. Under this heavier
-candidate pressure, the drifted prediction again collapses to:
-
-\begin{verbatim}
-{
-  "name": "",
-  "arguments": {}
-}
-\end{verbatim}
-
-Validation therefore reports \texttt{missing\_tool\_name} against the four-way
-candidate set. The repair stack then invokes \texttt{candidate\_tool\_retry},
-which first resolves the visible tool and then reconstructs the required
-arguments from the task:
-
-\begin{verbatim}
-{
-  "name": "calculate_displacement",
-  "arguments": {
-    "initial_velocity_v2": 10,
-    "time_v2_v2": 5,
-    "acceleration_v2_v2": 9.8
-  }
-}
-\end{verbatim}
-
-The repaired call matches the drifted gold call exactly. This BFCL case matters
-because it shows that the DICE result is not only a conversational artifact. The
-same non-oracle bottleneck, missing tool names under distractor-heavy candidate
-sets, appears in a single-turn API-style benchmark as well. Optional artifact
-trail: \bfclrunlink{} at \artifactref{\bfclrunfile}{2875},
-\artifactref{\bfclrunfile}{2938}, \artifactref{\bfclrunfile}{2952},
-\artifactref{\bfclrunfile}{2968}, and \artifactref{\bfclrunfile}{3064}.
-
-\subsection{What the four cases collectively show}
-Taken together, these worked examples make the paper's claims easier to inspect.
-Case~1 shows the dominant non-oracle failure mode: the model can lose the tool
-name entirely once distractor tools are introduced. Case~2 shows that when the
-tool name survives, structured validation plus constrained repair can often
-recover every renamed field in one step. Case~3 shows the main limitation:
-structural validation cannot catch every value-level semantic mismatch. Case~4
-shows that the same recovery pattern appears outside DICE, under BFCL's heavier
-candidate-set drift. In short, the appendix evidence supports the paper's central
-argument that interface drift is real, that missing tool names are the main
-deployment bottleneck, and that a lightweight validation-and-repair layer
-recovers a substantial part of the resulting damage without solving all semantic
-errors.
 
 \end{document}
