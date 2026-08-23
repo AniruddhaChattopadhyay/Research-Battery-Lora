@@ -1,0 +1,140 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{chattopadhyay2025modelgrounded}
+Chattopadhyay, A., Dandekar, R., Roy, K.: Learning and reasoning with
+  model-grounded symbolic artificial intelligence systems. In: Proceedings of
+  the 19th International Conference on Neurosymbolic Learning and Reasoning.
+  Proceedings of Machine Learning Research, vol.~284, pp. 957--976. PMLR
+  (2025), \url{https://proceedings.mlr.press/v284/chattopadhyay25a.html}
+
+\bibitem{faghih2025gaming}
+Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian,
+  S., Hosseini, P., Feizi, S.: Tool preferences in agentic {LLM}s are
+  unreliable. In: Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing. pp. 20954--20969 (2025).
+  \doi{10.18653/v1/2025.emnlp-main.1060}
+
+\bibitem{geng2023grammar}
+Geng, S., Josifoski, M., Peyrard, M., West, R.: Grammar-constrained decoding
+  for structured {NLP} tasks without finetuning. In: Proceedings of the 2023
+  Conference on Empirical Methods in Natural Language Processing. pp.
+  10932--10952 (2023). \doi{10.18653/v1/2023.emnlp-main.674}
+
+\bibitem{guo2026rewrite}
+Guo, R., Dong, K., Gao, X., Das, K.: Learning to rewrite tool descriptions for
+  reliable {LLM}-agent tool use. arXiv preprint arXiv:2602.20426  (2026).
+  \doi{10.48550/arXiv.2602.20426}
+
+\bibitem{jang2025dicebench}
+Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: {DICE-BENCH}:
+  Evaluating the tool-use capabilities of large language models in multi-round,
+  multi-party dialogues. In: Findings of the Association for Computational
+  Linguistics: ACL 2025. pp. 26822--26846 (2025).
+  \doi{10.18653/v1/2025.findings-acl.1375}
+
+\bibitem{lercher2025autoguard}
+Lercher, A., Bauer, C., Macho, C., Pinzger, M.: {AutoGuard}: Reporting breaking
+  changes of {REST APIs} from {Java Spring Boot} source code. In: 2025 IEEE
+  32nd International Conference on Software Analysis, Evolution and
+  Reengineering (SANER). pp. 814--818 (2025).
+  \doi{10.1109/SANER64311.2025.00083}
+
+\bibitem{li2023apibank}
+Li, M., Zhao, Y., Yu, B., Song, F., Li, H., Yu, H., Li, Z., Huang, F., Li, Y.:
+  {API}-bank: A comprehensive benchmark for tool-augmented {LLM}s. In:
+  Proceedings of the 2023 Conference on Empirical Methods in Natural Language
+  Processing. pp. 3102--3116 (2023). \doi{10.18653/v1/2023.emnlp-main.187}
+
+\bibitem{liu2024apigen}
+Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W.,
+  Liu, Z., Feng, Y., Murthy, R., Yang, L., Savarese, S., Niebles, J.C., Wang,
+  H., Heinecke, S., Xiong, C.: {APIGen}: Automated pipeline for generating
+  verifiable and diverse function-calling datasets. In: Advances in Neural
+  Information Processing Systems. vol.~37, pp. 54463--54482 (2024).
+  \doi{10.52202/079017-1725}
+
+\bibitem{lu2024toolsandbox}
+Lu, J., Holleis, T., Zhang, Y., Aumayer, B., Nan, F., Bai, H., Ma, S., Ma, S.,
+  Li, M., Yin, G., Wang, Z., Pang, R.: {ToolSandbox}: A stateful,
+  conversational, interactive evaluation benchmark for {LLM} tool use
+  capabilities. In: Findings of the Association for Computational Linguistics:
+  NAACL 2025. pp. 1160--1183 (2025). \doi{10.18653/v1/2025.findings-naacl.65}
+
+\bibitem{notionchangelog2026}
+{Notion}: Changelog. \url{https://developers.notion.com/page/changelog} (2026),
+  notion developer changelog, accessed 2026-04-14
+
+\bibitem{park2024grammar}
+Park, K., Wang, J., Berg-Kirkpatrick, T., Polikarpova, N., D'Antoni, L.:
+  Grammar-aligned decoding. In: Advances in Neural Information Processing
+  Systems. vol.~37, pp. 24547--24568 (2024). \doi{10.52202/079017-0774}
+
+\bibitem{bfcl2024}
+Patil, S.G., Mao, H., Yan, F., Ji, C.C.J., Suresh, V., Stoica, I., Gonzalez,
+  J.E.: The {Berkeley} function calling leaderboard ({BFCL}): From tool use to
+  agentic evaluation of large language models. In: Proceedings of the 42nd
+  International Conference on Machine Learning. Proceedings of Machine Learning
+  Research, vol.~267, pp. 48371--48392. PMLR (2025),
+  \url{https://proceedings.mlr.press/v267/patil25a.html}
+
+\bibitem{patil2023gorilla}
+Patil, S.G., Zhang, T., Wang, X., Gonzalez, J.E.: Gorilla: Large language model
+  connected with massive {API}s. In: Advances in Neural Information Processing
+  Systems. vol.~37, pp. 126544--126565 (2024). \doi{10.52202/079017-4020}
+
+\bibitem{qin2023toolllm}
+Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang,
+  X., Qian, B., Zhao, S., Hong, L., Tian, R., Xie, R., Zhou, J., Gerstein, M.,
+  Li, D., Liu, Z., Sun, M.: {ToolLLM}: Facilitating large language models to
+  master 16000+ real-world {API}s. In: The Twelfth International Conference on
+  Learning Representations (2024),
+  \url{https://openreview.net/forum?id=dHng2O0Jjr}
+
+\bibitem{rabinovich2025robustness}
+Rabinovich, E., Anaby~Tavor, A.: On the robustness of agentic function calling.
+  In: Proceedings of the 5th Workshop on Trustworthy NLP (TrustNLP 2025). pp.
+  298--304 (2025). \doi{10.18653/v1/2025.trustnlp-main.20}
+
+\bibitem{schick2023toolformer}
+Schick, T., Dwivedi-Yu, J., Dessi, R., Raileanu, R., Lomeli, M., Hambro, E.,
+  Zettlemoyer, L., Cancedda, N., Scialom, T.: Toolformer: Language models can
+  teach themselves to use tools. In: Advances in Neural Information Processing
+  Systems. vol.~36, pp. 68539--68551 (2023). \doi{10.52202/075280-2997}
+
+\bibitem{serbout2023versioning}
+Serbout, S., Pautasso, C.: An empirical study of web {API} versioning
+  practices. In: Web Engineering. pp. 303--318. Lecture Notes in Computer
+  Science (2023). \doi{10.1007/978-3-031-34444-2_22}
+
+\bibitem{stripechangelog2026}
+{Stripe}: {API} changelog. \url{https://docs.stripe.com/changelog} (2026),
+  stripe developer changelog, accessed 2026-07-29
+
+\bibitem{yao2024taubench}
+Yao, S., Shinn, N., Razavi, P., Narasimhan, K.: $\tau$-bench: A benchmark for
+  tool-agent-user interaction in real-world domains. In: The Thirteenth
+  International Conference on Learning Representations (2025),
+  \url{https://openreview.net/forum?id=roNSXZpUDN}
+
+\bibitem{yao2022react}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.:
+  {ReAct}: Synergizing reasoning and acting in language models. In: The
+  Eleventh International Conference on Learning Representations (2023),
+  \url{https://openreview.net/forum?id=WE_vluYUL-X}
+
+\bibitem{zhang2026fission}
+Zhang, Z., Zhao, F., Wang, R., Wang, Z., Liang, B., Wang, J., Hu, Y., Cao, S.,
+  Wong, K.F.: Robust tool use via {Fission-GRPO}: Learning to recover from
+  execution errors. In: Proceedings of the 64th Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers). pp.
+  40477--40491 (2026). \doi{10.18653/v1/2026.acl-long.1880}
+
+\bibitem{zhong2025complexfuncbench}
+Zhong, L., Du, Z., Zhang, X., Hu, H., Tang, J.: {ComplexFuncBench}: Exploring
+  multi-step and constrained function calling under long-context scenario.
+  arXiv preprint arXiv:2501.10132  (2025). \doi{10.48550/arXiv.2501.10132}
+
+\end{thebibliography}

@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml producer="poppler" version="26.04.0">
+<page number="1" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="0" size="22" family="SKCCXS+SFBX1440" color="#000000"/>
+	<fontspec id="1" size="15" family="SNTCTL+SFRM1000" color="#000000"/>
+	<fontspec id="2" size="10" family="RDIFPS+CMR7" color="#000000"/>
+	<fontspec id="3" size="10" family="UUPVAM+CMMI7" color="#000000"/>
+	<fontspec id="4" size="13" family="GNSUTQ+SFRM0900" color="#000000"/>
+	<fontspec id="5" size="13" family="UTFDBM+SFTT0900" color="#000000"/>
+	<fontspec id="6" size="13" family="BIGKRZ+SFBX0900" color="#000000"/>
+	<fontspec id="7" size="13" family="KRLLZE+SFTI0900" color="#000000"/>
+	<fontspec id="8" size="13" family="SOZBYK+CMR9" color="#000000"/>
+	<fontspec id="9" size="13" family="YEYNVX+CMMI9" color="#000000"/>
+	<fontspec id="10" size="18" family="JWMVVS+SFBX1200" color="#000000"/>
+	<fontspec id="11" size="15" family="LYJFFT+SFTI1000" color="#000000"/>
+	<fontspec id="12" size="9" family="LFTYVS+CMMI6" color="#000000"/>
+<text top="174" left="211" width="502" height="19" font="0">Robust Function Calling for LLM Agents Under</text>
+<text top="201" left="387" width="150" height="19" font="0">Interface Drift</text>
+<text top="258" left="218" width="175" height="13" font="1">Aniruddha Chattopadhyay</text>
+<text top="255" left="394" width="6" height="9" font="2">1</text>
+<text top="255" left="400" width="6" height="9" font="3">⋆</text>
+<text top="258" left="407" width="118" height="13" font="1">, Kanishka Halder</text>
+<text top="255" left="525" width="6" height="9" font="2">1</text>
+<text top="258" left="532" width="166" height="13" font="1">, and Partha Sarathi Roy</text>
+<text top="255" left="698" width="6" height="9" font="2">1</text>
+<text top="286" left="335" width="253" height="17" font="4">Independent Researcher, Bangalore, India</text>
+<text top="307" left="204" width="515" height="11" font="5">studyaniruddha@gmail.com, kanishkahalder@gmail.com, psarathi012@gmail.com</text>
+<text top="370" left="245" width="65" height="12" font="6">Abstract.</text>
+<text top="366" left="317" width="361" height="17" font="4">Tool-using language-model agents depend on descriptions,</text>
+<text top="382" left="245" width="434" height="17" font="4">argument schemas, and candidate tool lists. These interfaces can change</text>
+<text top="399" left="245" width="341" height="17" font="4">after deployment while semantics remain fixed, creating</text>
+<text top="402" left="591" width="83" height="12" font="7">interface drift</text>
+<text top="399" left="675" width="4" height="17" font="4">.</text>
+<text top="415" left="245" width="434" height="17" font="4">We test whether a lightweight, training-free repair layer can recover ro-</text>
+<text top="432" left="245" width="434" height="17" font="4">bustness without retraining. Our method, SchemaShield-Lite, combines</text>
+<text top="448" left="245" width="434" height="17" font="4">schema validation, candidate-set retry for missing tool names, and one-</text>
+<text top="465" left="245" width="434" height="17" font="4">shot constrained repair. On Qwen3.5-9B, it raises DICE-300 accuracy</text>
+<text top="481" left="245" width="28" height="17" font="4">from</text>
+<text top="485" left="276" width="7" height="12" font="8">0</text>
+<text top="485" left="283" width="4" height="12" font="9">.</text>
+<text top="485" left="287" width="21" height="12" font="8">717</text>
+<text top="481" left="311" width="12" height="17" font="4">to</text>
+<text top="485" left="327" width="7" height="12" font="8">0</text>
+<text top="485" left="334" width="4" height="12" font="9">.</text>
+<text top="485" left="338" width="21" height="12" font="8">813</text>
+<text top="481" left="362" width="176" height="17" font="4">and BFCL-200 accuracy from</text>
+<text top="485" left="541" width="7" height="12" font="8">0</text>
+<text top="485" left="548" width="4" height="12" font="9">.</text>
+<text top="485" left="552" width="21" height="12" font="8">580</text>
+<text top="481" left="576" width="12" height="17" font="4">to</text>
+<text top="485" left="592" width="7" height="12" font="8">0</text>
+<text top="485" left="599" width="4" height="12" font="9">.</text>
+<text top="485" left="603" width="21" height="12" font="8">805</text>
+<text top="481" left="624" width="55" height="17" font="4">, recover-</text>
+<text top="498" left="245" width="18" height="17" font="4">ing</text>
+<text top="501" left="266" width="14" height="12" font="8">19</text>
+<text top="501" left="280" width="7" height="12" font="9">/</text>
+<text top="501" left="287" width="14" height="12" font="8">22</text>
+<text top="498" left="304" width="22" height="17" font="4">and</text>
+<text top="501" left="330" width="14" height="12" font="8">33</text>
+<text top="501" left="343" width="7" height="12" font="9">/</text>
+<text top="501" left="350" width="14" height="12" font="8">45</text>
+<text top="498" left="367" width="311" height="17" font="4">drift-induced failures with no observed repair harms.</text>
+<text top="514" left="245" width="434" height="17" font="4">Naive retry does not explain the gains. In the Qwen3.5-9B DICE abla-</text>
+<text top="530" left="245" width="434" height="17" font="4">tion, distractor tools cause most damage, while description and schema</text>
+<text top="547" left="245" width="434" height="17" font="4">edits cause less. The results support validation-and-repair as a promising</text>
+<text top="563" left="245" width="184" height="17" font="4">but model-dependent fallback.</text>
+<text top="600" left="245" width="73" height="12" font="6">Keywords:</text>
+<text top="596" left="325" width="354" height="17" font="4">tool-augmented large language models · function calling ·</text>
+<text top="613" left="245" width="434" height="17" font="4">interface drift · agentic AI robustness · inference-time validation and</text>
+<text top="629" left="245" width="35" height="17" font="4">repair</text>
+<text top="681" left="202" width="10" height="16" font="10">1</text>
+<text top="681" left="232" width="111" height="16" font="10">Introduction</text>
+<text top="721" left="202" width="519" height="13" font="1">Modern language-model agents increasingly depend on external tools for re-</text>
+<text top="739" left="202" width="519" height="13" font="1">trieval, execution, planning, and actuation. In practice, however, tool use is me-</text>
+<text top="757" left="202" width="519" height="13" font="1">diated entirely through text: tool descriptions, parameter schemas, enum values,</text>
+<text top="775" left="202" width="519" height="13" font="1">and candidate tool lists. Recent work shows that these interface details strongly</text>
+<text top="792" left="202" width="519" height="13" font="1">affect tool selection and argument generation even when the tool semantics are</text>
+<text top="810" left="202" width="519" height="13" font="1">unchanged <a href="main.html#15">[4,2]. </a>This creates a deployment problem: tool interfaces drift over</text>
+<text top="828" left="202" width="519" height="13" font="1">time as developers rename parameters, revise descriptions, add examples, or</text>
+<text top="846" left="202" width="179" height="13" font="1">expand candidate tool sets.</text>
+<text top="864" left="225" width="65" height="13" font="1">We define</text>
+<text top="864" left="296" width="91" height="13" font="11">interface drift</text>
+<text top="864" left="394" width="327" height="13" font="1">as benign, semantics-preserving interface changes</text>
+<text top="882" left="202" width="519" height="13" font="1">after deployment. Rather than train a new model, we quantify drift sensitivity</text>
+<text top="900" left="202" width="459" height="13" font="1">and test whether compact inference-time repair can recover reliability.</text>
+<text top="919" left="225" width="496" height="13" font="1">We instantiate drift with three deployment-motivated synthetic perturba-</text>
+<text top="936" left="202" width="519" height="13" font="1">tions: (i) stale description examples that mention legacy field names, (ii) schema</text>
+<text top="954" left="202" width="519" height="13" font="1">renaming, and (iii) distractor tools. Our primary evaluation uses Qwen3.5-9B on</text>
+<text top="982" left="206" width="6" height="8" font="12">⋆</text>
+<text top="982" left="217" width="136" height="17" font="4">Corresponding author:</text>
+<text top="986" left="358" width="169" height="11" font="5">studyaniruddha@gmail.com</text>
+<text top="982" left="528" width="4" height="17" font="4">.</text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="13" size="15" family="WEOYGS+SFBX1000" color="#000000"/>
+	<fontspec id="14" size="15" family="ZKPPMO+CMR10" color="#000000"/>
+	<fontspec id="15" size="15" family="FYIMGR+CMMI10" color="#000000"/>
+	<fontspec id="16" size="15" family="JNBABZ+CMSY10" color="#000000"/>
+<text top="178" left="202" width="519" height="13" font="1">a 300-example DICE-BENCH slice <a href="main.html#15">[5] </a>and a 200-example BFCL slice <a href="main.html#16">[12] </a>un-</text>
+<text top="196" left="202" width="519" height="13" font="1">der a deployment-realistic non-oracle repair protocol. Earlier oracle-constrained</text>
+<text top="214" left="202" width="519" height="13" font="1">sweeps on additional open models are retained only as upper-bound context and</text>
+<text top="232" left="202" width="150" height="13" font="1">for secondary analyses.</text>
+<text top="250" left="225" width="496" height="13" font="1">This paper makes three empirical contributions, demonstrated primarily on</text>
+<text top="268" left="202" width="425" height="13" font="1">Qwen3.5-9B with a supporting replication on Qwen3.5-35B-A3B:</text>
+<text top="297" left="208" width="12" height="13" font="1">1.</text>
+<text top="297" left="228" width="493" height="13" font="13">Non-oracle inference-time repair recovers drift-induced failures on</text>
+<text top="315" left="228" width="145" height="13" font="13">the primary model.</text>
+<text top="315" left="378" width="343" height="13" font="1">On Qwen3.5-9B, SchemaShield-Lite raises DICE-300</text>
+<text top="333" left="228" width="93" height="13" font="1">accuracy from</text>
+<text top="333" left="326" width="7" height="13" font="14">0</text>
+<text top="333" left="333" width="4" height="13" font="15">.</text>
+<text top="333" left="337" width="22" height="13" font="14">717</text>
+<text top="333" left="365" width="13" height="13" font="1">to</text>
+<text top="333" left="384" width="7" height="13" font="14">0</text>
+<text top="333" left="392" width="4" height="13" font="15">.</text>
+<text top="333" left="396" width="22" height="13" font="14">813</text>
+<text top="333" left="424" width="195" height="13" font="1">and BFCL-200 accuracy from</text>
+<text top="333" left="624" width="7" height="13" font="14">0</text>
+<text top="333" left="632" width="4" height="13" font="15">.</text>
+<text top="333" left="636" width="22" height="13" font="14">580</text>
+<text top="333" left="664" width="13" height="13" font="1">to</text>
+<text top="333" left="683" width="7" height="13" font="14">0</text>
+<text top="333" left="690" width="4" height="13" font="15">.</text>
+<text top="333" left="694" width="22" height="13" font="14">805</text>
+<text top="333" left="717" width="4" height="13" font="1">,</text>
+<text top="351" left="228" width="493" height="13" font="1">while showing no observed repair harms on the originally-correct slice in</text>
+<text top="369" left="228" width="493" height="13" font="1">either benchmark. A same-protocol BFCL replication on Qwen3.5-35B-A3B</text>
+<text top="387" left="228" width="6" height="13" font="1">(</text>
+<text top="387" left="233" width="7" height="13" font="14">0</text>
+<text top="387" left="241" width="4" height="13" font="15">.</text>
+<text top="387" left="245" width="22" height="13" font="14">635</text>
+<text top="386" left="273" width="15" height="14" font="16">→</text>
+<text top="387" left="294" width="7" height="13" font="14">0</text>
+<text top="387" left="302" width="4" height="13" font="15">.</text>
+<text top="387" left="306" width="22" height="13" font="14">845</text>
+<text top="387" left="328" width="393" height="13" font="1">) confirms the effect is not confined to a single model size,</text>
+<text top="405" left="228" width="479" height="13" font="1">though the cleanest non-oracle evidence remains within the Qwen family.</text>
+<text top="422" left="208" width="12" height="13" font="1">2.</text>
+<text top="422" left="228" width="298" height="13" font="13">Naive retry does not explain the gains.</text>
+<text top="422" left="531" width="190" height="13" font="1">In the separate baseline runs</text>
+<text top="440" left="228" width="287" height="13" font="1">reported in Section <a href="main.html#9">6.2, </a>naive retry reaches</text>
+<text top="440" left="520" width="7" height="13" font="14">0</text>
+<text top="440" left="528" width="4" height="13" font="15">.</text>
+<text top="440" left="532" width="22" height="13" font="14">727</text>
+<text top="440" left="560" width="99" height="13" font="1">versus repaired</text>
+<text top="440" left="665" width="7" height="13" font="14">0</text>
+<text top="440" left="673" width="4" height="13" font="15">.</text>
+<text top="440" left="677" width="22" height="13" font="14">813</text>
+<text top="440" left="705" width="16" height="13" font="1">on</text>
+<text top="458" left="228" width="96" height="13" font="1">DICE-300 and</text>
+<text top="458" left="330" width="7" height="13" font="14">0</text>
+<text top="458" left="338" width="4" height="13" font="15">.</text>
+<text top="458" left="342" width="22" height="13" font="14">610</text>
+<text top="458" left="371" width="40" height="13" font="1">versus</text>
+<text top="458" left="418" width="7" height="13" font="14">0</text>
+<text top="458" left="425" width="4" height="13" font="15">.</text>
+<text top="458" left="430" width="22" height="13" font="14">795</text>
+<text top="458" left="459" width="262" height="13" font="1">on BFCL-200. A second attempt alone</text>
+<text top="476" left="228" width="246" height="13" font="1">therefore cannot explain the recovery.</text>
+<text top="493" left="208" width="12" height="13" font="1">3.</text>
+<text top="493" left="228" width="493" height="13" font="13">Missing tool names are the main non-oracle bottleneck, and most</text>
+<text top="511" left="228" width="406" height="13" font="13">primary-model drift misses remain validator-visible.</text>
+<text top="511" left="641" width="80" height="13" font="1">In the non-</text>
+<text top="529" left="228" width="493" height="13" font="1">oracle setting, adding a candidate-set retry improves repaired accuracy from</text>
+<text top="547" left="228" width="7" height="13" font="14">0</text>
+<text top="547" left="235" width="4" height="13" font="15">.</text>
+<text top="547" left="239" width="22" height="13" font="14">780</text>
+<text top="547" left="268" width="13" height="13" font="1">to</text>
+<text top="547" left="287" width="7" height="13" font="14">0</text>
+<text top="547" left="294" width="4" height="13" font="15">.</text>
+<text top="547" left="298" width="22" height="13" font="14">813</text>
+<text top="547" left="327" width="126" height="13" font="1">on DICE and from</text>
+<text top="547" left="458" width="7" height="13" font="14">0</text>
+<text top="547" left="466" width="4" height="13" font="15">.</text>
+<text top="547" left="470" width="22" height="13" font="14">725</text>
+<text top="547" left="498" width="13" height="13" font="1">to</text>
+<text top="547" left="518" width="7" height="13" font="14">0</text>
+<text top="547" left="525" width="4" height="13" font="15">.</text>
+<text top="547" left="529" width="22" height="13" font="14">805</text>
+<text top="547" left="558" width="163" height="13" font="1">on BFCL while reducing</text>
+<text top="565" left="228" width="202" height="13" font="1">unresolved repair targets from</text>
+<text top="565" left="436" width="15" height="13" font="14">35</text>
+<text top="565" left="458" width="13" height="13" font="1">to</text>
+<text top="565" left="477" width="15" height="13" font="14">15</text>
+<text top="565" left="499" width="61" height="13" font="1">and from</text>
+<text top="565" left="566" width="15" height="13" font="14">34</text>
+<text top="565" left="588" width="13" height="13" font="1">to</text>
+<text top="565" left="607" width="7" height="13" font="14">9</text>
+<text top="565" left="621" width="100" height="13" font="1">respectively. In</text>
+<text top="583" left="228" width="178" height="13" font="1">the final primary runs, only</text>
+<text top="583" left="410" width="7" height="13" font="14">2</text>
+<text top="583" left="418" width="7" height="13" font="15">/</text>
+<text top="583" left="425" width="15" height="13" font="14">22</text>
+<text top="583" left="445" width="276" height="13" font="1">drift misses on the DICE originally-correct</text>
+<text top="601" left="228" width="57" height="13" font="1">slice and</text>
+<text top="601" left="289" width="7" height="13" font="14">0</text>
+<text top="601" left="297" width="7" height="13" font="15">/</text>
+<text top="601" left="304" width="15" height="13" font="14">45</text>
+<text top="601" left="324" width="236" height="13" font="1">on BFCL remain validator-invisible.</text>
+<text top="644" left="202" width="10" height="16" font="10">2</text>
+<text top="644" left="232" width="123" height="16" font="10">Related Work</text>
+<text top="679" left="202" width="519" height="13" font="1">Recent work has established that tool interfaces are not neutral wrappers around</text>
+<text top="697" left="202" width="519" height="13" font="1">tool use; they are part of the learning and inference problem itself. Guo et al. <a href="main.html#15">[4]</a></text>
+<text top="715" left="202" width="519" height="13" font="1">show that rewriting tool descriptions can substantially improve agent reliability,</text>
+<text top="733" left="202" width="519" height="13" font="1">especially when candidate tool sets are large. Faghih et al. <a href="main.html#15">[2] </a>show the opposite</text>
+<text top="751" left="202" width="519" height="13" font="1">direction: small edits to tool descriptions can dramatically shift tool preference,</text>
+<text top="769" left="202" width="519" height="13" font="1">exposing a fragility in description-mediated tool use. Rabinovich and Anaby-</text>
+<text top="787" left="202" width="519" height="13" font="1">Tavor <a href="main.html#16">[15] </a>study robustness in agentic function calling under toolkit changes</text>
+<text top="805" left="202" width="519" height="13" font="1">and other perturbations, while our focus is narrower: post-deployment interface</text>
+<text top="823" left="202" width="275" height="13" font="1">drift with fixed underlying tool semantics.</text>
+<text top="841" left="225" width="496" height="13" font="1">Several recent papers study robustness and recovery in tool-use systems.</text>
+<text top="859" left="202" width="519" height="13" font="1">Zhang et al. <a href="main.html#16">[21] </a>show that execution-error recovery remains a major weakness,</text>
+<text top="876" left="202" width="519" height="13" font="1">particularly for smaller models, and propose RL-based training to improve it.</text>
+<text top="894" left="202" width="519" height="13" font="1">Chattopadhyay et al. <a href="main.html#15">[1] </a>use external-judge feedback to iteratively refine prompts</text>
+<text top="912" left="202" width="519" height="13" font="1">for mathematical reasoning. We instead use deterministic validation for one-shot</text>
+<text top="930" left="202" width="519" height="13" font="1">tool-call repair under interface drift, without post-training or persistent prompt</text>
+<text top="948" left="202" width="55" height="13" font="1">updates.</text>
+<text top="966" left="225" width="496" height="13" font="1">Our repair stack also connects to structured-output enforcement via con-</text>
+<text top="984" left="202" width="519" height="13" font="1">strained decoding. Grammar-constrained and grammar-aligned decoding study</text>
+</page>
+<page number="3" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="519" height="13" font="1">how to guarantee or preserve valid structured outputs during generation <a href="main.html#15">[3,11].</a></text>
+<text top="196" left="202" width="519" height="13" font="1">We instead validate and repair calls against an external tool schema after gen-</text>
+<text top="214" left="202" width="50" height="13" font="1">eration.</text>
+<text top="232" left="225" width="496" height="13" font="1">Benchmark work has also highlighted that realistic function calling is still far</text>
+<text top="250" left="202" width="519" height="13" font="1">from solved. ComplexFuncBench introduces multi-step and constrained long-</text>
+<text top="268" left="202" width="519" height="13" font="1">context function calling <a href="main.html#16">[22], </a>while DICE-BENCH <a href="main.html#15">[5] </a>focuses on multi-round,</text>
+<text top="286" left="202" width="519" height="13" font="1">multi-party dialogues with tool-related information dispersed across conversation</text>
+<text top="304" left="202" width="303" height="13" font="1">turns. Other benchmarks, including API-Bank,</text>
+<text top="304" left="509" width="7" height="13" font="15">τ</text>
+<text top="304" left="517" width="203" height="13" font="1">-bench, and ToolSandbox, simi-</text>
+<text top="322" left="202" width="519" height="13" font="1">larly stress planning, state, and interaction in tool-use settings <a href="main.html#15">[7,19,9]. </a>We evalu-</text>
+<text top="340" left="202" width="519" height="13" font="1">ate DICE-BENCH and the Berkeley Function Calling Leaderboard (BFCL) <a href="main.html#16">[12]</a></text>
+<text top="358" left="202" width="519" height="13" font="1">as complementary settings. DICE-BENCH exercises conversational multi-turn</text>
+<text top="376" left="202" width="418" height="13" font="1">dialogues; BFCL tests single-turn tool calls across diverse APIs.</text>
+<text top="394" left="225" width="496" height="13" font="1">Broader tool-use work has focused on teaching models to call APIs, retrieving</text>
+<text top="412" left="202" width="519" height="13" font="1">relevant tools, and combining reasoning with action <a href="main.html#16">[16,13,14,20]. </a>Our focus is</text>
+<text top="430" left="202" width="456" height="13" font="1">different: robustness when an already-deployed tool interface changes.</text>
+<text top="448" left="225" width="496" height="13" font="1">This setting also connects to software-engineering work on API evolution</text>
+<text top="466" left="202" width="519" height="13" font="1">and contract checking. AutoGuard, for example, compares OpenAPI descrip-</text>
+<text top="483" left="202" width="519" height="13" font="1">tions across versions and flags changes to methods, parameters, responses, and</text>
+<text top="501" left="202" width="519" height="13" font="1">schemas <a href="main.html#15">[6]. </a>Serbout and Pautasso <a href="main.html#16">[17] </a>study how Web API versioning practices</text>
+<text top="519" left="202" width="519" height="13" font="1">align with the actual changes made across releases. We borrow the intuition</text>
+<text top="537" left="202" width="519" height="13" font="1">that interface evolution is a first-class engineering concern, but study its effect</text>
+<text top="555" left="202" width="378" height="13" font="1">on LLM tool use rather than on conventional API clients.</text>
+<text top="573" left="225" width="496" height="13" font="1">Compared with dataset-generation work such as APIGen <a href="main.html#15">[8], </a>our objective is</text>
+<text top="591" left="202" width="519" height="13" font="1">different. We do not create new large-scale tool-calling training data. Instead, we</text>
+<text top="609" left="202" width="519" height="13" font="1">evaluate whether a lightweight repair layer can stabilize existing models against</text>
+<text top="627" left="202" width="281" height="13" font="1">a specific class of post-deployment failures.</text>
+<text top="673" left="202" width="10" height="16" font="10">3</text>
+<text top="673" left="232" width="189" height="16" font="10">Problem Formulation</text>
+<text top="711" left="202" width="271" height="13" font="1">Let a tool be represented by an interface</text>
+<text top="711" left="478" width="7" height="13" font="15">I</text>
+<text top="711" left="491" width="23" height="13" font="14">= (</text>
+<text top="711" left="514" width="39" height="13" font="15">d, s, C</text>
+<text top="711" left="554" width="6" height="13" font="14">)</text>
+<text top="711" left="560" width="48" height="13" font="1">, where</text>
+<text top="711" left="613" width="8" height="13" font="15">d</text>
+<text top="711" left="627" width="94" height="13" font="1">is the natural-</text>
+<text top="729" left="202" width="140" height="13" font="1">language description,</text>
+<text top="729" left="348" width="7" height="13" font="15">s</text>
+<text top="729" left="362" width="195" height="13" font="1">is the argument schema, and</text>
+<text top="729" left="563" width="11" height="13" font="15">C</text>
+<text top="729" left="582" width="139" height="13" font="1">is the candidate tool</text>
+<text top="747" left="202" width="519" height="13" font="1">set shown to the model. The underlying tool semantics are assumed fixed. An</text>
+<text top="765" left="202" width="91" height="13" font="11">interface drift</text>
+<text top="765" left="300" width="55" height="13" font="1">operator</text>
+<text top="765" left="361" width="12" height="13" font="15">∆</text>
+<text top="765" left="380" width="34" height="13" font="1">maps</text>
+<text top="765" left="420" width="7" height="13" font="15">I</text>
+<text top="765" left="433" width="120" height="13" font="1">to a new interface</text>
+<text top="765" left="559" width="12" height="13" font="15">∆</text>
+<text top="765" left="572" width="6" height="13" font="14">(</text>
+<text top="765" left="578" width="7" height="13" font="15">I</text>
+<text top="765" left="585" width="6" height="13" font="14">)</text>
+<text top="765" left="597" width="124" height="13" font="1">that preserves tool</text>
+<text top="783" left="202" width="371" height="13" font="1">semantics but perturbs surface form. For clarity, we view</text>
+<text top="783" left="578" width="12" height="13" font="15">∆</text>
+<text top="783" left="595" width="126" height="13" font="1">as a composition of</text>
+<text top="801" left="202" width="104" height="13" font="1">three operators,</text>
+<text top="819" left="409" width="12" height="13" font="15">∆</text>
+<text top="819" left="426" width="12" height="13" font="14">=</text>
+<text top="819" left="442" width="7" height="13" font="15">δ</text>
+<text top="824" left="448" width="5" height="9" font="3">c</text>
+<text top="818" left="458" width="7" height="14" font="16">◦</text>
+<text top="819" left="469" width="7" height="13" font="15">δ</text>
+<text top="824" left="475" width="6" height="9" font="3">s</text>
+<text top="818" left="485" width="7" height="14" font="16">◦</text>
+<text top="819" left="496" width="7" height="13" font="15">δ</text>
+<text top="824" left="502" width="6" height="9" font="3">d</text>
+<text top="819" left="509" width="4" height="13" font="15">,</text>
+<text top="846" left="202" width="38" height="13" font="1">where</text>
+<text top="846" left="245" width="7" height="13" font="15">δ</text>
+<text top="852" left="252" width="6" height="9" font="3">d</text>
+<text top="846" left="263" width="195" height="13" font="1">edits only the description text</text>
+<text top="846" left="462" width="8" height="13" font="15">d</text>
+<text top="846" left="470" width="4" height="13" font="1">,</text>
+<text top="846" left="479" width="7" height="13" font="15">δ</text>
+<text top="852" left="486" width="6" height="9" font="3">s</text>
+<text top="846" left="496" width="224" height="13" font="1">edits only the schema surface form</text>
+<text top="864" left="202" width="7" height="13" font="15">s</text>
+<text top="864" left="209" width="35" height="13" font="1">, and</text>
+<text top="864" left="251" width="7" height="13" font="15">δ</text>
+<text top="869" left="257" width="5" height="9" font="3">c</text>
+<text top="864" left="270" width="236" height="13" font="1">edits only the visible candidate set</text>
+<text top="864" left="513" width="11" height="13" font="15">C</text>
+<text top="864" left="524" width="196" height="13" font="1">. Each operator is semantics-</text>
+<text top="882" left="202" width="519" height="13" font="1">preserving with respect to the benchmark gold tool call; the evaluation question</text>
+<text top="900" left="202" width="519" height="13" font="1">is whether the model remains robust to these surface-form changes at inference</text>
+<text top="918" left="202" width="33" height="13" font="1">time.</text>
+<text top="936" left="225" width="177" height="13" font="1">We study three drift types:</text>
+<text top="966" left="211" width="144" height="13" font="13">– Description drift</text>
+<text top="966" left="355" width="366" height="13" font="1">: add stale or legacy examples to the description that</text>
+<text top="984" left="228" width="167" height="13" font="1">refer to older field names.</text>
+</page>
+<page number="4" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="17" size="8" family="GNSUTQ+SFRM0900" color="#000000"/>
+	<fontspec id="18" size="8" family="YEYNVX+CMMI9" color="#000000"/>
+	<fontspec id="19" size="8" family="SOZBYK+CMR9" color="#000000"/>
+	<fontspec id="20" size="7" family="YNYLDX+SFRM0700" color="#000000"/>
+<text top="207" left="213" width="48" height="11" font="17">User context</text>
+<text top="218" left="209" width="56" height="11" font="17">+ drifted tools</text>
+<text top="207" left="309" width="43" height="11" font="17">Base model</text>
+<text top="219" left="309" width="8" height="7" font="18">M</text>
+<text top="219" left="318" width="3" height="7" font="19">(</text>
+<text top="219" left="321" width="16" height="7" font="18">x, ∆</text>
+<text top="219" left="337" width="3" height="7" font="19">(</text>
+<text top="219" left="341" width="4" height="7" font="18">I</text>
+<text top="219" left="345" width="7" height="7" font="19">))</text>
+<text top="213" left="403" width="24" height="11" font="17">Valid?</text>
+<text top="175" left="473" width="28" height="11" font="17">Output</text>
+<text top="185" left="460" width="55" height="11" font="17">(pass-through)</text>
+<text top="239" left="464" width="56" height="11" font="17">Repair context</text>
+<text top="249" left="456" width="73" height="11" font="17">(card + validation)</text>
+<text top="239" left="567" width="46" height="11" font="17">Constrained</text>
+<text top="249" left="571" width="38" height="11" font="17">repair call</text>
+<text top="239" left="666" width="34" height="11" font="17">Repaired</text>
+<text top="249" left="671" width="25" height="11" font="17">output</text>
+<text top="188" left="428" width="11" height="6" font="20">Yes</text>
+<text top="244" left="429" width="9" height="6" font="20">No</text>
+<text top="284" left="202" width="42" height="12" font="6">Fig. 1.</text>
+<text top="281" left="248" width="472" height="17" font="4">SchemaShield-Lite pipeline. Invalid tool calls trigger structured validation and</text>
+<text top="297" left="202" width="481" height="17" font="4">constrained repair; missing tool names are first resolved via candidate-set retry.</text>
+<text top="355" left="211" width="112" height="13" font="13">– Schema drift</text>
+<text top="355" left="323" width="317" height="13" font="1">: rename parameters while preserving semantics.</text>
+<text top="374" left="211" width="159" height="13" font="13">– Candidate-set drift</text>
+<text top="374" left="371" width="338" height="13" font="1">: add distractor tools with overlapping descriptions.</text>
+<text top="410" left="225" width="121" height="13" font="1">Given user context</text>
+<text top="409" left="349" width="9" height="13" font="15">x</text>
+<text top="410" left="358" width="93" height="13" font="1">, tool interface</text>
+<text top="409" left="455" width="7" height="13" font="15">I</text>
+<text top="410" left="462" width="75" height="13" font="1">, and model</text>
+<text top="409" left="542" width="14" height="13" font="15">M</text>
+<text top="410" left="558" width="163" height="13" font="1">, the base system outputs</text>
+<text top="427" left="202" width="65" height="13" font="1">a tool call</text>
+<text top="427" left="272" width="7" height="13" font="15">y</text>
+<text top="427" left="284" width="12" height="13" font="14">=</text>
+<text top="427" left="300" width="14" height="13" font="15">M</text>
+<text top="427" left="316" width="6" height="13" font="14">(</text>
+<text top="427" left="322" width="22" height="13" font="15">x, I</text>
+<text top="427" left="345" width="6" height="13" font="14">)</text>
+<text top="427" left="351" width="175" height="13" font="1">. We evaluate three stages:</text>
+<text top="464" left="208" width="12" height="13" font="1">1.</text>
+<text top="464" left="228" width="61" height="13" font="13">Original</text>
+<text top="464" left="288" width="262" height="13" font="1">: inference on the original tool interface.</text>
+<text top="484" left="208" width="12" height="13" font="1">2.</text>
+<text top="484" left="228" width="54" height="13" font="13">Drifted</text>
+<text top="484" left="282" width="223" height="13" font="1">: inference on the drifted interface</text>
+<text top="484" left="509" width="12" height="13" font="15">∆</text>
+<text top="484" left="522" width="6" height="13" font="14">(</text>
+<text top="484" left="528" width="7" height="13" font="15">I</text>
+<text top="484" left="535" width="6" height="13" font="14">)</text>
+<text top="484" left="541" width="4" height="13" font="1">.</text>
+<text top="504" left="208" width="12" height="13" font="1">3.</text>
+<text top="504" left="228" width="68" height="13" font="13">Repaired</text>
+<text top="504" left="295" width="404" height="13" font="1">: inference-time repair of an invalid or incomplete drifted call.</text>
+<text top="539" left="225" width="127" height="13" font="1">A repair protocol is</text>
+<text top="539" left="356" width="68" height="13" font="11">non-oracle</text>
+<text top="539" left="430" width="291" height="13" font="1">if it uses only deployment-available user con-</text>
+<text top="557" left="202" width="334" height="13" font="1">text, model output, and runtime-visible tools. An</text>
+<text top="557" left="542" width="117" height="13" font="11">oracle-constrained</text>
+<text top="557" left="667" width="54" height="13" font="1">protocol</text>
+<text top="575" left="202" width="519" height="13" font="1">additionally supplies the benchmark’s gold target tool, which a deployed system</text>
+<text top="592" left="202" width="455" height="13" font="1">would not know; we therefore report such runs only as upper bounds.</text>
+<text top="612" left="225" width="496" height="13" font="1">Our central question is whether an inference-time repair layer can recover</text>
+<text top="630" left="202" width="519" height="13" font="1">the performance lost from Original to Drifted without harming examples that</text>
+<text top="648" left="202" width="136" height="13" font="1">were already correct.</text>
+<text top="702" left="202" width="10" height="16" font="10">4</text>
+<text top="702" left="232" width="69" height="16" font="10">Method</text>
+<text top="749" left="202" width="22" height="13" font="13">4.1</text>
+<text top="749" left="241" width="138" height="13" font="13">SchemaShield-Lite</text>
+<text top="787" left="202" width="519" height="13" font="1">SchemaShield-Lite is a lightweight inference-time robustness layer with three</text>
+<text top="805" left="202" width="267" height="13" font="1">parts. Figure <a href="main.html#4">1 </a>sketches the full pipeline.</text>
+<text top="850" left="202" width="127" height="13" font="11">Canonical tool card.</text>
+<text top="850" left="336" width="385" height="13" font="1">Each tool is rendered into a compact canonical form contain-</text>
+<text top="868" left="202" width="519" height="13" font="1">ing the tool name, description, required fields, and field-level type information.</text>
+<text top="886" left="202" width="519" height="13" font="1">This normalizes interface presentation across tools and emphasizes current field</text>
+<text top="904" left="202" width="45" height="13" font="1">names.</text>
+<text top="948" left="202" width="71" height="13" font="11">Validation.</text>
+<text top="948" left="281" width="440" height="13" font="1">After the base model emits a tool call, a validator checks tool name,</text>
+<text top="966" left="202" width="519" height="13" font="1">required fields, and argument structure. Validation produces a structured error</text>
+<text top="984" left="202" width="272" height="13" font="1">report rather than a binary failure signal.</text>
+</page>
+<page number="5" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="106" height="13" font="11">One-shot repair.</text>
+<text top="178" left="315" width="406" height="13" font="1">If the drifted call is invalid, the model receives a repair prompt</text>
+<text top="196" left="202" width="519" height="13" font="1">containing the task context, canonical tool card, invalid call, and validation er-</text>
+<text top="214" left="202" width="519" height="13" font="1">rors. Under the primary non-oracle protocol, an output that names a visible tool</text>
+<text top="232" left="202" width="519" height="13" font="1">is validated and any repair is constrained to that tool. If the name is missing,</text>
+<text top="250" left="202" width="519" height="13" font="1">the model is first asked to issue a new call from the user context and runtime-</text>
+<text top="268" left="202" width="519" height="13" font="1">visible tool list. A retry that names a visible tool is then validated and, if still in-</text>
+<text top="286" left="202" width="519" height="13" font="1">valid, repaired; a retry without a usable visible name remains unresolved. Where</text>
+<text top="304" left="202" width="331" height="13" font="1">provider support allows it, constrained repair uses</text>
+<text top="304" left="538" width="110" height="13" font="11">forced-tool repair</text>
+<text top="304" left="650" width="71" height="13" font="1">; otherwise</text>
+<text top="322" left="202" width="326" height="13" font="1">we use unconstrained tool calling or JSON repair.</text>
+<text top="340" left="225" width="496" height="13" font="1">As our component ablation in Section <a href="main.html#11">6.5 </a>shows, it is the combination of</text>
+<text top="358" left="202" width="519" height="13" font="1">structured validation errors and tool-constrained repair that does most of the</text>
+<text top="376" left="202" width="519" height="13" font="1">recovery once a visible target tool has been resolved. The canonical card is useful</text>
+<text top="394" left="202" width="519" height="13" font="1">at the initial prediction step as drift-prevention prompting, but contributes neg-</text>
+<text top="412" left="202" width="519" height="13" font="1">ligibly to repair-stage recovery in our oracle-constrained upper-bound ablations.</text>
+<text top="460" left="202" width="22" height="13" font="13">4.2</text>
+<text top="460" left="241" width="195" height="13" font="13">Repair Prompting Details</text>
+<text top="494" left="202" width="498" height="13" font="1">Three implementation details turned out to matter materially in these runs:</text>
+<text top="526" left="211" width="9" height="13" font="13">–</text>
+<text top="526" left="228" width="493" height="13" font="1">The repair prompt explicitly instructs the model to infer all required fields</text>
+<text top="544" left="228" width="353" height="13" font="1">from the dialogue even when the invalid call is empty.</text>
+<text top="563" left="211" width="9" height="13" font="13">–</text>
+<text top="563" left="228" width="493" height="13" font="1">When the invalid call omits the tool name, a candidate-set retry over the</text>
+<text top="581" left="228" width="398" height="13" font="1">visible tools is needed before tool-constrained repair can fire.</text>
+<text top="599" left="211" width="9" height="13" font="13">–</text>
+<text top="599" left="228" width="493" height="13" font="1">The repair stage uses a larger token budget than the base prediction stage.</text>
+<text top="617" left="228" width="319" height="13" font="1">Raising repair capacity from the earlier default to</text>
+<text top="617" left="551" width="22" height="13" font="14">512</text>
+<text top="617" left="577" width="144" height="13" font="1">tokens fixed truncated</text>
+<text top="635" left="228" width="270" height="13" font="1">repair outputs on longer DICE dialogues.</text>
+<text top="684" left="202" width="22" height="13" font="13">4.3</text>
+<text top="684" left="241" width="226" height="13" font="13">Per-Example Evaluation Loop</text>
+<text top="717" left="202" width="519" height="13" font="1">Each benchmark example is evaluated in three stages: Original, Drifted, and</text>
+<text top="735" left="202" width="519" height="13" font="1">Repaired. Drift is injected once, the gold call is re-expressed in the renamed</text>
+<text top="753" left="202" width="519" height="13" font="1">schema before scoring, and repair fires only when validation flags the drifted</text>
+<text top="771" left="202" width="519" height="13" font="1">call as invalid. We average the three per-example correctness indicators over the</text>
+<text top="789" left="202" width="329" height="13" font="1">benchmark slice to obtain the headline accuracies.</text>
+<text top="838" left="202" width="10" height="16" font="10">5</text>
+<text top="838" left="232" width="176" height="16" font="10">Experimental Setup</text>
+<text top="879" left="202" width="22" height="13" font="13">5.1</text>
+<text top="879" left="241" width="214" height="13" font="13">Benchmarks and Data Slices</text>
+<text top="912" left="202" width="519" height="13" font="1">We evaluate on two benchmarks. For DICE-BENCH <a href="main.html#15">[5], </a>we use a 300-example</text>
+<text top="930" left="202" width="519" height="13" font="1">subset drawn from single-function round-1 dialogues (allowing duplicate func-</text>
+<text top="948" left="202" width="519" height="13" font="1">tions to reach sufficient scale). For BFCL <a href="main.html#16">[12], </a>we use a 200-example subset</text>
+<text top="966" left="202" width="519" height="13" font="1">drawn in equal parts from four categories: simple Python, multiple-function,</text>
+<text top="984" left="202" width="192" height="13" font="1">live-simple, and live-multiple.</text>
+</page>
+<page number="6" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="22" height="13" font="13">5.2</text>
+<text top="178" left="241" width="54" height="13" font="13">Models</text>
+<text top="207" left="202" width="519" height="13" font="1">We evaluate four open instruction-tuned models and one closed model through</text>
+<text top="225" left="202" width="147" height="13" font="1">hosted inference APIs:</text>
+<text top="255" left="211" width="107" height="13" font="13">– Qwen3.5-9B</text>
+<text top="255" left="318" width="136" height="13" font="1">: our primary model.</text>
+<text top="273" left="211" width="155" height="13" font="13">– Qwen3.5-35B-A3B</text>
+<text top="273" left="366" width="138" height="13" font="1">: larger MoE variant.</text>
+<text top="290" left="211" width="124" height="13" font="13">– Llama-4-Scout</text>
+<text top="290" left="336" width="172" height="13" font="1">: Meta’s 2025 open model.</text>
+<text top="308" left="211" width="181" height="13" font="13">– Mistral-Small-3.2-24B</text>
+<text top="308" left="393" width="190" height="13" font="1">: recent Mistral dense model.</text>
+<text top="326" left="211" width="115" height="13" font="13">– GPT-4o-mini</text>
+<text top="326" left="327" width="226" height="13" font="1">: closed-model BFCL sanity check.</text>
+<text top="357" left="225" width="496" height="13" font="1">Full non-oracle runs cover Qwen3.5-9B on both benchmarks and BFCL repli-</text>
+<text top="374" left="202" width="519" height="13" font="1">cations with Qwen3.5-35B-A3B, Llama-4-Scout, and GPT-4o-mini. The retained</text>
+<text top="392" left="202" width="519" height="13" font="1">oracle-constrained DICE sweeps also cover Qwen3.5-35B-A3B, Llama-4-Scout,</text>
+<text top="410" left="202" width="176" height="13" font="1">and Mistral-Small-3.2-24B.</text>
+<text top="428" left="225" width="496" height="13" font="1">All experiments use OpenRouter’s OpenAI-compatible endpoint and tem-</text>
+<text top="446" left="202" width="55" height="13" font="1">perature</text>
+<text top="446" left="263" width="7" height="13" font="14">0</text>
+<text top="446" left="271" width="4" height="13" font="15">.</text>
+<text top="446" left="275" width="7" height="13" font="14">0</text>
+<text top="446" left="282" width="439" height="13" font="1">, though hosted inference may still exhibit provider-side nondeter-</text>
+<text top="464" left="202" width="502" height="13" font="1">minism. The released configs record the exact model slugs used for each run.</text>
+<text top="507" left="202" width="22" height="13" font="13">5.3</text>
+<text top="507" left="241" width="153" height="13" font="13">Drift Configurations</text>
+<text top="536" left="202" width="201" height="13" font="1">For DICE main runs, we use</text>
+<text top="536" left="411" width="28" height="13" font="11">mild</text>
+<text top="536" left="449" width="272" height="13" font="1">severity: two description modes (legacy-</text>
+<text top="554" left="202" width="519" height="13" font="1">example and marketing), two schema modes (rename-parameters and reorder-</text>
+<text top="572" left="202" width="364" height="13" font="1">parameters), and one distractor tool. For BFCL we use</text>
+<text top="572" left="571" width="51" height="13" font="11">medium</text>
+<text top="572" left="628" width="93" height="13" font="1">severity: three</text>
+<text top="590" left="202" width="519" height="13" font="1">description modes, three schema modes, and three distractors, reflecting a more</text>
+<text top="608" left="202" width="519" height="13" font="1">aggressive drift scenario. These operators are author-designed and deployment-</text>
+<text top="625" left="202" width="519" height="13" font="1">motivated rather than mined from real API changelogs; we return to that limita-</text>
+<text top="643" left="202" width="453" height="13" font="1">tion in Section <a href="main.html#14">8. </a>As a limited plausibility check, we manually audited</text>
+<text top="643" left="659" width="15" height="13" font="14">11</text>
+<text top="643" left="679" width="42" height="13" font="1">official</text>
+<text top="661" left="202" width="519" height="13" font="1">changelog items from Notion and Stripe spanning 2022–2026. Six resemble our</text>
+<text top="679" left="202" width="519" height="13" font="1">documentation/example and parameter/schema operators, three involve adding</text>
+<text top="697" left="202" width="519" height="13" font="1">or consolidating neighboring tools or endpoints and thus provide candidate-</text>
+<text top="715" left="202" width="519" height="13" font="1">set analogues, and two are larger structural refactors outside our semantics-</text>
+<text top="733" left="202" width="519" height="13" font="1">preserving scope <a href="main.html#16">[10,18]. </a>We did not derive the drift operators from these items,</text>
+<text top="751" left="202" width="519" height="13" font="1">and this small purposive audit does not estimate the prevalence or distribution</text>
+<text top="769" left="202" width="132" height="13" font="1">of real API changes.</text>
+<text top="812" left="202" width="22" height="13" font="13">5.4</text>
+<text top="812" left="241" width="127" height="13" font="13">Repair Protocols</text>
+<text top="841" left="202" width="214" height="13" font="1">We use two repair protocols. Our</text>
+<text top="841" left="420" width="52" height="13" font="11">primary</text>
+<text top="841" left="477" width="243" height="13" font="1">protocol is non-oracle and is the main</text>
+<text top="859" left="202" width="519" height="13" font="1">evidence in this paper: the validator checks the model-selected visible tool, and</text>
+<text top="876" left="202" width="519" height="13" font="1">when the model omits the tool name, it is asked to issue a new call from the</text>
+<text top="894" left="202" width="519" height="13" font="1">runtime-visible tools. The validator then checks that new call and repairs it</text>
+<text top="912" left="202" width="519" height="13" font="1">only if it remains invalid. For broader model coverage and component ablations,</text>
+<text top="930" left="202" width="135" height="13" font="1">we also retain earlier</text>
+<text top="930" left="342" width="201" height="13" font="11">oracle-constrained upper-bound</text>
+<text top="930" left="549" width="172" height="13" font="1">sweeps in which the repair</text>
+<text top="948" left="202" width="519" height="13" font="1">stage is given the benchmark target tool. These upper-bound runs remain use-</text>
+<text top="966" left="202" width="519" height="13" font="1">ful for cross-model context and ablation, but they are not deployment-facing</text>
+<text top="984" left="202" width="59" height="13" font="1">evidence.</text>
+</page>
+<page number="7" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="21" size="15" family="WHCUBT+SFTT1000" color="#000000"/>
+<text top="178" left="202" width="22" height="13" font="13">5.5</text>
+<text top="178" left="241" width="57" height="13" font="13">Metrics</text>
+<text top="206" left="202" width="70" height="13" font="1">We report:</text>
+<text top="234" left="211" width="121" height="13" font="13">– Original score</text>
+<text top="234" left="332" width="255" height="13" font="1">: accuracy on the unmodified interface.</text>
+<text top="252" left="211" width="114" height="13" font="13">– Drifted score</text>
+<text top="252" left="326" width="207" height="13" font="1">: accuracy under interface drift.</text>
+<text top="269" left="211" width="128" height="13" font="13">– Repaired score</text>
+<text top="269" left="339" width="209" height="13" font="1">: accuracy after one-shot repair.</text>
+<text top="287" left="211" width="143" height="13" font="13">– Naive retry score</text>
+<text top="287" left="354" width="367" height="13" font="1">: accuracy under a second identical drifted call (no canon-</text>
+<text top="304" left="228" width="493" height="13" font="1">ical card, no validation feedback). This baseline isolates the value of simply</text>
+<text top="322" left="228" width="56" height="13" font="1">retrying.</text>
+<text top="340" left="211" width="189" height="13" font="13">– Originally-correct slice</text>
+<text top="340" left="401" width="320" height="13" font="1">: the subset of examples that the model solves</text>
+<text top="358" left="228" width="255" height="13" font="1">correctly before drift. This slice isolates</text>
+<text top="358" left="486" width="97" height="13" font="11">true drift harm</text>
+<text top="358" left="589" width="132" height="13" font="1">from baseline errors.</text>
+<text top="375" left="211" width="146" height="13" font="13">– Repair recoveries</text>
+<text top="375" left="357" width="280" height="13" font="1">: drift-induced failures recovered by repair.</text>
+<text top="393" left="211" width="118" height="13" font="13">– Repair harms</text>
+<text top="393" left="330" width="284" height="13" font="1">: drifted-correct examples broken by repair.</text>
+<text top="410" left="211" width="233" height="13" font="13">– Repair-stage invocation rate</text>
+<text top="410" left="444" width="276" height="13" font="1">: fraction of examples that incur at least</text>
+<text top="428" left="228" width="493" height="13" font="1">one post-validation model call, including candidate-set retries that do not</text>
+<text top="446" left="228" width="131" height="13" font="1">resolve a tool name.</text>
+<text top="489" left="202" width="22" height="13" font="13">5.6</text>
+<text top="489" left="241" width="212" height="13" font="13">Reproducibility and Release</text>
+<text top="517" left="202" width="519" height="13" font="1">All results use fixed benchmark slices, drift configurations, and evaluation seed</text>
+<text top="535" left="202" width="519" height="13" font="1">42 for subset and drift selection; hosted inference did not enforce a model seed.</text>
+<text top="553" left="202" width="519" height="13" font="1">Per-run JSON artifacts store example IDs, prompts, drifted schemas, validation</text>
+<text top="571" left="202" width="519" height="13" font="1">outputs, repair targets and strategies, token usage, and the normalized semantic</text>
+<text top="589" left="202" width="519" height="13" font="1">matching policy. We release the code, prompts, configs, subset definitions, scoring</text>
+<text top="607" left="202" width="361" height="13" font="1">logic, and raw artifacts in a public repository <a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">(public</a></text>
+<text top="608" left="570" width="78" height="12" font="21"><a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">tool-drift</a></text>
+<text top="607" left="655" width="66" height="13" font="1"><a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">repository</a></text>
+<text top="625" left="202" width="69" height="13" font="1"><a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">at commit</a></text>
+<text top="626" left="277" width="55" height="12" font="21"><a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">fbac156</a></text>
+<text top="625" left="332" width="389" height="13" font="1"><a href="https://github.com/AniruddhaChattopadhyay/tool-drift/tree/fbac15632f1ef8133fe83ce8eccb2ee071f0891e">), </a>including example-level traces for the main success and</text>
+<text top="643" left="202" width="114" height="13" font="1">limitation modes.</text>
+<text top="687" left="202" width="10" height="16" font="10">6</text>
+<text top="687" left="232" width="65" height="16" font="10">Results</text>
+<text top="723" left="202" width="22" height="13" font="13">6.1</text>
+<text top="723" left="241" width="215" height="13" font="13">Primary Non-Oracle Results</text>
+<text top="751" left="202" width="519" height="13" font="1">Table <a href="main.html#8">1 </a>summarizes our primary non-oracle Qwen3.5-9B results on DICE-300</text>
+<text top="769" left="202" width="519" height="13" font="1">and BFCL-200, together with oracle-constrained upper bounds for reference only.</text>
+<text top="787" left="202" width="519" height="13" font="1">Under the non-oracle candidate-retry protocol, SchemaShield-Lite improves over</text>
+<text top="805" left="202" width="519" height="13" font="1">the drifted baseline on both benchmarks with no observed repair harms on the</text>
+<text top="823" left="202" width="148" height="13" font="1">originally-correct slice.</text>
+<text top="841" left="225" width="496" height="13" font="1">The primary non-oracle results are strong on both benchmarks. On DICE-</text>
+<text top="859" left="202" width="253" height="13" font="1">300, repair improves Qwen3.5-9B from</text>
+<text top="858" left="461" width="7" height="13" font="14">0</text>
+<text top="858" left="468" width="4" height="13" font="15">.</text>
+<text top="858" left="472" width="22" height="13" font="14">717</text>
+<text top="859" left="500" width="13" height="13" font="1">to</text>
+<text top="858" left="519" width="7" height="13" font="14">0</text>
+<text top="858" left="526" width="4" height="13" font="15">.</text>
+<text top="858" left="530" width="22" height="13" font="14">813</text>
+<text top="859" left="558" width="81" height="13" font="1">and recovers</text>
+<text top="858" left="645" width="15" height="13" font="14">19</text>
+<text top="858" left="660" width="7" height="13" font="15">/</text>
+<text top="858" left="667" width="15" height="13" font="14">22</text>
+<text top="859" left="687" width="34" height="13" font="1">drift-</text>
+<text top="876" left="202" width="519" height="13" font="1">induced failures on the originally-correct slice. On BFCL-200, repair improves</text>
+<text top="894" left="202" width="30" height="13" font="1">from</text>
+<text top="894" left="237" width="7" height="13" font="14">0</text>
+<text top="894" left="244" width="4" height="13" font="15">.</text>
+<text top="894" left="248" width="22" height="13" font="14">580</text>
+<text top="894" left="275" width="13" height="13" font="1">to</text>
+<text top="894" left="292" width="7" height="13" font="14">0</text>
+<text top="894" left="299" width="4" height="13" font="15">.</text>
+<text top="894" left="304" width="22" height="13" font="14">805</text>
+<text top="894" left="330" width="80" height="13" font="1">and recovers</text>
+<text top="894" left="414" width="15" height="13" font="14">33</text>
+<text top="894" left="429" width="7" height="13" font="15">/</text>
+<text top="894" left="437" width="15" height="13" font="14">45</text>
+<text top="894" left="456" width="265" height="13" font="1">drift-induced failures. The remaining gap</text>
+<text top="912" left="202" width="298" height="13" font="1">to the oracle upper bound is small on DICE (</text>
+<text top="912" left="500" width="7" height="13" font="14">0</text>
+<text top="912" left="507" width="4" height="13" font="15">.</text>
+<text top="912" left="511" width="22" height="13" font="14">813</text>
+<text top="912" left="539" width="14" height="13" font="1">vs</text>
+<text top="912" left="557" width="7" height="13" font="14">0</text>
+<text top="912" left="565" width="4" height="13" font="15">.</text>
+<text top="912" left="569" width="22" height="13" font="14">827</text>
+<text top="912" left="591" width="130" height="13" font="1">), and on BFCL the</text>
+<text top="930" left="202" width="519" height="13" font="1">final non-oracle candidate-retry run slightly exceeds the earlier oracle-style run</text>
+<text top="948" left="202" width="6" height="13" font="1">(</text>
+<text top="948" left="208" width="7" height="13" font="14">0</text>
+<text top="948" left="215" width="4" height="13" font="15">.</text>
+<text top="948" left="220" width="22" height="13" font="14">805</text>
+<text top="948" left="247" width="14" height="13" font="1">vs</text>
+<text top="948" left="266" width="7" height="13" font="14">0</text>
+<text top="948" left="273" width="4" height="13" font="15">.</text>
+<text top="948" left="277" width="22" height="13" font="14">795</text>
+<text top="948" left="300" width="10" height="13" font="1">).</text>
+<text top="966" left="225" width="496" height="13" font="1">We therefore focus our interpretation on the large repaired-vs-drifted gaps,</text>
+<text top="984" left="202" width="519" height="13" font="1">not on small differences between nearby runs. The bootstrap intervals in Table <a href="main.html#8">1</a></text>
+</page>
+<page number="8" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="22" size="10" family="YNYLDX+SFRM0700" color="#000000"/>
+	<fontspec id="23" size="10" family="IBMBDM+SFBX0700" color="#000000"/>
+	<fontspec id="24" size="10" family="PXBGHL+CMSY7" color="#000000"/>
+<text top="174" left="202" width="56" height="12" font="6">Table 1.</text>
+<text top="170" left="264" width="457" height="17" font="4">Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with</text>
+<text top="187" left="202" width="393" height="17" font="4">oracle upper bounds. Brackets give 95% bootstrap CIs (seed 42).</text>
+<text top="239" left="224" width="109" height="9" font="22">Benchmark Protocol</text>
+<text top="225" left="408" width="27" height="9" font="22">Orig.</text>
+<text top="239" left="402" width="39" height="9" font="22">95% CI</text>
+<text top="227" left="454" width="29" height="9" font="22">Drift.</text>
+<text top="239" left="449" width="39" height="9" font="22">95% CI</text>
+<text top="225" left="501" width="35" height="9" font="22">Repair</text>
+<text top="239" left="499" width="39" height="9" font="22">95% CI</text>
+<text top="239" left="548" width="150" height="9" font="22">OC Rec/Miss Harms Inv.%</text>
+<text top="276" left="224" width="52" height="9" font="22">DICE-300</text>
+<text top="257" left="290" width="69" height="9" font="22">Non-oracle +</text>
+<text top="270" left="290" width="80" height="9" font="22">candidate retry</text>
+<text top="258" left="408" width="27" height="9" font="22">0.757</text>
+<text top="270" left="401" width="41" height="9" font="22">[.70,.80]</text>
+<text top="258" left="455" width="27" height="9" font="22">0.717</text>
+<text top="270" left="448" width="41" height="9" font="22">[.67,.77]</text>
+<text top="258" left="503" width="31" height="9" font="23">0.813</text>
+<text top="270" left="495" width="46" height="9" font="23">[.77,.86]</text>
+<text top="270" left="548" width="18" height="9" font="22">227</text>
+<text top="270" left="582" width="30" height="9" font="22">19/22</text>
+<text top="270" left="642" width="6" height="9" font="22">0</text>
+<text top="270" left="673" width="21" height="9" font="22">21.0</text>
+<text top="293" left="290" width="105" height="9" font="22">Oracle upper bound</text>
+<text top="281" left="408" width="27" height="9" font="22">0.750</text>
+<text top="293" left="401" width="41" height="9" font="22">[.70,.80]</text>
+<text top="281" left="455" width="27" height="9" font="22">0.713</text>
+<text top="293" left="448" width="41" height="9" font="22">[.66,.76]</text>
+<text top="281" left="503" width="31" height="9" font="23">0.827</text>
+<text top="293" left="495" width="46" height="9" font="23">[.79,.87]</text>
+<text top="293" left="548" width="18" height="9" font="22">225</text>
+<text top="293" left="582" width="30" height="9" font="22">17/18</text>
+<text top="293" left="642" width="6" height="9" font="22">0</text>
+<text top="293" left="673" width="21" height="9" font="22">21.0</text>
+<text top="330" left="224" width="54" height="9" font="22">BFCL-200</text>
+<text top="311" left="290" width="69" height="9" font="22">Non-oracle +</text>
+<text top="324" left="290" width="80" height="9" font="22">candidate retry</text>
+<text top="312" left="408" width="27" height="9" font="22">0.790</text>
+<text top="324" left="401" width="41" height="9" font="22">[.74,.84]</text>
+<text top="312" left="455" width="27" height="9" font="22">0.580</text>
+<text top="324" left="448" width="41" height="9" font="22">[.51,.65]</text>
+<text top="312" left="503" width="31" height="9" font="23">0.805</text>
+<text top="324" left="495" width="46" height="9" font="23">[.75,.86]</text>
+<text top="324" left="548" width="18" height="9" font="22">158</text>
+<text top="324" left="582" width="30" height="9" font="22">33/45</text>
+<text top="324" left="642" width="6" height="9" font="22">0</text>
+<text top="324" left="673" width="21" height="9" font="22">36.5</text>
+<text top="347" left="290" width="105" height="9" font="22">Oracle upper bound</text>
+<text top="335" left="408" width="27" height="9" font="22">0.790</text>
+<text top="347" left="401" width="41" height="9" font="22">[.74,.84]</text>
+<text top="335" left="455" width="27" height="9" font="22">0.640</text>
+<text top="347" left="448" width="41" height="9" font="22">[.58,.71]</text>
+<text top="335" left="503" width="31" height="9" font="23">0.795</text>
+<text top="347" left="495" width="46" height="9" font="23">[.74,.85]</text>
+<text top="347" left="548" width="18" height="9" font="22">158</text>
+<text top="347" left="582" width="30" height="9" font="22">23/35</text>
+<text top="347" left="642" width="6" height="9" font="22">0</text>
+<text top="347" left="673" width="21" height="9" font="22">31.0</text>
+<text top="367" left="202" width="510" height="9" font="22">OC = originally-correct count; Rec = recoveries on drift-induced failures; Harms = repair harms on</text>
+<text top="379" left="202" width="519" height="9" font="22">originally-correct slice; Inv.% = examples with at least one repair-stage model call. Rows come from</text>
+<text top="391" left="202" width="358" height="9" font="22">separate runs, so Original scores may differ slightly across protocols.</text>
+<text top="440" left="202" width="519" height="13" font="1">support the main claim that structured repair helps, but they do not justify</text>
+<text top="458" left="202" width="519" height="13" font="1">strong claims about minor oracle-vs-non-oracle differences. Paired exact McNe-</text>
+<text top="476" left="202" width="519" height="13" font="1">mar tests on the final non-oracle runs also support the main repair effect: repaired</text>
+<text top="494" left="202" width="118" height="13" font="1">beats drifted with</text>
+<text top="494" left="325" width="8" height="13" font="15">p</text>
+<text top="494" left="338" width="24" height="13" font="14">= 3</text>
+<text top="494" left="361" width="4" height="13" font="15">.</text>
+<text top="494" left="366" width="7" height="13" font="14">7</text>
+<text top="493" left="377" width="12" height="14" font="16">×</text>
+<text top="494" left="392" width="15" height="13" font="14">10</text>
+<text top="491" left="407" width="9" height="10" font="24">−</text>
+<text top="492" left="416" width="6" height="9" font="2">9</text>
+<text top="494" left="428" width="88" height="13" font="1">on DICE and</text>
+<text top="494" left="522" width="8" height="13" font="15">p</text>
+<text top="494" left="534" width="24" height="13" font="14">= 5</text>
+<text top="494" left="558" width="4" height="13" font="15">.</text>
+<text top="494" left="562" width="7" height="13" font="14">7</text>
+<text top="493" left="573" width="12" height="14" font="16">×</text>
+<text top="494" left="588" width="15" height="13" font="14">10</text>
+<text top="491" left="603" width="9" height="10" font="24">−</text>
+<text top="492" left="612" width="12" height="9" font="2">14</text>
+<text top="494" left="630" width="91" height="13" font="1">on BFCL. On</text>
+<text top="512" left="202" width="519" height="13" font="1">shared examples, the repaired-score difference between the oracle upper bound</text>
+<text top="530" left="202" width="519" height="13" font="1">and the final non-oracle protocol is itself not significant on either benchmark</text>
+<text top="548" left="202" width="154" height="13" font="1">(DICE exact McNemar</text>
+<text top="548" left="362" width="8" height="13" font="15">p</text>
+<text top="548" left="375" width="25" height="13" font="14">= 0</text>
+<text top="548" left="399" width="4" height="13" font="15">.</text>
+<text top="548" left="404" width="22" height="13" font="14">125</text>
+<text top="548" left="426" width="50" height="13" font="1">; BFCL</text>
+<text top="548" left="482" width="8" height="13" font="15">p</text>
+<text top="548" left="495" width="25" height="13" font="14">= 0</text>
+<text top="548" left="520" width="4" height="13" font="15">.</text>
+<text top="548" left="524" width="22" height="13" font="14">754</text>
+<text top="548" left="546" width="175" height="13" font="1">), which is consistent with</text>
+<text top="566" left="202" width="235" height="13" font="1">the small raw score gaps in Table <a href="main.html#8">1.</a></text>
+<text top="584" left="225" width="496" height="13" font="1">Candidate-set retry is essential to the evaluated non-oracle protocol. Relative</text>
+<text top="602" left="202" width="519" height="13" font="1">to an earlier non-oracle run that simply skipped unresolved tool names, it raises</text>
+<text top="620" left="202" width="155" height="13" font="1">repaired accuracy from</text>
+<text top="620" left="364" width="7" height="13" font="14">0</text>
+<text top="620" left="371" width="4" height="13" font="15">.</text>
+<text top="620" left="375" width="22" height="13" font="14">780</text>
+<text top="620" left="405" width="13" height="13" font="1">to</text>
+<text top="620" left="425" width="7" height="13" font="14">0</text>
+<text top="620" left="433" width="4" height="13" font="15">.</text>
+<text top="620" left="437" width="22" height="13" font="14">813</text>
+<text top="620" left="466" width="129" height="13" font="1">on DICE and from</text>
+<text top="620" left="603" width="7" height="13" font="14">0</text>
+<text top="620" left="610" width="4" height="13" font="15">.</text>
+<text top="620" left="614" width="22" height="13" font="14">725</text>
+<text top="620" left="644" width="13" height="13" font="1">to</text>
+<text top="620" left="664" width="7" height="13" font="14">0</text>
+<text top="620" left="671" width="4" height="13" font="15">.</text>
+<text top="620" left="676" width="22" height="13" font="14">805</text>
+<text top="620" left="705" width="16" height="13" font="1">on</text>
+<text top="638" left="202" width="346" height="13" font="1">BFCL, while reducing unresolved repair targets from</text>
+<text top="638" left="553" width="15" height="13" font="14">35</text>
+<text top="638" left="573" width="13" height="13" font="1">to</text>
+<text top="638" left="591" width="15" height="13" font="14">15</text>
+<text top="638" left="611" width="59" height="13" font="1">and from</text>
+<text top="638" left="675" width="15" height="13" font="14">34</text>
+<text top="638" left="695" width="13" height="13" font="1">to</text>
+<text top="638" left="713" width="7" height="13" font="14">9</text>
+<text top="656" left="202" width="79" height="13" font="1">respectively.</text>
+<text top="695" left="202" width="216" height="13" font="11">Oracle upper bounds for context.</text>
+<text top="695" left="427" width="294" height="13" font="1">The oracle rows in Table <a href="main.html#8">1 </a>remain useful as</text>
+<text top="712" left="202" width="519" height="13" font="1">upper-bound context, but they are not the paper’s main evidence. We use them</text>
+<text top="730" left="202" width="519" height="13" font="1">to localize mechanisms and portability limits, not to define the deployment-facing</text>
+<text top="748" left="202" width="39" height="13" font="1">claim.</text>
+<text top="787" left="202" width="138" height="13" font="11">Repair cost overhead.</text>
+<text top="787" left="347" width="374" height="13" font="1">On the final non-oracle Qwen3.5-9B runs, the repair stage</text>
+<text top="805" left="202" width="86" height="13" font="1">is invoked on</text>
+<text top="805" left="294" width="15" height="13" font="14">63</text>
+<text top="805" left="309" width="7" height="13" font="15">/</text>
+<text top="805" left="316" width="22" height="13" font="14">300</text>
+<text top="805" left="344" width="71" height="13" font="1">examples (</text>
+<text top="805" left="414" width="15" height="13" font="14">21</text>
+<text top="805" left="429" width="4" height="13" font="15">.</text>
+<text top="805" left="434" width="20" height="13" font="14">0%</text>
+<text top="805" left="453" width="96" height="13" font="1">) in DICE and</text>
+<text top="805" left="555" width="15" height="13" font="14">73</text>
+<text top="805" left="570" width="7" height="13" font="15">/</text>
+<text top="805" left="578" width="22" height="13" font="14">200</text>
+<text top="805" left="605" width="71" height="13" font="1">examples (</text>
+<text top="805" left="676" width="15" height="13" font="14">36</text>
+<text top="805" left="691" width="4" height="13" font="15">.</text>
+<text top="805" left="695" width="20" height="13" font="14">5%</text>
+<text top="805" left="715" width="6" height="13" font="1">)</text>
+<text top="823" left="202" width="299" height="13" font="1">in BFCL. A usable repair target is resolved on</text>
+<text top="823" left="505" width="15" height="13" font="14">48</text>
+<text top="823" left="525" width="24" height="13" font="1">and</text>
+<text top="823" left="553" width="15" height="13" font="14">64</text>
+<text top="823" left="572" width="149" height="13" font="1">examples, respectively;</text>
+<text top="841" left="202" width="59" height="13" font="1">the other</text>
+<text top="841" left="266" width="15" height="13" font="14">15</text>
+<text top="841" left="286" width="24" height="13" font="1">and</text>
+<text top="841" left="314" width="7" height="13" font="14">9</text>
+<text top="841" left="326" width="395" height="13" font="1">still incur a candidate-set retry but remain unresolved. Total</text>
+<text top="859" left="202" width="108" height="13" font="1">repair tokens are</text>
+<text top="858" left="314" width="22" height="13" font="14">103</text>
+<text top="858" left="336" width="4" height="13" font="15">,</text>
+<text top="858" left="340" width="22" height="13" font="14">221</text>
+<text top="859" left="366" width="47" height="13" font="1">against</text>
+<text top="858" left="417" width="22" height="13" font="14">316</text>
+<text top="858" left="439" width="4" height="13" font="15">,</text>
+<text top="858" left="443" width="22" height="13" font="14">185</text>
+<text top="859" left="470" width="160" height="13" font="1">drifted tokens on DICE (</text>
+<text top="858" left="630" width="15" height="13" font="14">32</text>
+<text top="858" left="645" width="4" height="13" font="15">.</text>
+<text top="858" left="649" width="20" height="13" font="14">6%</text>
+<text top="859" left="673" width="48" height="13" font="1">relative</text>
+<text top="876" left="202" width="93" height="13" font="1">overhead) and</text>
+<text top="876" left="300" width="22" height="13" font="14">154</text>
+<text top="876" left="323" width="4" height="13" font="15">,</text>
+<text top="876" left="327" width="22" height="13" font="14">249</text>
+<text top="876" left="355" width="47" height="13" font="1">against</text>
+<text top="876" left="406" width="22" height="13" font="14">327</text>
+<text top="876" left="429" width="4" height="13" font="15">,</text>
+<text top="876" left="433" width="22" height="13" font="14">289</text>
+<text top="876" left="461" width="168" height="13" font="1">drifted tokens on BFCL (</text>
+<text top="876" left="628" width="15" height="13" font="14">47</text>
+<text top="876" left="643" width="4" height="13" font="15">.</text>
+<text top="876" left="648" width="20" height="13" font="14">1%</text>
+<text top="876" left="673" width="48" height="13" font="1">relative</text>
+<text top="894" left="202" width="519" height="13" font="1">overhead). On one instrumented BFCL-200 rerun, average original- and drifted-</text>
+<text top="912" left="202" width="108" height="13" font="1">call latencies are</text>
+<text top="912" left="315" width="7" height="13" font="14">8</text>
+<text top="912" left="323" width="4" height="13" font="15">.</text>
+<text top="912" left="327" width="7" height="13" font="14">8</text>
+<text top="912" left="334" width="35" height="13" font="1">s and</text>
+<text top="912" left="375" width="7" height="13" font="14">9</text>
+<text top="912" left="382" width="4" height="13" font="15">.</text>
+<text top="912" left="386" width="7" height="13" font="14">3</text>
+<text top="912" left="394" width="213" height="13" font="1">s. The repair stage is invoked on</text>
+<text top="912" left="612" width="15" height="13" font="14">63</text>
+<text top="912" left="627" width="7" height="13" font="15">/</text>
+<text top="912" left="634" width="22" height="13" font="14">200</text>
+<text top="912" left="661" width="59" height="13" font="1">examples</text>
+<text top="930" left="202" width="6" height="13" font="1">(</text>
+<text top="930" left="208" width="15" height="13" font="14">31</text>
+<text top="930" left="223" width="4" height="13" font="15">.</text>
+<text top="930" left="227" width="20" height="13" font="14">5%</text>
+<text top="930" left="247" width="45" height="13" font="1">), with</text>
+<text top="930" left="298" width="15" height="13" font="14">13</text>
+<text top="930" left="313" width="4" height="13" font="15">.</text>
+<text top="930" left="317" width="7" height="13" font="14">0</text>
+<text top="930" left="325" width="297" height="13" font="1">s mean latency among those invocations, for</text>
+<text top="930" left="628" width="7" height="13" font="14">4</text>
+<text top="930" left="636" width="4" height="13" font="15">.</text>
+<text top="930" left="640" width="7" height="13" font="14">1</text>
+<text top="930" left="647" width="74" height="13" font="1">s measured</text>
+<text top="948" left="202" width="519" height="13" font="1">added repair-stage wall time per example. These token totals and the single-</text>
+<text top="966" left="202" width="519" height="13" font="1">rerun latency estimate are run-specific, not a systematic latency or API-cost</text>
+<text top="984" left="202" width="371" height="13" font="1">comparison across models, providers, or pricing schemes.</text>
+</page>
+<page number="9" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="175" left="202" width="58" height="12" font="6">Table 2.</text>
+<text top="171" left="266" width="454" height="17" font="4">Baselines vs SchemaShield-Lite on Qwen3.5-9B (non-oracle). Scores from</text>
+<text top="187" left="202" width="430" height="17" font="4">separate runs; minor differences from Table <a href="main.html#8">1 </a>reflect run-level variance.</text>
+<text top="223" left="242" width="432" height="17" font="4">Benchmark Drifted Naive retry Tool-list retry SchemaShield-Lite Gain</text>
+<text top="247" left="242" width="60" height="17" font="4">DICE-300</text>
+<text top="247" left="321" width="31" height="17" font="4">0.713</text>
+<text top="247" left="381" width="31" height="17" font="4">0.727</text>
+<text top="247" left="461" width="31" height="17" font="4">0.753</text>
+<text top="251" left="561" width="36" height="12" font="6">0.813</text>
+<text top="251" left="638" width="18" height="12" font="8">+0</text>
+<text top="251" left="656" width="4" height="12" font="9">.</text>
+<text top="251" left="660" width="21" height="12" font="8">100</text>
+<text top="264" left="242" width="110" height="17" font="4">BFCL-200 0.590</text>
+<text top="264" left="381" width="31" height="17" font="4">0.610</text>
+<text top="264" left="461" width="31" height="17" font="4">0.625</text>
+<text top="267" left="561" width="36" height="12" font="6">0.795</text>
+<text top="267" left="638" width="18" height="12" font="8">+0</text>
+<text top="267" left="656" width="4" height="12" font="9">.</text>
+<text top="267" left="660" width="21" height="12" font="8">205</text>
+<text top="303" left="202" width="54" height="12" font="6">Table 3.</text>
+<text top="300" left="260" width="461" height="17" font="4">Decomposition of repaired improvements on the primary non-oracle Qwen3.5-</text>
+<text top="316" left="202" width="51" height="17" font="4">9B runs.</text>
+<text top="349" left="271" width="382" height="17" font="4">Benchmark Total gains Drift recovery Baseline patching Harms</text>
+<text top="373" left="271" width="60" height="17" font="4">DICE-300</text>
+<text top="373" left="370" width="14" height="17" font="4">29</text>
+<text top="373" left="449" width="14" height="17" font="4">19</text>
+<text top="373" left="549" width="14" height="17" font="4">10</text>
+<text top="373" left="629" width="7" height="17" font="4">0</text>
+<text top="390" left="271" width="62" height="17" font="4">BFCL-200</text>
+<text top="390" left="370" width="14" height="17" font="4">45</text>
+<text top="390" left="449" width="14" height="17" font="4">33</text>
+<text top="390" left="549" width="14" height="17" font="4">12</text>
+<text top="390" left="629" width="7" height="17" font="4">0</text>
+<text top="450" left="202" width="22" height="13" font="13">6.2</text>
+<text top="450" left="241" width="272" height="13" font="13">Baselines Do Not Explain the Gains</text>
+<text top="479" left="202" width="519" height="13" font="1">A first-order alternative explanation is that repair works simply because the</text>
+<text top="497" left="202" width="476" height="13" font="1">model gets a second attempt. We test this with two baselines (Table <a href="main.html#9">2).</a></text>
+<text top="497" left="684" width="37" height="13" font="11">Naive</text>
+<text top="515" left="202" width="31" height="13" font="11">retry</text>
+<text top="515" left="239" width="402" height="13" font="1">re-runs the identical drifted prompt with no new information.</text>
+<text top="515" left="645" width="76" height="13" font="11">Tool-list re-</text>
+<text top="533" left="202" width="46" height="13" font="11">prompt</text>
+<text top="533" left="255" width="466" height="13" font="1">tells the model the call was invalid and lists the available tool names,</text>
+<text top="551" left="202" width="519" height="13" font="1">but provides no canonical card, no validation errors, and no view of the invalid</text>
+<text top="569" left="202" width="519" height="13" font="1">call. This second baseline isolates whether simply flagging the error and listing</text>
+<text top="587" left="202" width="157" height="13" font="1">tools explains the gains.</text>
+<text top="605" left="225" width="455" height="13" font="1">Neither baseline approaches SchemaShield-Lite. Naive retry reaches</text>
+<text top="605" left="687" width="7" height="13" font="14">0</text>
+<text top="605" left="694" width="4" height="13" font="15">.</text>
+<text top="605" left="698" width="22" height="13" font="14">727</text>
+<text top="623" left="202" width="89" height="13" font="1">on DICE and</text>
+<text top="623" left="297" width="7" height="13" font="14">0</text>
+<text top="623" left="304" width="4" height="13" font="15">.</text>
+<text top="623" left="309" width="22" height="13" font="14">610</text>
+<text top="623" left="337" width="384" height="13" font="1">on BFCL; tool-list re-prompt improves only marginally to</text>
+<text top="641" left="202" width="7" height="13" font="14">0</text>
+<text top="641" left="210" width="4" height="13" font="15">.</text>
+<text top="641" left="214" width="22" height="13" font="14">753</text>
+<text top="641" left="242" width="24" height="13" font="1">and</text>
+<text top="641" left="272" width="7" height="13" font="14">0</text>
+<text top="641" left="280" width="4" height="13" font="15">.</text>
+<text top="641" left="284" width="22" height="13" font="14">625</text>
+<text top="641" left="313" width="374" height="13" font="1">respectively. Both remain far below SchemaShield-Lite (</text>
+<text top="641" left="687" width="7" height="13" font="14">0</text>
+<text top="641" left="694" width="4" height="13" font="15">.</text>
+<text top="641" left="698" width="22" height="13" font="14">813</text>
+<text top="659" left="202" width="24" height="13" font="1">and</text>
+<text top="659" left="231" width="7" height="13" font="14">0</text>
+<text top="659" left="238" width="4" height="13" font="15">.</text>
+<text top="659" left="242" width="22" height="13" font="14">795</text>
+<text top="659" left="265" width="456" height="13" font="1">). The structured validation feedback, not merely knowing which tools</text>
+<text top="677" left="202" width="519" height="13" font="1">are available, therefore provides the principal recovery benefit in these runs.</text>
+<text top="695" left="202" width="519" height="13" font="1">Using paired outcomes stored in the primary runs, repaired versus naive retry</text>
+<text top="713" left="202" width="341" height="13" font="1">is significant on both benchmarks (exact McNemar</text>
+<text top="712" left="549" width="8" height="13" font="15">p</text>
+<text top="712" left="563" width="25" height="13" font="14">= 4</text>
+<text top="712" left="588" width="4" height="13" font="15">.</text>
+<text top="712" left="593" width="7" height="13" font="14">1</text>
+<text top="712" left="604" width="12" height="14" font="16">×</text>
+<text top="712" left="620" width="15" height="13" font="14">10</text>
+<text top="710" left="635" width="9" height="10" font="24">−</text>
+<text top="710" left="644" width="6" height="9" font="2">9</text>
+<text top="713" left="657" width="64" height="13" font="1">on DICE;</text>
+<text top="730" left="202" width="8" height="13" font="15">p</text>
+<text top="730" left="214" width="23" height="13" font="14">= 1</text>
+<text top="730" left="237" width="4" height="13" font="15">.</text>
+<text top="730" left="241" width="7" height="13" font="14">1</text>
+<text top="730" left="252" width="12" height="14" font="16">×</text>
+<text top="730" left="267" width="15" height="13" font="14">10</text>
+<text top="727" left="282" width="9" height="10" font="24">−</text>
+<text top="728" left="291" width="12" height="9" font="2">13</text>
+<text top="730" left="309" width="71" height="13" font="1">on BFCL).</text>
+<text top="775" left="202" width="22" height="13" font="13">6.3</text>
+<text top="775" left="241" width="467" height="13" font="13">Repair Coverage: Drift Recovery Dominates and Most Misses</text>
+<text top="793" left="241" width="161" height="13" font="13">Are Validator-Visible</text>
+<text top="823" left="202" width="75" height="13" font="1">The “repair</text>
+<text top="823" left="282" width="12" height="13" font="15">&gt;</text>
+<text top="823" left="299" width="421" height="13" font="1">original” effect is real, but it does not dominate the main story.</text>
+<text top="841" left="202" width="519" height="13" font="1">Table <a href="main.html#9">3 </a>decomposes every repaired improvement over the drifted call into either</text>
+<text top="859" left="202" width="85" height="13" font="11">drift recovery</text>
+<text top="859" left="293" width="205" height="13" font="1">on the originally-correct slice or</text>
+<text top="859" left="502" width="109" height="13" font="11">baseline patching</text>
+<text top="859" left="617" width="104" height="13" font="1">on examples the</text>
+<text top="876" left="202" width="519" height="13" font="1">base model already missed before drift. Most repaired gains come from genuine</text>
+<text top="894" left="202" width="90" height="13" font="1">drift recovery:</text>
+<text top="894" left="296" width="15" height="13" font="14">19</text>
+<text top="894" left="311" width="7" height="13" font="15">/</text>
+<text top="894" left="318" width="15" height="13" font="14">29</text>
+<text top="894" left="337" width="85" height="13" font="1">on DICE and</text>
+<text top="894" left="425" width="15" height="13" font="14">33</text>
+<text top="894" left="440" width="7" height="13" font="15">/</text>
+<text top="894" left="447" width="15" height="13" font="14">45</text>
+<text top="894" left="466" width="255" height="13" font="1">on BFCL. Baseline patching is material,</text>
+<text top="912" left="202" width="519" height="13" font="1">especially on BFCL, and should be read as a secondary benefit rather than the</text>
+<text top="930" left="202" width="185" height="13" font="1">paper’s central causal claim.</text>
+<text top="948" left="225" width="496" height="13" font="1">These runs also reveal whether drift misses actually enter the repair path. On</text>
+<text top="966" left="202" width="175" height="13" font="1">the originally-correct slice,</text>
+<text top="966" left="383" width="15" height="13" font="14">20</text>
+<text top="966" left="398" width="7" height="13" font="15">/</text>
+<text top="966" left="406" width="15" height="13" font="14">22</text>
+<text top="966" left="426" width="171" height="13" font="1">DICE drift misses and all</text>
+<text top="966" left="603" width="15" height="13" font="14">45</text>
+<text top="966" left="618" width="7" height="13" font="15">/</text>
+<text top="966" left="625" width="15" height="13" font="14">45</text>
+<text top="966" left="646" width="75" height="13" font="1">BFCL drift</text>
+<text top="984" left="202" width="519" height="13" font="1">misses are validator-visible invalid or incomplete calls. Only two DICE misses</text>
+</page>
+<page number="10" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="25" size="13" family="FSFYYG+CMSY9" color="#000000"/>
+<text top="174" left="202" width="57" height="12" font="6">Table 4.</text>
+<text top="170" left="264" width="456" height="17" font="4">Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks</text>
+<text top="187" left="202" width="390" height="17" font="4">make description/schema-only repair equivalent to oracle-target.</text>
+<text top="223" left="311" width="61" height="17" font="4">Drift type</text>
+<text top="223" left="430" width="182" height="17" font="4">Orig. Drift. Repair Drift Drop</text>
+<text top="247" left="311" width="99" height="17" font="4">Description only</text>
+<text top="247" left="430" width="109" height="17" font="4">0.760 0.747 0.813</text>
+<text top="250" left="569" width="11" height="13" font="25">−</text>
+<text top="251" left="580" width="7" height="12" font="8">0</text>
+<text top="251" left="587" width="4" height="12" font="9">.</text>
+<text top="251" left="591" width="21" height="12" font="8">013</text>
+<text top="264" left="311" width="76" height="17" font="4">Schema only</text>
+<text top="264" left="430" width="109" height="17" font="4">0.767 0.760 0.830</text>
+<text top="266" left="569" width="11" height="13" font="25">−</text>
+<text top="267" left="580" width="7" height="12" font="8">0</text>
+<text top="267" left="587" width="4" height="12" font="9">.</text>
+<text top="267" left="591" width="21" height="12" font="8">007</text>
+<text top="280" left="311" width="227" height="17" font="4">Candidate-set only 0.757 0.710 0.817</text>
+<text top="283" left="569" width="11" height="13" font="25">−</text>
+<text top="284" left="580" width="7" height="12" font="8">0</text>
+<text top="284" left="587" width="4" height="12" font="9">.</text>
+<text top="284" left="591" width="21" height="12" font="8">047</text>
+<text top="300" left="311" width="92" height="12" font="6">All combined</text>
+<text top="297" left="430" width="109" height="17" font="4">0.763 0.713 0.813</text>
+<text top="299" left="569" width="11" height="13" font="25">−</text>
+<text top="300" left="580" width="7" height="12" font="8">0</text>
+<text top="300" left="587" width="4" height="12" font="9">.</text>
+<text top="300" left="591" width="21" height="12" font="8">050</text>
+<text top="359" left="202" width="519" height="13" font="1">remain validator-invisible valid-but-wrong outputs, and BFCL has none. Across</text>
+<text top="377" left="202" width="164" height="13" font="1">the full benchmark slices,</text>
+<text top="377" left="371" width="15" height="13" font="14">63</text>
+<text top="377" left="386" width="7" height="13" font="15">/</text>
+<text top="377" left="393" width="15" height="13" font="14">85</text>
+<text top="377" left="412" width="144" height="13" font="1">DICE drift misses and</text>
+<text top="377" left="561" width="15" height="13" font="14">73</text>
+<text top="377" left="576" width="7" height="13" font="15">/</text>
+<text top="377" left="583" width="15" height="13" font="14">84</text>
+<text top="377" left="603" width="118" height="13" font="1">BFCL drift misses</text>
+<text top="395" left="202" width="519" height="13" font="1">are validator-visible. The repair stack therefore addresses most observed drift</text>
+<text top="413" left="202" width="519" height="13" font="1">failures; valid-but-wrong calls that bypass validation are a residual rather than</text>
+<text top="431" left="202" width="152" height="13" font="1">dominant failure mode.</text>
+<text top="481" left="202" width="22" height="13" font="13">6.4</text>
+<text top="481" left="241" width="463" height="13" font="13">Drift-Type Ablation: Candidate-Set Drift Causes the Largest</text>
+<text top="499" left="241" width="239" height="13" font="13">Drop on Qwen3.5-9B DICE-300</text>
+<text top="535" left="202" width="519" height="13" font="1">Table <a href="main.html#10">4 </a>decomposes the drift pipeline into its three components and evaluates</text>
+<text top="553" left="202" width="519" height="13" font="1">each in isolation at DICE-300 on Qwen3.5-9B. Description drift alone causes</text>
+<text top="571" left="202" width="40" height="13" font="1">only a</text>
+<text top="570" left="247" width="7" height="13" font="14">0</text>
+<text top="570" left="254" width="4" height="13" font="15">.</text>
+<text top="570" left="258" width="22" height="13" font="14">013</text>
+<text top="571" left="285" width="338" height="13" font="1">point accuracy drop. Schema drift alone causes only</text>
+<text top="570" left="628" width="7" height="13" font="14">0</text>
+<text top="570" left="635" width="4" height="13" font="15">.</text>
+<text top="570" left="639" width="22" height="13" font="14">007</text>
+<text top="571" left="662" width="59" height="13" font="1">. By con-</text>
+<text top="588" left="202" width="379" height="13" font="1">trast, candidate-set drift (adding a distractor tool) causes a</text>
+<text top="588" left="585" width="7" height="13" font="14">0</text>
+<text top="588" left="593" width="4" height="13" font="15">.</text>
+<text top="588" left="597" width="22" height="13" font="14">047</text>
+<text top="588" left="623" width="98" height="13" font="1">drop, matching</text>
+<text top="606" left="202" width="211" height="13" font="1">the full combined drift scenario (</text>
+<text top="606" left="413" width="7" height="13" font="14">0</text>
+<text top="606" left="420" width="4" height="13" font="15">.</text>
+<text top="606" left="424" width="22" height="13" font="14">050</text>
+<text top="606" left="447" width="274" height="13" font="1">). Because this ablation is about where the</text>
+<text top="624" left="202" width="519" height="13" font="1">damage comes from, the main interpretation still rests on the Original-to-Drifted</text>
+<text top="642" left="202" width="519" height="13" font="1">delta. For the repair column, however, only the distractor-bearing rows require</text>
+<text top="660" left="202" width="519" height="13" font="1">fresh non-oracle evidence. In our DICE-300 slice, every baseline task has ex-</text>
+<text top="678" left="202" width="519" height="13" font="1">actly one candidate tool, so under predicted-tool repair the description-only and</text>
+<text top="696" left="202" width="519" height="13" font="1">schema-only settings collapse to the same effective repair target as the oracle-</text>
+<text top="714" left="202" width="519" height="13" font="1">target protocol via single-candidate fallback. The non-oracle question therefore</text>
+<text top="732" left="202" width="519" height="13" font="1">matters only once distractor tools are introduced. A fresh candidate-set-only</text>
+<text top="750" left="202" width="160" height="13" font="1">non-oracle rerun reaches</text>
+<text top="750" left="367" width="7" height="13" font="14">0</text>
+<text top="750" left="374" width="4" height="13" font="15">.</text>
+<text top="750" left="378" width="22" height="13" font="14">817</text>
+<text top="750" left="401" width="320" height="13" font="1">, while the primary DICE main run already sup-</text>
+<text top="768" left="202" width="322" height="13" font="1">plies the matching all-combined non-oracle row at</text>
+<text top="768" left="529" width="7" height="13" font="14">0</text>
+<text top="768" left="536" width="4" height="13" font="15">.</text>
+<text top="768" left="540" width="22" height="13" font="14">813</text>
+<text top="768" left="563" width="158" height="13" font="1">. The qualitative conclu-</text>
+<text top="786" left="202" width="519" height="13" font="1">sion is unchanged: candidate-set drift remains the dominant source of damage</text>
+<text top="804" left="202" width="519" height="13" font="1">in this Qwen3.5-9B DICE-300 ablation, and non-oracle repair stays close to the</text>
+<text top="822" left="202" width="183" height="13" font="1">earlier oracle upper bounds.</text>
+<text top="841" left="225" width="496" height="13" font="1">This result qualifies a common framing in the interface-drift literature. On</text>
+<text top="859" left="202" width="519" height="13" font="1">this Qwen3.5-9B DICE-300 ablation, minor description rewording and semantics-</text>
+<text top="876" left="202" width="519" height="13" font="1">preserving parameter renames do not meaningfully degrade accuracy; the model</text>
+<text top="894" left="202" width="519" height="13" font="1">is robust to these perturbations in this slice. The observed failure mode is</text>
+<text top="912" left="202" width="152" height="13" font="11">candidate-set confusion</text>
+<text top="912" left="355" width="366" height="13" font="1">: when a distractor tool with an overlapping description</text>
+<text top="930" left="202" width="519" height="13" font="1">is added to the candidate set, tool selection degrades. This result motivates test-</text>
+<text top="948" left="202" width="519" height="13" font="1">ing tool-catalog growth separately from description or schema revisions; it does</text>
+<text top="966" left="202" width="519" height="13" font="1">not establish that candidate-set drift dominates for other models, benchmarks,</text>
+<text top="984" left="202" width="151" height="13" font="1">or production catalogs.</text>
+</page>
+<page number="11" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="174" left="202" width="60" height="12" font="6">Table 5.</text>
+<text top="170" left="270" width="451" height="17" font="4">Oracle-constrained upper-bound component ablation on DICE-300 and</text>
+<text top="187" left="202" width="489" height="17" font="4">BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild.</text>
+<text top="223" left="226" width="117" height="17" font="4">Benchmark Variant</text>
+<text top="223" left="475" width="221" height="17" font="4">Drift. Repair Rec/Miss Harms Inv.%</text>
+<text top="263" left="226" width="60" height="17" font="4">DICE-300</text>
+<text top="247" left="299" width="121" height="17" font="4">Canonical card only</text>
+<text top="247" left="476" width="72" height="17" font="4">0.770 0.770</text>
+<text top="247" left="575" width="21" height="17" font="4">0/9</text>
+<text top="247" left="634" width="7" height="17" font="4">0</text>
+<text top="247" left="670" width="18" height="17" font="4">0.0</text>
+<text top="263" left="299" width="250" height="17" font="4">Validation + retry (no card) 0.730 0.830</text>
+<text top="263" left="568" width="35" height="17" font="4">16/17</text>
+<text top="263" left="634" width="7" height="17" font="4">0</text>
+<text top="263" left="667" width="25" height="17" font="4">20.0</text>
+<text top="283" left="299" width="160" height="12" font="6">Full SchemaShield-Lite</text>
+<text top="279" left="476" width="31" height="17" font="4">0.713</text>
+<text top="283" left="515" width="36" height="12" font="6">0.827</text>
+<text top="279" left="568" width="35" height="17" font="4">17/18</text>
+<text top="279" left="634" width="7" height="17" font="4">0</text>
+<text top="279" left="667" width="25" height="17" font="4">21.0</text>
+<text top="320" left="226" width="62" height="17" font="4">BFCL-200</text>
+<text top="303" left="299" width="121" height="17" font="4">Canonical card only</text>
+<text top="303" left="476" width="72" height="17" font="4">0.810 0.810</text>
+<text top="303" left="572" width="28" height="17" font="4">0/11</text>
+<text top="303" left="634" width="7" height="17" font="4">0</text>
+<text top="303" left="670" width="18" height="17" font="4">0.0</text>
+<text top="320" left="299" width="209" height="17" font="4">Validation + retry (no card) 0.645</text>
+<text top="323" left="515" width="36" height="12" font="6">0.820</text>
+<text top="320" left="568" width="35" height="17" font="4">26/34</text>
+<text top="320" left="634" width="7" height="17" font="4">0</text>
+<text top="320" left="667" width="25" height="17" font="4">29.5</text>
+<text top="336" left="299" width="139" height="17" font="4">Full SchemaShield-Lite</text>
+<text top="336" left="476" width="72" height="17" font="4">0.640 0.795</text>
+<text top="336" left="568" width="35" height="17" font="4">23/35</text>
+<text top="336" left="634" width="7" height="17" font="4">0</text>
+<text top="336" left="667" width="25" height="17" font="4">31.0</text>
+<text top="396" left="202" width="22" height="13" font="13">6.5</text>
+<text top="396" left="241" width="474" height="13" font="13">Upper-Bound Component Ablation: Validation, Not Canonical</text>
+<text top="414" left="241" width="171" height="13" font="13">Card, Drives Recovery</text>
+<text top="444" left="202" width="519" height="13" font="1">To isolate which parts of the repair stack matter once a target tool has al-</text>
+<text top="462" left="202" width="519" height="13" font="1">ready been resolved, Table <a href="main.html#11">5 </a>evaluates three variants of SchemaShield-Lite in an</text>
+<text top="480" left="202" width="519" height="13" font="1">oracle-constrained upper-bound setting on both DICE-300 and BFCL-200 with</text>
+<text top="497" left="202" width="519" height="13" font="1">Qwen3.5-9B: (i) canonical card only, where the card is prepended to the initial</text>
+<text top="515" left="202" width="519" height="13" font="1">prompt but no validation/repair is applied; (ii) validation-plus-retry, which uses</text>
+<text top="533" left="202" width="519" height="13" font="1">validation errors in a repair prompt but omits the canonical tool card from the</text>
+<text top="551" left="202" width="500" height="13" font="1">repair context; and (iii) full SchemaShield-Lite (card + validation + repair).</text>
+<text top="569" left="225" width="426" height="13" font="1">Within this oracle-constrained setting, the BFCL rows confirm and</text>
+<text top="569" left="654" width="67" height="13" font="11">strengthen</text>
+<text top="587" left="202" width="519" height="13" font="1">the DICE finding in three ways. First, the canonical card at initial-prediction</text>
+<text top="605" left="202" width="519" height="13" font="1">time provides even stronger drift prevention on BFCL than on DICE: the base</text>
+<text top="623" left="202" width="100" height="13" font="1">drifted score of</text>
+<text top="623" left="308" width="7" height="13" font="14">0</text>
+<text top="623" left="316" width="4" height="13" font="15">.</text>
+<text top="623" left="320" width="22" height="13" font="14">640</text>
+<text top="623" left="348" width="59" height="13" font="1">jumps to</text>
+<text top="623" left="413" width="7" height="13" font="14">0</text>
+<text top="623" left="420" width="4" height="13" font="15">.</text>
+<text top="623" left="424" width="22" height="13" font="14">810</text>
+<text top="623" left="447" width="18" height="13" font="1">, a</text>
+<text top="623" left="470" width="15" height="13" font="14">17</text>
+<text top="623" left="485" width="4" height="13" font="15">.</text>
+<text top="623" left="489" width="7" height="13" font="14">0</text>
+<text top="623" left="497" width="224" height="13" font="1">-point drift-prevention effect. Sec-</text>
+<text top="641" left="202" width="519" height="13" font="1">ond, the card-only configuration still never triggers the validator and recovers</text>
+<text top="659" left="202" width="519" height="13" font="1">zero drift-induced failures, because its valid-but-imperfect outputs pass schema</text>
+<text top="677" left="202" width="519" height="13" font="1">checking without entering the repair path. Third, validation-plus-retry without</text>
+<text top="695" left="202" width="284" height="13" font="1">the canonical card at repair time reaches a</text>
+<text top="695" left="491" width="40" height="13" font="11">higher</text>
+<text top="695" left="538" width="183" height="13" font="1">repaired accuracy on BFCL</text>
+<text top="713" left="202" width="148" height="13" font="1">than the full pipeline (</text>
+<text top="713" left="350" width="7" height="13" font="14">0</text>
+<text top="713" left="358" width="4" height="13" font="15">.</text>
+<text top="713" left="362" width="22" height="13" font="14">820</text>
+<text top="713" left="389" width="14" height="13" font="1">vs</text>
+<text top="713" left="408" width="7" height="13" font="14">0</text>
+<text top="713" left="415" width="4" height="13" font="15">.</text>
+<text top="713" left="420" width="22" height="13" font="14">795</text>
+<text top="713" left="442" width="33" height="13" font="1">, and</text>
+<text top="713" left="480" width="15" height="13" font="14">26</text>
+<text top="713" left="495" width="7" height="13" font="15">/</text>
+<text top="713" left="502" width="15" height="13" font="14">34</text>
+<text top="713" left="522" width="81" height="13" font="1">recoveries vs</text>
+<text top="713" left="609" width="15" height="13" font="14">23</text>
+<text top="713" left="623" width="7" height="13" font="15">/</text>
+<text top="713" left="631" width="15" height="13" font="14">35</text>
+<text top="713" left="646" width="75" height="13" font="1">), matching</text>
+<text top="731" left="202" width="519" height="13" font="1">the pattern observed on DICE where validation-only nearly ties the full pipeline.</text>
+<text top="749" left="225" width="496" height="13" font="1">Taken together across both benchmarks, these upper-bound numbers localize</text>
+<text top="766" left="202" width="519" height="13" font="1">the principal repair-stage benefit of SchemaShield-Lite to the validation error</text>
+<text top="784" left="202" width="519" height="13" font="1">feedback loop combined with tool-constrained repair, not the canonical tool card</text>
+<text top="802" left="202" width="326" height="13" font="1">presented at repair time. The card earns its keep as</text>
+<text top="802" left="532" width="171" height="13" font="11">drift-prevention prompting</text>
+<text top="802" left="708" width="13" height="13" font="1">at</text>
+<text top="820" left="202" width="519" height="13" font="1">the initial prediction step, where BFCL shows it can dominate the remaining drift</text>
+<text top="838" left="202" width="519" height="13" font="1">damage, but can be dropped from the repair prompt without hurting recovery</text>
+<text top="856" left="202" width="519" height="13" font="1">once the target tool has already been resolved. Because these ablations are oracle-</text>
+<text top="874" left="202" width="519" height="13" font="1">constrained, we treat them as upper-bound mechanism evidence rather than as</text>
+<text top="892" left="202" width="281" height="13" font="1">a full explanation of non-oracle portability.</text>
+<text top="937" left="202" width="22" height="13" font="13">6.6</text>
+<text top="937" left="241" width="110" height="13" font="13">Error Analysis</text>
+<text top="966" left="202" width="341" height="13" font="1">On the primary non-oracle Qwen3.5-9B runs, only</text>
+<text top="966" left="550" width="7" height="13" font="14">3</text>
+<text top="966" left="564" width="135" height="13" font="1">DICE examples and</text>
+<text top="966" left="706" width="15" height="13" font="14">12</text>
+<text top="984" left="202" width="519" height="13" font="1">BFCL examples remain unrecovered on the originally-correct slice. The DICE</text>
+</page>
+<page number="12" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="174" left="202" width="57" height="12" font="6">Table 6.</text>
+<text top="170" left="264" width="457" height="17" font="4">Unrecovered oracle-constrained DICE cases on non-primary models. “Arti-</text>
+<text top="187" left="202" width="478" height="17" font="4">fact” = formatting/paraphrase mismatches, semantically correct on inspection.</text>
+<text top="223" left="279" width="38" height="17" font="4">Model</text>
+<text top="223" left="395" width="248" height="17" font="4">Unrecovered Artifact-like Genuine failure</text>
+<text top="247" left="279" width="112" height="17" font="4">Qwen3.5-35B-A3B</text>
+<text top="247" left="429" width="7" height="17" font="4">5</text>
+<text top="247" left="507" width="7" height="17" font="4">4</text>
+<text top="247" left="594" width="7" height="17" font="4">1</text>
+<text top="264" left="279" width="88" height="17" font="4">Llama-4-Scout</text>
+<text top="264" left="429" width="7" height="17" font="4">4</text>
+<text top="264" left="507" width="7" height="17" font="4">4</text>
+<text top="264" left="594" width="7" height="17" font="4">0</text>
+<text top="280" left="279" width="72" height="17" font="4">Mistral-24B</text>
+<text top="280" left="429" width="7" height="17" font="4">4</text>
+<text top="280" left="507" width="7" height="17" font="4">3</text>
+<text top="280" left="594" width="7" height="17" font="4">1</text>
+<text top="304" left="279" width="32" height="17" font="4">Total</text>
+<text top="304" left="426" width="14" height="17" font="4">13</text>
+<text top="304" left="504" width="14" height="17" font="4">11</text>
+<text top="304" left="594" width="7" height="17" font="4">2</text>
+<text top="375" left="202" width="519" height="13" font="1">residuals are split between one repaired-but-still-mismatched hashtag value and</text>
+<text top="393" left="202" width="519" height="13" font="1">two validator-invisible value mismatches that never trigger repair. On BFCL,</text>
+<text top="411" left="202" width="519" height="13" font="1">most unrecovered cases remain validator-visible missing-field failures after re-</text>
+<text top="429" left="202" width="519" height="13" font="1">pair, while two cases remain unresolved because the model never supplies a us-</text>
+<text top="447" left="202" width="519" height="13" font="1">able tool name. These patterns are consistent with the main bottleneck story in</text>
+<text top="465" left="202" width="519" height="13" font="1">Section <a href="main.html#9">6.3: </a>the dominant remaining failure modes are either missing-tool-name</text>
+<text top="483" left="202" width="350" height="13" font="1">resolution or persistent argument completion failures.</text>
+<text top="507" left="225" width="496" height="13" font="1">Across the oracle-constrained DICE upper-bound sweeps, no repair harms are</text>
+<text top="525" left="202" width="519" height="13" font="1">observed. However, not every drift miss is recovered. On Qwen3.5-35B, repair</text>
+<text top="542" left="202" width="52" height="13" font="1">recovers</text>
+<text top="542" left="260" width="15" height="13" font="14">20</text>
+<text top="542" left="280" width="12" height="13" font="1">of</text>
+<text top="542" left="298" width="15" height="13" font="14">25</text>
+<text top="542" left="319" width="205" height="13" font="1">drift misses; on Llama-4-Scout,</text>
+<text top="542" left="530" width="15" height="13" font="14">12</text>
+<text top="542" left="550" width="12" height="13" font="1">of</text>
+<text top="542" left="568" width="15" height="13" font="14">16</text>
+<text top="542" left="583" width="82" height="13" font="1">; on Mistral,</text>
+<text top="542" left="671" width="7" height="13" font="14">8</text>
+<text top="542" left="684" width="12" height="13" font="1">of</text>
+<text top="542" left="702" width="15" height="13" font="14">12</text>
+<text top="542" left="717" width="4" height="13" font="1">.</text>
+<text top="560" left="202" width="519" height="13" font="1">We manually inspected every unrecovered case on these three runs and classified</text>
+<text top="578" left="202" width="174" height="13" font="1">them against the gold call.</text>
+<text top="602" left="225" width="496" height="13" font="1">The pattern is consistent across models: nearly all unrecovered examples in-</text>
+<text top="620" left="202" width="519" height="13" font="1">volve the repair call selecting the correct tool with well-formed arguments whose</text>
+<text top="638" left="202" width="519" height="13" font="1">string values disagree with gold only by formatting or paraphrase. On Qwen3.5-</text>
+<text top="656" left="202" width="39" height="13" font="1">35B (</text>
+<text top="656" left="241" width="7" height="13" font="14">5</text>
+<text top="656" left="256" width="465" height="13" font="1">unrecovered), these include one strict whitespace/punctuation differ-</text>
+<text top="674" left="202" width="45" height="13" font="1">ence (“</text>
+<text top="675" left="249" width="173" height="12" font="21">the quick brown fox...</text>
+<text top="674" left="421" width="37" height="13" font="1">” vs “</text>
+<text top="675" left="460" width="180" height="12" font="21">The quick brown fox....</text>
+<text top="674" left="640" width="81" height="13" font="1">”) and three</text>
+<text top="692" left="202" width="326" height="13" font="1">enum-format or paraphrase-level mismatches (e.g.</text>
+<text top="693" left="533" width="110" height="12" font="21">regular_season</text>
+<text top="692" left="647" width="14" height="13" font="1">vs</text>
+<text top="693" left="666" width="55" height="12" font="21">regular</text>
+<text top="711" left="202" width="47" height="12" font="21">season</text>
+<text top="709" left="249" width="4" height="13" font="1">,</text>
+<text top="711" left="260" width="78" height="12" font="21">the office</text>
+<text top="709" left="345" width="14" height="13" font="1">vs</text>
+<text top="711" left="365" width="47" height="12" font="21">Office</text>
+<text top="709" left="412" width="309" height="13" font="1">); a single genuine failure has an empty argu-</text>
+<text top="727" left="202" width="295" height="13" font="1">ments object after repair. On Llama-4-Scout (</text>
+<text top="727" left="497" width="7" height="13" font="14">4</text>
+<text top="727" left="508" width="213" height="13" font="1">unrecovered), all four are format-</text>
+<text top="745" left="202" width="33" height="13" font="1">level:</text>
+<text top="747" left="240" width="24" height="12" font="21">ISO</text>
+<text top="745" left="263" width="244" height="13" font="1">-prefixed dates vs two-field dates (e.g.</text>
+<text top="747" left="511" width="78" height="12" font="21">2023-11-10</text>
+<text top="745" left="593" width="14" height="13" font="1">vs</text>
+<text top="747" left="611" width="39" height="12" font="21">11-10</text>
+<text top="745" left="650" width="70" height="13" font="1">), or JSON</text>
+<text top="763" left="202" width="519" height="13" font="1">with quoted-number string values rather than numeric literals. On Mistral-24B</text>
+<text top="781" left="202" width="6" height="13" font="1">(</text>
+<text top="781" left="208" width="7" height="13" font="14">4</text>
+<text top="781" left="223" width="375" height="13" font="1">unrecovered), the misses include near-synonym topics (</text>
+<text top="782" left="598" width="102" height="12" font="21">inspirational</text>
+<text top="781" left="707" width="14" height="13" font="1">vs</text>
+<text top="800" left="202" width="86" height="12" font="21">inspiration</text>
+<text top="799" left="288" width="4" height="13" font="1">,</text>
+<text top="800" left="300" width="16" height="12" font="21">AI</text>
+<text top="799" left="324" width="14" height="13" font="1">vs</text>
+<text top="800" left="345" width="180" height="12" font="21">artificial intelligence</text>
+<text top="799" left="526" width="4" height="13" font="1">,</text>
+<text top="800" left="538" width="47" height="12" font="21">Google</text>
+<text top="799" left="592" width="14" height="13" font="1">vs</text>
+<text top="800" left="614" width="39" height="12" font="21">GOOGL</text>
+<text top="799" left="653" width="68" height="13" font="1">) and one</text>
+<text top="817" left="202" width="445" height="13" font="1">wrong numeric amount. Across 13 unrecovered cases in total, only</text>
+<text top="817" left="653" width="7" height="13" font="14">2</text>
+<text top="817" left="667" width="54" height="13" font="1">are gen-</text>
+<text top="835" left="202" width="519" height="13" font="1">uine inference failures (empty arguments and one wrong value); the remaining</text>
+<text top="853" left="202" width="15" height="13" font="14">11</text>
+<text top="853" left="222" width="499" height="13" font="1">are strict-match artifacts rather than true drift failures. The practical impli-</text>
+<text top="871" left="202" width="519" height="13" font="1">cation is that the paper’s reported recovery rates are a lower bound: a lenient</text>
+<text top="889" left="202" width="417" height="13" font="1">evaluator would count most of the unrecovered cases as correct.</text>
+<text top="912" left="225" width="402" height="13" font="1">Mistral-24B exhibits an unusual pattern: its drifted score (</text>
+<text top="912" left="627" width="7" height="13" font="14">0</text>
+<text top="912" left="634" width="4" height="13" font="15">.</text>
+<text top="912" left="638" width="22" height="13" font="14">777</text>
+<text top="912" left="661" width="60" height="13" font="1">) slightly</text>
+<text top="930" left="202" width="178" height="13" font="1">exceeds its original score (</text>
+<text top="930" left="381" width="7" height="13" font="14">0</text>
+<text top="930" left="388" width="4" height="13" font="15">.</text>
+<text top="930" left="392" width="22" height="13" font="14">740</text>
+<text top="930" left="415" width="163" height="13" font="1">). Inspection shows that</text>
+<text top="930" left="584" width="15" height="13" font="14">15</text>
+<text top="930" left="599" width="7" height="13" font="15">/</text>
+<text top="930" left="606" width="15" height="13" font="14">23</text>
+<text top="930" left="628" width="93" height="13" font="1">apparent drift</text>
+<text top="948" left="202" width="519" height="13" font="1">“gains” are strict-match artifacts on the original call (formatting differences in</text>
+<text top="966" left="202" width="519" height="13" font="1">string values) rather than information recovered from the drifted description.</text>
+<text top="984" left="202" width="382" height="13" font="1">We read this as scorer noise, not evidence that drift helps.</text>
+</page>
+<page number="13" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="22" height="13" font="13">6.7</text>
+<text top="178" left="241" width="269" height="13" font="13">Additional Non-Oracle Replications</text>
+<text top="211" left="202" width="519" height="13" font="1">To reduce the single-model dependence of the primary story, we also ran the</text>
+<text top="229" left="202" width="519" height="13" font="1">same BFCL-200 non-oracle candidate-retry protocol on Qwen3.5-35B-A3B. Re-</text>
+<text top="247" left="202" width="313" height="13" font="1">pair again helps materially, lifting accuracy from</text>
+<text top="247" left="519" width="7" height="13" font="14">0</text>
+<text top="247" left="527" width="4" height="13" font="15">.</text>
+<text top="247" left="531" width="22" height="13" font="14">635</text>
+<text top="247" left="557" width="13" height="13" font="1">to</text>
+<text top="247" left="575" width="7" height="13" font="14">0</text>
+<text top="247" left="582" width="4" height="13" font="15">.</text>
+<text top="247" left="586" width="22" height="13" font="14">845</text>
+<text top="247" left="613" width="108" height="13" font="1">(exact McNemar</text>
+<text top="265" left="202" width="8" height="13" font="15">p</text>
+<text top="265" left="215" width="24" height="13" font="14">= 4</text>
+<text top="265" left="240" width="4" height="13" font="15">.</text>
+<text top="265" left="244" width="7" height="13" font="14">5</text>
+<text top="264" left="255" width="12" height="14" font="16">×</text>
+<text top="265" left="270" width="15" height="13" font="14">10</text>
+<text top="262" left="285" width="9" height="10" font="24">−</text>
+<text top="263" left="295" width="12" height="9" font="2">13</text>
+<text top="265" left="307" width="285" height="13" font="1">). On the originally-correct slice it recovers</text>
+<text top="265" left="598" width="15" height="13" font="14">33</text>
+<text top="265" left="613" width="7" height="13" font="15">/</text>
+<text top="265" left="621" width="15" height="13" font="14">38</text>
+<text top="265" left="641" width="79" height="13" font="1">drift misses,</text>
+<text top="283" left="202" width="519" height="13" font="1">shows no observed repair harms, and leaves only one unresolved repair target.</text>
+<text top="301" left="202" width="519" height="13" font="1">This does not eliminate same-family dependence, but it shows that the main</text>
+<text top="319" left="202" width="351" height="13" font="1">BFCL non-oracle effect is not confined to the 9B run.</text>
+<text top="337" left="225" width="496" height="13" font="1">We also ran the same BFCL-200 non-oracle candidate-retry protocol on</text>
+<text top="355" left="202" width="384" height="13" font="1">Llama-4-Scout. Repair still improves over the drifted call (</text>
+<text top="355" left="586" width="7" height="13" font="14">0</text>
+<text top="355" left="593" width="4" height="13" font="15">.</text>
+<text top="355" left="598" width="22" height="13" font="14">635</text>
+<text top="354" left="624" width="15" height="14" font="16">→</text>
+<text top="355" left="643" width="7" height="13" font="14">0</text>
+<text top="355" left="651" width="4" height="13" font="15">.</text>
+<text top="355" left="655" width="22" height="13" font="14">665</text>
+<text top="355" left="677" width="44" height="13" font="1">, exact</text>
+<text top="373" left="202" width="64" height="13" font="1">McNemar</text>
+<text top="373" left="270" width="8" height="13" font="15">p</text>
+<text top="373" left="281" width="23" height="13" font="14">= 0</text>
+<text top="373" left="304" width="4" height="13" font="15">.</text>
+<text top="373" left="309" width="22" height="13" font="14">031</text>
+<text top="373" left="331" width="390" height="13" font="1">) and again shows no observed repair harms on the originally-</text>
+<text top="391" left="202" width="519" height="13" font="1">correct slice. However, this run exposes an important portability failure mode:</text>
+<text top="409" left="202" width="330" height="13" font="1">the model omits the tool name frequently, leaving</text>
+<text top="409" left="537" width="15" height="13" font="14">43</text>
+<text top="409" left="558" width="163" height="13" font="1">unresolved repair targets</text>
+<text top="427" left="202" width="395" height="13" font="1">and limiting recovery on the originally-correct slice to just</text>
+<text top="427" left="604" width="7" height="13" font="14">1</text>
+<text top="427" left="611" width="7" height="13" font="15">/</text>
+<text top="427" left="619" width="15" height="13" font="14">11</text>
+<text top="427" left="640" width="80" height="13" font="1">drift misses.</text>
+<text top="445" left="202" width="519" height="13" font="1">The Llama run therefore supports some portability of the repair effect, but also</text>
+<text top="463" left="202" width="519" height="13" font="1">reinforces that non-oracle repair quality depends heavily on the base model’s</text>
+<text top="481" left="202" width="226" height="13" font="1">ability to emit a usable tool name.</text>
+<text top="499" left="225" width="496" height="13" font="1">We also ran a BFCL-200 non-oracle sanity check on GPT-4o-mini after</text>
+<text top="517" left="202" width="519" height="13" font="1">adding provider-safe tool-name aliasing for OpenAI-style tool schemas. Its drift</text>
+<text top="535" left="202" width="417" height="13" font="1">damage is smaller than in the evaluated open-model BFCL runs (</text>
+<text top="535" left="620" width="7" height="13" font="14">0</text>
+<text top="535" left="627" width="4" height="13" font="15">.</text>
+<text top="535" left="631" width="22" height="13" font="14">865</text>
+<text top="534" left="658" width="15" height="14" font="16">→</text>
+<text top="535" left="677" width="7" height="13" font="14">0</text>
+<text top="535" left="684" width="4" height="13" font="15">.</text>
+<text top="535" left="689" width="22" height="13" font="14">840</text>
+<text top="535" left="711" width="10" height="13" font="1">).</text>
+<text top="553" left="202" width="95" height="13" font="1">Repair reaches</text>
+<text top="553" left="302" width="7" height="13" font="14">0</text>
+<text top="553" left="309" width="4" height="13" font="15">.</text>
+<text top="553" left="314" width="22" height="13" font="14">860</text>
+<text top="553" left="341" width="380" height="13" font="1">with no observed harms or unresolved targets, but its gain</text>
+<text top="571" left="202" width="444" height="13" font="1">is small and not significant on this 200-example slice (exact McNemar</text>
+<text top="571" left="649" width="8" height="13" font="15">p</text>
+<text top="571" left="661" width="23" height="13" font="14">= 0</text>
+<text top="571" left="684" width="4" height="13" font="15">.</text>
+<text top="571" left="689" width="22" height="13" font="14">125</text>
+<text top="571" left="711" width="10" height="13" font="1">).</text>
+<text top="589" left="202" width="448" height="13" font="1">We therefore treat this as a sanity check, not confirmatory evidence.</text>
+<text top="637" left="202" width="10" height="16" font="10">7</text>
+<text top="637" left="232" width="92" height="16" font="10">Discussion</text>
+<text top="678" left="202" width="519" height="13" font="1">Our results support three narrower conclusions than the original SchemaShield-</text>
+<text top="696" left="202" width="519" height="13" font="1">Lite framing suggested. First, in the evaluated Qwen3.5-9B settings, non-oracle</text>
+<text top="714" left="202" width="519" height="13" font="1">inference-time repair improves over drifted performance on both DICE and</text>
+<text top="732" left="202" width="519" height="13" font="1">BFCL while showing no observed repair harms on the originally-correct slice.</text>
+<text top="750" left="202" width="519" height="13" font="1">Second, missing tool names are the main non-oracle bottleneck in these runs;</text>
+<text top="768" left="202" width="519" height="13" font="1">candidate-set retry over the visible tools closes much of the gap to the oracle</text>
+<text top="786" left="202" width="519" height="13" font="1">upper bound. Third, candidate-set drift causes a larger accuracy drop than de-</text>
+<text top="804" left="202" width="420" height="13" font="1">scription or schema drift in the Qwen3.5-9B DICE-300 ablation.</text>
+<text top="822" left="225" width="496" height="13" font="1">These findings identify a compact recipe to test in deployment: visible-tool</text>
+<text top="840" left="202" width="519" height="13" font="1">validation, candidate-set retry for missing names, and constrained repair once a</text>
+<text top="858" left="202" width="519" height="13" font="1">tool is resolved. It recovers most observed damage without the canonical card</text>
+<text top="876" left="202" width="519" height="13" font="1">in the repair prompt. The Qwen3.5-35B-A3B replication works at a second size</text>
+<text top="894" left="202" width="519" height="13" font="1">within the family; the weaker Llama-4-Scout result cautions against assuming</text>
+<text top="912" left="202" width="155" height="13" font="1">cross-family portability.</text>
+<text top="930" left="225" width="496" height="13" font="1">These same results also matter for adversarial interface manipulation. Faghih</text>
+<text top="948" left="202" width="519" height="13" font="1">et al. <a href="main.html#15">[2] </a>show that small description edits can steer tool selection even when</text>
+<text top="966" left="202" width="519" height="13" font="1">semantics are unchanged. Our Qwen3.5-9B DICE-300 ablation suggests testing</text>
+<text top="984" left="202" width="519" height="13" font="1">description overlap together with candidate-set expansion: in that slice, routing</text>
+</page>
+<page number="14" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="519" height="13" font="1">degrades once distractor tools enter the visible set. Whether the same validator-</text>
+<text top="196" left="202" width="519" height="13" font="1">plus-repair stack helps against adversarial tool confusion requires a dedicated</text>
+<text top="214" left="202" width="71" height="13" font="1">evaluation.</text>
+<text top="263" left="202" width="10" height="16" font="10">8</text>
+<text top="263" left="232" width="100" height="16" font="10">Limitations</text>
+<text top="303" left="202" width="519" height="13" font="1">Several limitations remain. First, the strongest non-oracle evidence is concen-</text>
+<text top="321" left="202" width="519" height="13" font="1">trated in the Qwen3.5 family: Llama-4-Scout is bottlenecked by missing tool</text>
+<text top="339" left="202" width="519" height="13" font="1">names, GPT-4o-mini is only a sanity check, and broader model results are mostly</text>
+<text top="357" left="202" width="519" height="13" font="1">oracle-constrained. Second, the author-designed drift operators cover stale de-</text>
+<text top="375" left="202" width="519" height="13" font="1">scriptions, renamed fields, and distractors, not type narrowing, enum replace-</text>
+<text top="393" left="202" width="519" height="13" font="1">ment, or multi-tool refactors; the small changelog audit is not a mined change</text>
+<text top="411" left="202" width="519" height="13" font="1">distribution. Third, the drift-type and component ablations are upper bounds</text>
+<text top="429" left="202" width="519" height="13" font="1">and may not transfer when non-oracle tool resolution fails. Fourth, hosted in-</text>
+<text top="447" left="202" width="519" height="13" font="1">ference may add provider-specific behavior. Although DICE is multi-round and</text>
+<text top="465" left="202" width="519" height="13" font="1">BFCL includes multiple-function categories, we score each example rather than</text>
+<text top="483" left="202" width="519" height="13" font="1">execute sequential tool plans; compounding recovery and production-scale cat-</text>
+<text top="501" left="202" width="519" height="13" font="1">alogs remain untested. Fifth, baseline patching complicates drift-specific attri-</text>
+<text top="518" left="202" width="301" height="13" font="1">bution, while strict matching is conservative:</text>
+<text top="518" left="510" width="15" height="13" font="14">11</text>
+<text top="518" left="525" width="7" height="13" font="15">/</text>
+<text top="518" left="533" width="15" height="13" font="14">13</text>
+<text top="518" left="554" width="167" height="13" font="1">inspected misses on non-</text>
+<text top="536" left="202" width="519" height="13" font="1">primary models are formatting or paraphrase artifacts (Section <a href="main.html#11">6.6). </a>Finally, the</text>
+<text top="554" left="202" width="15" height="13" font="14">32</text>
+<text top="554" left="217" width="4" height="13" font="15">.</text>
+<text top="554" left="221" width="20" height="13" font="14">6%</text>
+<text top="554" left="241" width="7" height="13" font="1">–</text>
+<text top="554" left="249" width="15" height="13" font="14">47</text>
+<text top="554" left="264" width="4" height="13" font="15">.</text>
+<text top="554" left="268" width="20" height="13" font="14">1%</text>
+<text top="554" left="292" width="429" height="13" font="1">token overhead and one-run latency estimate are meaningful costs,</text>
+<text top="572" left="202" width="519" height="13" font="1">but systematic latency and API-cost comparisons across providers, models, and</text>
+<text top="590" left="202" width="237" height="13" font="1">pricing schemes remain future work.</text>
+<text top="639" left="202" width="10" height="16" font="10">9</text>
+<text top="639" left="232" width="96" height="16" font="10">Conclusion</text>
+<text top="679" left="202" width="519" height="13" font="1">We studied SchemaShield-Lite, a training-free inference-time validation-and-</text>
+<text top="697" left="202" width="519" height="13" font="1">repair stack for tool calling under interface drift. With Qwen3.5-9B, the non-</text>
+<text top="715" left="202" width="313" height="13" font="1">oracle protocol raises DICE-300 accuracy from</text>
+<text top="715" left="522" width="7" height="13" font="14">0</text>
+<text top="715" left="529" width="4" height="13" font="15">.</text>
+<text top="715" left="533" width="22" height="13" font="14">717</text>
+<text top="715" left="562" width="13" height="13" font="1">to</text>
+<text top="715" left="582" width="7" height="13" font="14">0</text>
+<text top="715" left="590" width="4" height="13" font="15">.</text>
+<text top="715" left="594" width="22" height="13" font="14">813</text>
+<text top="715" left="623" width="98" height="13" font="1">and BFCL-200</text>
+<text top="733" left="202" width="91" height="13" font="1">accuracy from</text>
+<text top="733" left="297" width="7" height="13" font="14">0</text>
+<text top="733" left="305" width="4" height="13" font="15">.</text>
+<text top="733" left="309" width="22" height="13" font="14">580</text>
+<text top="733" left="335" width="13" height="13" font="1">to</text>
+<text top="733" left="352" width="7" height="13" font="14">0</text>
+<text top="733" left="360" width="4" height="13" font="15">.</text>
+<text top="733" left="364" width="22" height="13" font="14">805</text>
+<text top="733" left="386" width="334" height="13" font="1">, with no observed repair harms on either originally-</text>
+<text top="751" left="202" width="519" height="13" font="1">correct slice. Three findings qualify the picture. A naive-retry baseline does not</text>
+<text top="769" left="202" width="519" height="13" font="1">explain the gains. Description and schema drift cause only small degradations</text>
+<text top="787" left="202" width="519" height="13" font="1">on the Qwen3.5-9B DICE-300 ablation, where candidate-set drift causes the</text>
+<text top="805" left="202" width="519" height="13" font="1">largest drop. In the primary non-oracle runs, missing tool names are the main</text>
+<text top="823" left="202" width="519" height="13" font="1">repair bottleneck, and candidate-set retry substantially reduces unresolved cases.</text>
+<text top="841" left="202" width="499" height="13" font="1">The headline improvements combine drift recovery with baseline patching: of</text>
+<text top="841" left="706" width="15" height="13" font="14">29</text>
+<text top="859" left="202" width="79" height="13" font="1">DICE gains,</text>
+<text top="858" left="285" width="15" height="13" font="14">19</text>
+<text top="859" left="304" width="213" height="13" font="1">recover drift-induced failures and</text>
+<text top="858" left="521" width="15" height="13" font="14">10</text>
+<text top="859" left="540" width="162" height="13" font="1">patch baseline failures; of</text>
+<text top="858" left="706" width="15" height="13" font="14">45</text>
+<text top="876" left="202" width="82" height="13" font="1">BFCL gains,</text>
+<text top="876" left="288" width="15" height="13" font="14">33</text>
+<text top="876" left="307" width="148" height="13" font="1">are drift recoveries and</text>
+<text top="876" left="459" width="15" height="13" font="14">12</text>
+<text top="876" left="478" width="243" height="13" font="1">are baseline patches. A same-protocol</text>
+<text top="894" left="202" width="299" height="13" font="1">BFCL-200 replication on Qwen3.5-35B-A3B (</text>
+<text top="894" left="501" width="7" height="13" font="14">0</text>
+<text top="894" left="509" width="4" height="13" font="15">.</text>
+<text top="894" left="513" width="22" height="13" font="14">635</text>
+<text top="894" left="539" width="15" height="14" font="16">→</text>
+<text top="894" left="559" width="7" height="13" font="14">0</text>
+<text top="894" left="566" width="4" height="13" font="15">.</text>
+<text top="894" left="570" width="22" height="13" font="14">845</text>
+<text top="894" left="593" width="128" height="13" font="1">) reproduces the ef-</text>
+<text top="912" left="202" width="519" height="13" font="1">fect within the Qwen family, but Llama-4-Scout exposes a missing-name porta-</text>
+<text top="930" left="202" width="519" height="13" font="1">bility bottleneck. On GPT-4o-mini, the repair gain is small and not significant</text>
+<text top="948" left="202" width="219" height="13" font="1">on the 200-example BFCL slice (</text>
+<text top="948" left="421" width="7" height="13" font="14">0</text>
+<text top="948" left="429" width="4" height="13" font="15">.</text>
+<text top="948" left="433" width="22" height="13" font="14">840</text>
+<text top="947" left="461" width="15" height="14" font="16">→</text>
+<text top="948" left="481" width="7" height="13" font="14">0</text>
+<text top="948" left="488" width="4" height="13" font="15">.</text>
+<text top="948" left="493" width="22" height="13" font="14">860</text>
+<text top="948" left="515" width="4" height="13" font="1">,</text>
+<text top="948" left="525" width="8" height="13" font="15">p</text>
+<text top="948" left="538" width="24" height="13" font="14">= 0</text>
+<text top="948" left="562" width="4" height="13" font="15">.</text>
+<text top="948" left="566" width="22" height="13" font="14">125</text>
+<text top="948" left="589" width="132" height="13" font="1">). The paper should</text>
+<text top="966" left="202" width="519" height="13" font="1">therefore be read as a controlled study of drift sensitivity and inference-time</text>
+<text top="984" left="202" width="459" height="13" font="1">repair rather than as a complete account of production interface drift.</text>
+</page>
+<page number="15" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="178" left="202" width="104" height="13" font="11">Broader impact.</text>
+<text top="178" left="312" width="409" height="13" font="1">The repair stack could mask malicious distractor-tool injection;</text>
+<text top="196" left="202" width="373" height="13" font="1">deployments should provenance-check newly added tools.</text>
+<text top="233" left="202" width="117" height="13" font="11">GenAI disclosure.</text>
+<text top="233" left="327" width="394" height="13" font="1">Generative AI tools (Claude, ChatGPT) supported drafting</text>
+<text top="251" left="202" width="519" height="13" font="1">and code review. The authors reviewed and verified all generated content and</text>
+<text top="269" left="202" width="263" height="13" font="1">take full responsibility for the final text.</text>
+<text top="316" left="202" width="196" height="16" font="10">Disclosure of Interests</text>
+<text top="355" left="202" width="271" height="13" font="1">The authors have no competing interests.</text>
+<text top="402" left="202" width="94" height="16" font="10">References</text>
+<text top="437" left="209" width="512" height="17" font="4">1. Chattopadhyay, A., Dandekar, R., Roy, K.: Learning and reasoning with model-</text>
+<text top="454" left="227" width="494" height="17" font="4">grounded symbolic artificial intelligence systems. In: Proceedings of the 19th</text>
+<text top="470" left="227" width="494" height="17" font="4">International Conference on Neurosymbolic Learning and Reasoning. Proceed-</text>
+<text top="487" left="227" width="494" height="17" font="4">ings of Machine Learning Research, vol. 284, pp. 957–976. PMLR (2025), <a href="https://proceedings.mlr.press/v284/chattopadhyay25a.html">https:</a></text>
+<text top="503" left="227" width="325" height="17" font="4"><a href="https://proceedings.mlr.press/v284/chattopadhyay25a.html">//proceedings.mlr.press/v284/chattopadhyay25a.html</a></text>
+<text top="520" left="209" width="512" height="17" font="4">2. Faghih, K., Wang, W., Cheng, Y., Bharti, S., Sriramanan, G., Balasubramanian, S.,</text>
+<text top="536" left="227" width="494" height="17" font="4">Hosseini, P., Feizi, S.: Tool preferences in agentic LLMs are unreliable. In: Proceed-</text>
+<text top="553" left="227" width="494" height="17" font="4">ings of the 2025 Conference on Empirical Methods in Natural Language Processing.</text>
+<text top="569" left="227" width="464" height="17" font="4">pp. 20954–20969 (2025). <a href="https://doi.org/10.18653/v1/2025.emnlp-main.1060">https://doi.org/10.18653/v1/2025.emnlp-main.1060</a></text>
+<text top="586" left="209" width="512" height="17" font="4">3. Geng, S., Josifoski, M., Peyrard, M., West, R.: Grammar-constrained decoding for</text>
+<text top="602" left="227" width="494" height="17" font="4">structured NLP tasks without finetuning. In: Proceedings of the 2023 Conference</text>
+<text top="619" left="227" width="494" height="17" font="4">on Empirical Methods in Natural Language Processing. pp. 10932–10952 (2023).</text>
+<text top="635" left="227" width="306" height="17" font="4"><a href="https://doi.org/10.18653/v1/2023.emnlp-main.674">https://doi.org/10.18653/v1/2023.emnlp-main.674</a></text>
+<text top="652" left="209" width="512" height="17" font="4">4. Guo, R., Dong, K., Gao, X., Das, K.: Learning to rewrite tool descriptions for</text>
+<text top="668" left="227" width="494" height="17" font="4">reliable LLM-agent tool use. arXiv preprint arXiv:2602.20426 (2026). <a href="https://doi.org/10.48550/arXiv.2602.20426">https://doi.</a></text>
+<text top="685" left="227" width="189" height="17" font="4"><a href="https://doi.org/10.48550/arXiv.2602.20426">org/10.48550/arXiv.2602.20426</a></text>
+<text top="701" left="209" width="512" height="17" font="4">5. Jang, K., Lee, D., Kim, K., Heo, D., Lee, T., Kim, W., Suh, B.: DICE-BENCH:</text>
+<text top="718" left="227" width="494" height="17" font="4">Evaluating the tool-use capabilities of large language models in multi-round,</text>
+<text top="734" left="227" width="494" height="17" font="4">multi-party dialogues. In: Findings of the Association for Computational Lin-</text>
+<text top="751" left="227" width="494" height="17" font="4">guistics: ACL 2025. pp. 26822–26846 (2025). <a href="https://doi.org/10.18653/v1/2025.findings-acl.1375">https://doi.org/10.18653/v1/2025.</a></text>
+<text top="767" left="227" width="101" height="17" font="4"><a href="https://doi.org/10.18653/v1/2025.findings-acl.1375">findings-acl.1375</a></text>
+<text top="784" left="209" width="512" height="17" font="4">6. Lercher, A., Bauer, C., Macho, C., Pinzger, M.: AutoGuard: Reporting break-</text>
+<text top="800" left="227" width="494" height="17" font="4">ing changes of REST APIs from Java Spring Boot source code. In: 2025 IEEE</text>
+<text top="817" left="227" width="494" height="17" font="4">32nd International Conference on Software Analysis, Evolution and Reengineering</text>
+<text top="833" left="227" width="493" height="17" font="4">(SANER). pp. 814–818 (2025). <a href="https://doi.org/10.1109/SANER64311.2025.00083">https://doi.org/10.1109/SANER64311.2025.00083</a></text>
+<text top="850" left="209" width="512" height="17" font="4">7. Li, M., Zhao, Y., Yu, B., Song, F., Li, H., Yu, H., Li, Z., Huang, F., Li, Y.: API-</text>
+<text top="866" left="227" width="494" height="17" font="4">bank: A comprehensive benchmark for tool-augmented LLMs. In: Proceedings of</text>
+<text top="883" left="227" width="494" height="17" font="4">the 2023 Conference on Empirical Methods in Natural Language Processing. pp.</text>
+<text top="899" left="227" width="419" height="17" font="4">3102–3116 (2023). <a href="https://doi.org/10.18653/v1/2023.emnlp-main.187">https://doi.org/10.18653/v1/2023.emnlp-main.187</a></text>
+<text top="916" left="209" width="512" height="17" font="4">8. Liu, Z., Hoang, T., Zhang, J., Zhu, M., Lan, T., Kokane, S., Tan, J., Yao, W., Liu,</text>
+<text top="932" left="227" width="494" height="17" font="4">Z., Feng, Y., Murthy, R., Yang, L., Savarese, S., Niebles, J.C., Wang, H., Heinecke,</text>
+<text top="949" left="227" width="494" height="17" font="4">S., Xiong, C.: APIGen: Automated pipeline for generating verifiable and diverse</text>
+<text top="965" left="227" width="494" height="17" font="4">function-calling datasets. In: Advances in Neural Information Processing Systems.</text>
+<text top="982" left="227" width="430" height="17" font="4">vol. 37, pp. 54463–54482 (2024). <a href="https://doi.org/10.52202/079017-1725">https://doi.org/10.52202/079017-1725</a></text>
+</page>
+<page number="16" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="176" left="209" width="512" height="17" font="4">9. Lu, J., Holleis, T., Zhang, Y., Aumayer, B., Nan, F., Bai, H., Ma, S., Ma, S.,</text>
+<text top="192" left="227" width="494" height="17" font="4">Li, M., Yin, G., Wang, Z., Pang, R.: ToolSandbox: A stateful, conversational,</text>
+<text top="209" left="227" width="494" height="17" font="4">interactive evaluation benchmark for LLM tool use capabilities. In: Findings of the</text>
+<text top="225" left="227" width="494" height="17" font="4">Association for Computational Linguistics: NAACL 2025. pp. 1160–1183 (2025).</text>
+<text top="242" left="227" width="310" height="17" font="4"><a href="https://doi.org/10.18653/v1/2025.findings-naacl.65">https://doi.org/10.18653/v1/2025.findings-naacl.65</a></text>
+<text top="257" left="202" width="519" height="17" font="4">10. Notion: Changelog. <a href="https://developers.notion.com/page/changelog">https://developers.notion.com/page/changelog </a>(2026), notion</text>
+<text top="273" left="227" width="248" height="17" font="4">developer changelog, accessed 2026-04-14</text>
+<text top="288" left="202" width="519" height="17" font="4">11. Park, K., Wang, J., Berg-Kirkpatrick, T., Polikarpova, N., D’Antoni, L.: Grammar-</text>
+<text top="305" left="227" width="494" height="17" font="4">aligned decoding. In: Advances in Neural Information Processing Systems. vol. 37,</text>
+<text top="321" left="227" width="382" height="17" font="4">pp. 24547–24568 (2024). <a href="https://doi.org/10.52202/079017-0774">https://doi.org/10.52202/079017-0774</a></text>
+<text top="337" left="202" width="519" height="17" font="4">12. Patil, S.G., Mao, H., Yan, F., Ji, C.C.J., Suresh, V., Stoica, I., Gonzalez, J.E.: The</text>
+<text top="353" left="227" width="494" height="17" font="4">Berkeley function calling leaderboard (BFCL): From tool use to agentic evaluation</text>
+<text top="369" left="227" width="494" height="17" font="4">of large language models. In: Proceedings of the 42nd International Conference</text>
+<text top="386" left="227" width="494" height="17" font="4">on Machine Learning. Proceedings of Machine Learning Research, vol. 267, pp.</text>
+<text top="402" left="227" width="477" height="17" font="4">48371–48392. PMLR (2025), <a href="https://proceedings.mlr.press/v267/patil25a.html">https://proceedings.mlr.press/v267/patil25a.html</a></text>
+<text top="418" left="202" width="519" height="17" font="4">13. Patil, S.G., Zhang, T., Wang, X., Gonzalez, J.E.: Gorilla: Large language model</text>
+<text top="434" left="227" width="494" height="17" font="4">connected with massive APIs. In: Advances in Neural Information Processing Sys-</text>
+<text top="450" left="227" width="481" height="17" font="4">tems. vol. 37, pp. 126544–126565 (2024). <a href="https://doi.org/10.52202/079017-4020">https://doi.org/10.52202/079017-4020</a></text>
+<text top="466" left="202" width="519" height="17" font="4">14. Qin, Y., Liang, S., Ye, Y., Zhu, K., Yan, L., Lu, Y., Lin, Y., Cong, X., Tang, X.,</text>
+<text top="482" left="227" width="494" height="17" font="4">Qian, B., Zhao, S., Hong, L., Tian, R., Xie, R., Zhou, J., Gerstein, M., Li, D., Liu,</text>
+<text top="498" left="227" width="494" height="17" font="4">Z., Sun, M.: ToolLLM: Facilitating large language models to master 16000+ real-</text>
+<text top="515" left="227" width="494" height="17" font="4">world APIs. In: The Twelfth International Conference on Learning Representations</text>
+<text top="531" left="227" width="332" height="17" font="4">(2024), <a href="https://openreview.net/forum?id=dHng2O0Jjr">https://openreview.net/forum?id=dHng2O0Jjr</a></text>
+<text top="547" left="202" width="519" height="17" font="4">15. Rabinovich, E., Anaby Tavor, A.: On the robustness of agentic function calling.</text>
+<text top="563" left="227" width="494" height="17" font="4">In: Proceedings of the 5th Workshop on Trustworthy NLP (TrustNLP 2025). pp.</text>
+<text top="579" left="227" width="410" height="17" font="4">298–304 (2025). <a href="https://doi.org/10.18653/v1/2025.trustnlp-main.20">https://doi.org/10.18653/v1/2025.trustnlp-main.20</a></text>
+<text top="595" left="202" width="519" height="17" font="4">16. Schick, T., Dwivedi-Yu, J., Dessi, R., Raileanu, R., Lomeli, M., Hambro, E., Zettle-</text>
+<text top="611" left="227" width="494" height="17" font="4">moyer, L., Cancedda, N., Scialom, T.: Toolformer: Language models can teach</text>
+<text top="627" left="227" width="494" height="17" font="4">themselves to use tools. In: Advances in Neural Information Processing Systems.</text>
+<text top="644" left="227" width="430" height="17" font="4">vol. 36, pp. 68539–68551 (2023). <a href="https://doi.org/10.52202/075280-2997">https://doi.org/10.52202/075280-2997</a></text>
+<text top="659" left="202" width="519" height="17" font="4">17. Serbout, S., Pautasso, C.: An empirical study of web API versioning practices.</text>
+<text top="676" left="227" width="494" height="17" font="4">In: Web Engineering. pp. 303–318. Lecture Notes in Computer Science (2023).</text>
+<text top="692" left="227" width="285" height="17" font="4"><a href="https://doi.org/10.1007/978-3-031-34444-2_22">https://doi.org/10.1007/978-3-031-34444-2_22</a></text>
+<text top="707" left="202" width="519" height="17" font="4">18. Stripe: API changelog. <a href="https://docs.stripe.com/changelog">https://docs.stripe.com/changelog </a>(2026), stripe developer</text>
+<text top="724" left="227" width="186" height="17" font="4">changelog, accessed 2026-07-29</text>
+<text top="739" left="202" width="318" height="17" font="4">19. Yao, S., Shinn, N., Razavi, P., Narasimhan, K.:</text>
+<text top="742" left="526" width="6" height="12" font="9">τ</text>
+<text top="739" left="534" width="187" height="17" font="4">-bench: A benchmark for tool-</text>
+<text top="755" left="227" width="494" height="17" font="4">agent-user interaction in real-world domains. In: The Thirteenth International</text>
+<text top="772" left="227" width="494" height="17" font="4">Conference on Learning Representations (2025), <a href="https://openreview.net/forum?id=roNSXZpUDN">https://openreview.net/forum?</a></text>
+<text top="788" left="227" width="110" height="17" font="4"><a href="https://openreview.net/forum?id=roNSXZpUDN">id=roNSXZpUDN</a></text>
+<text top="803" left="202" width="519" height="17" font="4">20. Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.: ReAct: Syn-</text>
+<text top="820" left="227" width="494" height="17" font="4">ergizing reasoning and acting in language models. In: The Eleventh International</text>
+<text top="836" left="227" width="494" height="17" font="4">Conference on Learning Representations (2023), <a href="https://openreview.net/forum?id=WE_vluYUL-X">https://openreview.net/forum?</a></text>
+<text top="853" left="227" width="121" height="17" font="4"><a href="https://openreview.net/forum?id=WE_vluYUL-X">id=WE_vluYUL-X</a></text>
+<text top="868" left="202" width="519" height="17" font="4">21. Zhang, Z., Zhao, F., Wang, R., Wang, Z., Liang, B., Wang, J., Hu, Y., Cao, S.,</text>
+<text top="884" left="227" width="494" height="17" font="4">Wong, K.F.: Robust tool use via Fission-GRPO: Learning to recover from ex-</text>
+<text top="901" left="227" width="494" height="17" font="4">ecution errors. In: Proceedings of the 64th Annual Meeting of the Association</text>
+<text top="917" left="227" width="494" height="17" font="4">for Computational Linguistics (Volume 1: Long Papers). pp. 40477–40491 (2026).</text>
+<text top="934" left="227" width="288" height="17" font="4"><a href="https://doi.org/10.18653/v1/2026.acl-long.1880">https://doi.org/10.18653/v1/2026.acl-long.1880</a></text>
+<text top="949" left="202" width="519" height="17" font="4">22. Zhong, L., Du, Z., Zhang, X., Hu, H., Tang, J.: ComplexFuncBench: Exploring</text>
+<text top="965" left="227" width="494" height="17" font="4">multi-step and constrained function calling under long-context scenario. arXiv</text>
+<text top="982" left="227" width="469" height="17" font="4">preprint arXiv:2501.10132 (2025). <a href="https://doi.org/10.48550/arXiv.2501.10132">https://doi.org/10.48550/arXiv.2501.10132</a></text>
+</page>
+<outline>
+<item page="1">Robust Function Calling for LLM Agents Under Interface Drift</item>
+</outline>
+</pdf2xml>

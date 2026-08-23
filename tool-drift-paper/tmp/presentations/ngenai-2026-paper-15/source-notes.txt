@@ -1,0 +1,16 @@
+Primary content source:
+- ngenai/main.tex and ngenai/main.pdf in this repository.
+- Paper title: Robust Function Calling for LLM Agents Under Interface Drift.
+- Authors: Aniruddha Chattopadhyay, Kanishka Halder, Partha Sarathi Roy.
+
+Conference schedule source:
+- https://www.ngen-ai.org/program.php (accessed 2026-08-20).
+- Session 7, Small & Large Language Models and Generative AI.
+- Thursday, 3 September 2026, 11:30–13:00 Trento local time.
+- Zoom Room 1, online; 20 minutes per listed paper.
+- This paper appears second. An 11:50–12:10 CEST paper slot is inferred from order and duration, not explicitly published.
+
+External claims/assets:
+- No external non-trivial technical claims are planned beyond claims already reported in the paper.
+- Conference/session metadata comes from the public NGEN-AI program page above.
+- Paper figures and reported numerical results are author-provided assets/data from ngenai/main.tex and ngenai/figures/.

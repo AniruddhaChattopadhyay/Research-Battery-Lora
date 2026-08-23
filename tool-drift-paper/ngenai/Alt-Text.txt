@@ -1,0 +1,11 @@
+Figure 1 — SchemaShield-Lite pipeline
+
+A left-to-right flow diagram begins with user context and the drifted tool
+interfaces, which are sent to the base model. The model's proposed tool call
+reaches a decision node labeled "Valid?". A valid call follows the Yes branch
+directly to the pass-through output. An invalid call follows the No branch to a
+repair context containing the canonical tool card and structured validation
+feedback, then to a constrained repair call, and finally to the repaired output.
+If the initial call omits a tool name, a candidate-set retry using the
+runtime-visible tools first produces a named call before validation and
+tool-constrained repair continue.
