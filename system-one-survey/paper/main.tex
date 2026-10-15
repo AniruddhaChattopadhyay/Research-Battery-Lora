@@ -1,0 +1,333 @@
+% =============================================================================
+%  System One Models: a survey (working draft v0, 2026-10-15)
+%  Build:  latexmk -pdf -outdir=tmp main.tex
+%  Class:  ACM "acmsmall", the format of ACM CSUR and ACM TIST. The "nonacm"
+%          option removes the ACM front matter while we write. For another
+%          venue, change the class: ARR uses acl.sty, IJCAI uses the IJCAI 2027
+%          style (when it is published), JAIR uses jair.cls.
+%  Style:  write in ASD-STE100 Simplified Technical English.
+%  Facts:  ../notes/2026-10-15-model-landscape.md. Check every number again
+%          before submission, and record the access date of each web source.
+% =============================================================================
+\documentclass[acmsmall,nonacm,screen]{acmart}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xspace}
+
+\newcommand{\todo}[1]{{\color{red}\textbf{[TODO: }#1\textbf{]}}}
+\newcommand{\sone}{System One model\xspace}
+\newcommand{\sones}{System One models\xspace}
+\newcommand{\stwo}{System Two model\xspace}
+\newcommand{\stwos}{System Two models\xspace}
+\newcommand{\cutoffdate}{1 December 2026\xspace}
+
+\begin{document}
+
+\title{System One Models: A Survey of Typed Decision Models, Their Evidence and Open Problems}
+
+\author{Aniruddha Chattopadhyay}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Bangalore}
+  \country{India}}
+\email{studyaniruddha@gmail.com}
+% TODO: add the co-authors and the senior co-author.
+
+\begin{abstract}
+\sones are a new class of AI models. They get an input and a set of questions, and they return typed answers with probabilities instead of text. TypeSafe AI released the first \sone, Jev, in September 2026. In the next month, OpenAI, Microsoft, Perplexity, Cloudflare and more than 15 other vendors and research groups released similar systems, and more than 100 papers studied them. The results of these evaluations often disagree. This survey gives a definition of \sones and compares them with earlier model types. It gives a taxonomy of \todo{N} systems and shows the research lines that lead to them. It collects \todo{N} published results in one evidence table and explains where and why they disagree. Then it tests the main disagreements in controlled experiments on \todo{N} systems: calibration, robustness to wording and context, the value of decision training, cascades with \stwos and version changes. It ends with open problems and a public repository of systems, data and results.
+\end{abstract}
+
+\keywords{System One models, decision models, typed outputs, calibration, classification, large language models, survey}
+
+\maketitle
+
+% =============================================================================
+\section{Introduction}
+\label{sec:intro}
+% Argument, one paragraph for each item:
+%  1. Software makes many small decisions. LLMs answer in text: slow, costly,
+%     hard to parse, and with no usable probability.
+%  2. Sep 2026: Jev. Definition in one sentence. The name (Kahneman).
+%  3. One month later: about 25 systems, more than 15 papers, 5 leaderboards.
+%     The results disagree (calibration, wording, accuracy against trained
+%     models).
+%  4. No complete survey exists. Table 1 compares the closest overviews.
+%  5. Contributions C1 to C6.
+%  6. The structure of the paper.
+
+Software makes many small decisions: it routes a request, flags a message, grades an answer or selects the next action of an agent. Large language models (LLMs) can make these decisions, but they answer in text. Text is slow to generate, costly, and hard to parse, and format restrictions can make the answers worse~\cite{tam2024let}. Also, the probabilities of an LLM answer are often not available or not calibrated~\cite{geng2023survey,liu2025uncertainty}. For many classification tasks, small trained encoders are still better than LLMs~\cite{zhang2025bertlike}.
+
+On 15 September 2026, TypeSafe AI released Jev and named a new class of models: \sones~\cite{typesafe2026introducing}. TypeSafe describes Jev as ``unstructured state in, typed probabilistic decisions out''. The name comes from System~1 in the dual-process theory of Kahneman~\cite{kahneman2011thinking}: fast and automatic judgment. In this view, chat LLMs and reasoning models do the slow System~2 work. We call them \stwos.
+
+In the next four weeks, OpenAI~\cite{openai2026decisions}, Microsoft~\cite{microsoft2026decision1}, Perplexity~\cite{perplexity2026decider}, Cloudflare~\cite{cloudflare2026clef}, AWS~\cite{aws2026strands} and many others released similar systems. On 15 October 2026, a search for ``Jev'' on arXiv gave 131 papers. Many of them evaluate these models~\cite{deusser2026evaluating,rafe2026benchmarking,geuter2026releasing,rao2026decision,sharma2026typedbench,xu2026jevout,duan2026general}. Their results often disagree. For example, one study finds that Jev is overconfident on knowledge tasks, a second finds it underconfident, and a third finds it well calibrated~\cite{artificialanalysis2026decision,sharma2026typedbench,deusser2026evaluating}.
+
+No complete survey of this area exists. Table~\ref{tab:related-overviews} compares the closest works. Tang and Zheng~\cite{tang2026typed} audit the evidence from the first nine days. The other works study one domain or one question.
+
+\begin{table}[t]
+  \caption{Overviews of \sones before this survey (arXiv, checked on 15 October 2026).}
+  \label{tab:related-overviews}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xcc@{}}
+    \toprule
+    Work & Type, date and scope & Synthesis & Experiments \\
+    \midrule
+    \citet{tang2026typed} & Evidence audit, 2026-09-26. Jev in its first nine days, 28 papers, a 14-item checklist. & Partial & No \\
+    \citet{li2026sok} & SoK, 2026-10-05. Decision engines in network control loops. & No & No \\
+    \citet{hill2026judgement} & Perspective, 2026-10-01. The economics of evaluation. & No & No \\
+    \citet{ling2026jev} & Ecosystem study, 2026-09-24. 2,170 GitHub projects that use Jev. & No & No \\
+    This survey & Survey and experiments, \todo{date}. All systems until \cutoffdate. & Yes & Yes \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Contributions.}
+\begin{enumerate}
+  \item A definition of \sones, and a comparison with seven earlier model types (Section~\ref{sec:definition}).
+  \item A taxonomy of all systems that exist at the cut-off date (Section~\ref{sec:taxonomy}).
+  \item A map of the research lines that lead to \sones (Section~\ref{sec:lineage}).
+  \item An evidence table of all published results, and an analysis of the disagreements (Section~\ref{sec:evidence}).
+  \item Targeted experiments on calibration, robustness, the effect of decision training, cascades with \stwos and version changes (Section~\ref{sec:experiments}).
+  \item Specific open problems (Section~\ref{sec:open}), and a public repository with the list of systems, the question cards and our raw results.
+\end{enumerate}
+
+\todo{One paragraph about the structure of the paper.}
+
+% =============================================================================
+\section{Background}
+\label{sec:background}
+% 2.1 Dual-process theory and its use in AI (System 1 / System 2).
+% 2.2 System Two models: LLMs, reasoning models, structured outputs.
+% 2.3 Decisions in production software: classification, routing, moderation,
+%     grading, agent actions. Why text answers are a problem there.
+\subsection{Fast and Slow Systems}
+Kahneman describes two modes of human thought: System~1 is fast and automatic, and System~2 is slow and deliberate~\cite{kahneman2011thinking}. AI research used this idea before \sones. SwiftSage lets a small fast model act and calls an LLM to plan only when necessary~\cite{lin2023swiftsage}. Robot models such as Helix~\cite{figure2025helix} and GR00T~N1~\cite{nvidia2025gr00t} pair a slow vision-language module with a fast action module. Yu et al. distill the outputs of slow reasoning into direct answers~\cite{yu2024distilling}, and AdaptThink teaches a reasoning model when to skip thinking~\cite{zhang2025adaptthink}. A recent survey describes the move of LLMs from System~1 to System~2~\cite{li2025system}. \sones go in the opposite direction: they make the fast mode a separate product.
+
+\todo{2.2 \stwos: LLMs, reasoning models and structured outputs. 2.3 Decisions in production software: classification, routing, moderation, grading and agent actions.}
+
+% =============================================================================
+\section{Review Method}
+\label{sec:method}
+% Source: ../literature/protocol.md. Report:
+%  - the method: a multivocal literature review [garousi2019guidelines] with
+%    snowballing [wohlin2014guidelines];
+%  - the sources, the search strings and the date range;
+%  - the inclusion and exclusion rules;
+%  - the screening and Cohen's kappa;
+%  - the quality check of grey sources with AACODS [tyndall2010aacods];
+%  - the PRISMA 2020 flow diagram [page2021prisma] (Figure 1).
+We follow the guidelines for multivocal literature reviews~\cite{garousi2019guidelines}, because most facts about \sones are in grey literature: vendor documents, model cards and API references. \todo{Complete from the protocol. Add the PRISMA 2020 diagram~\cite{page2021prisma} and the counts. Cite the snowballing method~\cite{wohlin2014guidelines} and the AACODS checklist~\cite{tyndall2010aacods}.}
+
+% =============================================================================
+\section{Definition and Lineage}
+\label{sec:definition}
+
+\subsection{Definition}
+A \sone $M$ gets an input $x$ and a set of questions $Q = \{q_1, \dots, q_m\}$. The caller writes each question $q_j$ at call time, in natural language, with an answer space $A_j$ of one of three types:
+\begin{itemize}
+  \item a \emph{predicate}: $A_j = \{\mathit{true}, \mathit{false}\}$;
+  \item a \emph{choice}: $A_j = \{a_1, \dots, a_k\}$, a finite set of named options;
+  \item a \emph{score}: $A_j = (l_1 < \dots < l_k)$, a finite ordered set of levels.
+\end{itemize}
+For each question, $M$ returns a probability distribution $p_j \in \Delta(A_j)$, in one call. Four properties together make a \sone:
+\begin{enumerate}
+  \item \textbf{Promptable.} The caller defines the questions and the options at call time. A new task needs no training data.
+  \item \textbf{Typed.} Each answer is always a member of its answer space. The model writes no free text.
+  \item \textbf{Probabilistic.} The model returns a probability for each answer, and the vendor intends the probabilities to be calibrated.
+  \item \textbf{Prefill-bound.} The model does not generate the answer token by token. The cost depends mainly on the length of the input.
+\end{enumerate}
+
+Table~\ref{tab:neighbors} compares \sones with earlier model types. Each property is old. The new things are the combination of all four properties, many questions in one call, a common interface, and a price for input tokens only. \todo{Test this stance against the extracted data.}
+
+\begin{table}[t]
+  \caption{\sones and earlier model types.}
+  \label{tab:neighbors}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}*{5}{>{\raggedright\arraybackslash}X}@{}}
+    \toprule
+    Model type & Promptable & Typed & Probabilities & No text generation \\
+    \midrule
+    Task-specific classifier & No & Yes & Yes & Yes \\
+    NLI zero-shot classifier & Yes & Yes & Yes & Yes \\
+    LLM with label-likelihood scoring & Yes & Yes & Yes, often not calibrated & Yes \\
+    LLM with structured outputs & Yes & With constrained decoding & Only verbalized & No \\
+    LLM-as-a-judge & Yes & No (parsed from text) & No & No \\
+    Reward model & No (one fixed question) & Yes (one scalar) & No (unnormalized score) & Yes \\
+    Guard model & Partly (a policy) & Mostly & Through token probabilities & Partly \\
+    \textbf{\sone} & \textbf{Yes} & \textbf{Yes} & \textbf{Yes, intended calibrated} & \textbf{Yes} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Lineage}
+\label{sec:lineage}
+% One paragraph for each research line, from the oldest to the newest. For
+% each line: the main idea, what it learned, and what System One models take
+% from it. Use ../literature/seed-papers.md.
+Eight research lines lead to \sones. This subsection is a first draft from the seed list; the full review will add the works that the search finds.
+
+\paragraph{Zero-shot classification with NLI.} Yin et al. use a model trained on natural language inference as a zero-shot classifier: each label becomes a hypothesis, and the entailment probability becomes the label probability~\cite{yin2019benchmarking}. This is an early promptable classifier, but it needs one forward pass for each label. Rerankers such as monoT5 use the same idea: the probability of the token ``true'' gives the relevance~\cite{nogueira2020document}.
+
+\paragraph{Label likelihood.} PET maps labels to words and reads their probabilities from a language model~\cite{schick2020exploiting}. Noisy-channel prompting scores the input for each label~\cite{min2021noisy}. Zhao et al. show a label bias and correct it with contextual calibration~\cite{zhao2021calibrate}. Multiple-choice prompts score all options in one pass~\cite{robinson2022leveraging}, but LLMs prefer some option positions~\cite{zheng2023large,pezeshkpour2023large}, and first-token probabilities can disagree with the text answer~\cite{wang2024answer}. Liu et al. survey these prompting methods~\cite{liu2021pretrain}.
+
+\paragraph{Calibration.} The Brier score~\cite{brier1950verification} and the expected calibration error with temperature scaling~\cite{guo2017calibration} are the main tools; pplx-decider uses temperature scaling~\cite{perplexity2026decider}. LLM option probabilities can be well calibrated when the format is right~\cite{kadavath2022language}, and after RLHF, a stated confidence can be better than token probabilities~\cite{tian2023just}. Conformal prediction~\cite{kumar2023conformal} and abstention~\cite{wen2024know} use these probabilities for decisions. RLCR trains calibration with reinforcement learning~\cite{damani2025beyond}, a public method with the same aim as RLCD. Two surveys cover this line~\cite{geng2023survey,liu2025uncertainty}.
+
+\paragraph{Structured outputs.} Constrained decoding makes a generative LLM give a typed output~\cite{willard2023efficient,dong2024xgrammar}. It can change the output distribution~\cite{park2024grammaraligned} and lower the accuracy of reasoning~\cite{tam2024let}. JSONSchemaBench compares the engines~\cite{geng2025jsonschemabench}. A \sone gets a typed output without generation.
+
+\paragraph{Reward models and judges.} A reward model gives one scalar for one fixed question~\cite{lambert2024rewardbench,malik2025rewardbench}. An LLM judge answers many questions, but in text~\cite{zheng2023judging,gu2024survey}. G-Eval already uses scores weighted by probabilities~\cite{liu2023geval}, as the score type of \sones does. Prometheus grades with rubrics~\cite{kim2023prometheus}. Generative verifiers use the probability of ``Yes'' as the reward~\cite{zhang2024generative}, and process reward models score each step~\cite{lightman2023let}.
+
+\paragraph{Guard models.} Moderation classifiers~\cite{markov2022holistic} and guard models~\cite{inan2023llama,zeng2024shieldgemma,han2024wildguard,padhi2024granite} answer a fixed set of safety questions. Newer guards take the policy in the prompt~\cite{openai2025gptoss120b}. Dong et al. survey this line~\cite{dong2024safeguarding}.
+
+\paragraph{Routing and cascades.} FrugalGPT~\cite{chen2023frugalgpt} and RouteLLM~\cite{ong2024routellm} decide which LLM must answer. Cascades send the hard inputs to a stronger model by confidence~\cite{gupta2024language,nie2024online}. Router benchmarks~\cite{hu2024routerbench,li2026llmrouterbench} and a recent survey~\cite{moslem2026dynamic} cover this line. A \sone can be the router and the cheap first tier at the same time.
+
+\paragraph{Encoder classifiers.} BERT~\cite{devlin2018bert}, DeBERTaV3~\cite{he2021debertav3} and ModernBERT~\cite{warner2024smarter} are still strong trained classifiers, and SetFit needs few examples~\cite{tunstall2022efficient}. BERT-like models often beat LLMs at classification~\cite{zhang2025bertlike}. Minaee et al. review the earlier work~\cite{minaee2020deep}.
+
+\todo{Add the works from the search. For each line, state what \sones take from it and what they add.}
+
+% =============================================================================
+\section{Taxonomy and Systems}
+\label{sec:taxonomy}
+
+\begin{table}[t]
+  \caption{Dimensions of the taxonomy (draft v0).}
+  \label{tab:taxonomy}
+  \small
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \toprule
+    Dimension & Values \\
+    \midrule
+    Interface & Jev-compatible (an input and named questions); OpenAI-style (an input and an array of questions) \\
+    Answer types & Predicate (\texttt{noul}), choice, score, bounding box \\
+    Question handling & Isolated; shared context; not disclosed \\
+    Readout & A new head on a decoder; LM-head token probabilities; an encoder; not disclosed \\
+    Attention & Causal; bidirectional in some layers \\
+    Backbone & Qwen family; GPT-6 Luna; not disclosed \\
+    Training data & Synthetic; public task collections; distillation from another \sone; vendor data \\
+    Calibration & Reinforcement learning; temperature scaling; not disclosed \\
+    Modalities & Text; text and images; text, images, audio and video \\
+    Openness & Closed API; open weights; training-free method \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[t]
+  \caption{Main \sones on 15 October 2026. Prices are for each million input tokens; output is free for all of them. Sources: the vendor pages in the references.}
+  \label{tab:systems}
+  \small
+  \begin{tabularx}{\linewidth}{@{}lll>{\raggedright\arraybackslash}Xlr@{}}
+    \toprule
+    System & Vendor & Release & Backbone & Weights & Price (USD) \\
+    \midrule
+    Jev~\cite{typesafe2026introducing} & TypeSafe AI & 2026-09-15 & Not disclosed & Closed & 0.042 \\
+    Decisions API~\cite{openai2026decisions} & OpenAI & 2026-10-06 (beta) & \texttt{gpt-6-luna} & Closed & 0.10 \\
+    Microsoft-Decision-1~\cite{microsoft2026decision1} & Microsoft & 2026-10-09 & Qwen3.5-9B & Closed & 0.042 \\
+    pplx-decider v1.1~\cite{perplexity2026decider} & Perplexity & 2026-10-06 & Qwen3.8-27B & Apache-2.0 & 0.02 \\
+    Clef, Clef-flash~\cite{cloudflare2026clef} & Cloudflare & 2026-10-01 & Qwen-based, 27B and 9B & Apache-2.0 & 0.042, 0.021 \\
+    Strands Decider~\cite{aws2026strands} & AWS & 2026-10-01 & Qwen3.5-2B & Open & --- \\
+    AnyJev~\cite{zhang2026anyjev} & Nokia & 2026-09-30 & Any LLM (training-free) & Method & --- \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\todo{Add a taxonomy figure. Classify every system from the extraction spreadsheet. Write one subsection for each dimension that shows real differences. Add the design patterns with \stwos: gate, verifier, cascade, labeler and policy.}
+
+% =============================================================================
+\section{Evidence Synthesis}
+\label{sec:evidence}
+% 6.1 The sources of evidence: vendor and independent; leaderboards and papers.
+% 6.2 What the evidence agrees on.
+% 6.3 Where the evidence disagrees (Table 5), and the possible reasons.
+% 6.4 Vendor benchmarks against independent benchmarks.
+
+\begin{table}[t]
+  \caption{Disagreements in the published evidence (15 October 2026).}
+  \label{tab:conflicts}
+  \small
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \toprule
+    Topic & Published findings \\
+    \midrule
+    Calibration of Jev & Overconfident on knowledge and reasoning tasks~\cite{artificialanalysis2026decision}; ``systematically underconfident''~\cite{sharma2026typedbench}; well calibrated for choices~\cite{deusser2026evaluating}. \\
+    Sensitivity to wording & 50.5 of 100 answers change when the yes/no wording is swapped~\cite{rafe2026benchmarking}; short natural context changes 61.4\% to 73.2\% of correct decisions~\cite{xu2026jevout}; 1.3\% of decisions change under perturbations (vendor-reported, Microsoft-Decision-1)~\cite{microsoft2026decision1}. \\
+    Accuracy against open models & Jev beats Qwen3.8-27B on 27 of 37 datasets~\cite{deusser2026evaluating}; a trained DeBERTa-v3-large beats Jev~\cite{rafe2026benchmarking}; zero-shot Gemma 4 31B equals Jev, and LoRA beats it~\cite{geuter2026releasing}. \\
+    Cost against LLM judges & LLM judges cost 16 to 357 times more, with more than 85\% of the errors the same~\cite{rao2026decision}. \\
+    Latency of Jev & 70 to 500 ms (vendor-reported)~\cite{typesafe2026introducing}; median 0.13 s~\cite{artificialanalysis2026decision}; median 524.1 ms (reported by a competitor)~\cite{cloudflare2026clef}. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\todo{Fill the evidence table (appendix) and write 6.1 to 6.4.}
+
+% =============================================================================
+\section{Experiments}
+\label{sec:experiments}
+% Source: ../notes/2026-10-15-experiment-design.md.
+% 7.1 Set-up: systems, baselines, task suite, question cards, metrics.
+% 7.2 to 7.8: one subsection for each experiment (E2 to E8).
+
+\begin{table}[t]
+  \caption{Experiments and hypotheses.}
+  \label{tab:experiments}
+  \small
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \toprule
+    Experiment & Hypothesis \\
+    \midrule
+    E2 Calibration & Calibration depends on the task type: overconfident on knowledge tasks, well calibrated on classification tasks. \\
+    E3 Robustness & The effect of a change in wording depends on the type of change. Other questions in the same call change the answers. \\
+    E4 Right tool & A trained encoder is better than a \sone when more than about 1,000 labeled examples exist. \\
+    E5 Decision training & Decision training adds more to small backbones than to large backbones. \\
+    E6 Cascades & A \sone with a \stwo keeps the accuracy of the \stwo at less than half of its cost. \\
+    E7 Versions & A new version changes a measurable part of the answers. \\
+    E8 Latency & The published latencies differ because of the region, the route and the input length. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\todo{Write after the runs.}
+
+% =============================================================================
+\section{Applications and Design Patterns}
+\label{sec:applications}
+\todo{Uses in the sources: routing, moderation, labeling, grading, agent actions, network control~\cite{li2026sok}, synthetic survey respondents~\cite{lukauskas2026probable}. The patterns with \stwos: gate, verifier, cascade, labeler and policy.}
+
+% =============================================================================
+\section{Open Problems}
+\label{sec:open}
+% Each problem: what is missing, why it is important, and one concrete
+% research direction. Use the gaps from Sections 6 and 7.
+\begin{enumerate}
+  \item \textbf{Calibration across tasks.} The published results disagree about the direction of the calibration error. Risk-budgeted thresholds are a first answer~\cite{messoudi2026calibration}. \todo{Direction.}
+  \item \textbf{Robustness to wording and context.} Small changes in the input change many decisions~\cite{rafe2026benchmarking,xu2026jevout}, and the option order changes single-pass answers~\cite{huang2026consider}. Attacks exist~\cite{hu2026jevadvbench,lan2026decisionrobust}. \todo{Direction.}
+  \item \textbf{Consistency across questions.} The probabilities for linked questions do not always obey the probability axioms~\cite{li2026beyond}. \todo{Negation, implication and interference between questions in one call.}
+  \item \textbf{Decisions without reasons.} A \sone gives no rationale. Vendors forbid its use as the only decision-maker about people~\cite{microsoft2026decision1docs}. \todo{Audit, contestability, regulation.}
+  \item \textbf{Evaluation.} Vendor benchmarks favor the vendor, and public datasets can be in the training data. \todo{Direction.}
+  \item \textbf{Versions and reproducibility.} The ``latest'' aliases change without notice. \todo{Direction.}
+  \item \textbf{Open training recipes.} The calibration method of Jev (RLCD) has no paper. \todo{Direction.}
+  \item \textbf{Composition with \stwos.} Confidence-gated escalation to a reasoning judge is a first study~\cite{li2026jevasajudge}. \todo{When to escalate in other task types, and under which budget.}
+\end{enumerate}
+
+% =============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+\todo{Write last.}
+
+\begin{acks}
+\todo{Add acknowledgments.}
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\appendix
+
+\section{Data Extraction Form}
+\todo{Copy the form from ../notes/2026-10-15-survey-paper-guide.md, section 3.}
+
+\section{Question Cards}
+\todo{One card for each dataset: the question text, the answer type and the options or levels.}
+
+\section{Evidence Table}
+\todo{One row for each published result.}
+
+\end{document}

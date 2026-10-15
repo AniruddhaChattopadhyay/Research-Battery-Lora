@@ -6,8 +6,14 @@ Plan a 16-minute talk plus about 4 minutes of live Q&A. The main talk is pages 1
 Pages 14-17 are backup slides for questions.
 
 This is a speaking guide, not a script to memorize. The quoted lines use natural
-spoken English on purpose, because you say them out loud. Each slide also carries the
-same timing in its `\note{}` block, so a presenter view stays in sync.
+spoken English on purpose, because you say them out loud.
+
+**Where the notes live.** A condensed version of each page below is in the notes pane of
+`NGEN-AI-2026_Session7_Paper15_Chattopadhyay_slides.pptx`, so PowerPoint Presenter View
+shows the timing and the key beats. The `\note{}` blocks in `presentation.tex` hold the
+same text, but they are *not* compiled into the PDF (that would need
+`\setbeameroption{show notes}`), so the PDF has no notes pages. Present from the .pptx if
+you want the notes on screen.
 
 ---
 
@@ -17,7 +23,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Say something like:**
 
-> Hi everyone, I'm Aniruddha. This is joint work with Kanishka Halder and Partha Sarathi Roy.
+> Hi everyone, I'm Aniruddha Chattopadhyay. This is joint work with Kanishka Halder and Partha Sarathi Roy.
 >
 > The observation behind this work is simple. A tool can keep doing exactly the same job, but the interface an agent reads can change underneath it. A description gets edited, a parameter gets renamed, or another similar-looking tool gets added. That alone can break a function call.
 >
@@ -25,7 +31,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "Let me make precise what we mean by interface drift."
 
-## Page 2 - Tool semantics stay fixed. Interfaces move.
+## Page 2 - Tool semantics stay fixed; interfaces move
 
 **Target time:** 0:40-1:55
 
@@ -43,11 +49,11 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "It helps to see exactly what that breaks."
 
-## Page 3 - What that actually breaks
+## Page 3 - What interface drift breaks
 
 **Target time:** 1:55-3:20
 
-**Point to:** The BEFORE/AFTER signature first, then the two colored panels.
+**Point to:** The Before/After signature first, then the two panels below it.
 
 **Say something like:**
 
@@ -63,7 +69,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "So how do we measure that across a whole benchmark?"
 
-## Page 4 - How we measure it
+## Page 4 - Evaluation protocol
 
 **Target time:** 3:20-4:30
 
@@ -103,7 +109,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "We ran that same loop on two quite different function-calling settings."
 
-## Page 6 - Two benchmarks, one primary model
+## Page 6 - Benchmarks and model
 
 **Target time:** 6:05-7:00
 
@@ -125,11 +131,11 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Target time:** 7:00-9:00
 
-**Point to:** The red bars, then the teal bars, then the three numbers on the right.
+**Point to:** The brick bars, then the navy bars, then the three figures on the right.
 
 **Say something like:**
 
-> Gray is the original interface, red is after drift, teal is after repair.
+> Gray is the original interface, brick red is after drift, navy is after repair.
 >
 > On DICE, accuracy goes 75.7, down to 71.7 under drift, then up to 81.3 with repair. On BFCL the drift damage is far larger: 79.0 drops to 58.0, and repair brings it back to 80.5.
 >
@@ -141,11 +147,11 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "The obvious objection is that any second attempt would do this."
 
-## Page 8 - A second attempt does not explain it
+## Page 8 - A second attempt does not explain the gain
 
 **Target time:** 9:00-10:20
 
-**Point to:** The three gray bars, then the teal bar.
+**Point to:** The three gray bars, then the navy bar.
 
 **Say something like:**
 
@@ -159,7 +165,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "Next: which of the three drift types is doing the damage?"
 
-## Page 9 - One distractor does most of the damage
+## Page 9 - Candidate-set drift causes most of the damage
 
 **Target time:** 10:20-11:35
 
@@ -175,7 +181,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "Are these failures even visible to a validator?"
 
-## Page 10 - Mostly visible, but not free
+## Page 10 - Failures are mostly visible, but repair is not free
 
 **Target time:** 11:35-13:00
 
@@ -211,7 +217,7 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "Let me be explicit about the rest of the limits."
 
-## Page 12 - What we do not claim
+## Page 12 - Limitations
 
 **Target time:** 14:20-15:15
 
@@ -229,11 +235,11 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 
 **Move on with:** "So, the practical version of all this."
 
-## Page 13 - Treat tool interfaces as evolving contracts
+## Page 13 - Summary
 
 **Target time:** 15:15-16:00
 
-**Point to:** The headline, then the recipe line.
+**Point to:** The headline, then the three numbered actions.
 
 **Say something like:**
 
@@ -320,12 +326,13 @@ same timing in its `\note{}` block, so a presenter view stays in sync.
 - Slow down on pages 3, 5 and 7. They carry the concrete failure, the method, and the
   main result.
 - On page 7, say "zero observed harms in these slices," never "repair cannot cause harm."
-- On page 9, keep saying "in this model and this slice."
+- On page 9, keep saying "in this model and this slice." Its bar labels are shortened:
+  they mean description-only, schema-only, candidate-set-only, and all three combined.
 - On pages 11 and 12, state the limits plainly. It makes the main result more credible.
-- The chart on page 9 shortens the method name to "SchemaShield" to fit. Say the full
+- The charts on page 8 shorten the method name to "SchemaShield" to fit. Say the full
   name out loud.
-- Page 13 does not print the "watch catalog growth, overhead, name omission" line.
-  Still say it.
+- Page 13 shortens items 2 and 3. Say "then constrain one repair" and "model-specific
+  name omission" out loud.
 - If time runs short, compress pages 6 and 9. Do not rush page 7, the cost caveats on
   page 10, or the limits on page 12.
 - Leave the last 4 minutes for live Q&A. The organizers ask for it explicitly.

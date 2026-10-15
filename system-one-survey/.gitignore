@@ -1,0 +1,6 @@
+paper/tmp/
+data/
+runs/
+.venv/
+__pycache__/
+.env
