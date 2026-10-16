@@ -9,6 +9,7 @@ items that already returned status 200.
 """
 import argparse
 import datetime
+import functools
 import json
 import pathlib
 from concurrent.futures import ThreadPoolExecutor
@@ -16,7 +17,26 @@ from concurrent.futures import ThreadPoolExecutor
 import httpx
 
 import tasks
-from openrouter import PROVIDER_PIN, decide
+from llm import readout, structured
+from openrouter import PROVIDER_PIN, accepts, decide
+
+# decisions: the System One models. structured: System Two models (B1, B3).
+# readout: the letter readout of open backbones (B2). See src/llm.py.
+METHODS = {
+    "decisions": decide,
+    "structured": structured,
+    "structured-none": functools.partial(structured, effort="none"),  # no reasoning (E5)
+    "readout": readout,
+}
+
+
+def supported(method, model, questions):
+    if method == "decisions":
+        return accepts(model, questions)
+    if method == "readout":  # one letter for each option: 26 options or fewer
+        return all(len(q["criteria"]) <= 26 for q in questions.values())
+    return True
+
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -25,7 +45,7 @@ def file_name(model):
     return model.replace("~", "alias-").replace("/", "__").replace(":", "_") + ".jsonl"
 
 
-def run_model(client, tag, model, jobs, workers):
+def run_model(client, tag, model, jobs, workers, method="decisions"):
     path = ROOT / "runs" / tag / file_name(model)
     path.parent.mkdir(parents=True, exist_ok=True)
     done = set()
@@ -34,14 +54,20 @@ def run_model(client, tag, model, jobs, workers):
             rec = json.loads(line)
             if rec["status"] == 200:
                 done.add((rec["task"], rec["item_id"]))
-    todo = [(task, item) for task, item in jobs if (task, item["id"]) not in done]
+    todo = [
+        (task, item)
+        for task, item in jobs
+        if (task, item["id"]) not in done and supported(method, model, item["questions"])
+    ]
 
     def call(job):
         task, item = job
-        request = {"model": model, "state": item["state"], "questions": item["questions"]}
-        if model in PROVIDER_PIN:
+        # An image state is large. The item can give a short form for the record (the file and its hash).
+        request = {"model": model, "method": method, "state": item.get("state_record", item["state"]),
+                   "questions": item["questions"]}
+        if method == "decisions" and model in PROVIDER_PIN:
             request["provider_pin"] = PROVIDER_PIN[model]
-        result = decide(client, model, item["state"], item["questions"])
+        result = METHODS[method](client, model, item["state"], item["questions"])
         return {
             "tag": tag,
             "model": model,
@@ -51,6 +77,7 @@ def run_model(client, tag, model, jobs, workers):
             **result,
             "request": request,
             "gold": item["gold"],
+            **({"meta": item["meta"]} if "meta" in item else {}),
         }
 
     ok = 0
@@ -68,12 +95,13 @@ def main():
     p.add_argument("--tasks", default=",".join(tasks.TASKS), help="task names, separated by commas")
     p.add_argument("--n", type=int, required=True, help="the number of items from each task")
     p.add_argument("--workers", type=int, default=8, help="parallel requests for each model")
+    p.add_argument("--method", default="decisions", choices=METHODS, help="how to call the model")
     a = p.parse_args()
 
     jobs = [(task, item) for task in a.tasks.split(",") for item in tasks.load(task, a.n)]
     with httpx.Client() as client:
         for model in a.models.split(","):
-            run_model(client, a.tag, model.strip(), jobs, a.workers)
+            run_model(client, a.tag, model.strip(), jobs, a.workers, a.method)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,229 @@
+system,label,family,metric,lo,hi
+typesafe/jev-1.14,Jev 1.14,repeat,flip,0.014638504464285716,0.023986718749999997
+typesafe/jev-1.14,Jev 1.14,para,flip,0.02956272321428572,0.04217142857142857
+typesafe/jev-1.14,Jev 1.14,negate,flip,0.026416666666666668,0.05238095238095238
+typesafe/jev-1.14,Jev 1.14,order,flip,0.017499999999999998,0.03877083333333332
+typesafe/jev-1.14,Jev 1.14,codes,flip,0.02,0.049999999999999996
+typesafe/jev-1.14,Jev 1.14,reverse,flip,0.112475,0.157
+typesafe/jev-1.14,Jev 1.14,swap,flip,0.202375,0.33
+typesafe/jev-1.14,Jev 1.14,crowded,flip,0.0075,0.021666666666666667
+typesafe/jev-1.14,Jev 1.14,alone,flip,0.018748214285714288,0.031612499999999995
+typesafe/jev-1.14,Jev 1.14,hint,flip,0.1778958333333333,0.22
+typesafe/jev-1.14,Jev 1.14,hint,follow,0.236898530427477,0.2845478600822957
+typesafe/jev-1.14,Jev 1.14,inject,flip,0.04750000000000001,0.075
+typesafe/jev-1.14,Jev 1.14,inject,follow,0.039685891323775514,0.06751498178529822
+typesafe/jev-1.14,Jev 1.14,namealign,flip,0.0038095238095238095,0.013809523809523808
+typesafe/jev-1.14,Jev 1.14,nameswap,flip,0.971190476190476,0.9896488095238095
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),repeat,flip,0.01809274777907394,0.02769704717785355
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),para,flip,0.06889065210257868,0.08495202730684862
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),negate,flip,0.0916547619047619,0.13166666666666668
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),order,flip,0.08768884725896484,0.1293427554438861
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),codes,flip,0.14715640703517588,0.2055778894472362
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),reverse,flip,0.23147500000000001,0.285
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),swap,flip,0.4847989949748744,0.6231155778894473
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),crowded,flip,0.01169179229480737,0.026714928810720268
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),alone,flip,0.0269625,0.041999999999999996
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),hint,flip,0.26266247906197654,0.31268886097152426
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),hint,follow,0.2710476433730897,0.32548691532868695
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),inject,flip,0.08761505443886097,0.12016195561139029
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),inject,follow,0.037136971801106054,0.06590211090229585
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),namealign,flip,0.04275245273988992,0.07222744675759751
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),nameswap,flip,0.7314810004810005,0.790626924001924
+microsoft/microsoft-decision-1,Microsoft-Decision-1,repeat,flip,0.013651339285714286,0.02193325892857143
+microsoft/microsoft-decision-1,Microsoft-Decision-1,para,flip,0.04177410714285714,0.05640401785714286
+microsoft/microsoft-decision-1,Microsoft-Decision-1,negate,flip,0.1443988095238095,0.19333333333333336
+microsoft/microsoft-decision-1,Microsoft-Decision-1,order,flip,0.008333333333333333,0.025
+microsoft/microsoft-decision-1,Microsoft-Decision-1,codes,flip,0.034999999999999996,0.07
+microsoft/microsoft-decision-1,Microsoft-Decision-1,reverse,flip,0.186,0.237
+microsoft/microsoft-decision-1,Microsoft-Decision-1,swap,flip,0.22,0.3326249999999999
+microsoft/microsoft-decision-1,Microsoft-Decision-1,crowded,flip,0.008333333333333333,0.021666666666666667
+microsoft/microsoft-decision-1,Microsoft-Decision-1,alone,flip,0.014857142857142857,0.026830357142857135
+microsoft/microsoft-decision-1,Microsoft-Decision-1,hint,flip,0.07916666666666666,0.1125
+microsoft/microsoft-decision-1,Microsoft-Decision-1,hint,follow,0.0033333333333333335,0.017362728310502278
+microsoft/microsoft-decision-1,Microsoft-Decision-1,inject,flip,0.3887291666666667,0.43416666666666676
+microsoft/microsoft-decision-1,Microsoft-Decision-1,inject,follow,0.4515747456954187,0.5001219125291552
+microsoft/microsoft-decision-1,Microsoft-Decision-1,namealign,flip,0.021065476190476193,0.04047619047619048
+microsoft/microsoft-decision-1,Microsoft-Decision-1,nameswap,flip,0.9379583333333333,0.9660773809523809
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,repeat,flip,0.0,0.0
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,para,flip,0.02491026785714286,0.03553660714285715
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,negate,flip,0.04344642857142857,0.07631547619047618
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,order,flip,0.020395833333333335,0.04416666666666667
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,codes,flip,0.017458333333333333,0.041666666666666664
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,reverse,flip,0.057,0.08752499999999998
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,swap,flip,0.12,0.22
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,crowded,flip,0.0,0.0
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,alone,flip,0.0,0.0014285714285714286
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,hint,flip,0.17745833333333333,0.225
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,hint,follow,0.22971343415468778,0.2747852685442557
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,inject,flip,0.2420625,0.2808333333333333
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,inject,follow,0.2671475730831805,0.3131550326708016
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,namealign,flip,0.004047619047619047,0.016428571428571428
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,nameswap,flip,0.770327380952381,0.8243095238095238
+cloudflare/clef,Clef,repeat,flip,0.0,0.0
+cloudflare/clef,Clef,para,flip,0.03226808035714286,0.044180357142857146
+cloudflare/clef,Clef,negate,flip,0.199875,0.25419642857142855
+cloudflare/clef,Clef,order,flip,0.0,0.0
+cloudflare/clef,Clef,codes,flip,0.03666666666666667,0.075
+cloudflare/clef,Clef,reverse,flip,0.134475,0.185
+cloudflare/clef,Clef,swap,flip,0.205,0.32
+cloudflare/clef,Clef,crowded,flip,0.03789583333333334,0.06166666666666667
+cloudflare/clef,Clef,alone,flip,0.15982500000000002,0.1945375
+cloudflare/clef,Clef,hint,flip,0.1770625,0.21833333333333335
+cloudflare/clef,Clef,hint,follow,0.24490419899330818,0.2883918619049706
+cloudflare/clef,Clef,inject,flip,0.11833333333333335,0.15583333333333335
+cloudflare/clef,Clef,inject,follow,0.15618018449928406,0.20196384103815393
+cloudflare/clef,Clef,namealign,flip,0.014761904761904763,0.03250595238095238
+cloudflare/clef,Clef,nameswap,flip,0.1275952380952381,0.17286904761904762
+cloudflare/clef-flash,Clef-flash,repeat,flip,0.0,0.0
+cloudflare/clef-flash,Clef-flash,para,flip,0.037749776785714284,0.05285714285714286
+cloudflare/clef-flash,Clef-flash,negate,flip,0.3692857142857143,0.40286904761904757
+cloudflare/clef-flash,Clef-flash,order,flip,0.0,0.0
+cloudflare/clef-flash,Clef-flash,codes,flip,0.03666666666666667,0.06833333333333334
+cloudflare/clef-flash,Clef-flash,reverse,flip,0.095,0.137
+cloudflare/clef-flash,Clef-flash,swap,flip,0.34,0.475
+cloudflare/clef-flash,Clef-flash,crowded,flip,0.05083333333333334,0.07666666666666667
+cloudflare/clef-flash,Clef-flash,alone,flip,0.13610535714285715,0.17090178571428571
+cloudflare/clef-flash,Clef-flash,hint,flip,0.16499999999999998,0.2025
+cloudflare/clef-flash,Clef-flash,hint,follow,0.24426389123659384,0.296117753405431
+cloudflare/clef-flash,Clef-flash,inject,flip,0.1433333333333333,0.18166666666666667
+cloudflare/clef-flash,Clef-flash,inject,follow,0.19507240612151575,0.24890808252777533
+cloudflare/clef-flash,Clef-flash,namealign,flip,0.020339285714285716,0.04476190476190476
+cloudflare/clef-flash,Clef-flash,nameswap,flip,0.16976190476190478,0.22
+cloudflare/clef-omni,Clef-omni,repeat,flip,0.0,0.0
+cloudflare/clef-omni,Clef-omni,para,flip,0.04003950892857143,0.05522098214285714
+cloudflare/clef-omni,Clef-omni,negate,flip,0.29736904761904764,0.3422678571428571
+cloudflare/clef-omni,Clef-omni,order,flip,0.0,0.0
+cloudflare/clef-omni,Clef-omni,codes,flip,0.055,0.095
+cloudflare/clef-omni,Clef-omni,reverse,flip,0.173475,0.223
+cloudflare/clef-omni,Clef-omni,swap,flip,0.592375,0.725
+cloudflare/clef-omni,Clef-omni,crowded,flip,0.04666666666666667,0.07210416666666665
+cloudflare/clef-omni,Clef-omni,alone,flip,0.11110535714285714,0.1379732142857143
+cloudflare/clef-omni,Clef-omni,hint,flip,0.07583333333333332,0.10583333333333333
+cloudflare/clef-omni,Clef-omni,hint,follow,0.09000975409195965,0.137980411494949
+cloudflare/clef-omni,Clef-omni,inject,flip,0.12166666666666667,0.15583333333333335
+cloudflare/clef-omni,Clef-omni,inject,follow,0.14357449773514683,0.1930686275751688
+cloudflare/clef-omni,Clef-omni,namealign,flip,0.007857142857142856,0.02179166666666666
+cloudflare/clef-omni,Clef-omni,nameswap,flip,0.12046428571428573,0.1619047619047619
+inception/mercury-decide,Mercury Decide,repeat,flip,0.003025669642857143,0.007000000000000001
+inception/mercury-decide,Mercury Decide,para,flip,0.03757209821428571,0.05057299107142856
+inception/mercury-decide,Mercury Decide,negate,flip,0.09046428571428572,0.13155357142857144
+inception/mercury-decide,Mercury Decide,order,flip,0.030395833333333334,0.05833333333333333
+inception/mercury-decide,Mercury Decide,codes,flip,0.016666666666666666,0.043333333333333335
+inception/mercury-decide,Mercury Decide,reverse,flip,0.224,0.274
+inception/mercury-decide,Mercury Decide,swap,flip,0.21,0.325
+inception/mercury-decide,Mercury Decide,crowded,flip,0.005,0.0175
+inception/mercury-decide,Mercury Decide,alone,flip,0.015033928571428571,0.02742857142857143
+inception/mercury-decide,Mercury Decide,hint,flip,0.09833333333333333,0.1337708333333333
+inception/mercury-decide,Mercury Decide,hint,follow,0.15156787465143565,0.18323179954669022
+inception/mercury-decide,Mercury Decide,inject,flip,0.04706250000000001,0.075
+inception/mercury-decide,Mercury Decide,inject,follow,0.029741930040655,0.05719194715289889
+inception/mercury-decide,Mercury Decide,namealign,flip,0.008809523809523809,0.02238095238095238
+inception/mercury-decide,Mercury Decide,nameswap,flip,0.9534464285714286,0.9772678571428572
+jaredpalmer/kev-4b,Kev-4B,repeat,flip,0.0009015625,0.0050100446428571425
+jaredpalmer/kev-4b,Kev-4B,para,flip,0.043320535714285714,0.056759151785714286
+jaredpalmer/kev-4b,Kev-4B,negate,flip,0.4207142857142857,0.4608392857142857
+jaredpalmer/kev-4b,Kev-4B,order,flip,0.051666666666666666,0.08710416666666664
+jaredpalmer/kev-4b,Kev-4B,codes,flip,0.045000000000000005,0.0792083333333333
+jaredpalmer/kev-4b,Kev-4B,reverse,flip,0.191,0.235
+jaredpalmer/kev-4b,Kev-4B,swap,flip,0.527375,0.655
+jaredpalmer/kev-4b,Kev-4B,crowded,flip,0.0,0.005
+jaredpalmer/kev-4b,Kev-4B,alone,flip,0.003857142857142857,0.011071428571428572
+jaredpalmer/kev-4b,Kev-4B,hint,flip,0.09166666666666666,0.1275
+jaredpalmer/kev-4b,Kev-4B,hint,follow,0.15529040795947505,0.19190682332386216
+jaredpalmer/kev-4b,Kev-4B,inject,flip,0.08539583333333334,0.11837499999999997
+jaredpalmer/kev-4b,Kev-4B,inject,follow,0.1313966214191085,0.17552741426747978
+jaredpalmer/kev-4b,Kev-4B,namealign,flip,0.026779761904761907,0.04774404761904761
+jaredpalmer/kev-4b,Kev-4B,nameswap,flip,0.38188095238095243,0.44526190476190475
+liquid/d1,Liquid d1,repeat,flip,0.011984263392857143,0.020722321428571423
+liquid/d1,Liquid d1,para,flip,0.041956919642857145,0.0571611607142857
+liquid/d1,Liquid d1,negate,flip,0.33654166666666663,0.35928571428571426
+liquid/d1,Liquid d1,order,flip,0.04750000000000001,0.08166666666666667
+liquid/d1,Liquid d1,codes,flip,0.011666666666666667,0.035
+liquid/d1,Liquid d1,reverse,flip,0.324475,0.382
+liquid/d1,Liquid d1,swap,flip,0.155,0.2626249999999999
+liquid/d1,Liquid d1,crowded,flip,0.008333333333333333,0.020833333333333332
+liquid/d1,Liquid d1,alone,flip,0.02731607142857143,0.044894642857142855
+liquid/d1,Liquid d1,hint,flip,0.045000000000000005,0.06960416666666665
+liquid/d1,Liquid d1,hint,follow,0.03522523602370228,0.0672127737025161
+liquid/d1,Liquid d1,inject,flip,0.0375,0.06083333333333333
+liquid/d1,Liquid d1,inject,follow,0.003959505941213259,0.020700437773608492
+liquid/d1,Liquid d1,namealign,flip,0.04749404761904762,0.08
+liquid/d1,Liquid d1,nameswap,flip,0.001303571428571429,0.005238095238095239
+nace-ai/drex-v1.5,Drex v1.5,repeat,flip,0.003444419642857143,0.0078671875
+nace-ai/drex-v1.5,Drex v1.5,para,flip,0.0624796875,0.07883392857142857
+nace-ai/drex-v1.5,Drex v1.5,negate,flip,0.3886845238095238,0.4259642857142857
+nace-ai/drex-v1.5,Drex v1.5,order,flip,0.04583333333333334,0.0787708333333333
+nace-ai/drex-v1.5,Drex v1.5,codes,flip,0.034999999999999996,0.06754166666666664
+nace-ai/drex-v1.5,Drex v1.5,reverse,flip,0.213,0.271
+nace-ai/drex-v1.5,Drex v1.5,swap,flip,0.24,0.36762499999999987
+nace-ai/drex-v1.5,Drex v1.5,crowded,flip,0.004166666666666667,0.013333333333333332
+nace-ai/drex-v1.5,Drex v1.5,alone,flip,0.02157142857142857,0.03521428571428571
+nace-ai/drex-v1.5,Drex v1.5,hint,flip,0.080875,0.11636474036850918
+nace-ai/drex-v1.5,Drex v1.5,hint,follow,0.09435045843317569,0.1465572912107601
+nace-ai/drex-v1.5,Drex v1.5,inject,flip,0.1170625,0.15416666666666667
+nace-ai/drex-v1.5,Drex v1.5,inject,follow,0.1349068183633147,0.18562253676002968
+nace-ai/drex-v1.5,Drex v1.5,namealign,flip,0.05154166666666667,0.08204166666666665
+nace-ai/drex-v1.5,Drex v1.5,nameswap,flip,0.3182083333333333,0.3780952380952381
+nace-ai/drex-v2.0,Drex v2.0,repeat,flip,0.0,0.0
+nace-ai/drex-v2.0,Drex v2.0,para,flip,0.06175245535714286,0.0806642857142857
+nace-ai/drex-v2.0,Drex v2.0,negate,flip,0.36104166666666665,0.40061309523809524
+nace-ai/drex-v2.0,Drex v2.0,order,flip,0.03416666666666667,0.06416666666666666
+nace-ai/drex-v2.0,Drex v2.0,codes,flip,0.02666666666666667,0.05833333333333334
+nace-ai/drex-v2.0,Drex v2.0,reverse,flip,0.386,0.446525
+nace-ai/drex-v2.0,Drex v2.0,swap,flip,0.417375,0.555
+nace-ai/drex-v2.0,Drex v2.0,crowded,flip,0.0033333333333333335,0.013333333333333334
+nace-ai/drex-v2.0,Drex v2.0,alone,flip,0.014391071428571428,0.02668035714285714
+nace-ai/drex-v2.0,Drex v2.0,hint,flip,0.08833333333333333,0.11877083333333333
+nace-ai/drex-v2.0,Drex v2.0,hint,follow,0.12078314120473649,0.1594349954174123
+nace-ai/drex-v2.0,Drex v2.0,inject,flip,0.055,0.0825
+nace-ai/drex-v2.0,Drex v2.0,inject,follow,0.040791979512208094,0.07674535078047705
+nace-ai/drex-v2.0,Drex v2.0,namealign,flip,0.039523809523809524,0.06785714285714285
+nace-ai/drex-v2.0,Drex v2.0,nameswap,flip,0.6128214285714286,0.68025
+respan/span-01,Span-01,repeat,flip,0.0,0.0
+respan/span-01,Span-01,para,flip,0.06088392857142857,0.09072619047619047
+respan/span-01,Span-01,negate,flip,0.6678571428571428,0.6990595238095239
+respan/span-01,Span-01,crowded,flip,0.0,0.0
+respan/span-01,Span-01,alone,flip,0.0,0.0
+respan/span-01,Span-01,hint,flip,0.0075,0.035
+respan/span-01,Span-01,hint,follow,0.0,0.03813747228381368
+respan/span-01,Span-01,inject,flip,0.0075,0.03
+respan/span-01,Span-01,inject,follow,0.0,0.03813747228381368
+respan/span-01-lite,Span-01-lite,repeat,flip,0.0,0.0
+respan/span-01-lite,Span-01-lite,para,flip,0.06088392857142857,0.09072619047619047
+respan/span-01-lite,Span-01-lite,negate,flip,0.6678571428571428,0.6990595238095239
+respan/span-01-lite,Span-01-lite,crowded,flip,0.0,0.0
+respan/span-01-lite,Span-01-lite,alone,flip,0.0,0.0
+respan/span-01-lite,Span-01-lite,hint,flip,0.0075,0.035
+respan/span-01-lite,Span-01-lite,hint,follow,0.0,0.03813747228381368
+respan/span-01-lite,Span-01-lite,inject,flip,0.0075,0.03
+respan/span-01-lite,Span-01-lite,inject,follow,0.0,0.03813747228381368
+togethercomputer/tev1-4b-experimental,Tev1-4B,repeat,flip,0.006520841269027353,0.014859038541834535
+togethercomputer/tev1-4b-experimental,Tev1-4B,para,flip,0.04993639422992573,0.06493116685002004
+togethercomputer/tev1-4b-experimental,Tev1-4B,negate,flip,0.5114838178990189,0.5611591888011487
+togethercomputer/tev1-4b-experimental,Tev1-4B,order,flip,0.08249999999999999,0.13690624999999998
+togethercomputer/tev1-4b-experimental,Tev1-4B,codes,flip,0.0475,0.095
+togethercomputer/tev1-4b-experimental,Tev1-4B,reverse,flip,0.509475,0.575525
+togethercomputer/tev1-4b-experimental,Tev1-4B,swap,flip,0.33924870466321244,0.47668393782383417
+togethercomputer/tev1-4b-experimental,Tev1-4B,crowded,flip,0.0015748031496062992,0.017054601129404264
+togethercomputer/tev1-4b-experimental,Tev1-4B,alone,flip,0.00842857142857143,0.01793571428571428
+togethercomputer/tev1-4b-experimental,Tev1-4B,hint,flip,0.14217010694498133,0.1851512015204226
+togethercomputer/tev1-4b-experimental,Tev1-4B,hint,follow,0.2494045892898362,0.2844702346778407
+togethercomputer/tev1-4b-experimental,Tev1-4B,inject,flip,0.14366386268075068,0.18645860424571836
+togethercomputer/tev1-4b-experimental,Tev1-4B,inject,follow,0.192815737741224,0.25350863575339233
+togethercomputer/tev1-4b-experimental,Tev1-4B,namealign,flip,0.011440924862407274,0.027427644173247185
+togethercomputer/tev1-4b-experimental,Tev1-4B,nameswap,flip,0.8983532543670735,0.9339661402249343
+upstage/solar-decide-flash,Solar Decide Flash,repeat,flip,0.026016709183673468,0.03733469387755101
+upstage/solar-decide-flash,Solar Decide Flash,para,flip,0.10335076530612246,0.12668571428571426
+upstage/solar-decide-flash,Solar Decide Flash,negate,flip,0.38285714285714284,0.4316666666666667
+upstage/solar-decide-flash,Solar Decide Flash,order,flip,0.1775,0.23625000000000002
+upstage/solar-decide-flash,Solar Decide Flash,codes,flip,0.1511875,0.22749999999999998
+upstage/solar-decide-flash,Solar Decide Flash,reverse,flip,0.475475,0.530525
+upstage/solar-decide-flash,Solar Decide Flash,swap,flip,0.435,0.5776249999999998
+upstage/solar-decide-flash,Solar Decide Flash,crowded,flip,0.019,0.037524999999999975
+upstage/solar-decide-flash,Solar Decide Flash,alone,flip,0.03724821428571429,0.05564642857142857
+upstage/solar-decide-flash,Solar Decide Flash,hint,flip,0.42800000000000005,0.47352500000000003
+upstage/solar-decide-flash,Solar Decide Flash,hint,follow,0.6052710490372158,0.6486847801537294
+upstage/solar-decide-flash,Solar Decide Flash,inject,flip,0.47347500000000003,0.523
+upstage/solar-decide-flash,Solar Decide Flash,inject,follow,0.6591124324304959,0.6970067626132572
+upstage/solar-decide-flash,Solar Decide Flash,namealign,flip,0.05976190476190476,0.090125
+upstage/solar-decide-flash,Solar Decide Flash,nameswap,flip,0.8343869047619048,0.8816785714285714

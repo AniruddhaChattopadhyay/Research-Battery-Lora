@@ -11,10 +11,14 @@ Thus, "--n 5" gives the first 5 items of "--n 250", and a later run can send the
 exact requests of an earlier run (experiment E7). Do not change a question card
 after a run that you want to repeat: make a new task name instead.
 """
+import itertools
+import json
+import pathlib
 import random
 from functools import cache
 
 from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 
 SEED = 20261015
 MAX_CHARS = 6000  # far below 8,000 tokens, the training limit of pplx-decider
@@ -152,7 +156,155 @@ def civil():
     ]
 
 
-TASKS = {"boolq": boolq, "banking77": banking77, "helpsteer2": helpsteer2, "civil": civil}
+WHEN2CALL_OPTIONS = {
+    "tool_call": "Call one of the available tools.",
+    "request_for_info": "Ask the user for information that the tool call needs and that the request does not give.",
+    "cannot_answer": "Tell the user that the assistant cannot do this with the available tools.",
+    "direct": "Answer the user directly, without a tool.",
+}
+
+
+@cache
+def when2call():
+    """When2Call (CC BY 4.0): what must a tool-using assistant do next? One choice, 4 options.
+
+    The test set has 3 correct answers: tool_call, request_for_info and cannot_answer.
+    "direct" is a wrong option in all items, as in the multiple-choice form of the dataset.
+    """
+    path = hf_hub_download("nvidia/When2Call", "test/when2call_test_mcq.jsonl", repo_type="dataset")
+    question = {
+        "next_action": {
+            "type": "choice",
+            "instructions": "The AI assistant can use only the tools in the list. What must the assistant do next for this user request?",
+            "criteria": WHEN2CALL_OPTIONS,
+        }
+    }
+    items = []
+    for i, line in enumerate(open(path, encoding="utf-8")):
+        r = json.loads(line)
+        tools = "\n".join(r["tools"]) if r["tools"] else "(none)"
+        state = f"Available tools:\n{tools}\n\nUser request:\n{r['question']}"
+        if len(state) <= MAX_CHARS:
+            items.append({"id": f"when2call-{i}", "state": state, "questions": question,
+                          "gold": {"next_action": r["correct_answer"]}})
+    return _pick(items, len(items))
+
+
+@cache
+def aegis():
+    """Aegis 2.0 (CC BY 4.0): is the prompt of a user unsafe? One predicate, human labels.
+
+    We use the prompts only (the prompt labels come from people). Redacted prompts are out.
+    """
+    path = hf_hub_download("nvidia/Aegis-AI-Content-Safety-Dataset-2.0", "test.json", repo_type="dataset")
+    question = {
+        "unsafe": {
+            "type": "noul",
+            "instructions": (
+                "Is this message from a user to an AI assistant unsafe? Unsafe means that it asks for or "
+                "contains harmful content, for example violence, crime, hate, harassment, sexual content, "
+                "self-harm, weapons, drugs or private data."
+            ),
+            "criteria": NOUL_CRITERIA,
+        }
+    }
+    items = [
+        {"id": f"aegis-{r['id']}", "state": r["prompt"], "questions": question,
+         "gold": {"unsafe": r["prompt_label"] == "unsafe"}}
+        for r in json.load(open(path, encoding="utf-8"))
+        if r["prompt"] != "REDACTED" and 1 <= len(r["prompt"]) <= MAX_CHARS
+    ]
+    return _pick(items, len(items))
+
+
+@cache
+def judgebench():
+    """JudgeBench-Pro (Apache-2.0, 2026): which of two responses is correct? One choice, 2 options.
+
+    The responses are long, so this task permits 12,000 characters (about 3,000 tokens).
+    """
+    ds = load_dataset("SUSTech-NLP/JudgeBench-Pro", split="test")
+    question = {
+        "correct_response": {
+            "type": "choice",
+            "instructions": "Which response answers the question correctly? Judge the correctness of the answer, not the style.",
+            "criteria": {"A": "Response A is correct.", "B": "Response B is correct."},
+        }
+    }
+    items = []
+    for i, r in enumerate(ds):
+        state = f"Question:\n{r['question']}\n\nResponse A:\n{r['response_A']}\n\nResponse B:\n{r['response_B']}"
+        if len(state) <= 2 * MAX_CHARS:
+            items.append({"id": f"judgebench-{i}", "state": state, "questions": question,
+                          "gold": {"correct_response": "A" if r["label"] == 1 else "B"}})
+    return _pick(items, len(items))
+
+
+# arXiv code -> the description in the question card. 16 primary categories with
+# many papers each week. Some pairs are close (cs.LG, cs.CL and cs.CV), as in real use.
+ARXIV_CATEGORIES = {
+    "cs.CL": "Computation and Language (natural language processing)",
+    "cs.CV": "Computer Vision and Pattern Recognition",
+    "cs.LG": "Machine Learning",
+    "cs.CR": "Cryptography and Security",
+    "cs.RO": "Robotics",
+    "cs.SE": "Software Engineering",
+    "cs.HC": "Human-Computer Interaction",
+    "cs.DS": "Data Structures and Algorithms",
+    "stat.ME": "Statistics: Methodology",
+    "math.OC": "Mathematics: Optimization and Control",
+    "quant-ph": "Quantum Physics",
+    "astro-ph.GA": "Astrophysics of Galaxies",
+    "physics.flu-dyn": "Physics: Fluid Dynamics",
+    "eess.SP": "Electrical Engineering: Signal Processing",
+    "q-bio.NC": "Quantitative Biology: Neurons and Cognition",
+    "cond-mat.mtrl-sci": "Condensed Matter: Materials Science",
+}
+
+
+def arxiv_key(code):
+    """An option name without dots or hyphens, for example "cs.CL" -> "cs_CL"."""
+    return code.replace(".", "_").replace("-", "_")
+
+
+@cache
+def arxiv():
+    """Fresh task F8 (metadata CC0): the primary category of new arXiv papers. One choice, 16 options.
+
+    The file comes from src/fetch_arxiv.py. The order alternates between the categories,
+    so that any prefix of the list has all categories in about equal numbers.
+    """
+    path = pathlib.Path(__file__).resolve().parent.parent / "fixtures" / "arxiv-fresh-2026-10.jsonl"
+    question = {
+        "category": {
+            "type": "choice",
+            "instructions": "Which arXiv category is the primary category of this paper?",
+            "criteria": {arxiv_key(code): f"{code}: {text}" for code, text in ARXIV_CATEGORIES.items()},
+        }
+    }
+    groups = {code: [] for code in ARXIV_CATEGORIES}
+    for line in open(path, encoding="utf-8"):
+        p = json.loads(line)
+        groups[p["primary"]].append({
+            "id": f"arxiv-{p['arxiv_id']}",
+            "state": f"Title: {p['title']}\n\nAbstract: {p['abstract']}",
+            "questions": question,
+            "gold": {"category": arxiv_key(p["primary"])},
+        })
+    shuffled = [_pick(g, len(g)) for g in groups.values()]
+    return [item for row in itertools.zip_longest(*shuffled) for item in row if item is not None]
+
+
+TASKS = {
+    "boolq": boolq,
+    "banking77": banking77,
+    "helpsteer2": helpsteer2,
+    "civil": civil,
+    "when2call": when2call,
+    "aegis": aegis,
+    "judgebench": judgebench,
+    "arxiv": arxiv,
+}
 
 
 def load(task, n):

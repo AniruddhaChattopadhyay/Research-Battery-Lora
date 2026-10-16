@@ -1,0 +1,16 @@
+task,majority_acc,positive_rate
+boolq,0.614,
+aegis,0.536,
+civil:toxicity,0.5,0.5
+civil:severe_toxicity,1.0,0.0
+civil:obscene,0.964,0.036
+civil:threat,0.994,0.006
+civil:insult,0.632,0.368
+civil:identity_attack,0.952,0.048
+civil:sexual_explicit,0.988,0.012
+civil,0.8614285714285714,
+banking77,0.022,
+arxiv,0.066,
+when2call,0.402,
+judgebench,0.56,
+helpsteer2,0.5488,

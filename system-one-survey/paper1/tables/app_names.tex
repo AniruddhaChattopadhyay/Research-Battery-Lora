@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Names swapped} & \multicolumn{3}{c}{True rubric moved} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-6}
+System & first & second & match & swap & 1st:2nd & Floor \\
+\midrule
+Jev 1.14 & 98.1 & 98.7 & \textcolor{gray}{0.6} & 1.8 & 18:14 & 0.6 \\
+OpenAI Decisions (Luna) & 76.3 & 77.0 & 5.2 & 29.9 & 267:49 & 1.1 \\
+Microsoft-Decision-1 & 95.2 & 95.2 & \textcolor{gray}{0.8} & 2.0 & 24:18 & 0.8 \\
+pplx-decider v1.1 & 79.7 & 54.5 & 1.6 & 35.1 & 564:101 & 0.0 \\
+Clef & 14.9 & 14.9 & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & 0:0 & 0.0 \\
+Clef-flash & 19.6 & 19.6 & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & 0:0 & 0.0 \\
+Clef-omni & 14.1 & 14.1 & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & 0:0 & 0.0 \\
+Mercury Decide & 96.6 & 79.8 & 1.2 & 20.4 & 70:101 & 0.1 \\
+Liquid d1 & \textcolor{gray}{0.3} & \textcolor{gray}{0.5} & 3.2 & 3.4 & 9:51 & 0.4 \\
+Drex v1.5 & 34.4 & 11.5 & 8.2 & 32.2 & 230:419 & 0.5 \\
+Drex v2.0 & 64.6 & 49.6 & 11.4 & 24.0 & 49:331 & 0.0 \\
+Kev-4B & 41.2 & 48.0 & 4.0 & 29.1 & 136:545 & 0.3 \\
+Tev1-4B & 91.7 & 65.0 & 7.8 & 31.3 & 50:542 & 0.4 \\
+Solar Decide Flash & 86.0 & 77.4 & 9.6 & 21.9 & 94:142 & 2.2 \\
+\bottomrule
+\end{tabular}
+\caption{The name test with both positions of the true rubric (exploratory): flips (\%) of the chosen rubric, mean over BoolQ, Aegis 2.0 and Civil Comments. \emph{Names swapped}: ``yes'' and ``no'' on the opposite rubrics, with the true rubric as the first option (Names in Table~\ref{tab:e3}) or the second option. \emph{True rubric moved}: the true rubric moves from the first to the second option, with the names that match the rubrics or with the swapped names. \emph{1st:2nd}: the flips of \emph{swap} in which the system chose the first option both times, and the second option both times (all answers). Grey: the lower end of the 95\% interval is not above the floor.}
+\label{tab:app-names}
+\end{table}

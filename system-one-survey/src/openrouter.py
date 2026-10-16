@@ -27,6 +27,23 @@ PROVIDER_PIN = {
 }
 
 
+def accepts(model, questions):
+    """True if the model accepts this question card.
+
+    These are the interface limits that we found in E0, from the error messages. A
+    request outside the limits returns status 400 or 422, so we do not send it.
+    """
+    types = {q["type"] for q in questions.values()}
+    sizes = [len(q["criteria"]) for q in questions.values() if q["type"] == "choice"]
+    if model.startswith("respan/"):
+        return types == {"noul"}
+    if model.startswith("togethercomputer/tev1"):
+        return all(2 <= s <= 20 for s in sizes)
+    if model.startswith("upstage/solar-decide"):
+        return all(s <= 26 for s in sizes)
+    return True
+
+
 def decide(client, model, state, questions, max_tries=5):
     """Send one decisions request. Return the status, latency, attempts and the JSON body.
 

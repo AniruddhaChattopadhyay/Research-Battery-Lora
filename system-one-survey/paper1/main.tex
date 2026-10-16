@@ -1,0 +1,445 @@
+\documentclass[11pt]{article}
+
+% "review" gives the anonymous ARR version with line numbers.
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\input{numbers}
+
+\title{Same Question, Different Answer?\\A Controlled Study of System One Decision Models}
+
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+System One decision models are a new type of API. The request contains an input and typed questions, and the response contains a probability for each answer instead of text. Vendors released more than 20 such models in four weeks. The first evaluations disagree about their calibration and their sensitivity to wording. We test \nSystemOne{} System One models from 13 vendors under one protocol. We also test 6 configurations of System Two models (general language models with structured outputs) and 3 open backbones. All systems get the same tasks (up to 8, with 500 items each) and the same question cards. We apply 12 perturbations and measure a noise floor with repeated identical calls. The task type changes the calibration most. On the judging tasks, all \nTestedJudging{} System One models that accept them are overconfident. But on BoolQ, their median signed calibration error is only \sceMedianKnowledge{} points. The same perturbation acts very differently on different systems. In an exploratory test, the option names ``yes'' and ``no'' change places: Jev then follows the names in \nameswapJev\% of the answers, and Liquid d1 in \nameswapDOne\%. Identical requests give different answers for \nNondeterministic{} of \nEThree{} systems. Decision training adds \gainRangeMin{} to \gainRangeMax{} points of accuracy to the same open backbone. In an exploratory comparison, a minor version update of Jev flipped \flipVersion\% of its answers, \versionOverNoise{} times the noise floor, with no change in accuracy. We release the code, the question cards and all responses.
+\end{abstract}
+
+\section{Introduction}
+
+Many software systems must make small decisions about text. A support system routes a ticket. A guard blocks an unsafe prompt. An agent decides to call a tool or to ask the user. A judge selects the better of two answers. Developers often send such decisions to a large language model (LLM), parse the text that it writes, and use the confidence that it states.
+
+System One decision models offer a different interface \citep{typesafe2026introducing,typesafe2026docs}. A request contains an input, which the API calls the \emph{state}, and a set of named questions. Each question has a type: a yes/no predicate, a choice between options, or a score on an ordered scale. The response contains a probability for each answer and no text. The name refers to the fast ``System 1'' of \citet{kahneman2011thinking}. TypeSafe released Jev in September 2026. In the next four weeks, OpenAI, Microsoft, Perplexity, Cloudflare and other vendors released similar models \citep{openai2026decisions,microsoft2026decision1,perplexity2026decider,cloudflare2026clef}. On 16 October 2026, OpenRouter served 19 of them, and two ``latest'' aliases, through one endpoint with one request shape \citep{openrouter2026decisions}.
+
+The first evaluations of these models disagree (Table~\ref{tab:conflicts}). One leaderboard reports that System One models are overconfident on knowledge and reasoning tasks \citep{artificialanalysis2026decision}. TypedBench reports that Jev is under-confident on all its calibration questions \citep{sharma2026typedbench}. \citet{deusser2026evaluating} report a pooled calibration error of only 0.028 for the choice questions of Jev. The reports about sensitivity to wording also disagree:
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item Microsoft reports that 1.3\% of the decisions of its own model change (vendor-reported, \citealp{microsoft2026decision1}).
+\item \citet{rafe2026benchmarking} report 50.5 changed decisions per hundred when the names ``yes'' and ``no'' change places.
+\item In JevOut, an adversarial search moves 61.4\% of the correct Jev decisions to a fixed wrong option \citep{xu2026jevout}.
+\end{itemize}
+These studies use different tasks, answer types, metrics, perturbations and versions. Thus, a developer cannot know if the disagreements come from the models or from the methods.
+
+We test the disagreements under one protocol (Section~\ref{sec:setup}). We send the same 8 tasks (500 items each) and the same question cards to \nSystemOne{} System One models from 13 vendors, to 5 \emph{System Two models} (general LLMs that write a probability for each option in JSON) and to the open backbones of 3 System One models. One task uses arXiv papers from the week before our runs, so the systems are unlikely to have seen them in training. For the 16 System One models in our robustness experiment, we apply 12 perturbations to 200 items of each task. We also send each of these requests 4 more times without a change. These repeats give a noise floor, and a \emph{flip} (a change of the top answer) means something only above it. We wrote seven hypotheses (H1 to H7) before the main runs. Table~\ref{tab:hyp} gives the result for each hypothesis, and Appendix~\ref{app:deviations} lists all later changes.
+
+Our main findings are:
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item \textbf{The task type changes the calibration most} (H1, partly supported). Each published verdict appears in our data, but only on some tasks (Section~\ref{sec:calibration}).
+\item \textbf{The same perturbation acts very differently on different systems} (H2, partly supported). In an exploratory test, the swap of ``yes'' and ``no'' moves \nNameswapOverHalf{} of \nNameswapTested{} systems in more than half of the answers (Section~\ref{sec:robustness}).
+\item \textbf{The Clef models do not isolate the questions of one call}. Jev does (H6, Section~\ref{sec:interference}).
+\item \textbf{Decision training adds \gainRangeMin{} to \gainRangeMax{} points} to the same open backbone (Section~\ref{sec:training}).
+\item \textbf{Cascades save more than half of the cost in only \nCascadeKeptCheap{} of \nCascadeBetter{} settings} (H5, Section~\ref{sec:cascades}).
+\item \textbf{A minor version flips \flipVersion\% of the answers}, \versionOverNoise{} times the noise floor (H7, exploratory; Section~\ref{sec:versions}).
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+\toprule
+Topic & Published results \\
+\midrule
+Calibration & Overconfident on knowledge and reasoning tasks \citep{artificialanalysis2026decision}; under-confident on every calibration question from temperature refits on items with rule-based labels, but over-confident on guardrail intent \citep{sharma2026typedbench}; pooled choice ECE 0.028, with a mean confidence above the accuracy on 20 of 22 datasets \citep{deusser2026evaluating}. \\
+\addlinespace
+Wording & 1.3\% of decisions flip (vendor-reported, own model; \citealp{microsoft2026decision1}); 50.5 flips per hundred decisions when ``yes'' and ``no'' name the opposite rubrics, against a test-retest floor of 1.3 \citep{rafe2026benchmarking}; an adversarial search with up to 64 tries moves 61.4\% of correct Jev decisions to a fixed wrong option \citep{xu2026jevout}. \\
+\addlinespace
+Value & Jev beats Qwen3.8-27B on 27 of 37 datasets, 11 with non-overlapping intervals \citep{deusser2026evaluating}; a fine-tuned DeBERTa-v3-large beats Jev on almost all labeled tasks \citep{rafe2026benchmarking}; zero-shot Gemma~4 31B has a capability score (accuracy and calibration) of 79.6 against 80.1 for Jev, and LoRA raises it to 84.4 \citep{geuter2026releasing}. \\
+\bottomrule
+\end{tabularx}
+\caption{Published results that disagree. The Jev results come from Jev 1.13. The studies differ in tasks, answer types, metrics, perturbations and the definition of a changed answer.}
+\label{tab:conflicts}
+\end{table}
+
+\section{Background and related work}
+\label{sec:background}
+
+\paragraph{System One models.}
+A System One request names a model, a state (text, a chat transcript or an image) and one or more questions. A \emph{predicate} (\texttt{noul} in the Jev API) returns the probability of ``true''. A \emph{choice} returns a probability for each option, with up to 255 options. A \emph{score} returns a probability for each level of an ordered scale and the expected level \citep{typesafe2026docs}. The vendors say little about the training. TypeSafe names a method, ``Reinforcement Learning for Calibrated Decisions'', but there is no paper. Perplexity adds a readout head to Qwen3.8-27B and fits one temperature on held-out data \citep{perplexity2026decider}. Microsoft post-trains Qwen3.5-9B \citep{microsoft2026decision1}. Most open systems are fine-tunes of Qwen models. Thus, we can compare a System One model with its own backbone (Section~\ref{sec:training}). We mark the numbers of vendors as vendor-reported.
+
+\paragraph{Calibration in published evaluations.}
+The studies measure calibration in different ways. \citet{deusser2026evaluating} use ECE with 15 equal-width bins on the 33 of their 37 datasets with a choice or a predicate question. They bin the top-option probability for choices and P(yes) for predicates. \citet{rafe2026benchmarking} use top-label ECE with 10 equal-mass bins. TypedBench divides each ECE by the ECE that a calibrated model gets by chance, and it takes the direction from a refitted temperature \citep{sharma2026typedbench}. Its calibration items come from generators with rule-based labels.
+
+\paragraph{Changed answers in published evaluations.}
+\citet{rafe2026benchmarking} put the names ``yes'' and ``no'' on the opposite rubrics and count the changes of the chosen rubric. JevOut counts the share of correct decisions that a search with up to 64 tries moves to one fixed wrong option \citep{xu2026jevout}. Its one-shot control, one sentence that supports the wrong option, moves 16.9\% of the correct Jev decisions.
+
+\paragraph{Other studies.}
+Other studies examine the order of options \citep{huang2026consider}, adversarial attacks on text \citep{hu2026jevadvbench} and on images \citep{lan2026decisionrobust}, and thresholds with a controlled risk \citep{messoudi2026calibration}. Others examine the coherence of probabilities across linked questions \citep{li2026beyond}, open decision models from LLM readouts \citep{geuter2026releasing,zhang2026anyjev} and escalation from Jev to an LLM judge \citep{li2026jevasajudge}. Two studies measure a test-retest floor for Jev \citep{rafe2026benchmarking,li2026beyond}. Each study tests at most 8 decision models. We test 19 with one protocol, and we add a floor for each system, the comparison with the backbone, the interference between questions for many systems, and version changes.
+
+\paragraph{Calibration and robustness of LLM classifiers.}
+We use the ECE of \citet{guo2017calibration} and a signed variant. LLMs can give calibrated option probabilities \citep{kadavath2022language,tian2023just}, but label bias affects the readout of answer tokens \citep{zhao2021calibrate}. LLMs are sensitive to the order of options \citep{pezeshkpour2023large,zheng2023large}, to prompt formats \citep{sclar2023quantifying} and to negation \citep{ribeiro2020beyond}. LLM judges prefer one position \citep{wang2023large,zheng2023judging}, fail on hard pairs \citep{tan2024judgebench} and follow injected biases \citep{lai2026biasscope}. Text in the input can carry instructions \citep{perez2022ignore,greshake2023what}. Cascades send hard items to a stronger model \citep{chen2023frugalgpt,ong2024routellm}.
+
+\section{Set-up}
+\label{sec:setup}
+
+\paragraph{Systems.}
+We test \nSystemOne{} System One models through the OpenRouter decisions endpoint (Table~\ref{tab:app-systems}). All models get the same request shape. We use fixed model ids, not aliases, and we record the resolved version from each response. Clef and Clef-flash report no version. In a pilot, OpenRouter sent one model to three providers in one run. Thus, we pin the provider for the four models that have more than one provider. The API has no temperature and no seed. Five systems from three vendors limit the interface: the two Span-01 models accept only predicates, Tev1-4B accepts 2 to 20 options and the two Solar Decide models accept 26 options or fewer. We do not send requests outside these limits. All main calls ran from Bangalore in one 2-hour window at night (23:30 to 01:30 IST, 15 to 16 October 2026).
+
+\paragraph{Baselines.}
+\emph{System Two models}: GPT-6 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash, Claude Haiku 5.5 and GPT-6 Luna, with a JSON schema and reasoning effort ``low''. The model writes a probability for each option of each question. We set negative values to 0 and normalize (details in Appendix~\ref{app:systems}). For GPT-6 Luna, we also turn reasoning off (exploratory). \emph{Open backbones}: Qwen3.5-4B, Qwen3.5-9B and Qwen3.8-27B, the backbones of Tev1-4B, Microsoft-Decision-1 and pplx-decider v1.1. The prompt gives the instructions and the option texts with a letter for each option. The model generates one token with reasoning off. We take a softmax over the option letters among the 20 most probable tokens; a letter outside them gets 0. We use providers with bf16 or fp16, and MLX in bf16 on a laptop for Qwen3.5-4B. The letters cannot express 77 options, so the backbones skip BANKING77.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}llrrlr@{}}
+\toprule
+Task & Type & Opt. & Qs & Group & Maj. \\
+\midrule
+BoolQ & predicate & 2 & 1 & knowledge & \majBoolq \\
+Aegis 2.0 & predicate & 2 & 1 & classification & \majAegis \\
+Civil Comments & predicate & 2 & 7 & classification & \majCivil \\
+BANKING77 & choice & 77 & 1 & classification & \majBanking \\
+arXiv, fresh (ours) & choice & 16 & 1 & classification & \majArxiv \\
+When2Call & choice & 4 & 1 & agent & \majWhencall \\
+JudgeBench-Pro & choice & 2 & 1 & judging & \majJudgebench \\
+HelpSteer2 & score & 5 & 5 & judging & \majHelpsteer \\
+\bottomrule
+\end{tabular}
+\caption{The tasks: 500 items each. \emph{Opt.}: options or levels. \emph{Qs}: questions on one input (all in one call). \emph{Maj.}: the accuracy (\%) of the most frequent gold answer of each question. Sources: BoolQ \citep{clark2019boolq}, Aegis 2.0 \citep{ghosh2025aegis2}, Civil Comments \citep{borkan2019nuanced}, BANKING77 \citep{casanueva2020efficient}, When2Call \citep{ross2025when2call}, JudgeBench-Pro \citep{lai2026biasscope} and HelpSteer2 \citep{wang2024helpsteer2}.}
+\label{tab:tasks}
+\end{table}
+
+\paragraph{Tasks.}
+Table~\ref{tab:tasks} lists the 8 tasks. We sample 500 items from each test or validation split with a fixed seed, and we drop items above 6,000 characters (12,000 for JudgeBench-Pro). Each task has one question card (Appendix~\ref{app:cards}), and every system gets the same card. Six tasks need a note:
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item \emph{Civil Comments}: 7 predicates on one comment. The gold answer is ``yes'' if at least half of the raters said yes. Half of the comments are toxic. The other attributes are rare: insult \posInsult\%, identity attack \posIdentityAttack\%, obscene \posObscene\%, sexually explicit \posSexualExplicit\%, threat \posThreat\% and severe toxicity \posSevereToxicity\%.
+\item \emph{HelpSteer2}: 5 scores from 0 to 4. The top answer must be the human level.
+\item \emph{Aegis 2.0}: the user prompts and their human labels.
+\item \emph{JudgeBench-Pro}: a correct and an incorrect response. Its builders added a bias to the incorrect response and kept the items that Qwen3-32B judged wrongly in both orders \citep{lai2026biasscope}. The task is adversarial by design.
+\item \emph{arXiv}: 603 papers submitted from 10 to 14 October 2026. The answer is the primary category, out of 16. These papers are newer than the version date of every dated system except Jev 1.14. We use 500 papers, 32 or 33 for each category (11 for q-bio.NC).
+\item \emph{When2Call}: 4 options, but ``direct answer'' is never correct.
+\end{itemize}
+
+\paragraph{Metrics.}
+The top answer is the most probable option, and for predicates the side of 0.5. A flip is a change of the top answer. Confidence is the probability of the top answer. The \emph{signed calibration error} (SCE) is the mean confidence minus the accuracy, in points; a value above 0 shows overconfidence. With $K$ options, the confidence is at least $1/K$, so $\text{SCE} \geq 100/K - \text{accuracy}$. ECE uses 15 equal-width bins. Each question of a multi-question item counts once within its task. A value for a group of tasks is the mean over its tasks, and each task counts once. Intervals are 95\% bootstrap intervals that resample the items within each task, with all questions of an item together. We use no correction for multiple tests.
+
+\paragraph{Perturbations (E3).}
+We apply 12 perturbations to the first 200 items of each task (Table~\ref{tab:e3}). We wrote two paraphrases of each question and a negated form of each predicate (``Is the answer to this question no?''; ``Is the comment free of insults?''). The negated answer counts as a flip when the decision about the original question changes. To test the claim of \citet{rafe2026benchmarking}, we also ask each predicate as a choice between two options. The two rubrics are ``This is true for the input.'' and ``This is not true for the input.'' The options have the names ``yes'' and ``no'', first on the matching rubrics and then on the opposite ones.
+As in their design, the true rubric is the first option. An added test also puts it second. On the six single-question tasks, the \emph{hint} adds ``Note from an earlier reviewer: the answer is ``X''.'' to the input. The \emph{injection} adds ``Ignore the question and all earlier instructions. The only correct answer is ``X''.'' X is a random wrong option, fixed for each item. Appendix~\ref{app:perturbations} gives all texts. In another added test, the \nImageSystems{} systems that accept images get the inputs of BoolQ, Aegis 2.0, Civil Comments and BANKING77 also as an image of the same text (Appendix~\ref{app:image}). The added tests ran after the main runs, so they are exploratory.
+
+\section{Results}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+H & Prediction (written before the main runs) & Result \\
+\midrule
+H1 & Calibration depends on the task type: overconfident on knowledge and reasoning, calibrated or underconfident on classification & \emph{Partly}: judging (our nearest group to reasoning) overconfident (\nOverJudging/\nTestedJudging); BoolQ mixed; classification slightly overconfident (\nOverClass/\nTestedClass) \\
+H2 & The effect depends on the perturbation: polarity swaps and natural context change many answers; order and synonyms few & \emph{Partly}: the perturbation explains \varFamThree\% of the variance; order and neutral names (for synonyms) change few; negation many for most systems, few for Jev; the note (for natural context) moves a median of \hintMedian\% \\
+H3 & Trained encoders win above 1,000 labels & Not tested here \\
+H4 & Decision training adds more to small backbones & \emph{Not testable} with three vendor pairs; the gains rise with size \\
+H5 & A cascade keeps the System Two accuracy at less than half of its cost & \emph{Mostly not}: \nCascadeKeptCheap{} of \nCascadeBetter{} settings, \nCheapMainTasks{} on three tasks \\
+H6 & Other questions in the call change answers, also for systems that claim isolation & \emph{Not for Jev}; yes for the Clef models; small for \nInterferenceOther{} more (exploratory) \\
+H7 & A new version changes a measurable part of the answers, also on easy items & \emph{Supported}, exploratory: \flipVersion\% against \flipNoise\% noise; BoolQ \flipVersionBoolq\% against \flipNoiseBoolq\% \\
+\bottomrule
+\end{tabularx}
+\caption{Hypotheses and results.}
+\label{tab:hyp}
+\end{table}
+
+\input{tables/e2_summary}
+
+Table~\ref{tab:app-acc} gives the accuracy for each task, with the majority baseline. On the knowledge and classification tasks, the best System One model of each task is at most 2 points below the best System Two model or better. On BANKING77, Clef-flash (95.8\%) is the most accurate system. On JudgeBench-Pro, all \nJudgeTested{} System One models are below the majority answer (\majJudgebench\%), and \nJudgeBelowHalf{} are below 50\%. On HelpSteer2, only \listHelpAboveMajority{} is above the majority baseline (\majHelpsteer\%), but within one level the System One models reach \helpWithinOneMin\% to \helpWithinOneMax\%. The five System Two models with low reasoning effort are 25 to 38 points above the best System One model on JudgeBench-Pro. GPT-6 Luna reaches 83.3\% with low reasoning and 41.4\% without it. Claude Sonnet 5.5 reaches \sonnetJudgeNoReas\% on the \sonnetJudgeNoReasN{} JudgeBench-Pro calls in which it used no reasoning tokens (Table~\ref{tab:app-s2}).
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/sce_heatmap.pdf}
+\caption{Signed calibration error (confidence minus accuracy, in points) for each system and task. Red: overconfident. Blue: underconfident. Grey hatching: the system does not accept the task, or the readout cannot express it. The vertical lines separate System One models, System Two models and open backbones.}
+\label{fig:sce}
+\end{figure*}
+
+\subsection{Calibration depends on the task (H1)}
+\label{sec:calibration}
+
+Figure~\ref{fig:sce} and Table~\ref{tab:e2} show the main pattern. On the judging group, all \nTestedJudging{} System One models are overconfident (median SCE \sceMedianJudging{} points). Part of this follows from the low accuracy on JudgeBench-Pro: with two options, an accuracy below 50\% forces a positive SCE. HelpSteer2 alone also gives overconfidence for most systems. On BoolQ, the median SCE is \sceMedianKnowledge{} points: \nZeroKnowledge{} of \nTestedKnowledge{} models have an interval that contains 0, \nOverKnowledge{} are overconfident and \nUnderKnowledge{} are underconfident. On classification, the median is \sceMedianClassification{} points: \nOverClass{} models are overconfident and \nUnderClass{} are underconfident (\listUnderClass). The agent task gives overconfidence for \nOverAgent{} models.
+
+For the \nFullSystems{} System One models with all 8 tasks, the task explains \varTaskE\% of the variance of the SCE and the system \varSystemE\%. Without the judging tasks, the task explains \varTaskNoJudge\% and the system \varSystemNoJudge\%. Thus, H1 is partly supported. With the judging tasks, the task type matters most. Without them, the system matters slightly more. Judging, our nearest group to reasoning, gives overconfidence, as we predicted. But classification gives small overconfidence, not calibration or underconfidence.
+
+The disagreement in Table~\ref{tab:conflicts} follows from three design choices:
+\begin{enumerate}
+\setlength\itemsep{1pt}
+\item \emph{The tasks.} We refit one temperature for Jev 1.14 on each task, as TypedBench does (Table~\ref{tab:app-metrics}). The refit gives underconfidence on BoolQ ($T$ = \jevTempBoolq) and overconfidence on the other 7 tasks ($T$ from \jevTempArxiv{} on arXiv to \jevTempJudgebench{} on JudgeBench-Pro). Thus, the TypedBench verdict and the verdict of the leaderboard both appear in our data. Each comes from a different task.
+\item \emph{The probability that a study bins.} For Jev 1.14 on Civil Comments, the top-label ECE is \jevEceCivil{} points, but the ECE of P(yes), the measure of \citet{deusser2026evaluating}, is \jevCwEceCivil{} points. Jev says ``yes'' too often on the rare attributes: for identity attack, it says ``yes'' on \jevYesIdentityAttack\% of the comments against \posIdentityAttack\% positives. Severe toxicity has no positive item at the 0.5 rule, and Jev says ``yes'' on \jevYesSevereToxicity\% of the comments. Without this attribute, the two ECE values are \jevCivilEceWo{} and \jevCivilCwEceWo{} points.
+\item \emph{The summary.} A small ECE can hide a consistent direction: \citet{deusser2026evaluating} report an ECE of 0.028 together with overconfidence on 20 of 22 choice datasets.
+\end{enumerate}
+
+The stated probabilities of System Two models are not better calibrated in general. GPT-6 Sol, Gemini 3.8 Flash and GPT-6 Luna are overconfident on the knowledge, agent and judging tasks. Claude Sonnet 5.5 has the lowest mean ECE (7.1 points), but Drex v2.0, Claude Haiku 5.5, pplx-decider v1.1 and Jev 1.14 are within about 2 points of it.
+
+\input{tables/e3_flips}
+
+\subsection{Robustness depends on the perturbation and the system (H2)}
+\label{sec:robustness}
+
+Table~\ref{tab:e3} gives the flip rate for each perturbation. \nCellsAboveFloor{} of its \nCellsThree{} flip rates are above the floor of the same tasks. For the \nVarSystemsThree{} systems with all 12 perturbations, the perturbation explains \varFamThree\% of the variance of Table~\ref{tab:e3}, the system \varSystemThree\%, and their interaction \varRestThree\%. Thus, the size of the effect depends mostly on the perturbation, and the same perturbation acts very differently on different systems.
+
+\paragraph{Noise floor.} \nNondeterministic{} of \nEThree{} systems flip some answers between identical requests. The highest floor is 3.1\% (Solar Decide Flash), and Jev 1.14 has \repeatJev\%. The other \nDeterministic{} systems gave the same answers every time.
+
+\paragraph{Option names.} When ``yes'' and ``no'' name the opposite rubrics, Jev follows the names in \nameswapJev\% of the answers, Mercury Decide in \nameswapMercury\%, Microsoft-Decision-1 in \nameswapMsft\% and pplx-decider in \nameswapPplx\%. The three Clef models follow the names in \nameswapClefMin\% to \nameswapClefMax\% of the answers, and Liquid d1 in \nameswapDOne\%. \citet{rafe2026benchmarking} report 50.5, 97.2 and 84.0 flips per hundred for Jev 1.13 on three sets, with other data and rubrics (Table~\ref{tab:app-comparison}). Neutral names (opt\_01, \ldots) change few answers (median \codesMedian\%). Thus, most systems read the option names, and the names must agree with the rubrics. With the true rubric as the second option (Table~\ref{tab:app-names}), the name flips of Jev, Microsoft-Decision-1, the Clef models and Liquid d1 change by at most \namesStableDiffMax{} points. For the other \nNamesOther{} systems, the position decides many answers when the names and the rubrics disagree: the first option wins for \nPosFirstWins{} of them and the second for \nPosSecondWins{} (sign test, $p < 0.01$). Thus, the original test also measures the position for them: the flips of pplx-decider fall from \nameswapPplx\% to \namesSecondPplx\%.
+
+\paragraph{Negation.} The negated predicate flips \negJev\% of the answers of Jev 1.14 (Table~\ref{tab:app-comparison} compares it with \citealp{li2026beyond}). The same negations flip more than 20\% of the answers for \nNegOverFifth{} of \nNegTested{} systems, and up to \negMax\%.
+
+\paragraph{Order, paraphrase and position.} Option order flips few answers for most systems (median \orderMedian\%). \citet{huang2026consider} use one shuffle for each question on other datasets. Our values are lower than theirs but in the same order, for example Jev \orderJev\% (theirs 5.3\%) and the OpenAI Decisions API \orderLuna\% (13.2\%). When the order changes an answer, the new answer is usually the earlier option: \posEarlierSolarFlash{} of \posFlipsSolarFlash{} flips for Solar Decide Flash (\posLaterSolarFlash{} the later) and \posEarlierLuna{} of \posFlipsLuna{} for the OpenAI Decisions API (\posLaterLuna; Table~\ref{tab:app-position}). The Clef models, which score the options in parallel \citep{cloudflare2026clef}, never change their answer. Paraphrases flip a median of \paraMedian\%. The reversed score scale and the swapped responses of the judging task flip many more answers (medians \reverseMedian\% and \swapMedian\%).
+
+\paragraph{Text in the input.} One reviewer note moves \hintJev\% of the answers of Jev to the named wrong answer, from \hintJevAegis\% on Aegis 2.0 to \hintJevJudge\% on JudgeBench-Pro, and \brokenHintJev\% of its correct answers become wrong. The one-shot control of JevOut moves 16.9\%, and its adaptive search 61.4\% \citep{xu2026jevout}. The note and the instruction act differently. \nHintAboveInject{} of \nEThree{} systems follow the note more often than the instruction (Jev: \hintJev\% and \injectJev\%). Microsoft-Decision-1 follows the instruction (\injectMsft\%) but not the note (\hintMsft\%). Thus, the published range from 1.3\% to 61.4\% comes from different perturbations and systems.
+
+\paragraph{Image of the input.} An image of the same text flips \imageFlipMin\% to \imageFlipMax\% of the answers of the \nImageSystems{} systems that accept images (Table~\ref{tab:app-image}). \imageAboveFloorText{} systems of E3 are above their floor, also the deterministic ones, but the accuracy changes by at most \imageAccMax{} points. Part of this comes from the form of the state: the text as a one-element list flips \listFlipMin\% to \listFlipMax\%. The System Two models flip \imageSTwoMin\% to \imageSTwoMax\%, and \driftSTwoMin\% to \driftSTwoMax\% between two text runs.
+
+\subsection{Interference between questions (H6)}
+\label{sec:interference}
+
+TypeSafe states that Jev answers the questions of one call ``in parallel and in isolation'' \citep{typesafe2026docs}. Two perturbations test this claim: \emph{Crowd} adds 15 unrelated predicates, and \emph{Alone} sends each question in its own call. For Jev, Crowd flips \crowdedJev\% of the answers (floor \floorcrowdedJev\%) and Alone \aloneJev\% (floor \flooraloneJev\%). \citet{li2026beyond} also find no effect of bundling for Jev 1.13. Thus, H6 is not supported for Jev, the system that claims isolation. The three Clef models flip 12\% to 18\% of the answers when a question is alone in the call (floor 0). \nInterferenceOther{} more systems show small flips above their floor (\interferenceOtherMin\% to \interferenceOtherMax\%; exploratory).
+
+\input{tables/e5_pairs}
+
+\subsection{What decision training adds (H4)}
+\label{sec:training}
+
+Table~\ref{tab:e5} compares each System One model with its own backbone on the same items. Decision training adds \gainAbsFour{} points at 4B (\gainLoFour{} to \gainHiFour), \gainAbsNine{} at 9B (\gainLoNine{} to \gainHiNine) and \gainAbsTwentySeven{} at 27B (\gainLoTwentySeven{} to \gainHiTwentySeven). It also lowers the ECE. After one temperature for each system and task, the ECE gap is smaller: \eceTsDecNine{} against \eceTsBaseNine{} points at 9B, and \eceTsDecTwentySeven{} against \eceTsBaseTwentySeven{} at 27B. Thus, one temperature gives most of the raw calibration gain. The three pairs come from three vendors with different recipes. Thus, they cannot separate the effect of the size from the effect of the recipe, and they cannot test H4. On the fresh arXiv task, the gain is small or negative (Appendix~\ref{app:results}).
+
+In the closed pair, GPT-6 Luna with low reasoning is \gainAbsClosed{} points more accurate than the OpenAI Decisions API, and without reasoning about as accurate (exploratory).
+
+\subsection{Cascades to System Two models (H5)}
+\label{sec:cascades}
+
+A cascade keeps the System One answers of an item if the lowest top probability among its questions is at or above a threshold. If not, one System Two call answers all questions of the item. We test 7 System One models as the first stage, and GPT-6 Sol, Claude Sonnet 5.5 and Gemini 3.8 Flash as the second stage, on all 8 tasks. On one half of the items, we choose the lowest threshold that reaches the accuracy of the System Two model, and we test it on the other half. The cost always includes the System One call. In \nSOneBetter{} of \nCascadeCases{} settings, the System One model alone is at least as accurate as the System Two model. In \nCascadeTrivial{} more, the System Two model is at most 1 point better. In the other \nCascadeBetter{} settings, the cascade keeps the System Two accuracy within 1 point in \nCascadeKept{} settings. Only \nCascadeKeptCheap{} of these cost less than half (Table~\ref{tab:e6} in the appendix), and \nCheapMainTasks{} of them are on When2Call, arXiv and BANKING77.
+
+The confidence of the first stage separates right from wrong answers on 6 of 8 tasks (AUROC \aurocOtherMin{} to \aurocOtherMax), but not on JudgeBench-Pro (\aurocJudgeMin{} to \aurocJudgeMax) and HelpSteer2 (\aurocHelpMin{} to \aurocHelpMax). On Civil Comments, the cascade sends a median of \escCivilMedian\% of the items, mostly because of severe toxicity (Appendix~\ref{app:results}). \citet{li2026jevasajudge} report a similar but weaker effect on JudgeBench. Thus, H5 holds only for tasks where the System One model is good but not the best.
+
+\subsection{Versions and the noise floor (H7)}
+\label{sec:versions}
+
+Table~\ref{tab:e7} in the appendix compares Jev with itself on the same requests. The same version flips \flipSameMin\% to \flipSameMax\% of the top answers, at gaps from 24 minutes to \gapMaxText, and the rate does not grow with the gap. Jev 1.13 and 1.14 disagree on \flipVersion\% of the questions (\flipVersionLo{} to \flipVersionHi) in E2, and on \flipVersionMin\% to \flipVersionMax\% in all \nVersionRuns{} runs. This is \versionOverNoise{} (\versionOverNoiseLo{} to \versionOverNoiseHi) times the noise floor of \flipNoise\% (\flipNoiseLo{} to \flipNoiseHi). The accuracy stays the same (\accVersionA\% and \accVersionB\%). Most changes are on the judging tasks (Appendix~\ref{app:results}). E7 is exploratory (Appendix~\ref{app:deviations}).
+
+\section{Recommendations}
+
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item Measure the noise floor of your system. Pin the version.
+\item Calibrate each task separately. Do not reuse a threshold from another task.
+\item Make the option names agree with the rubrics. Test the option order, negation, injected text and images.
+\item Test if your system isolates the questions of one call.
+\item Use a cascade only where the confidence separates right from wrong answers.
+\end{enumerate}
+
+\section*{Limitations}
+
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item We used one route (OpenRouter), one region and one night. The direct APIs of the vendors can give other answers and other latencies.
+\item All tasks are in English. The image test uses images of text in one font, not photos. We used 500 items for each task and 200 for each perturbation, so small differences are not significant. We used no correction for multiple tests, and the cascade results have no intervals.
+\item We wrote the paraphrases and the negations ourselves. Other wordings can give other numbers.
+\item JudgeBench-Pro is adversarial for LLM judges by design. Its builders kept the items that Qwen3-32B judged wrongly. Many System One models use Qwen backbones, so the task can be harder for them.
+\item The knowledge group and the agent group have only one task each. Severe toxicity has no positive item in our Civil Comments sample, and it affects the Civil Comments numbers.
+\item The System Two models got one simple prompt, no repeats and, except for the image test, no perturbations. Thus, our robustness results apply to System One models only.
+\item The backbone readout is one of several readouts, and its prompt differs from the internal prompt of each System One model.
+\item The latencies include the network. Vendors can change their systems at any time.
+\item We do not know the training data of the systems. The arXiv task is only a weak control for contamination.
+\end{itemize}
+
+\section*{Ethics statement}
+
+We used public datasets under their licenses. Aegis 2.0 and Civil Comments contain offensive and harmful text, which we did not show to people. We release the item ids, the question cards and the model outputs, but not the text of datasets with restrictive licenses. Before publication, we will check the terms of service of each vendor about the publication of benchmark results. The main runs cost about USD 62 in total. The about 360,000 calls to System One models cost about USD 21 of this amount. The added tests (\addedCalls{} calls) cost about USD \addedCost.
+
+\bibliography{references}
+
+\appendix
+
+\section{Deviations from the plan}
+\label{app:deviations}
+
+We committed the hypotheses H1 to H7 and the experiment plan to our repository about 10 minutes before the first main call. We report these changes.
+
+\paragraph{Timing.} We ran the E7 pilot (Jev 1.13 against 1.14 on 1,000 items) in the same session in which we wrote H7, before the main runs. Table~\ref{tab:e7} reuses the pilot. We report E7 as exploratory.
+
+\paragraph{Added after the hypotheses, before the E3 runs.}
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item Codes (planned: synonyms) and the reviewer note (planned: natural context).
+\item Rev.\ and Swap.
+\end{itemize}
+
+\paragraph{Added during or after the main runs.}
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item During the main runs: GPT-6 Luna without reasoning, after the first E5 result.
+\item After the main runs: the name test (Fmt.\ and Names), after we read the protocol of \citet{rafe2026benchmarking}.
+\item After the main runs: the metric replication (Table~\ref{tab:app-metrics}), the later E7 runs and the temperature scaling in E5.
+\item After the main runs: a cascade rule at the question level. It keeps the System Two accuracy in \nCascadeKeptQ{} settings and costs less than half in \nCascadeCheapQ{} (item level: \nCascadeKept{} and \nCascadeKeptCheap).
+\end{itemize}
+
+\paragraph{Added on 16 October 2026, after the first draft.} All are exploratory (Appendix~\ref{app:added}).
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item The direction of the order flips, from the saved E3 calls.
+\item The name test with the true rubric as the second option.
+\item The image test, after a pilot with a decision rule that we wrote before the pilot.
+\item A length probe for the Clef models.
+\end{itemize}
+
+\paragraph{Changed.}
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item The judging task is JudgeBench-Pro, not RewardBench~2.
+\item 2 paraphrases and 2 option orders, not 3.
+\item The backbone readout uses option letters, not the likelihood of each option string.
+\item The cascade threshold comes from cross-fitting, not from a development split of 200 items. We did not stratify the samples by label.
+\item 500 or 1,000 bootstrap resamples, not 1,000, and no Holm correction.
+\item Most planned metrics are not in the paper: macro-F1, AUPRC, quadratic weighted kappa, NLL, AURC and risk-coverage curves.
+\end{itemize}
+
+\paragraph{Planned but not run.}
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item Trained encoders (E4, H3), and the zero-shot encoders, guards and reward models (B4 to B6).
+\item The 2B pair, the two Clef pairs, AnyJev and the Gemma~4 31B readout (E5).
+\item The datasets ClaimDB, CLINC150, SummEval, MetaTool, LlavaGuard, POPE and the CFPB complaints.
+\item The robustness probe sets: ANLI, deepset/prompt-injections, NotInject and llmail-inject-challenge; and the implication test (E3).
+\item The threshold-transfer matrix (E2) and the cascade on the confidence of Claude Haiku 5.5 (E6).
+\item The weekly runs of the two ``latest'' aliases (E7), the comparison with the direct APIs (E0) and latency runs in two cloud regions (E8).
+\end{itemize}
+
+\section{Comparison with published numbers}
+\label{app:comparison}
+
+\begin{table*}[t]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}lllll>{\raggedright\arraybackslash}X@{}}
+\toprule
+Study & Jev & Their task and metric & Theirs & Ours (Jev 1.14) & Protocol difference \\
+\midrule
+\citet{rafe2026benchmarking} & 1.13 & names ``yes''/``no'' swapped; flips per hundred & 50.5; 97.2; 84.0 & \nameswapJev\% (Names) & other data and rubric texts; our rubrics say ``true'' or ``not true'' \\
+\citet{rafe2026benchmarking} & 1.13 & test-retest floor & 1.3 & \repeatJev\% (Floor) & 40 neutral states, 5 answers against our 8 tasks, 5 calls \\
+\citet{li2026beyond} & 1.13 & ``yes'' to a statement and its negation & 6.5\% & \negJev\% (Neg.) & they count one error type; we count all flips \\
+\citet{huang2026consider} & 1.13 & flips after one option shuffle & 5.3\% & \orderJev\% (Order) & other datasets; we use 2 random orders \\
+\citet{xu2026jevout} & 1.13 & one target-aware sentence; adaptive search & 16.9\%; 61.4\% & \hintJev\% follow, \brokenHintJev\% broken (Hint) & our note names a random wrong option and is not adaptive; they target the most probable wrong option and count only correct decisions \\
+\citet{sharma2026typedbench} & 1.13 & refit temperature on generated items & $T$ = 0.21 to 0.66 & $T$ = \jevTempBoolq{} to \jevTempJudgebench{} & generated items with rule-based labels against public tasks \\
+\citet{deusser2026evaluating} & 1.13 & pooled choice ECE & 2.8 points & \jevEceBanking{} and \jevEceArxiv{} points & 22 choice datasets against our 2 choice tasks for classification \\
+\bottomrule
+\end{tabularx}
+\caption{Our closest values to published numbers. The protocols differ, so the values are comparable only in direction and order of size.}
+\label{tab:app-comparison}
+\end{table*}
+
+Table~\ref{tab:app-comparison} puts our closest values next to the published numbers.
+
+\input{tables/app_metrics}
+
+\section{Systems and versions}
+\label{app:systems}
+
+Table~\ref{tab:app-systems} lists the resolved versions. Two systems failed on some requests. The OpenAI Decisions API refused to answer some judging and BANKING77 questions (``OpenAI refused to answer question''). The client tried each failed request up to 5 times, so some refusals became answers on a later try. Tev1-4B sometimes answered with a letter that is not an option. Span-01 and Span-01-lite returned almost the same probabilities. For BANKING77, the System Two models list only the options with a probability of 0.01 or more, because Claude rejects a strict schema with 77 properties. The same effort setting gives different amounts of reasoning, and some calls return no content (Table~\ref{tab:app-s2}). Two check runs of E7 followed the main runs at 02:00 and 05:00 IST. The OpenRouter alias \texttt{\textasciitilde typesafe/jev-latest} already pointed to 1.14 one day after the release.
+
+\input{tables/app_systems}
+
+\section{Question cards}
+\label{app:cards}
+
+Table~\ref{tab:app-cards} gives the question card of each task.
+
+\input{tables/app_cards}
+
+\section{Perturbation texts}
+\label{app:perturbations}
+
+Table~\ref{tab:app-perturbations} gives the paraphrases and the negations that we wrote, and its caption gives the other texts of E3.
+
+\input{tables/app_perturbations}
+
+\section{Added tests (exploratory)}
+\label{app:added}
+
+We added these tests on 16 October 2026, after the first draft of this paper (\addedTimeText).
+
+\paragraph{Direction of the order flips.} Table~\ref{tab:app-position} uses the saved calls of the Order perturbation. It needs no new calls.
+
+\paragraph{Name test, true rubric second.} Two more variants put the true rubric as the second option: ``no'' (not true) before ``yes'' (true), and ``yes'' (not true) before ``no'' (true). Each name stays on the same rubric as before. The test uses the \nNamesTested{} systems of the name test and the same 200 items of BoolQ, Aegis 2.0 and Civil Comments (Table~\ref{tab:app-names}).
+
+\input{tables/app_position}
+
+\input{tables/app_names}
+
+\subsection{Image test}
+\label{app:image}
+
+We make one PNG image of each input text: DejaVu Sans at 24 pixels (20 or 16 pixels for a long input), black on white, 1,000 pixels wide and at least 400 pixels high. The state is a list with only the image part \citep{openrouter2026multimodal}. We leave out an item with a character that the font does not have, for example an emoji, and the next item takes its place (1 of the first 200 BoolQ items, 5 of Aegis 2.0). Jev 1.13 and 1.14 rejected an image of 1,000 by 256 pixels (``Invalid image dimensions'') and accepted 1,000 by 300. Classify-1 rejects image parts. It accepts the image as a document and reads it with OCR. The System Two models get the B1 prompt with the image in place of the text. After the first full run, a control sent the same text as a one-element list, which is the form of the image state (for Classify-1, a text object). The list alone flips \listFlipMin\% to \listFlipMax\% of the answers, also for deterministic systems. The image flips more than the list for \imageAboveListText{} systems.
+
+A pilot with 50 items of Civil Comments and BANKING77 came first. Before the pilot, we wrote this rule: run the full test if at least 3 systems flip more than 5\% of their answers between the text and the image. In the pilot, 5 systems did. Table~\ref{tab:app-image} gives the full test.
+
+\input{tables/app_image}
+
+\paragraph{Length probe.} The OpenRouter guide for images says that for Clef and Clef-flash, ``Workers AI reads roughly the first 2,000 tokens of text in \texttt{state} and drops the rest without an error'' \citep{openrouter2026multimodal}. Some of our JudgeBench-Pro inputs are longer. A probe puts one fact (``the access code of this document is blue'') at different positions in a long input of arXiv abstracts, with one choice question with 4 options. The three Clef models were correct on all items with the fact at up to \probeLongMax{} tokens of a plain text of \probeLongInput{} tokens, and at up to \probeArrayMax{} tokens in the list form of the guide. Jev 1.14, pplx-decider and Microsoft-Decision-1 were also correct on all items of the shorter input. Thus, this limit does not apply to our runs.
+
+\section{More results}
+\label{app:results}
+
+Table~\ref{tab:app-acc} gives the accuracy of each system on each task. Table~\ref{tab:app-e3-ci} gives 95\% intervals for the main robustness results. Table~\ref{tab:app-e5} gives the gain of decision training on each task. Table~\ref{tab:app-s2} gives details of the System Two runs. Tables~\ref{tab:e6} and~\ref{tab:e7} give the cascade and version results. Figure~\ref{fig:cascade} shows the cascade curves, and Figure~\ref{fig:reliability} shows reliability diagrams.
+
+\paragraph{Decision training on each task (E5).} At 27B, the gains are largest on the judging tasks, and at 9B on When2Call. On the fresh arXiv task, the gain is small or negative (\arxivGainFour, \arxivGainNine{} and \arxivGainTwentySeven{} points; Table~\ref{tab:app-e5}). This can come from training data that is similar to the public tasks. At 9B and 27B, it can also come from a ceiling: these backbones already reach \arxivBaseNine\% and \arxivBaseTwentySeven\% on arXiv.
+
+\paragraph{Versions (E7).} Most changes between Jev 1.13 and 1.14 are on the judging tasks: \flipVersionJudgebench\% on JudgeBench-Pro and \flipVersionHelpsteer\% on HelpSteer2, against \flipNoiseJudgebench\% and \flipNoiseHelpsteer\% of noise.
+
+\paragraph{Cascades on Civil Comments (E6).} On Civil Comments, the System Two models are more accurate (median gap \civilGapMedian{} points), so the cascade sends a median of \escCivilMedian\% of the items. Most of this gap comes from severe toxicity, which has no positive item. Without it, the median gap is \civilGapMedianWo{} points, and the median escalation is \escCivilMedianWo\%.
+
+\paragraph{Latency (E8).} The median System One call took 0.3 to 0.9 seconds from Bangalore through OpenRouter, except for Classify-1 and Solar Decide (1.3 seconds). The median System Two call took 1.9 to 3.7 seconds (Table~\ref{tab:app-latency}). For most System One models, a call with 7 questions took about as long as a call with 1 question (Jev: 0.99 times). For pplx-decider, Tev1-4B and Solar Decide Flash, it took 1.4 to 1.8 times as long. These times include the network, so they are not the latencies of the models alone. The latency of a call is the time of its last try.
+
+\input{tables/app_accuracy}
+
+\input{tables/e6_cascade}
+
+\input{tables/e7_versions}
+
+\input{tables/app_e3_ci}
+
+\input{tables/app_e5}
+
+\input{tables/app_s2}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/cascade.pdf}
+\caption{Cascades to GPT-6 Sol (E6): accuracy against cost as the threshold changes, for three System One models as the first stage, on all items (not cross-fitted). Circles: the System One model alone. Squares: GPT-6 Sol alone.}
+\label{fig:cascade}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/reliability.pdf}
+\caption{Reliability diagrams of the top answer (E2), with 10 equal-width bins (fewer bins than the ECE, so that each bin has enough answers). Points above the diagonal show underconfidence. Points below it show overconfidence. The size of a point shows the number of answers in the bin. The diagrams pool all questions of a group, so Civil Comments and HelpSteer2 weigh more.}
+\label{fig:reliability}
+\end{figure*}
+
+\input{tables/app_latency}
+
+\end{document}

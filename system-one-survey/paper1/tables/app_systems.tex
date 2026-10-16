@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+System & Resolved version (from the response) & Provider & Backbone (vendor statement) \\
+\midrule
+Jev 1.14 & \texttt{jev-1.14-20261014} & TypeSafe & not disclosed \\
+Jev 1.13 & \texttt{jev-1.13-20260917} & TypeSafe & not disclosed \\
+OpenAI Decisions (Luna) & \texttt{gpt-6-luna-decisions-20261006} & OpenAI & gpt-6-luna \\
+Microsoft-Decision-1 & \texttt{microsoft-decision-1-20261009} & Azure & Qwen3.5-9B \\
+pplx-decider v1.1 & \texttt{pplx-decider-v1.1-27b-20261006} & Perplexity & Qwen3.8-27B \\
+Clef & \texttt{clef} & Cloudflare & Qwen-based, 27B \\
+Clef-flash & \texttt{clef-flash} & Cloudflare & Qwen-based, 9B \\
+Clef-omni & \texttt{clef-omni-20261009} & Cloudflare & Qwen3-Omni-30B-A3B \\
+Mercury Decide & \texttt{mercury-decide-20260930} & Inception & not disclosed \\
+Liquid d1 & \texttt{d1-20260930} & Liquid & not disclosed \\
+Drex v1.5 & \texttt{drex-v1.5-20261009} & DeepInfra & not disclosed \\
+Drex v2.0 & \texttt{drex-v2.0-20261009} & DeepInfra & not disclosed \\
+Kev-4B & \texttt{kev-4b-20260924} & Phala & not disclosed \\
+Tev1-4B & \texttt{tev1-4b-experimental-20260923} & Together & Qwen3.5-4B (SFT) \\
+Solar Decide & \texttt{solar-decide-20260928} & Upstage & not disclosed \\
+Solar Decide Flash & \texttt{solar-decide-flash-20261008} & Upstage & not disclosed \\
+Classify-1 & \texttt{classify-1-20260928} & ScaleDown & not disclosed \\
+Span-01 & \texttt{span-01-20260925} & Respan & not disclosed \\
+Span-01-lite & \texttt{span-01-lite-20260925} & Respan & not disclosed \\
+\bottomrule
+\end{tabular}
+\caption{The System One models in E2. All calls went to \texttt{POST /api/alpha/decisions} on OpenRouter with a pinned model id. We pinned the provider for the Clef models (Cloudflare) and Kev-4B (Phala). The date suffix of the resolved version identifies the model version. Clef and Clef-flash return no suffix.}
+\label{tab:app-systems}
+\end{table*}

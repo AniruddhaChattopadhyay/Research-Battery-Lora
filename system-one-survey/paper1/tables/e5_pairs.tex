@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{Accuracy (\%)} & \multicolumn{2}{c}{ECE, dec. / base} \\
+\cmidrule(lr){2-4} \cmidrule(l){5-6}
+System One / backbone & Dec. & Base & Gain [95\% CI] & Raw & Temp. \\
+\midrule
+Tev1-4B / Q-4B & 67.2 & 62.2 & +5.0 [+3.7, +6.2] & 13.2 / 18.5 & 8.1 / 9.4 \\
+MS-Dec.-1 / Q-9B & 72.6 & 65.1 & +7.5 [+6.2, +8.7] & 12.2 / 19.4 & 6.1 / 8.7 \\
+pplx / Q-27B & 76.5 & 68.5 & +8.0 [+6.8, +9.2] & 8.9 / 15.4 & 5.6 / 7.0 \\
+OpenAI / Luna low & 70.3 & 78.6 & -8.3 [-9.4, -7.2] & 17.5 / 13.8 & 4.7 / 4.2 \\
+OpenAI / Luna none$^*$ & 70.3 & 71.3 & -1.1 [-2.1, -0.0] & 17.6 / 20.6 & 4.8 / 5.8 \\
+\bottomrule
+\end{tabular}
+\caption{Decision training against the same backbone (E5): means over the 7 tasks with 26 options or fewer, on the same items. \emph{Base}: the letter readout of the backbone (Q-4B, Q-9B: Qwen3.5-4B, 9B; Q-27B: Qwen3.8-27B), or GPT-6 Luna (chat API). \emph{Temp.}: ECE (points) after a cross-fitted temperature. $^*$Exploratory.}
+\label{tab:e5}
+\end{table}

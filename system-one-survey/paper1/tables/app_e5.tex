@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Size & Pair & BoolQ & Aegis & Civil & arXiv & W2C & JB-Pro & HS2 & Mean \\
+\midrule
+4B & Tev1-4B vs.\ Qwen3.5-4B & +8.0 & +4.8 & -0.3 & -2.2 & +19.2 & +0.2 & +5.1 & +5.0 \\
+9B & Microsoft-Decision-1 vs.\ Qwen3.5-9B & +6.0 & +5.2 & +7.6 & +0.6 & +15.0 & +5.4 & +12.8 & +7.5 \\
+27B & pplx-decider v1.1 vs.\ Qwen3.8-27B & +11.8 & +2.6 & +9.4 & -2.2 & -0.2 & +18.2 & +16.7 & +8.0 \\
+closed & OpenAI Decisions (Luna) vs.\ GPT-6 Luna, low reas. & +1.2 & -0.6 & -8.4 & -2.2 & -6.4 & -34.3 & -7.6 & -8.3 \\
+closed & OpenAI Decisions (Luna) vs.\ GPT-6 Luna, no reas. & +1.2 & -0.2 & -8.3 & +0.6 & -0.4 & +7.7 & -8.2 & -1.1 \\
+\bottomrule
+\end{tabular}
+\caption{E5 for each task: the accuracy of the System One model minus the accuracy of its backbone, in points.}
+\label{tab:app-e5}
+\end{table*}

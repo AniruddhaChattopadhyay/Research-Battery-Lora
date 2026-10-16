@@ -1,0 +1,55 @@
+system,label,task,k,items,flips,earlier,later,mixed,p_sign,wrong,first_wrong,share_first_wrong,share_first_chance
+typesafe/jev-1.14,Jev 1.14,when2call,4,200,6,1,2,3,1.0,108,26,0.24074074074074073,0.25
+typesafe/jev-1.14,Jev 1.14,banking77,77,200,8,3,2,3,1.0,65,1,0.015384615384615385,0.012987012987012988
+typesafe/jev-1.14,Jev 1.14,arxiv,16,200,5,2,0,3,0.5,55,6,0.10909090909090909,0.0625
+typesafe/jev-1.14,Jev 1.14,all,,600,19,6,4,9,0.75390625,,,,
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),when2call,4,200,26,15,2,9,0.002349853515625,147,49,0.3333333333333333,0.25
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),banking77,77,198,26,14,1,11,0.0009765625,90,1,0.011111111111111112,0.012987012987012988
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),arxiv,16,200,17,11,2,4,0.0224609375,64,9,0.140625,0.0625
+openai/gpt-6-luna-decisions,OpenAI Decisions (Luna),all,,598,69,40,5,24,7.878384167270269e-08,,,,
+microsoft/microsoft-decision-1,Microsoft-Decision-1,when2call,4,200,3,0,1,2,1.0,101,30,0.297029702970297,0.25
+microsoft/microsoft-decision-1,Microsoft-Decision-1,banking77,77,200,5,1,1,3,1.0,41,1,0.024390243902439025,0.012987012987012988
+microsoft/microsoft-decision-1,Microsoft-Decision-1,arxiv,16,200,1,0,0,1,nan,50,4,0.08,0.0625
+microsoft/microsoft-decision-1,Microsoft-Decision-1,all,,600,9,1,2,6,1.0,,,,
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,when2call,4,200,4,1,1,2,1.0,114,30,0.2631578947368421,0.25
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,banking77,77,200,13,6,4,3,0.75390625,74,1,0.013513513513513514,0.012987012987012988
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,arxiv,16,200,6,2,3,1,1.0,62,6,0.0967741935483871,0.0625
+perplexity/pplx-decider-v1.1-27b,pplx-decider v1.1,all,,600,23,9,8,6,1.0,,,,
+cloudflare/clef,Clef,when2call,4,200,0,0,0,0,nan,126,32,0.25396825396825395,0.25
+cloudflare/clef,Clef,banking77,77,200,0,0,0,0,nan,18,0,0.0,0.012987012987012988
+cloudflare/clef,Clef,arxiv,16,200,0,0,0,0,nan,44,5,0.11363636363636363,0.0625
+cloudflare/clef,Clef,all,,600,0,0,0,0,nan,,,,
+cloudflare/clef-flash,Clef-flash,when2call,4,200,0,0,0,0,nan,154,39,0.2532467532467532,0.25
+cloudflare/clef-flash,Clef-flash,banking77,77,200,0,0,0,0,nan,12,0,0.0,0.012987012987012988
+cloudflare/clef-flash,Clef-flash,arxiv,16,200,0,0,0,0,nan,56,5,0.08928571428571429,0.0625
+cloudflare/clef-flash,Clef-flash,all,,600,0,0,0,0,nan,,,,
+cloudflare/clef-omni,Clef-omni,when2call,4,200,0,0,0,0,nan,158,40,0.25316455696202533,0.25
+cloudflare/clef-omni,Clef-omni,banking77,77,200,0,0,0,0,nan,22,0,0.0,0.012987012987012988
+cloudflare/clef-omni,Clef-omni,arxiv,16,200,0,0,0,0,nan,54,5,0.09259259259259259,0.0625
+cloudflare/clef-omni,Clef-omni,all,,600,0,0,0,0,nan,,,,
+inception/mercury-decide,Mercury Decide,when2call,4,200,7,3,1,3,0.625,106,30,0.2830188679245283,0.25
+inception/mercury-decide,Mercury Decide,banking77,77,200,7,0,2,5,0.5,42,0,0.0,0.012987012987012988
+inception/mercury-decide,Mercury Decide,arxiv,16,200,10,4,2,4,0.6875,66,6,0.09090909090909091,0.0625
+inception/mercury-decide,Mercury Decide,all,,600,24,7,5,12,0.7744140625,,,,
+jaredpalmer/kev-4b,Kev-4B,when2call,4,200,15,2,4,9,0.6875,121,31,0.256198347107438,0.25
+jaredpalmer/kev-4b,Kev-4B,banking77,77,200,10,5,2,3,0.453125,48,1,0.020833333333333332,0.012987012987012988
+jaredpalmer/kev-4b,Kev-4B,arxiv,16,200,12,4,2,6,0.6875,85,4,0.047058823529411764,0.0625
+jaredpalmer/kev-4b,Kev-4B,all,,600,37,11,8,18,0.6476058959960938,,,,
+liquid/d1,Liquid d1,when2call,4,200,7,4,0,3,0.125,93,24,0.25806451612903225,0.25
+liquid/d1,Liquid d1,banking77,77,200,13,3,4,6,1.0,50,1,0.02,0.012987012987012988
+liquid/d1,Liquid d1,arxiv,16,200,15,5,4,6,1.0,72,6,0.08333333333333333,0.0625
+liquid/d1,Liquid d1,all,,600,35,12,8,15,0.5034446716308594,,,,
+nace-ai/drex-v1.5,Drex v1.5,when2call,4,200,13,6,3,4,0.5078125,107,27,0.2523364485981308,0.25
+nace-ai/drex-v1.5,Drex v1.5,banking77,77,200,13,3,5,5,0.7265625,46,0,0.0,0.012987012987012988
+nace-ai/drex-v1.5,Drex v1.5,arxiv,16,200,18,8,2,8,0.109375,72,8,0.1111111111111111,0.0625
+nace-ai/drex-v1.5,Drex v1.5,all,,600,44,17,10,17,0.24778856337070465,,,,
+nace-ai/drex-v2.0,Drex v2.0,when2call,4,200,5,2,3,0,1.0,103,24,0.23300970873786409,0.25
+nace-ai/drex-v2.0,Drex v2.0,banking77,77,200,12,5,1,6,0.21875,66,0,0.0,0.012987012987012988
+nace-ai/drex-v2.0,Drex v2.0,arxiv,16,200,14,2,8,4,0.109375,60,5,0.08333333333333333,0.0625
+nace-ai/drex-v2.0,Drex v2.0,all,,600,31,9,12,10,0.6636238098144531,,,,
+togethercomputer/tev1-4b-experimental,Tev1-4B,when2call,4,200,17,6,5,6,1.0,119,32,0.2689075630252101,0.25
+togethercomputer/tev1-4b-experimental,Tev1-4B,arxiv,16,200,21,13,3,5,0.021270751953125,87,8,0.09195402298850575,0.0625
+togethercomputer/tev1-4b-experimental,Tev1-4B,all,,400,38,19,8,11,0.052238985896110535,,,,
+upstage/solar-decide-flash,Solar Decide Flash,when2call,4,200,48,32,0,16,4.656612873077393e-10,194,79,0.4072164948453608,0.25
+upstage/solar-decide-flash,Solar Decide Flash,arxiv,16,200,57,41,2,14,2.1532287064474076e-10,110,11,0.1,0.0625
+upstage/solar-decide-flash,Solar Decide Flash,all,,400,105,73,2,30,1.5093068328887564e-19,,,,

@@ -1,0 +1,48 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+ & & & \multicolumn{5}{c}{Signed calibration error (points)} & & & \\
+\cmidrule(lr){4-8}
+System & Tasks & Acc. & Knowl. & Class. & Agent & Judging & All & ECE & p50 (s) & \$/1k \\
+\midrule
+\multicolumn{11}{l}{\textit{System One models (decisions API)}} \\
+Jev 1.14 & 8 & 73.5 & -1.7 & +4.1 & +10.7 & +17.3 & +7.5 & 9.1 & 0.51 & 0.042 \\
+Jev 1.13 & 8 & 73.3 & -1.6 & +5.6 & +12.9 & +20.3 & +9.3 & 10.3 & 0.51 & 0.042 \\
+OpenAI Decisions (Luna) & 8 & 71.1 & +5.1 & +9.1 & +15.4 & +34.7 & +15.8 & 16.6 & 0.30 & 0.085 \\
+Microsoft-Decision-1 & 8 & 74.4 & +5.9 & +2.3 & +16.4 & +24.9 & +10.1 & 11.1 & 0.54 & 0.026 \\
+pplx-decider v1.1 & 8 & 76.8 & +0.4 & +3.9 & +16.1 & +14.4 & +7.6 & 8.8 & 0.62 & 0.021 \\
+Clef & 8 & 74.5 & +1.9 & +0.6 & +11.8 & +25.6 & +8.4 & 11.9 & 0.63 & 0.222 \\
+Clef-flash & 8 & 72.5 & +1.7 & -1.6 & +12.8 & +24.8 & +7.2 & 12.2 & 0.54 & 0.035 \\
+Clef-omni & 8 & 72.6 & +5.9 & -4.6 & +15.7 & +26.6 & +7.0 & 17.1 & 0.39 & 0.137 \\
+Mercury Decide & 8 & 75.2 & +4.6 & +8.2 & +21.0 & +26.4 & +13.9 & 14.4 & 0.60 & 0.017 \\
+Liquid d1 & 8 & 76.6 & +2.8 & +3.2 & +12.8 & +15.5 & +7.4 & 9.5 & 0.64 & 0.017 \\
+Drex v1.5 & 8 & 70.9 & +2.0 & +5.4 & +12.4 & +33.1 & +12.8 & 13.4 & 0.55 & 0.024 \\
+Drex v2.0 & 8 & 72.0 & -3.8 & -2.1 & +5.9 & +12.6 & +2.4 & 7.5 & 0.55 & 0.036 \\
+Kev-4B & 8 & 71.6 & -1.8 & -15.3 & -8.9 & +18.6 & -4.4 & 14.9 & 0.85 & 0.025 \\
+Tev1-4B & 7 & 67.2 & +1.5 & +4.8 & +9.0 & +30.2 & +12.2 & 13.2 & 0.55 & 0.047 \\
+Solar Decide & 7 & 67.2 & +8.3 & +15.8 & +30.5 & +45.3 & +25.2 & 25.4 & 1.26 & 0.088 \\
+Solar Decide Flash & 7 & 60.4 & +6.8 & +14.8 & +29.4 & +34.4 & +21.3 & 21.5 & 0.75 & 0.088 \\
+Classify-1 & 8 & 62.0 & -8.9 & -4.2 & +7.5 & +15.7 & +1.7 & 10.9 & 1.28 & 0.067 \\
+Span-01 & 3 & 56.5 & +47.2 & +28.8 & -- & -- & +35.0 & 35.0 & 0.54 & 0.007 \\
+Span-01-lite & 3 & 56.5 & +47.2 & +28.8 & -- & -- & +35.0 & 35.0 & 0.55 & 0.000 \\
+\midrule
+\multicolumn{11}{l}{\textit{System Two models (structured outputs)}} \\
+GPT-6 Sol & 8 & 80.1 & +9.7 & +7.3 & +22.4 & +15.0 & +11.4 & 11.7 & 2.40 & 2.636 \\
+Claude Sonnet 5.5 & 8 & 79.8 & -0.1 & -1.5 & +8.0 & +7.0 & +2.0 & 7.1 & 2.24 & 4.656 \\
+Gemini 3.8 Flash & 8 & 79.5 & +16.6 & +5.0 & +16.7 & +11.8 & +9.6 & 10.9 & 3.70 & 1.663 \\
+Claude Haiku 5.5 & 8 & 77.5 & +3.4 & -3.1 & +12.3 & +5.7 & +1.8 & 8.3 & 1.90 & 0.249 \\
+GPT-6 Luna (chat, low reas.) & 8 & 79.0 & +12.2 & +5.6 & +23.2 & +18.3 & +11.8 & 13.2 & 2.98 & 0.164 \\
+GPT-6 Luna (chat, no reas.) & 8 & 72.2 & +10.7 & +5.0 & +29.6 & +37.9 & +17.0 & 18.9 & -- & -- \\
+\midrule
+\multicolumn{11}{l}{\textit{Open backbones (letter readout)}} \\
+Qwen3.5-4B readout & 7 & 62.2 & +6.6 & +8.8 & +24.0 & +33.8 & +17.8 & 18.4 & -- & -- \\
+Qwen3.5-9B readout & 7 & 65.1 & +5.8 & +9.1 & +19.6 & +38.8 & +18.6 & 19.4 & -- & -- \\
+Qwen3.8-27B readout & 7 & 68.5 & +11.2 & +8.3 & +14.6 & +27.3 & +15.0 & 15.4 & -- & -- \\
+\bottomrule
+\end{tabular}
+\caption{Accuracy and calibration (E2), 500 items for each task. All columns are means over tasks, and each task counts once. \emph{Acc.}: the mean accuracy over the tasks that the system accepts. \emph{Signed calibration error}: the mean top-answer probability minus the accuracy, in points; above 0 is overconfident. Groups: knowledge (BoolQ), classification (Aegis, Civil Comments, BANKING77, arXiv), agent (When2Call), judging (JudgeBench-Pro, HelpSteer2). \emph{ECE}: the mean over tasks of the top-label ECE (15 bins), in points. \emph{p50}: the median time of one call from Bangalore through OpenRouter.}
+\label{tab:e2}
+\end{table*}

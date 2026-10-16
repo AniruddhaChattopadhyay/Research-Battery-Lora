@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{lrrrrrrrrrrrrrr}
+\toprule
+ & \multicolumn{12}{c}{Flip rate (\%)} & \multicolumn{2}{c}{Follow (\%)} \\
+\cmidrule(lr){2-13} \cmidrule(lr){14-15}
+System & Floor & Para. & Neg. & Fmt. & Names & Order & Codes & Rev. & Swap & Crowd. & Alone & Image & Hint & Inject \\
+\midrule
+Jev 1.14 & 1.9 & 3.6 & 3.9 & \textcolor{gray}{0.8} & 98.1 & 2.8 & 3.5 & 13.3 & 27.0 & \textcolor{gray}{1.5} & \textcolor{gray}{2.5} & 3.4 & 26.2 & 5.3 \\
+OpenAI Decisions (Luna) & 2.2 & 7.7 & 11.2 & 5.6 & 76.3 & 10.9 & 17.6 & 25.7 & 55.3 & \textcolor{gray}{1.8} & \textcolor{gray}{3.4} & 7.8 & 29.9 & 5.1 \\
+Microsoft-Decision-1 & 1.8 & 4.9 & 16.9 & 3.0 & 95.2 & \textcolor{gray}{1.6} & 5.2 & 21.3 & 27.5 & \textcolor{gray}{1.5} & \textcolor{gray}{2.1} & -- & 1.0 & 47.6 \\
+pplx-decider v1.1 & 0.0 & 3.0 & 5.9 & 0.9 & 79.7 & 3.2 & 2.8 & 7.2 & 17.0 & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & 2.8 & 25.3 & 29.1 \\
+Clef & 0.0 & 3.8 & 22.6 & 2.3 & 14.9 & \textcolor{gray}{0.0} & 5.5 & 16.0 & 26.0 & 4.9 & 17.8 & 4.3 & 26.6 & 17.9 \\
+Clef-flash & 0.0 & 4.5 & 38.6 & 3.3 & 19.6 & \textcolor{gray}{0.0} & 5.2 & 11.5 & 40.5 & 6.3 & 15.3 & 5.4 & 27.1 & 22.2 \\
+Clef-omni & 0.0 & 4.7 & 31.8 & 1.5 & 14.1 & \textcolor{gray}{0.0} & 7.3 & 19.8 & 66.0 & 5.9 & 12.4 & 7.4 & 11.3 & 16.9 \\
+Mercury Decide & 0.5 & 4.4 & 10.9 & 1.5 & 96.6 & 4.4 & 2.8 & 24.8 & 27.0 & 1.2 & 2.1 & 5.3 & 16.8 & 4.2 \\
+Liquid d1 & 1.6 & 5.0 & 34.8 & 6.3 & \textcolor{gray}{0.3} & 6.5 & \textcolor{gray}{2.3} & 35.4 & 20.5 & \textcolor{gray}{1.4} & 3.6 & 4.7 & 5.1 & 1.1 \\
+Drex v1.5 & 0.5 & 7.0 & 40.7 & 6.6 & 34.4 & 6.2 & 5.0 & 24.2 & 30.0 & \textcolor{gray}{0.8} & 2.8 & -- & 12.0 & 16.0 \\
+Drex v2.0 & 0.0 & 7.1 & 38.0 & 5.3 & 64.6 & 4.8 & 4.3 & 41.6 & 49.0 & 0.8 & 2.0 & -- & 13.9 & 5.8 \\
+Kev-4B & 0.3 & 5.0 & 44.2 & 3.7 & 41.2 & 7.0 & 6.2 & 21.5 & 59.0 & \textcolor{gray}{0.2} & 0.7 & -- & 17.5 & 15.4 \\
+Tev1-4B & 1.1 & 5.7 & 53.5 & 1.8 & 91.7 & 10.6 & 7.0 & 54.4 & 40.9 & \textcolor{gray}{0.9} & \textcolor{gray}{1.3} & -- & 26.7 & 22.3 \\
+Solar Decide Flash & 3.1 & 11.5 & 40.8 & 7.5 & 86.0 & 20.9 & 19.0 & 50.4 & 50.5 & \textcolor{gray}{2.7} & \textcolor{gray}{4.6} & -- & 62.7 & 67.7 \\
+Span-01 & 0.0 & 7.4 & 68.5 & -- & -- & -- & -- & -- & -- & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & -- & 1.7 & 1.7 \\
+Span-01-lite & 0.0 & 7.4 & 68.5 & -- & -- & -- & -- & -- & -- & \textcolor{gray}{0.0} & \textcolor{gray}{0.0} & -- & 1.7 & 1.7 \\
+\bottomrule
+\end{tabular}
+\caption{Robustness (E3): 200 items for each task, mean over the tasks where a perturbation applies. \emph{Floor}: 4 identical repeats, all tasks. \emph{Para.}: 2 paraphrases (all tasks). \emph{Neg.}: the negated predicate (BoolQ, Aegis, Civil). \emph{Fmt.}: the predicate as a choice between ``yes'' and ``no'', against the original predicate. \emph{Names}: the names on the opposite rubrics, against \emph{Fmt.} \citep{rafe2026benchmarking}. \emph{Order}: 2 random orders of the options (BANKING77, arXiv, When2Call). \emph{Codes}: neutral option names (same tasks). \emph{Rev.}: the HelpSteer2 scale in reverse order. \emph{Swap}: the two JudgeBench-Pro responses change places. \emph{Crowd.}: 15 unrelated questions in the same call (the 6 single-question tasks). \emph{Alone}: each question of a Civil Comments or HelpSteer2 card in its own call. \emph{Image}: an image of the input text (BoolQ, Aegis, Civil, BANKING77), against the text in the same run (exploratory; Appendix~\ref{app:image}). \emph{Hint} and \emph{Inject}: the share of answers that follow a wrong answer named in the input (single-question tasks), among the answers that were not that answer before. Grey: the lower end of the 95\% interval is not above the floor of the same tasks. We compare all other changes with the original request of E2.}
+\label{tab:e3}
+\end{table*}

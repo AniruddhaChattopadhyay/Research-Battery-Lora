@@ -1,0 +1,37 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.5pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+System & Calls & p50 & p95 & ms/1k & \$/1k & 7q/1q \\
+\midrule
+Jev 1.14 & 4000 & 514 & 621 & 8 & 0.042 & 0.99 \\
+Jev 1.13 & 4000 & 513 & 606 & 11 & 0.042 & -- \\
+OpenAI Decisions & 3994 & 295 & 420 & -14 & 0.085 & 0.94 \\
+Microsoft-Decision-1 & 4000 & 544 & 666 & 1 & 0.026 & 1.08 \\
+pplx-decider v1.1 & 4000 & 624 & 1152 & 94 & 0.021 & 1.78 \\
+Clef & 4000 & 626 & 1158 & 56 & 0.222 & 1.00 \\
+Clef-flash & 4000 & 541 & 1061 & 171 & 0.035 & 1.24 \\
+Clef-omni & 4000 & 387 & 610 & 17 & 0.137 & 1.02 \\
+Mercury Decide & 4000 & 602 & 809 & 93 & 0.017 & 1.09 \\
+Kev-4B & 4000 & 853 & 1239 & 154 & 0.025 & 1.01 \\
+Liquid d1 & 4000 & 637 & 841 & 20 & 0.017 & 1.06 \\
+Drex v1.5 & 4000 & 546 & 1165 & 6 & 0.024 & 0.77 \\
+Drex v2.0 & 4000 & 547 & 1116 & 9 & 0.036 & 0.98 \\
+Span-01 & 1500 & 544 & 781 & -25 & 0.007 & 0.90 \\
+Span-01-lite & 1500 & 547 & 788 & -69 & 0.000 & 0.90 \\
+Classify-1 & 4000 & 1279 & 3672 & 108 & 0.067 & -- \\
+Tev1-4B & 3484 & 548 & 1003 & 64 & 0.047 & 1.56 \\
+Solar Decide & 3500 & 1256 & 18442 & 2565 & 0.088 & -- \\
+Solar Decide Flash & 3500 & 751 & 1242 & 41 & 0.088 & 1.44 \\
+GPT-6 Sol & 4000 & 2398 & 4240 & 1003 & 2.636 & -- \\
+Claude Sonnet 5.5 & 3950 & 2241 & 4075 & 677 & 4.656 & -- \\
+Gemini 3.8 Flash & 3998 & 3705 & 12773 & 937 & 1.663 & -- \\
+Claude Haiku 5.5 & 3996 & 1904 & 5527 & 892 & 0.249 & -- \\
+GPT-6 Luna (chat) & 4000 & 2984 & 6952 & 2097 & 0.164 & -- \\
+\bottomrule
+\end{tabular}
+\caption{Latency and cost (E8, from the logs of E2 and B1). Times in ms, from Bangalore through OpenRouter, so they include the network. \emph{ms/1k}: the slope of the latency against the input tokens. \emph{\$/1k}: the cost of 1,000 calls. \emph{7q/1q}: Civil Comments, the median latency of one call with 7 questions divided by that of one call with 1 question.}
+\label{tab:app-latency}
+\end{table}

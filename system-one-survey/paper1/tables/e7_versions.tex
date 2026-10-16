@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Jev comparison & Qs & Flips [95\% CI] & Dist. & Acc. A & Acc. B \\
+\midrule
+1.14, 24 min apart & 14400 & 2.3 [1.9, 2.7] & 0.015 & 68.1 & 67.9 \\
+1.14, 35 min apart & 3500 & 2.2 [1.7, 2.7] & 0.015 & 66.7 & 66.8 \\
+1.14, 2.4 h apart & 3500 & 2.3 [1.7, 2.8] & 0.015 & 66.7 & 66.7 \\
+1.14, 5.3 h apart & 3500 & 2.5 [2.0, 3.0] & 0.015 & 66.7 & 66.6 \\
+1.13, 36 min apart & 3500 & 1.9 [1.5, 2.4] & 0.014 & 66.6 & 66.3 \\
+1.13, 2.4 h apart & 3500 & 1.8 [1.3, 2.2] & 0.014 & 66.6 & 66.4 \\
+1.13, 5.3 h apart & 3500 & 1.9 [1.4, 2.3] & 0.013 & 66.6 & 66.8 \\
+\midrule
+1.13 vs.\ 1.14, pilot & 3500 & 6.3 [5.4, 7.4] & 0.046 & 66.6 & 66.7 \\
+1.13 vs.\ 1.14, E2 & 9000 & 6.1 [5.6, 6.7] & 0.048 & 67.8 & 68.0 \\
+1.13 vs.\ 1.14, later run 1 & 3500 & 6.4 [5.5, 7.4] & 0.046 & 66.4 & 66.7 \\
+1.13 vs.\ 1.14, later run 2 & 3500 & 6.9 [5.9, 7.9] & 0.047 & 66.8 & 66.6 \\
+\bottomrule
+\end{tabular}
+\caption{Version change against the noise floor (E7), on the same requests. Top: the same version, at the median gap between the two calls. Bottom: Jev 1.13 against 1.14, in each run. \emph{Qs}: questions. \emph{Flips}: the share of top answers that changed (\%), with a bootstrap interval over items. \emph{Dist.}: the mean absolute change of the predicate probability, or the total variation distance for choices and scores. Flips are pooled over questions, so Civil Comments and HelpSteer2 weigh more; Table~\ref{tab:e3} gives task means.}
+\label{tab:e7}
+\end{table}

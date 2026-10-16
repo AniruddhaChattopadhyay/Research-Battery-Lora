@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+ & & \multicolumn{3}{c}{Flips go to the} & & \multicolumn{2}{c}{Wrong, first} \\
+\cmidrule(lr){3-5} \cmidrule(lr){7-8}
+System & Flips & earlier & later & mixed & $p$ & W2C & arXiv \\
+\midrule
+Jev 1.14 & 19 & 6 & 4 & 9 & 0.75 & 24.1 & 10.9 \\
+OpenAI Decisions (Luna) & 69 & 40 & 5 & 24 & $10^{-8}$ & 33.3 & 14.1 \\
+Microsoft-Decision-1 & 9 & 1 & 2 & 6 & 1.00 & 29.7 & 8.0 \\
+pplx-decider v1.1 & 23 & 9 & 8 & 6 & 1.00 & 26.3 & 9.7 \\
+Clef & 0 & 0 & 0 & 0 & -- & 25.4 & 11.4 \\
+Clef-flash & 0 & 0 & 0 & 0 & -- & 25.3 & 8.9 \\
+Clef-omni & 0 & 0 & 0 & 0 & -- & 25.3 & 9.3 \\
+Mercury Decide & 24 & 7 & 5 & 12 & 0.77 & 28.3 & 9.1 \\
+Liquid d1 & 35 & 12 & 8 & 15 & 0.50 & 25.8 & 8.3 \\
+Drex v1.5 & 44 & 17 & 10 & 17 & 0.25 & 25.2 & 11.1 \\
+Drex v2.0 & 31 & 9 & 12 & 10 & 0.66 & 23.3 & 8.3 \\
+Kev-4B & 37 & 11 & 8 & 18 & 0.65 & 25.6 & 4.7 \\
+Tev1-4B & 38 & 19 & 8 & 11 & 0.05 & 26.9 & 9.2 \\
+Solar Decide Flash & 105 & 73 & 2 & 30 & $10^{-19}$ & 40.7 & 10.0 \\
+\bottomrule
+\end{tabular}
+\caption{Where the answer goes when the option order changes (exploratory, saved E3 calls). Items: BANKING77, When2Call and arXiv, with both random orders (598 to 600 for each system; 400 for Tev1-4B and Solar Decide Flash, without BANKING77). \emph{Flips}: items with two different answers, $a$ and $b$. \emph{Earlier}: in each order, the system chose the one of $a$ and $b$ that came earlier in that list. \emph{Later}: the opposite. \emph{Mixed}: the other flips. $p$: exact two-sided sign test, earlier against later. \emph{Wrong, first}: the share (\%) of wrong answers in the first position; without a position bias, it is 25\% for When2Call and 6.2\% for arXiv.}
+\label{tab:app-position}
+\end{table}
