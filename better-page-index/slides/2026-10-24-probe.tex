@@ -1,0 +1,210 @@
+% =============================================================================
+%  Testing PageIndex on two public datasets (short deck, 24 Oct 2026)
+%  Build: latexmk -pdf -outdir=tmp 2026-10-24-probe.tex
+%  Numbers: ../notes/2026-10-17-probe-results.md
+% =============================================================================
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{plex-sans}
+\usepackage{plex-mono}
+\usepackage{microtype}
+\usepackage[document]{ragged2e}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=3000
+
+% ---------------------------------------------------------------------- palette
+\definecolor{Ink}{HTML}{1A1C1E}
+\definecolor{Body}{HTML}{303338}
+\definecolor{Mute}{HTML}{74787E}
+\definecolor{Rule}{HTML}{D3D6D9}
+\definecolor{Accent}{HTML}{23405E}
+\definecolor{Neg}{HTML}{8A3A2C}
+\definecolor{Pos}{HTML}{2E6B3F}
+
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=Body}
+\setbeamercolor{frametitle}{fg=Ink}
+\setbeamercolor{structure}{fg=Accent}
+\setbeamerfont{normal text}{size=\fontsize{12}{15.5}}
+\setbeamersize{text margin left=1.15cm,text margin right=1.15cm}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{Mute}\raise0.25ex\hbox{\rule{0.45ex}{0.45ex}}}
+\setbeamertemplate{itemize subitem}{\color{Mute}\raise0.25ex\hbox{\rule{0.35ex}{0.35ex}}}
+
+\setbeamerfont{frametitle}{series=\bfseries,size=\fontsize{16.5}{20}}
+\setbeamertemplate{frametitle}{%
+  \vspace{0.30cm}%
+  \insertframetitle\par%
+  \vspace{0.11cm}%
+  {\color{Rule}\rule{\textwidth}{0.5pt}}%
+}
+
+\setbeamerfont{footline}{size=\fontsize{7.5}{9}}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.26cm,dp=0.20cm,%
+                           rightskip=1.15cm plus1fil]{footline}%
+      \color{Mute}\hfill\insertframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+% ---------------------------------------------------------------------- helpers
+\newcommand{\lbl}[1]{{\color{Mute}\fontsize{9.5}{12}\selectfont #1}\par}
+\newcommand{\callout}[1]{{\fontsize{12}{15.5}\selectfont\color{Ink}\bfseries #1\par}}
+\newcommand{\yes}{\textcolor{Pos}{\textbf{True}}}
+\newcommand{\no}{\textcolor{Neg}{\textbf{False}}}
+
+\begin{document}
+
+% == 1 == Title ================================================================
+\begin{frame}[plain]
+  \vspace{1.25cm}
+  {\color{Ink}\fontsize{25}{30}\selectfont\bfseries
+    Testing PageIndex\\[0.05cm]
+    on two public datasets\par}
+  \vspace{0.54cm}
+  {\color{Body}\fontsize{13}{17}\selectfont
+    PageIndex matched full context. I found no big failure mode.\par}
+  \vspace{0.90cm}
+  {\color{Rule}\rule{0.42\textwidth}{0.5pt}\par}
+  \vspace{0.36cm}
+  {\color{Ink}\fontsize{12.5}{16}\selectfont Aniruddha Chattopadhyay\par}
+  \vspace{0.12cm}
+  {\color{Mute}\fontsize{10.5}{14}\selectfont 24 October 2026\par}
+\end{frame}
+
+% == 2 == The idea ==============================================================
+\begin{frame}{The idea: PageIndex needs five assumptions}
+  \vspace{0.25cm}
+  {\fontsize{11}{14.5}\selectfont
+  PageIndex builds a tree of sections, with a short summary for each section. An LLM reads the summaries, picks sections and reads their pages. So it finds only what the summaries point to.\par}
+  \vspace{0.35cm}
+  {\fontsize{11.5}{16}\selectfont
+  \begin{tabular}{@{}p{0.9cm}l@{}}
+    \textbf{A1} & The summaries name what the question asks about. \\
+    \textbf{A2} & The evidence is in one or two sections. \\
+    \textbf{A3} & The tree links the parts of the evidence. \\
+    \textbf{A4} & One passage states the answer. \\
+    \textbf{A5} & The tree is small enough to fit in the LLM context. \\
+  \end{tabular}\par}
+  \vspace{0.35cm}
+  \callout{Hypothesis: when an assumption is false, PageIndex loses accuracy.}
+\end{frame}
+
+% == 3 == The test ==============================================================
+\begin{frame}{The test}
+  \vspace{0.15cm}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.62\textwidth}
+      \lbl{Two public datasets}
+      \vspace{0.04cm}
+      {\fontsize{10.5}{13.5}\selectfont
+      \textbf{DesignQA:} a 140-page Formula SAE rules PDF.
+      \begin{itemize}\setlength{\itemsep}{1pt}
+        \item 20 questions ask for one rule (one section).
+        \item 30 questions ask for all rules on a topic (many sections).
+      \end{itemize}
+      \vspace{0.10cm}
+      \textbf{LongMemEval:} one chat history of about 50 sessions for each question.
+      \begin{itemize}\setlength{\itemsep}{1pt}
+        \item 15 questions, for example: the latest value, the order of events, no answer.
+      \end{itemize}\par}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \lbl{Three systems, the same LLM in each dataset}
+      \vspace{0.06cm}
+      {\fontsize{10.5}{13.5}\selectfont
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item PageIndex 0.4.1
+        \item Full context: the whole document in the prompt (the reference)
+        \item Keyword search agent (LongMemEval only)
+      \end{itemize}\par}
+    \end{column}
+  \end{columns}
+  \vspace{0.25cm}
+  \callout{Prediction, written before the runs: PageIndex loses accuracy when A2 or A4 is false.}
+\end{frame}
+
+% == 4 == Result ================================================================
+\begin{frame}{Result: PageIndex matched full context}
+  \vspace{0.35cm}
+  {\fontsize{11}{14}\selectfont
+  \renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}p{8.9cm}>{\raggedleft\arraybackslash}p{1.9cm}>{\raggedleft\arraybackslash}p{2.3cm}@{}}
+    \toprule
+    & \textbf{PageIndex} & \textbf{Full context} \\
+    \midrule
+    DesignQA, one rule (20 questions) & 0.98 & 0.98 \\
+    DesignQA, all rules on a topic (30 questions) & 0.68 & 0.67 \\
+    LongMemEval, correct answers (of 15 questions) & 13 & 12 \\
+    \midrule
+    Input tokens for each ``all rules'' question & 172k & 81k \\
+    \bottomrule
+  \end{tabular}\par}
+  \vspace{0.10cm}
+  {\color{Mute}\fontsize{9}{11}\selectfont The DesignQA score is F1: from 0 to 1, where 1 is a perfect answer.\par}
+  \vspace{0.30cm}
+  \callout{The same accuracy. But PageIndex read twice as many tokens as the whole document.}
+\end{frame}
+
+% == 5 == Assumptions ===========================================================
+\begin{frame}{Which assumptions held?}
+  \vspace{0.18cm}
+  {\fontsize{9.5}{12}\selectfont
+  \renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}p{0.6cm}p{4.5cm}p{1.8cm}p{5.8cm}@{}}
+    \toprule
+    & \textbf{Assumption} & \textbf{Result} & \textbf{What we saw} \\
+    \midrule
+    A1 & The summaries name what the question asks about & \yes & The rules PDF summaries hold 55\% of its words. \\
+    A2 & The evidence is in one or two sections & \no & No loss: PageIndex read 19 pages, with 80\% of the answer pages. \\
+    A3 & The tree links the parts of the evidence & Not tested & \\
+    A4 & One passage states the answer & \no & No loss: 7 of 9 correct (full context: 6). \\
+    A5 & The tree fits in the LLM context & \yes & One document of about 150 pages. \\
+    \bottomrule
+  \end{tabular}\par}
+  \vspace{0.25cm}
+  \callout{False assumptions caused no loss: PageIndex reads widely.}
+\end{frame}
+
+% == 6 == Conclusion ============================================================
+\begin{frame}{Conclusion}
+  \vspace{0.20cm}
+  {\fontsize{11.5}{15}\selectfont
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{PageIndex works well on these two datasets.} It matched full context. I found no big failure mode.
+    \item \textbf{Its weakness is cost.} It reads widely: up to twice the tokens of the whole document.
+    \item \textbf{It can still fail where A1 or A5 is false:}
+      {\fontsize{10.5}{13.5}\selectfont
+      \begin{itemize}\setlength{\itemsep}{2pt}
+        \item Dense data, where the summaries cannot name the facts. Our CLEVRER pilot: 87.5\% against 95.2\% for full context.
+        \item Large corpora, where the tree does not fit. RIT-RAG (IBM, 2026): 66.7--75.3\% with 364 FinanceBench filings.
+      \end{itemize}}
+    \item \textbf{Next:} test dense maintenance records and a larger corpus.
+  \end{enumerate}\par}
+\end{frame}
+
+% == 7 == Backup ================================================================
+\begin{frame}{Backup: limits and notes}
+  \vspace{0.20cm}
+  {\fontsize{10.5}{14}\selectfont
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Small samples: 15 LongMemEval questions, and one run for each question.
+    \item Two LLMs, because of the budget: gpt-5.6-sol on DesignQA, the cheaper gpt-5.6-luna on LongMemEval.
+    \item ``All rules about a topic'': both systems stop at about 0.67 F1. The gold list follows a rule that the question does not state.
+    \item The keyword search agent got 12 of 15 on LongMemEval, at one fifth of the PageIndex cost.
+    \item Cost of one ``all rules'' question: PageIndex \$0.36, full context about \$0.05 with a prompt cache.
+  \end{itemize}}
+\end{frame}
+
+\end{document}

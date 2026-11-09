@@ -1,5 +1,7 @@
 # Research plan after the pilot (2026-10-15)
 
+> **Update 2026-10-17.** The probe (`notes/2026-10-17-probe-results.md`) tested this model on DesignQA and LongMemEval. PageIndex matched full context where the model predicted failure (predictions P2 and P7 were false). The revised model: PageIndex loses accuracy only when the evidence is out of its reach. Two conditions cause this: dense sections whose labels drop the facts (A1), and corpora that are too large to read (A5). Spread alone (A2) did not cause errors on single documents of about 150 pages, because PageIndex read widely and paid with tokens. Sections 3, 8 and 10 below still use the old model. Revise them after the meeting on 2026-10-19.
+
 Inputs: the pilot (`notes/2026-10-12-pilot-results-brief.md`), the PageIndex code (v0.2.22, installed in `.venv`), and a search for papers and datasets on 2026-10-15. Section 13 lists the sources.
 
 ## 1. The goal

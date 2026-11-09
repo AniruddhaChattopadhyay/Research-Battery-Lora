@@ -13,11 +13,14 @@ def _record(kwargs, response):
     if not u:
         return
     get = (lambda k: u.get(k, 0)) if isinstance(u, dict) else (lambda k: getattr(u, k, 0))
+    details = get("prompt_tokens_details")
+    cached = (details.get("cached_tokens") if isinstance(details, dict) else getattr(details, "cached_tokens", 0)) or 0
     with _lock:
-        t = TOTALS.setdefault(kwargs.get("model", "?"), {"calls": 0, "prompt": 0, "completion": 0})
+        t = TOTALS.setdefault(kwargs.get("model", "?"), {"calls": 0, "prompt": 0, "completion": 0, "cached": 0})
         t["calls"] += 1
         t["prompt"] += get("prompt_tokens") or 0
         t["completion"] += get("completion_tokens") or 0
+        t["cached"] = t.get("cached", 0) + cached
 
 
 class _Tracker(CustomLogger):

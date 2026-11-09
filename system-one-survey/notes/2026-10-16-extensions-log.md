@@ -32,6 +32,8 @@ Rules (as for the overnight work): do not commit; never print the API key; use P
 | 4d. List-form control | Done: the same text as `["<text>"]` (Classify-1: `{"text": ...}`), 10 systems, tag `e3-image`, variant `list` | `src/run_image.py --variants list` |
 | 5. Paper | **Done** (2026-10-16, about 15:10 UTC): final build, 23 pages, main text ends on page 8, no LaTeX errors, no undefined references | `paper1/main.pdf`, `paper1/main.tex`, `paper1/numbers.tex` |
 
+**Committed** at Aniruddha's request on 2026-10-16: `754250b` on the new branch `system-one-paper1` (not pushed, not merged into `main`). This log note is the only change after the commit.
+
 **All steps are done.** Total of the added runs: 52,388 calls (with failed calls), USD 15.38 (`results/added_runs.csv`), 18:25 to 20:29 IST.
 
 ## Resume

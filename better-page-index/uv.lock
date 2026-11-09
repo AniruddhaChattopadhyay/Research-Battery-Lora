@@ -216,7 +216,7 @@ dependencies = [
 requires-dist = [
     { name = "fpdf2", specifier = ">=2.8.9" },
     { name = "matplotlib", specifier = ">=3.11.2" },
-    { name = "pageindex", specifier = ">=0.2.22" },
+    { name = "pageindex", specifier = "==0.4.1" },
     { name = "pypdf", specifier = ">=6.20.0" },
 ]
 
@@ -1837,7 +1837,7 @@ wheels = [
 
 [[package]]
 name = "pageindex"
-version = "0.2.22"
+version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "litellm" },
@@ -1854,9 +1854,9 @@ dependencies = [
     { name = "sortedcontainers" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f7/8a/fbd0f6cd5236bbcbece7595a8cf5532c39c2b4d2d9a9eadcf417c7cc4b9e/pageindex-0.2.22.tar.gz", hash = "sha256:874ea956534d0877060f7e5b5d7b68cf3067273344531305fdbc78dcc3c95013", size = 531435, upload-time = "2026-10-08T05:20:34.922Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5c/b5/19481d8ae76ac9ed9923e1b11f633d7d7b689f3fa2e1c9e42511afb4efbb/pageindex-0.4.1.tar.gz", hash = "sha256:ffe11138ed5c7bee1969e683e2e72f6855c5fd43f734862d91ccdd80e51d9f4c", size = 537510, upload-time = "2026-10-16T08:14:56.635Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4d/7d/8f22a13fd63647b44ccc3e78ae8476cdb3f8321522d2dc25b6a1de6ab73e/pageindex-0.2.22-py3-none-any.whl", hash = "sha256:3478a49ee2533f19e526fa75635dd52ae6e4489faecf528cd17f2967cec7842c", size = 592218, upload-time = "2026-10-08T05:20:32.794Z" },
+    { url = "https://files.pythonhosted.org/packages/05/cc/2bec87781e450918675ded09f6700d078a4e436476da25c206ad61a7187f/pageindex-0.4.1-py3-none-any.whl", hash = "sha256:13b0596ec516f150e765a6984989ff78e3237c6f992758ab87a5fd40d778bb0b", size = 598340, upload-time = "2026-10-16T08:14:55.008Z" },
 ]
 
 [[package]]

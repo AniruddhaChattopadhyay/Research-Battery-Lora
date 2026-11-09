@@ -1,0 +1,111 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{guo2026rewrite,faghih2025gaming}
+\citation{jang2025dicebench}
+\citation{bfcl2024}
+\@writefile{toc}{\contentsline {title}{Robust Function Calling for LLM Agents Under Interface Drift}{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\authcount {3}}
+\@writefile{toc}{\contentsline {author}{Aniruddha Chattopadhyay \and Kanishka Halder \and Partha Sarathi Roy}{1}{chapter.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{guo2026rewrite}
+\citation{faghih2025gaming}
+\citation{rabinovich2025robustness}
+\citation{zhang2026fission}
+\citation{geng2023grammar,park2024grammar}
+\citation{chattopadhyay2026metatuning}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\citation{zhong2025complexfuncbench}
+\citation{jang2025dicebench}
+\citation{li2023apibank,yao2024taubench,lu2024toolsandbox}
+\citation{bfcl2024}
+\citation{schick2023toolformer,patil2023gorilla,qin2023toolllm,yao2022react}
+\citation{lercher2025autoguard}
+\citation{serbout2023versioning}
+\citation{liu2024apigen}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{3}{section.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SchemaShield-Lite\xspace  pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{4}{\method pipeline. Invalid tool calls trigger structured validation and constrained repair; missing tool names are first resolved via candidate-set retry}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{4}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{Method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}SchemaShield-Lite\xspace  }{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canonical tool card.}{4}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Validation.}{4}{section*.3}\protected@file@percent }
+\citation{jang2025dicebench}
+\citation{bfcl2024}
+\@writefile{toc}{\contentsline {paragraph}{One-shot repair.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repair Prompting Details}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Example Evaluation Loop}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:eval-loop}{{4.3}{5}{Per-Example Evaluation Loop}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmarks and Data Slices}{5}{subsection.5.1}\protected@file@percent }
+\citation{notionchangelog2026,stripecheckout2022,stripedefaultvalue2025,stripeinvoicepreview2025,stripedelaydays2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Models}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Drift Configurations}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Repair Protocols}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Metrics}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42).}}{7}{table.1}\protected@file@percent }
+\newlabel{tab:main-results}{{1}{7}{Primary non-oracle Qwen3.5-9B results on DICE-300 and BFCL-200, with oracle upper bounds. Brackets give 95\% bootstrap CIs (seed~42)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Release}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Primary Non-Oracle Results}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle upper bounds for context.}{8}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repair cost overhead.}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baselines Do Not Explain the Gains}{8}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:naive-retry}{{6.2}{8}{Baselines Do Not Explain the Gains}{subsection.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Baselines vs SchemaShield-Lite\xspace  on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance.}}{9}{table.2}\protected@file@percent }
+\newlabel{tab:naive-retry}{{2}{9}{Baselines vs \method on Qwen3.5-9B (non-oracle). Scores from separate runs; minor differences from Table~\ref {tab:main-results} reflect run-level variance}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs.}}{9}{table.3}\protected@file@percent }
+\newlabel{tab:gain-decomposition}{{3}{9}{Decomposition of repaired improvements on the primary non-oracle Qwen3.5-9B runs}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{9}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:repair-coverage}{{6.3}{9}{Repair Coverage: Drift Recovery Dominates and Most Misses Are Validator-Visible}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Drift-Type Ablation: Candidate-Set Drift Dominates}{9}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:drift-ablation}{{6.4}{9}{Drift-Type Ablation: Candidate-Set Drift Dominates}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target.}}{10}{table.4}\protected@file@percent }
+\newlabel{tab:drift-ablation}{{4}{10}{Drift-type ablation on DICE-300 with Qwen3.5-9B. Single-candidate tasks make description/schema-only repair equivalent to oracle-target}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{10}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:component-ablation}{{6.5}{10}{Upper-Bound Component Ablation: Validation, Not Canonical Card, Drives Recovery}{subsection.6.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild.}}{11}{table.5}\protected@file@percent }
+\newlabel{tab:component-ablation}{{5}{11}{Oracle-constrained upper-bound component ablation on DICE-300 and BFCL-200 with Qwen3.5-9B. BFCL uses medium-severity drift, DICE uses mild}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Error Analysis}{11}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:error-analysis}{{6.6}{11}{Error Analysis}{subsection.6.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection.}}{12}{table.6}\protected@file@percent }
+\newlabel{tab:unrecovered-summary}{{6}{12}{Unrecovered oracle-constrained DICE cases on non-primary models. ``Artifact'' = formatting/paraphrase mismatches, semantically correct on inspection}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Additional Non-Oracle Replications}{12}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:additional-replications}{{6.7}{12}{Additional Non-Oracle Replications}{subsection.6.7}{}}
+\citation{faghih2025gaming}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{13}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{14}{section.8}\protected@file@percent }
+\newlabel{sec:limitations}{{8}{14}{Limitations}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{14}{section.9}\protected@file@percent }
+\bibstyle{splncs04}
+\bibdata{references}
+\bibcite{chattopadhyay2026metatuning}{1}
+\bibcite{faghih2025gaming}{2}
+\bibcite{geng2023grammar}{3}
+\bibcite{guo2026rewrite}{4}
+\bibcite{jang2025dicebench}{5}
+\bibcite{lercher2025autoguard}{6}
+\bibcite{li2023apibank}{7}
+\bibcite{liu2024apigen}{8}
+\bibcite{lu2024toolsandbox}{9}
+\bibcite{notionchangelog2026}{10}
+\bibcite{park2024grammar}{11}
+\@writefile{toc}{\contentsline {paragraph}{Broader impact.}{15}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GenAI disclosure.}{15}{section*.8}\protected@file@percent }
+\bibcite{patil2023gorilla}{12}
+\bibcite{qin2023toolllm}{13}
+\bibcite{rabinovich2025robustness}{14}
+\bibcite{schick2023toolformer}{15}
+\bibcite{serbout2023versioning}{16}
+\bibcite{stripecheckout2022}{17}
+\bibcite{stripedefaultvalue2025}{18}
+\bibcite{stripedelaydays2025}{19}
+\bibcite{stripeinvoicepreview2025}{20}
+\bibcite{bfcl2024}{21}
+\bibcite{yao2024taubench}{22}
+\bibcite{yao2022react}{23}
+\bibcite{zhang2026fission}{24}
+\bibcite{zhong2025complexfuncbench}{25}
+\gdef \@abspage@last{16}
