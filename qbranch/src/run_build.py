@@ -16,7 +16,7 @@ import llm  # noqa: E402
 ap = argparse.ArgumentParser()
 ap.add_argument("--dataset", default="hotpotqa")
 ap.add_argument("--n", type=int, default=100)
-ap.add_argument("--variant", choices=["qbranch", "openie"], default="qbranch")
+ap.add_argument("--variant", choices=["qbranch", "qbranch_noopen", "openie"], default="qbranch")
 ap.add_argument("--batches", type=int, default=5)
 ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--workers", type=int, default=12)

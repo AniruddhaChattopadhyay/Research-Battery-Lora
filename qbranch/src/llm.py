@@ -12,6 +12,8 @@ import sys
 import threading
 import time
 
+import numpy as np
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sitecustomize  # noqa: F401,E402  (IPv4 first: IPv6 times out on this network)
 
@@ -104,27 +106,69 @@ def chat(model, messages, temperature=0.0, max_tokens=4096, json_mode=False, rea
     raise RuntimeError("chat failed after %d tries: %s" % (retries, err))
 
 
+def _emb_table():
+    db = _db()
+    db.execute("CREATE TABLE IF NOT EXISTS emb (k TEXT PRIMARY KEY, v BLOB)")
+    return db
+
+
+def _put_emb(pairs):
+    with _lock:
+        db = _emb_table()
+        db.executemany("INSERT OR REPLACE INTO emb VALUES (?, ?)",
+                       [(k, np.asarray(v, dtype=np.float32).tobytes()) for k, v in pairs])
+        db.commit()
+
+
 def embed(model, texts, batch=64):
-    """Return one vector per text. Each text is cached on its own."""
+    """Return an (n, d) float32 array. Each text is cached on its own (binary float32 in table emb;
+    vectors in the old JSON cache are read once and copied to emb)."""
     keys = [hashlib.sha256(json.dumps([model, t]).encode()).hexdigest() for t in texts]
-    out = [_get(k) for k in keys]
+    out = [None] * len(texts)
+    db = _emb_table()
+    for s in range(0, len(keys), 500):
+        part = keys[s:s + 500]
+        got = dict(db.execute("SELECT k, v FROM emb WHERE k IN (%s)" % ",".join("?" * len(part)), part))
+        for j, k in enumerate(part):
+            if k in got:
+                out[s + j] = np.frombuffer(got[k], dtype=np.float32)
+    old = []
+    for i, v in enumerate(out):
+        if v is None:
+            hit = _get(keys[i])
+            if hit is not None:
+                out[i] = np.asarray(hit, dtype=np.float32)
+                old.append((keys[i], out[i]))
+    if old:
+        _put_emb(old)
     todo = [i for i, v in enumerate(out) if v is None]
-    for s in range(0, len(todo), batch):
-        idx = todo[s:s + batch]
-        for attempt in range(5):
+
+    def one_batch(idx):
+        for attempt in range(6):
             try:
                 resp = _client.embeddings.create(model=model, input=[texts[i] for i in idx],
                                                  extra_body={"usage": {"include": True}})
-                break
+                if len(resp.data) == len(idx):
+                    break
             except Exception:
-                if attempt == 4:
+                if attempt == 5:
                     raise
-                time.sleep(2 ** attempt * 2)
+            time.sleep(2 ** attempt * 2)
         _count(model, _usage(resp), cached=False)
+        new = []
         for i, d in zip(idx, sorted(resp.data, key=lambda d: d.index)):
-            out[i] = d.embedding
-            _put(keys[i], d.embedding)
-    return out
+            out[i] = np.asarray(d.embedding, dtype=np.float32)
+            new.append((keys[i], out[i]))
+        _put_emb(new)
+
+    parts = [todo[s:s + batch] for s in range(0, len(todo), batch)]
+    if len(parts) > 1:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(8) as ex:
+            list(ex.map(one_batch, parts))
+    elif parts:
+        one_batch(parts[0])
+    return np.stack(out) if out else np.zeros((0, 0), dtype=np.float32)
 
 
 def parse_json(text):

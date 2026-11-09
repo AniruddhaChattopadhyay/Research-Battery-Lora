@@ -1,6 +1,7 @@
 """Online build: read the passage stream batch by batch and write one JSON record per passage.
 
 Variant "qbranch": infer questions, name the schema, bind facts and keep open slots (figure panel b).
+Variant "qbranch_noopen": the same, without the open questions (ablation of the open slots).
 Variant "openie": extract triples only (the ablation without questions).
 Between batches, the most frequent relation names go into the prompt, so the schema can grow
 and be reused (a light form of schema normalization).
@@ -22,13 +23,15 @@ def _norm_rel(r):
 
 
 def _call(variant, passage, vocab, model):
-    tmpl = prompts.BUILD_QBRANCH if variant == "qbranch" else prompts.BUILD_OPENIE
-    msg = tmpl.format(relations=", ".join(vocab) if vocab else "(none yet)",
+    tmpl = {"qbranch": prompts.BUILD_QBRANCH, "qbranch_noopen": prompts.BUILD_QBRANCH_NOOPEN,
+            "openie": prompts.BUILD_OPENIE}[variant]
+    rule = prompts.TITLE_RULE_NEWS if "time" in passage else prompts.TITLE_RULE_WIKI
+    msg = tmpl.format(relations=", ".join(vocab) if vocab else "(none yet)", title_rule=rule,
                       title=passage["title"], text=passage["text"])
     for tag in ("", "retry1", "retry2"):
         r = llm.chat(model, msg, seed_tag=tag, **BUILD_KW)
         j = llm.parse_json(r["text"])
-        if isinstance(j, dict) and isinstance(j.get("questions" if variant == "qbranch" else "triples"), list):
+        if isinstance(j, dict) and isinstance(j.get("triples" if variant == "openie" else "questions"), list):
             return j, r["usage"]
     return None, r["usage"]
 
@@ -60,7 +63,7 @@ def build(passages_by_batch, variant, out_dir, model=BUILD_MODEL, workers=12, vo
 def triples_of(rec, variant):
     """Yield (triple dict, question dict or None) items as plain triple dicts with a 'q' key."""
     out = rec.get("out") or {}
-    if variant == "qbranch":
+    if variant != "openie":
         for qi, q in enumerate(out.get("questions") or []):
             if not isinstance(q, dict):
                 continue

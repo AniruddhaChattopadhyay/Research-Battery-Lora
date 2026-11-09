@@ -6,7 +6,7 @@ Step 1. Infer questions. Write the questions that a user can ask and that this p
 
 Step 2. Schema. For each question, name the relation that it asks about. Use a short, generic, reusable relation name in snake_case (examples: directed_by, born_in, located_in, member_of, founded_in_year). Use a relation from the list of known relations when one fits. Give the type of the subject and of the object (examples: person, film, city, country, organization, date, number).
 
-Step 3. Bind facts. For each answered question, give the triple(s) from the passage that answer it. For each unanswered question, give an open triple with object null. The passage title names its main entity: always call the main entity by its title, without the text in parentheses. Call other entities by their full names as the passage writes them. Replace pronouns with the entity name.
+Step 3. Bind facts. For each answered question, give the triple(s) from the passage that answer it. For each unanswered question, give an open triple with object null. {title_rule} Replace pronouns with the entity name.
 
 Known relations: {relations}
 
@@ -17,7 +17,24 @@ Return only a JSON object with this form:
 {{"questions": [{{"q": "...", "answered": true, "answer": "...", "triples": [{{"s": "...", "s_type": "...", "r": "...", "o": "...", "o_type": "..."}}]}},
                {{"q": "...", "answered": false, "triples": [{{"s": "...", "s_type": "...", "r": "...", "o": null, "o_type": "..."}}]}}]}}"""
 
-BUILD_OPENIE = """You keep a knowledge graph of a growing document collection. A new passage arrived. Extract all the facts in the passage as triples (subject, relation, object), at most 12. Use a short, generic, reusable relation name in snake_case (examples: directed_by, born_in, located_in, member_of, founded_in_year). Use a relation from the list of known relations when one fits. Give the type of the subject and of the object (examples: person, film, city, country, organization, date, number). The passage title names its main entity: always call the main entity by its title, without the text in parentheses. Call other entities by their full names as the passage writes them. Replace pronouns with the entity name.
+# Ablation: the same prompt without the open (unanswered) questions.
+BUILD_QBRANCH_NOOPEN = """You keep a knowledge graph of a growing document collection. A new passage arrived. Do these steps in this order.
+
+Step 1. Infer questions. Write the questions that a user can ask and that this passage answers (at most 6). Cover each important named entity.
+
+Step 2. Schema. For each question, name the relation that it asks about. Use a short, generic, reusable relation name in snake_case (examples: directed_by, born_in, located_in, member_of, founded_in_year). Use a relation from the list of known relations when one fits. Give the type of the subject and of the object (examples: person, film, city, country, organization, date, number).
+
+Step 3. Bind facts. For each question, give the triple(s) from the passage that answer it. {title_rule} Replace pronouns with the entity name.
+
+Known relations: {relations}
+
+Passage title: {title}
+Passage: {text}
+
+Return only a JSON object with this form:
+{{"questions": [{{"q": "...", "answered": true, "answer": "...", "triples": [{{"s": "...", "s_type": "...", "r": "...", "o": "...", "o_type": "..."}}]}}]}}"""
+
+BUILD_OPENIE = """You keep a knowledge graph of a growing document collection. A new passage arrived. Extract all the facts in the passage as triples (subject, relation, object), at most 12. Use a short, generic, reusable relation name in snake_case (examples: directed_by, born_in, located_in, member_of, founded_in_year). Use a relation from the list of known relations when one fits. Give the type of the subject and of the object (examples: person, film, city, country, organization, date, number). {title_rule} Replace pronouns with the entity name.
 
 Known relations: {relations}
 
@@ -26,6 +43,11 @@ Passage: {text}
 
 Return only a JSON object with this form:
 {{"triples": [{{"s": "...", "s_type": "...", "r": "...", "o": "...", "o_type": "..."}}]}}"""
+
+TITLE_RULE_WIKI = "The passage title names its main entity: always call the main entity by its title, without the text in parentheses. Call other entities by their full names as the passage writes them."
+
+TITLE_RULE_NEWS = ("The passage is part of a news article. The title is the headline, the source and the date of the article, not an entity. "
+                   "Call each entity by its full name (for example Sam Altman, not Altman). Use the date of the article to resolve relative dates such as last week.")
 
 READER = """Answer the question with the evidence below. The evidence can contain facts from a knowledge graph and source passages. Some evidence is not relevant. Questions can need two or more steps (for example, first find a person, then find a fact about that person).
 
@@ -36,6 +58,15 @@ Question: {question}
 Think step by step in at most 4 short sentences. Then write the final line in this form:
 Answer: <short answer, a few words, no full sentence>
 If the evidence does not contain the answer, give your best guess."""
+
+PLAN = """Break the question into a chain of simple sub-questions. Each sub-question asks for one fact. A later sub-question can use the answer of an earlier sub-question: write #1 for the answer of sub-question 1, #2 for the answer of sub-question 2. Use as few sub-questions as possible (at most 4). Keep the names from the question exactly as they are written.
+
+Example. Question: When was the spouse of the director of Jaws born?
+{{"steps": ["Who is the director of Jaws?", "Who is the spouse of #1?", "When was #2 born?"]}}
+
+Question: {question}
+
+Return only a JSON object: {{"steps": ["...", "..."]}}"""
 
 CLOSED_BOOK = """Answer the question from your own knowledge.
 

@@ -53,16 +53,39 @@ def fmt_passages(ps):
 
 class GraphRetriever:
     def __init__(self, graph, passages, use_questions, n_seed=15, n_facts=25, n_passages=5,
-                 hub_degree=60, alpha=0.5):
+                 hub_degree=60, alpha=0.5, share=None):
+        """share: another GraphRetriever on the same graph; its indices are reused (saves memory)."""
         self.g, self.use_q = graph, use_questions
         self.by_pid = {p["pid"]: p for p in passages}
         self.n_seed, self.n_facts, self.n_passages = n_seed, n_facts, n_passages
         self.hub_degree, self.alpha = hub_degree, alpha
-        self.F = DenseIndex([graph.fact_text(f) for f in graph.facts])
+        self.F = share.F if share else DenseIndex([graph.fact_text(f) for f in graph.facts])
         self.answered = [a for a in graph.agenda if a["answered"] and a["fids"]]
-        self.Q = DenseIndex([a["q"] for a in self.answered]) if use_questions and self.answered else None
+        self.Q = None
+        if use_questions and self.answered:
+            self.Q = share.Q if share and share.Q is not None else DenseIndex([a["q"] for a in self.answered])
+        self.share = share
 
-    def retrieve(self, qvec):
+    def resolve(self, name, min_sim=0.85):
+        """Map an entity name (for example the answer of an earlier hop) to a graph node."""
+        from graph import norm_entity
+        n = norm_entity(name)
+        if not n:
+            return None
+        if n in self.g.adj:
+            return n
+        if not hasattr(self, "E"):
+            if self.share is not None and hasattr(self.share, "E"):
+                self.nodes, self.E = self.share.nodes, self.share.E
+            else:
+                self.nodes = [n for n in self.g.adj if n.strip()]  # the API rejects empty text
+                self.E = DenseIndex(self.nodes)
+        s = self.E.scores(embed_queries([n])[0])
+        j = int(np.argmax(s))
+        return self.nodes[j] if s[j] >= min_sim else None
+
+    def retrieve(self, qvec, anchors=(), n_anchor=10):
+        """anchors: graph nodes that the path plan reached. Their best facts for this hop are always kept."""
         fs = self.F.scores(qvec)
         score = {}
         for fid in np.argsort(-fs)[:self.n_seed]:
@@ -83,7 +106,15 @@ class GraphRetriever:
                     s2 = self.alpha * sc + (1 - self.alpha) * float(fs[nf])
                     if s2 > score.get(nf, -1):
                         score[nf] = s2
-        top = sorted(score.items(), key=lambda x: -x[1])[:self.n_facts]
+        keep = []
+        for node in anchors:
+            nbrs = self.g.adj.get(node, [])
+            keep += sorted(nbrs, key=lambda nf: -fs[nf])[:n_anchor]
+        keep = list(dict.fromkeys(keep))
+        kept = set(keep)
+        top = [(fid, float(fs[fid]) + 1.0) for fid in keep]  # +1: anchored facts rank first
+        top += [x for x in sorted(score.items(), key=lambda x: -x[1]) if x[0] not in kept]
+        top = top[:max(self.n_facts, len(keep))]
         pscore = {}
         for fid, sc in top:
             pid = self.g.facts[fid]["pid"]

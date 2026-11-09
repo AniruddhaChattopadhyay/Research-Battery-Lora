@@ -37,6 +37,8 @@ def load(name="hotpotqa", n_questions=None):
     Each question has gold_pids and context_pids. HotpotQA and 2Wiki titles are unique, so the
     match is by title. MuSiQue repeats titles, so the match is by paragraph text.
     """
+    if name == "multihoprag":
+        return load_multihoprag(n_questions)
     qs = json.load(open(os.path.join(DATA, name + ".json")))
     corpus = json.load(open(os.path.join(DATA, name + "_corpus.json")))
     passages = [{"pid": i, "title": p["title"], "text": p["text"]} for i, p in enumerate(corpus)]
@@ -62,9 +64,63 @@ def load(name="hotpotqa", n_questions=None):
     return items, passages
 
 
+def _chunks(body, min_words=200):
+    """Cut an article into passages of about min_words or more words, at paragraph ends."""
+    out, cur = [], []
+    for para in [p.strip() for p in body.split("\n") if p.strip()]:
+        cur.append(para)
+        if sum(len(p.split()) for p in cur) >= min_words:
+            out.append("\n".join(cur))
+            cur = []
+    if cur:
+        if out and sum(len(p.split()) for p in cur) < min_words // 2:
+            out[-1] += "\n" + "\n".join(cur)
+        else:
+            out.append("\n".join(cur))
+    return out
+
+
+def load_multihoprag(n_questions=None, per_type=100, seed=0):
+    """MultiHop-RAG (609 dated news articles, Sep-Dec 2023). The stream is in publication order.
+
+    Passages: article chunks of about 200 words, with "time" (ISO date) and "source".
+    Questions: a fixed sample of per_type inference, comparison and temporal queries (seed 0).
+    The null queries need abstention, so they are not in this sample.
+    """
+    d = os.path.join(DATA, "..", "multihoprag")
+    corpus = json.load(open(os.path.join(d, "corpus.json")))
+    passages, by_url = [], {}
+    for art in sorted(corpus, key=lambda a: a["published_at"]):
+        for ch in _chunks(art["body"]):
+            p = {"pid": len(passages), "title": "%s (%s, %s)" % (art["title"], art["source"], art["published_at"][:10]),
+                 "text": ch, "time": art["published_at"][:10],
+                 "source": art["source"], "url": art["url"]}
+            passages.append(p)
+            by_url.setdefault(art["url"], []).append(p)
+    qs = json.load(open(os.path.join(d, "MultiHopRAG.json")))
+    rng = random.Random(seed)
+    items = []
+    for t in ("inference_query", "comparison_query", "temporal_query"):
+        pool = [q for q in qs if q["question_type"] == t]
+        for q in rng.sample(pool, per_type):
+            gold = set()
+            for e in q["evidence_list"]:
+                for p in by_url.get(e["url"], []):
+                    if e["fact"][:60] in p["text"]:
+                        gold.add(p["pid"])
+            items.append({"qid": "%s_%d" % (t, qs.index(q)), "question": q["query"], "answer": q["answer"],
+                          "aliases": [q["answer"]], "gold_titles": sorted({e["title"] for e in q["evidence_list"]}),
+                          "gold_pids": sorted(gold), "context_pids": sorted(gold), "n_gold_missing": 0, "type": t})
+    return (items[:n_questions] if n_questions else items), passages
+
+
 def stream_batches(passages, n_batches, seed=0):
-    """Shuffle the passages once and cut them into n_batches equal parts (the online stream)."""
+    """Cut the passages into n_batches equal parts (the online stream). Passages with a "time" key
+    keep their time order. Else shuffle them once with the seed."""
     order = list(passages)
-    random.Random(seed).shuffle(order)
+    if order and "time" in order[0]:
+        order.sort(key=lambda p: (p["time"], p["pid"]))
+    else:
+        random.Random(seed).shuffle(order)
     size = -(-len(order) // n_batches)
     return [order[i:i + size] for i in range(0, len(order), size)]
