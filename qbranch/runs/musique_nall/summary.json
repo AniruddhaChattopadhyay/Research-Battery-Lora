@@ -1,0 +1,165 @@
+{
+ "summary": {
+  "closed_book": {
+   "n": 1000,
+   "em": 0.241,
+   "f1": 0.38174603532862045,
+   "judge": 0.393,
+   "recall@5": 0.0,
+   "reader_prompt_tokens": 72.099,
+   "passages": 0.0,
+   "reader_calls": 1.0
+  },
+  "oracle": {
+   "n": 1000,
+   "em": 0.574,
+   "f1": 0.7373339414799167,
+   "judge": 0.825,
+   "recall@5": 1.0,
+   "reader_prompt_tokens": 472.713,
+   "passages": 2.648,
+   "reader_calls": 1.0
+  },
+  "dense": {
+   "n": 1000,
+   "em": 0.424,
+   "f1": 0.5826311620526017,
+   "judge": 0.632,
+   "recall@5": 0.699,
+   "reader_prompt_tokens": 808.585,
+   "passages": 5.0,
+   "reader_calls": 1.0
+  },
+  "dense_k10": {
+   "n": 1000,
+   "em": 0.453,
+   "f1": 0.6145655774136425,
+   "judge": 0.679,
+   "recall@5": 0.7977499999999998,
+   "reader_prompt_tokens": 1490.556,
+   "passages": 10.0,
+   "reader_calls": 1.0
+  },
+  "dense_plan": {
+   "n": 1000,
+   "em": 0.451,
+   "f1": 0.6251443481870727,
+   "judge": 0.706,
+   "recall@5": 0.90975,
+   "reader_prompt_tokens": 3853.865,
+   "passages": 11.033,
+   "reader_calls": 4.582
+  },
+  "dense_k8_plan": {
+   "n": 1000,
+   "em": 0.463,
+   "f1": 0.632067734754066,
+   "judge": 0.705,
+   "recall@5": 0.9375,
+   "reader_prompt_tokens": 5712.15,
+   "passages": 17.544,
+   "reader_calls": 4.582
+  },
+  "graph_openie_plan": {
+   "n": 1000,
+   "em": 0.48,
+   "f1": 0.6353572488055461,
+   "judge": 0.705,
+   "recall@5": 0.87175,
+   "reader_prompt_tokens": 5955.874,
+   "passages": 10.396,
+   "reader_calls": 4.582
+  },
+  "graph_openie": {
+   "n": 1000,
+   "em": 0.414,
+   "f1": 0.5706987538605185,
+   "judge": 0.607,
+   "recall@5": 0.6761666666666667,
+   "reader_prompt_tokens": 1262.973,
+   "passages": 4.955,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch_plan": {
+   "n": 1000,
+   "em": 0.459,
+   "f1": 0.6221092028542493,
+   "judge": 0.685,
+   "recall@5": 0.87025,
+   "reader_prompt_tokens": 6002.471,
+   "passages": 10.388,
+   "reader_calls": 4.582
+  },
+  "graph_qbranch": {
+   "n": 1000,
+   "em": 0.441,
+   "f1": 0.6025217181511298,
+   "judge": 0.643,
+   "recall@5": 0.7096666666666667,
+   "reader_prompt_tokens": 1276.0,
+   "passages": 4.956,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch_noq": {
+   "n": 1000,
+   "em": 0.411,
+   "f1": 0.5710421050999226,
+   "judge": 0.614,
+   "recall@5": 0.6541666666666667,
+   "reader_prompt_tokens": 1275.93,
+   "passages": 4.96,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch_plan_noanchor": {
+   "n": 1000,
+   "em": 0.462,
+   "f1": 0.6312490827198257,
+   "judge": 0.704,
+   "recall@5": 0.8718333333333332,
+   "reader_prompt_tokens": 6080.119,
+   "passages": 10.656,
+   "reader_calls": 4.582
+  },
+  "graph_qbranch_k10": {
+   "n": 1000,
+   "em": 0.435,
+   "f1": 0.6042799535345975,
+   "judge": 0.66,
+   "recall@5": 0.78525,
+   "reader_prompt_tokens": 1786.868,
+   "passages": 8.839,
+   "reader_calls": 1.0
+  },
+  "graph_openie_k10": {
+   "n": 1000,
+   "em": 0.443,
+   "f1": 0.6015388202956314,
+   "judge": 0.645,
+   "recall@5": 0.7461666666666666,
+   "reader_prompt_tokens": 1753.787,
+   "passages": 8.566,
+   "reader_calls": 1.0
+  }
+ },
+ "usage": {
+  "by_model": {
+   "openai/gpt-6-luna": {
+    "calls": 1858,
+    "cached_calls": 142,
+    "prompt": 3359647,
+    "completion": 355178,
+    "reasoning": 269258,
+    "cost": 0.5972590500000008
+   },
+   "anthropic/claude-haiku-5.5": {
+    "calls": 242,
+    "cached_calls": 1758,
+    "prompt": 41077,
+    "completion": 47821,
+    "reasoning": 46507,
+    "cost": 0.0280182
+   }
+  },
+  "total_cost_usd": 0.6253
+ }
+}

@@ -1,0 +1,260 @@
+{
+ "open_slots_total": 2922,
+ "open_slots_with_a_later_batch": 2341,
+ "exact": {
+  "bound_later": 0.0299017513882956,
+  "already_known": 0.024775736864587783,
+  "random_relation_bound_later": 0.011298590346005982
+ },
+ "soft": {
+  "bound_later": 0.03929944468175993,
+  "already_known": 0.03588210166595472,
+  "random_relation_bound_later": 0.012024775736864586
+ },
+ "any_relation_later": 0.11490815890645023,
+ "examples": [
+  {
+   "slot": [
+    "The Bell Jar",
+    "published_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "The Bell Jar",
+    "published_in_year",
+    "1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "The Bell Jar"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_on",
+    "23 July 1934"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_on",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_on",
+    "23 July 1934"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "China Airlines",
+    "headquartered_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "China Airlines",
+    "headquartered_in",
+    "Taoyuan International Airport"
+   ],
+   "bound_batch": 3,
+   "bound_in": "China Airlines"
+  },
+  {
+   "slot": [
+    "Steve Perry",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Steve Perry",
+    "born_on",
+    "October 8, 1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "Steve Perry (Oregon musician)"
+  },
+  {
+   "slot": [
+    "Southwell Minster",
+    "located_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Southwell Minster",
+    "located_in",
+    "Southwell"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Minster (church)"
+  },
+  {
+   "slot": [
+    "Giuseppe Verdi",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Giuseppe Verdi",
+    "born_on",
+    "9 or 10 October 1813"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Giuseppe Verdi"
+  },
+  {
+   "slot": [
+    "Giuseppe Verdi",
+    "born_on",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Giuseppe Verdi",
+    "born_on",
+    "9 or 10 October 1813"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Giuseppe Verdi"
+  },
+  {
+   "slot": [
+    "Sylvia Plath",
+    "died_on",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Sylvia Plath",
+    "died_on",
+    "1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "The Bell Jar"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_on",
+    "23 July 1934"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "Mitridate, re di Ponto",
+    "premiered_in_city",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Mitridate, re di Ponto",
+    "premiered_at",
+    "Teatro Regio Ducal"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Teatro Regio Ducal"
+  },
+  {
+   "slot": [
+    "Karen Joy Fowler",
+    "born_on",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Karen Joy Fowler",
+    "born_on",
+    "February 7, 1950"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Karen Joy Fowler"
+  }
+ ],
+ "top_open_relations": [
+  [
+   "born_in",
+   645
+  ],
+  [
+   "born_on",
+   325
+  ],
+  [
+   "founded_in_year",
+   246
+  ],
+  [
+   "located_in",
+   104
+  ],
+  [
+   "release_date",
+   93
+  ],
+  [
+   "nationality",
+   92
+  ],
+  [
+   "population",
+   85
+  ],
+  [
+   "member_of",
+   81
+  ],
+  [
+   "full_name",
+   70
+  ],
+  [
+   "founded_by",
+   66
+  ],
+  [
+   "died_on",
+   65
+  ],
+  [
+   "occupation",
+   59
+  ],
+  [
+   "built_in_year",
+   55
+  ],
+  [
+   "headquartered_in",
+   45
+  ],
+  [
+   "elevation",
+   42
+  ]
+ ],
+ "relations_in_graph": 915
+}

@@ -1,0 +1,9 @@
+closed_book {"n": 1000.0, "em": 0.407, "f1": 0.564, "judge": 0.681, "recall@5": 0.0, "reader_prompt_tokens": 67.439, "passages": 0.0, "reader_calls": 1.0}
+oracle {"n": 1000.0, "em": 0.606, "f1": 0.774, "judge": 0.919, "recall@5": 1.0, "reader_prompt_tokens": 501.779, "passages": 2.47, "reader_calls": 1.0}
+dense {"n": 1000.0, "em": 0.548, "f1": 0.725, "judge": 0.862, "recall@5": 0.816, "reader_prompt_tokens": 874.005, "passages": 5.0, "reader_calls": 1.0}
+dense_k10 {"n": 1000.0, "em": 0.563, "f1": 0.735, "judge": 0.874, "recall@5": 0.845, "reader_prompt_tokens": 1624.597, "passages": 10.0, "reader_calls": 1.0}
+graph_qbranch {"facts": 43035, "entities": 32350, "relations": 1444, "open_slots": 18034, "agenda": 52799, "agenda_open": 17978}
+graph_qbranch {"n": 1000.0, "em": 0.587, "f1": 0.75, "judge": 0.897, "recall@5": 0.931, "reader_prompt_tokens": 1337.845, "passages": 4.81, "reader_calls": 1.0}
+graph_qbranch_plan {"n": 1000.0, "em": 0.592, "f1": 0.75, "judge": 0.889, "recall@5": 0.996, "reader_prompt_tokens": 6135.103, "passages": 9.59, "reader_calls": 4.596}
+dense_plan {"n": 1000.0, "em": 0.588, "f1": 0.761, "judge": 0.902, "recall@5": 0.982, "reader_prompt_tokens": 4091.601, "passages": 10.809, "reader_calls": 4.596}
+2.9901

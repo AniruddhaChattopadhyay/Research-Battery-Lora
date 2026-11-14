@@ -1,0 +1,6 @@
+closed_book {"n": 100.0, "em": 0.45, "f1": 0.593, "judge": 0.72, "recall@5": 0.0, "reader_prompt_tokens": 71.89}
+dense {"n": 100.0, "em": 0.56, "f1": 0.751, "judge": 0.9, "recall@5": 0.97, "reader_prompt_tokens": 752.57}
+oracle {"n": 100.0, "em": 0.58, "f1": 0.76, "judge": 0.92, "recall@5": 1.0, "reader_prompt_tokens": 348.37}
+graph_openie {"facts": 9895, "entities": 8093, "relations": 1218, "open_slots": 3, "agenda": 0, "agenda_open": 0}
+graph_openie {"n": 100.0, "em": 0.54, "f1": 0.729, "judge": 0.88, "recall@5": 0.965, "reader_prompt_tokens": 1180.1}
+0.0805

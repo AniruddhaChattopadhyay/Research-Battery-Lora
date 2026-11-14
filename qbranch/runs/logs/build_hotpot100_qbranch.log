@@ -1,0 +1,20 @@
+hotpotqa: 100 questions, 994 passages, 5 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/hotpotqa_n100/build_qbranch
+batch 0: 199 passages, 0 failed, 816 relation names
+batch 1: 199 passages, 0 failed, 932 relation names
+batch 2: 199 passages, 0 failed, 1055 relation names
+batch 3: 199 passages, 0 failed, 1187 relation names
+batch 4: 198 passages, 0 failed, 1301 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 997,
+   "cached_calls": 0,
+   "prompt": 736115,
+   "completion": 920071,
+   "reasoning": 4000,
+   "cost": 0.7097188939999993
+  }
+ },
+ "total_cost_usd": 0.7097,
+ "build_cost_from_records_usd": 0.704
+}

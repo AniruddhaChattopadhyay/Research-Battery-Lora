@@ -20,7 +20,8 @@ uv sync
 
 The data is in `data/hipporag2/`, from the `osunlp/HippoRAG_2` dataset on Hugging Face, and in
 `data/multihoprag/`, from the `yixuantt/MultiHopRAG` dataset (dated news, for C2).
-Git ignores `data/` and `runs/`.
+The run outputs are in `runs/` (build records, answers, summaries and logs). Git ignores only the
+LLM response cache `runs/llm_cache.sqlite` (12 GB), so a new run calls the API again.
 
 ## Run the pilot
 

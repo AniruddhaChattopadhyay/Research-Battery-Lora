@@ -1,0 +1,5202 @@
+{
+ "located_in": {
+  "canonical": "located_in",
+  "inverse": false
+ },
+ "born_in": {
+  "canonical": "born_in",
+  "inverse": false
+ },
+ "born_on": {
+  "canonical": "born_on",
+  "inverse": false
+ },
+ "occupation": {
+  "canonical": "occupation",
+  "inverse": false
+ },
+ "is_a": {
+  "canonical": "is_a",
+  "inverse": false
+ },
+ "founded_in_year": {
+  "canonical": "founded_in_year",
+  "inverse": false
+ },
+ "also_known_as": {
+  "canonical": "also_known_as",
+  "inverse": false
+ },
+ "member_of": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "nationality": {
+  "canonical": "nationality",
+  "inverse": false
+ },
+ "has_member": {
+  "canonical": "member_of",
+  "inverse": true
+ },
+ "part_of": {
+  "canonical": "part_of",
+  "inverse": false
+ },
+ "full_name": {
+  "canonical": "full_name",
+  "inverse": false
+ },
+ "written_by": {
+  "canonical": "written_by",
+  "inverse": false
+ },
+ "release_date": {
+  "canonical": "release_date",
+  "inverse": false
+ },
+ "starring": {
+  "canonical": "starring",
+  "inverse": false
+ },
+ "died_on": {
+  "canonical": "died_on",
+  "inverse": false
+ },
+ "population": {
+  "canonical": "population",
+  "inverse": false
+ },
+ "has_role": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "won_award": {
+  "canonical": "won_award",
+  "inverse": false
+ },
+ "directed_by": {
+  "canonical": "directed_by",
+  "inverse": false
+ },
+ "created_by": {
+  "canonical": "created_by",
+  "inverse": false
+ },
+ "founded_by": {
+  "canonical": "founded_by",
+  "inverse": false
+ },
+ "played_for": {
+  "canonical": "played_for",
+  "inverse": false
+ },
+ "known_for": {
+  "canonical": "known_for",
+  "inverse": false
+ },
+ "genre": {
+  "canonical": "genre",
+  "inverse": false
+ },
+ "release_year": {
+  "canonical": "release_date",
+  "inverse": false
+ },
+ "has_nationality": {
+  "canonical": "nationality",
+  "inverse": false
+ },
+ "built_in_year": {
+  "canonical": "built_in_year",
+  "inverse": false
+ },
+ "produced_by": {
+  "canonical": "produced_by",
+  "inverse": false
+ },
+ "acted_in": {
+  "canonical": "acted_in",
+  "inverse": false
+ },
+ "offers": {
+  "canonical": "offers",
+  "inverse": false
+ },
+ "has_occupation": {
+  "canonical": "occupation",
+  "inverse": false
+ },
+ "born_in_year": {
+  "canonical": "born_on",
+  "inverse": false
+ },
+ "held_position": {
+  "canonical": "held_position",
+  "inverse": false
+ },
+ "child_of": {
+  "canonical": "child_of",
+  "inverse": false
+ },
+ "headquartered_in": {
+  "canonical": "headquartered_in",
+  "inverse": false
+ },
+ "based_on": {
+  "canonical": "based_on",
+  "inverse": false
+ },
+ "elevation": {
+  "canonical": "elevation",
+  "inverse": false
+ },
+ "won_by": {
+  "canonical": "won_by",
+  "inverse": false
+ },
+ "defined_as": {
+  "canonical": "defined_as",
+  "inverse": false
+ },
+ "composed_by": {
+  "canonical": "composed_by",
+  "inverse": false
+ },
+ "area": {
+  "canonical": "area",
+  "inverse": false
+ },
+ "instance_of": {
+  "canonical": "is_a",
+  "inverse": false
+ },
+ "has_common_name": {
+  "canonical": "has_common_name",
+  "inverse": false
+ },
+ "part_of_series": {
+  "canonical": "part_of_series",
+  "inverse": false
+ },
+ "premiered_at": {
+  "canonical": "premiered_at",
+  "inverse": false
+ },
+ "plays_position": {
+  "canonical": "plays_position",
+  "inverse": false
+ },
+ "has_genre": {
+  "canonical": "genre",
+  "inverse": false
+ },
+ "released_in_year": {
+  "canonical": "release_date",
+  "inverse": false
+ },
+ "about": {
+  "canonical": "about",
+  "inverse": false
+ },
+ "published_in_year": {
+  "canonical": "published_in_year",
+  "inverse": false
+ },
+ "replaced": {
+  "canonical": "replaced_by",
+  "inverse": true
+ },
+ "plays_for": {
+  "canonical": "played_for",
+  "inverse": false
+ },
+ "spouse": {
+  "canonical": "spouse",
+  "inverse": false
+ },
+ "portrayed_by": {
+  "canonical": "portrayed_by",
+  "inverse": false
+ },
+ "released_album": {
+  "canonical": "released_album",
+  "inverse": false
+ },
+ "founded_in": {
+  "canonical": "founded_in",
+  "inverse": false
+ },
+ "owned_by": {
+  "canonical": "owned_by",
+  "inverse": false
+ },
+ "works_at": {
+  "canonical": "works_at",
+  "inverse": false
+ },
+ "birth_name": {
+  "canonical": "birth_name",
+  "inverse": false
+ },
+ "country_of_origin": {
+  "canonical": "country_of_origin",
+  "inverse": false
+ },
+ "portrays": {
+  "canonical": "portrays",
+  "inverse": false
+ },
+ "stars": {
+  "canonical": "starring",
+  "inverse": false
+ },
+ "won_award_at": {
+  "canonical": "won_award_at",
+  "inverse": false
+ },
+ "built_by": {
+  "canonical": "built_by",
+  "inverse": false
+ },
+ "died_in": {
+  "canonical": "died_in",
+  "inverse": false
+ },
+ "executive_produced_by": {
+  "canonical": "executive_produced_by",
+  "inverse": false
+ },
+ "record_label": {
+  "canonical": "record_label",
+  "inverse": false
+ },
+ "height": {
+  "canonical": "height",
+  "inverse": false
+ },
+ "produced": {
+  "canonical": "produced_by",
+  "inverse": true
+ },
+ "includes_village": {
+  "canonical": "includes_village",
+  "inverse": false
+ },
+ "plays_instrument": {
+  "canonical": "plays_instrument",
+  "inverse": false
+ },
+ "featured_actor": {
+  "canonical": "starring",
+  "inverse": false
+ },
+ "recorded_by": {
+  "canonical": "recorded_by",
+  "inverse": false
+ },
+ "released_by": {
+  "canonical": "released_by",
+  "inverse": false
+ },
+ "voiced": {
+  "canonical": "voiced",
+  "inverse": false
+ },
+ "performed_at": {
+  "canonical": "performed_at",
+  "inverse": false
+ },
+ "performed_by": {
+  "canonical": "performed_by",
+  "inverse": false
+ },
+ "worked_at": {
+  "canonical": "works_at",
+  "inverse": false
+ },
+ "designed_by": {
+  "canonical": "designed_by",
+  "inverse": false
+ },
+ "guest_appeared_in": {
+  "canonical": "guest_appeared_in",
+  "inverse": false
+ },
+ "held_at": {
+  "canonical": "held_at",
+  "inverse": false
+ },
+ "published_by": {
+  "canonical": "published_by",
+  "inverse": false
+ },
+ "starred": {
+  "canonical": "starring",
+  "inverse": false
+ },
+ "held_on": {
+  "canonical": "held_on",
+  "inverse": false
+ },
+ "named_after": {
+  "canonical": "named_after",
+  "inverse": false
+ },
+ "opened_in_year": {
+  "canonical": "opened_in_year",
+  "inverse": false
+ },
+ "associated_with": {
+  "canonical": "associated_with",
+  "inverse": false
+ },
+ "led_by": {
+  "canonical": "led_by",
+  "inverse": false
+ },
+ "announcer": {
+  "canonical": "announcer",
+  "inverse": false
+ },
+ "built_in": {
+  "canonical": "built_in_year",
+  "inverse": false
+ },
+ "has_electoral_ward": {
+  "canonical": "has_electoral_ward",
+  "inverse": false
+ },
+ "has_height": {
+  "canonical": "height",
+  "inverse": false
+ },
+ "performed_in": {
+  "canonical": "performed_in",
+  "inverse": false
+ },
+ "praised_and_criticized": {
+  "canonical": "praised_and_criticized",
+  "inverse": false
+ },
+ "replaced_by": {
+  "canonical": "replaced_by",
+  "inverse": false
+ },
+ "samples": {
+  "canonical": "samples",
+  "inverse": false
+ },
+ "voice_directed": {
+  "canonical": "voice_directed",
+  "inverse": false
+ },
+ "award_received": {
+  "canonical": "won_award",
+  "inverse": false
+ },
+ "closed_on": {
+  "canonical": "closed_on",
+  "inverse": false
+ },
+ "dissolved_in_year": {
+  "canonical": "dissolved_in_year",
+  "inverse": false
+ },
+ "distance_to": {
+  "canonical": "distance_to",
+  "inverse": false
+ },
+ "formed_in_year": {
+  "canonical": "founded_in_year",
+  "inverse": false
+ },
+ "has_elevation": {
+  "canonical": "elevation",
+  "inverse": false
+ },
+ "operated_in": {
+  "canonical": "operated_in",
+  "inverse": false
+ },
+ "played_against": {
+  "canonical": "played_against",
+  "inverse": false
+ },
+ "played_position": {
+  "canonical": "plays_position",
+  "inverse": false
+ },
+ "premiered_on": {
+  "canonical": "premiered_on",
+  "inverse": false
+ },
+ "recorded_at": {
+  "canonical": "recorded_at",
+  "inverse": false
+ },
+ "scored": {
+  "canonical": "scored",
+  "inverse": false
+ },
+ "used_by": {
+  "canonical": "used_by",
+  "inverse": false
+ },
+ "artist": {
+  "canonical": "artist",
+  "inverse": false
+ },
+ "broadcast_by": {
+  "canonical": "broadcast_by",
+  "inverse": false
+ },
+ "broadcast_on": {
+  "canonical": "broadcast_on",
+  "inverse": false
+ },
+ "census_year": {
+  "canonical": "census_year",
+  "inverse": false
+ },
+ "coached_by": {
+  "canonical": "coached_by",
+  "inverse": false
+ },
+ "distance_from": {
+  "canonical": "distance_from",
+  "inverse": false
+ },
+ "drafted_by": {
+  "canonical": "drafted_by",
+  "inverse": false
+ },
+ "educated_at": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "final_score": {
+  "canonical": "final_score",
+  "inverse": false
+ },
+ "grandchild_of": {
+  "canonical": "grandchild_of",
+  "inverse": false
+ },
+ "has_duration": {
+  "canonical": "has_duration",
+  "inverse": false
+ },
+ "has_part": {
+  "canonical": "has_number_of_acts",
+  "inverse": false
+ },
+ "has_theme": {
+  "canonical": "has_theme",
+  "inverse": false
+ },
+ "home_arena": {
+  "canonical": "home_arena",
+  "inverse": false
+ },
+ "major_tenant": {
+  "canonical": "major_tenant",
+  "inverse": false
+ },
+ "manufactured_by": {
+  "canonical": "manufactured_by",
+  "inverse": false
+ },
+ "member_of_congress": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "operated_by": {
+  "canonical": "operated_by",
+  "inverse": false
+ },
+ "origin": {
+  "canonical": "origin",
+  "inverse": false
+ },
+ "participated_in": {
+  "canonical": "participated_in",
+  "inverse": false
+ },
+ "published_in": {
+  "canonical": "published_in",
+  "inverse": false
+ },
+ "retired_in_year": {
+  "canonical": "retired_in_year",
+  "inverse": false
+ },
+ "runs_on": {
+  "canonical": "runs_on",
+  "inverse": false
+ },
+ "screenplay_by": {
+  "canonical": "screenplay_by",
+  "inverse": false
+ },
+ "serves": {
+  "canonical": "serves",
+  "inverse": false
+ },
+ "used_arena_from_to": {
+  "canonical": "used_arena_from_to",
+  "inverse": false
+ },
+ "aircraft_type": {
+  "canonical": "aircraft_type",
+  "inverse": false
+ },
+ "aired_on": {
+  "canonical": "broadcast_on",
+  "inverse": false
+ },
+ "attended_college": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "based_in": {
+  "canonical": "headquartered_in",
+  "inverse": false
+ },
+ "best_known_for": {
+  "canonical": "best_known_for",
+  "inverse": false
+ },
+ "chart_position": {
+  "canonical": "chart_position",
+  "inverse": false
+ },
+ "coached_at": {
+  "canonical": "coached_at",
+  "inverse": false
+ },
+ "composed_music_for": {
+  "canonical": "composed_music_for",
+  "inverse": false
+ },
+ "contains": {
+  "canonical": "contains",
+  "inverse": false
+ },
+ "created_role_in": {
+  "canonical": "created_role_in",
+  "inverse": false
+ },
+ "died_in_year": {
+  "canonical": "died_on",
+  "inverse": false
+ },
+ "directed": {
+  "canonical": "directed",
+  "inverse": false
+ },
+ "donated_to": {
+  "canonical": "donated_to",
+  "inverse": false
+ },
+ "drafted_in_year": {
+  "canonical": "drafted_in_year",
+  "inverse": false
+ },
+ "earned_degree": {
+  "canonical": "earned_degree",
+  "inverse": false
+ },
+ "edited_by": {
+  "canonical": "edited_by",
+  "inverse": false
+ },
+ "emphasizes_genre": {
+  "canonical": "emphasizes_genre",
+  "inverse": false
+ },
+ "ended_in_year": {
+  "canonical": "ended_in_year",
+  "inverse": false
+ },
+ "filmed_in": {
+  "canonical": "filmed_in",
+  "inverse": false
+ },
+ "formed_in": {
+  "canonical": "founded_in",
+  "inverse": false
+ },
+ "formerly_called": {
+  "canonical": "also_known_as",
+  "inverse": false
+ },
+ "funded_by": {
+  "canonical": "funded_by",
+  "inverse": false
+ },
+ "has_form": {
+  "canonical": "has_form",
+  "inverse": false
+ },
+ "has_population": {
+  "canonical": "population",
+  "inverse": false
+ },
+ "has_quality": {
+  "canonical": "has_quality",
+  "inverse": false
+ },
+ "held_by": {
+  "canonical": "held_by",
+  "inverse": false
+ },
+ "held_in": {
+  "canonical": "held_in",
+  "inverse": false
+ },
+ "illustrated_by": {
+  "canonical": "illustrated_by",
+  "inverse": false
+ },
+ "inducted_into_hall_of_fame_in_year": {
+  "canonical": "inducted_into_hall_of_fame_in_year",
+  "inverse": false
+ },
+ "industry": {
+  "canonical": "industry",
+  "inverse": false
+ },
+ "invested_in": {
+  "canonical": "invested_in",
+  "inverse": false
+ },
+ "known_for_role": {
+  "canonical": "known_for_role",
+  "inverse": false
+ },
+ "located_on": {
+  "canonical": "located_on",
+  "inverse": false
+ },
+ "manufactures": {
+  "canonical": "manufactures",
+  "inverse": false
+ },
+ "occurs_in": {
+  "canonical": "occurs_in",
+  "inverse": false
+ },
+ "organized_by": {
+  "canonical": "organized_by",
+  "inverse": false
+ },
+ "originated_in": {
+  "canonical": "originated_in",
+  "inverse": false
+ },
+ "passed_by": {
+  "canonical": "passed_by",
+  "inverse": false
+ },
+ "played_character": {
+  "canonical": "portrays",
+  "inverse": false
+ },
+ "renamed_in_year": {
+  "canonical": "renamed_in_year",
+  "inverse": false
+ },
+ "represents": {
+  "canonical": "represents",
+  "inverse": false
+ },
+ "sibling_of": {
+  "canonical": "sibling_of",
+  "inverse": false
+ },
+ "sport": {
+  "canonical": "sport",
+  "inverse": false
+ },
+ "stolen_by": {
+  "canonical": "stolen_by",
+  "inverse": false
+ },
+ "used_as": {
+  "canonical": "used_as",
+  "inverse": false
+ },
+ "used_in": {
+  "canonical": "used_in",
+  "inverse": false
+ },
+ "weeks_on_chart": {
+  "canonical": "weeks_on_chart",
+  "inverse": false
+ },
+ "won_league_in_year": {
+  "canonical": "won_league_in_year",
+  "inverse": false
+ },
+ "album_number": {
+  "canonical": "album_number",
+  "inverse": false
+ },
+ "album_type": {
+  "canonical": "album_type",
+  "inverse": false
+ },
+ "appeared_in": {
+  "canonical": "appeared_in",
+  "inverse": false
+ },
+ "assistant_coach": {
+  "canonical": "assistant_coach",
+  "inverse": false
+ },
+ "assisted_by": {
+  "canonical": "assisted_by",
+  "inverse": false
+ },
+ "author_of": {
+  "canonical": "written_by",
+  "inverse": true
+ },
+ "best_known_role": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "birthplace": {
+  "canonical": "born_in",
+  "inverse": false
+ },
+ "born_on_date": {
+  "canonical": "born_on",
+  "inverse": false
+ },
+ "by_artist": {
+  "canonical": "artist",
+  "inverse": false
+ },
+ "cause_of_death": {
+  "canonical": "cause_of_death",
+  "inverse": false
+ },
+ "character_in": {
+  "canonical": "character_in",
+  "inverse": false
+ },
+ "co_founded": {
+  "canonical": "co_founded",
+  "inverse": false
+ },
+ "commanded_by": {
+  "canonical": "commanded_by",
+  "inverse": false
+ },
+ "commissioned_by": {
+  "canonical": "commissioned_by",
+  "inverse": false
+ },
+ "completed_in_year": {
+  "canonical": "completed_in_year",
+  "inverse": false
+ },
+ "composed": {
+  "canonical": "composed",
+  "inverse": false
+ },
+ "composed_of": {
+  "canonical": "composed_of",
+  "inverse": false
+ },
+ "county_seat": {
+  "canonical": "county_seat",
+  "inverse": false
+ },
+ "crash_location": {
+  "canonical": "crash_location",
+  "inverse": false
+ },
+ "crashed_at": {
+  "canonical": "crash_location",
+  "inverse": false
+ },
+ "date": {
+  "canonical": "date",
+  "inverse": false
+ },
+ "departed_from": {
+  "canonical": "departed_from",
+  "inverse": false
+ },
+ "described_by": {
+  "canonical": "described_by",
+  "inverse": false
+ },
+ "described_in_year": {
+  "canonical": "described_in_year",
+  "inverse": false
+ },
+ "destination": {
+  "canonical": "destination",
+  "inverse": false
+ },
+ "destroyed_in": {
+  "canonical": "destroyed_in",
+  "inverse": false
+ },
+ "developed_by": {
+  "canonical": "developed_by",
+  "inverse": false
+ },
+ "developed_from": {
+  "canonical": "developed_from",
+  "inverse": false
+ },
+ "developed_in_decade": {
+  "canonical": "developed_in_decade",
+  "inverse": false
+ },
+ "directorial_debut": {
+  "canonical": "directed_by",
+  "inverse": true
+ },
+ "drafted": {
+  "canonical": "drafted_by",
+  "inverse": true
+ },
+ "edition_number": {
+  "canonical": "edition_number",
+  "inverse": false
+ },
+ "employed_by": {
+  "canonical": "employed_by",
+  "inverse": false
+ },
+ "enables": {
+  "canonical": "enables",
+  "inverse": false
+ },
+ "end_date": {
+  "canonical": "end_date",
+  "inverse": false
+ },
+ "established_by": {
+  "canonical": "established_by",
+  "inverse": false
+ },
+ "established_in_year": {
+  "canonical": "established_in_year",
+  "inverse": false
+ },
+ "first_aired_on": {
+  "canonical": "premiered_on",
+  "inverse": false
+ },
+ "first_climbed_in_year": {
+  "canonical": "first_climbed_in_year",
+  "inverse": false
+ },
+ "first_flight_date": {
+  "canonical": "first_flight_date",
+  "inverse": false
+ },
+ "formed_before": {
+  "canonical": "formed_before",
+  "inverse": false
+ },
+ "founded": {
+  "canonical": "founded",
+  "inverse": false
+ },
+ "from_album": {
+  "canonical": "from_album",
+  "inverse": false
+ },
+ "functions_as": {
+  "canonical": "functions_as",
+  "inverse": false
+ },
+ "graduated_from": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "has_example": {
+  "canonical": "has_example",
+  "inverse": false
+ },
+ "has_method": {
+  "canonical": "has_method",
+  "inverse": false
+ },
+ "has_name": {
+  "canonical": "has_name",
+  "inverse": false
+ },
+ "has_number_of_acts": {
+  "canonical": "has_number_of_acts",
+  "inverse": false
+ },
+ "has_russian_title": {
+  "canonical": "has_russian_title",
+  "inverse": false
+ },
+ "has_title": {
+  "canonical": "has_title",
+  "inverse": false
+ },
+ "has_vocalist": {
+  "canonical": "has_vocalist",
+  "inverse": false
+ },
+ "head_coach": {
+  "canonical": "head_coach",
+  "inverse": false
+ },
+ "headquarters_address": {
+  "canonical": "headquarters_address",
+  "inverse": false
+ },
+ "held_in_year": {
+  "canonical": "held_on",
+  "inverse": false
+ },
+ "held_on_date": {
+  "canonical": "held_on",
+  "inverse": false
+ },
+ "holds_position": {
+  "canonical": "held_position",
+  "inverse": false
+ },
+ "home_of": {
+  "canonical": "home_arena",
+  "inverse": true
+ },
+ "home_venue": {
+  "canonical": "home_arena",
+  "inverse": false
+ },
+ "hosted_for_years": {
+  "canonical": "hosted_for_years",
+  "inverse": false
+ },
+ "instrument": {
+  "canonical": "plays_instrument",
+  "inverse": false
+ },
+ "introduced_in_year": {
+  "canonical": "introduced_in_year",
+  "inverse": false
+ },
+ "is_head_of": {
+  "canonical": "held_position",
+  "inverse": true
+ },
+ "known_as": {
+  "canonical": "also_known_as",
+  "inverse": false
+ },
+ "landmark_of": {
+  "canonical": "landmark_of",
+  "inverse": false
+ },
+ "later_raced": {
+  "canonical": "later_raced",
+  "inverse": false
+ },
+ "listed_on": {
+  "canonical": "listed_on",
+  "inverse": false
+ },
+ "located_in_country": {
+  "canonical": "located_in",
+  "inverse": false
+ },
+ "located_in_district": {
+  "canonical": "located_in_district",
+  "inverse": false
+ },
+ "located_on_road": {
+  "canonical": "located_on_road",
+  "inverse": false
+ },
+ "main_character": {
+  "canonical": "main_character",
+  "inverse": false
+ },
+ "manufactures_under_brand": {
+  "canonical": "manufactures_under_brand",
+  "inverse": false
+ },
+ "means": {
+  "canonical": "means",
+  "inverse": false
+ },
+ "member_born_in": {
+  "canonical": "member_born_in",
+  "inverse": false
+ },
+ "member_of_parliament_from": {
+  "canonical": "member_of_parliament_from",
+  "inverse": false
+ },
+ "minimum_height_in_region": {
+  "canonical": "minimum_height_in_region",
+  "inverse": false
+ },
+ "moved_to": {
+  "canonical": "moved_to",
+  "inverse": false
+ },
+ "music_composed_by": {
+  "canonical": "composed_by",
+  "inverse": false
+ },
+ "name_means": {
+  "canonical": "means",
+  "inverse": false
+ },
+ "number_of_episodes": {
+  "canonical": "number_of_episodes",
+  "inverse": false
+ },
+ "number_of_fatalities": {
+  "canonical": "number_of_fatalities",
+  "inverse": false
+ },
+ "opened_on": {
+  "canonical": "opened_on",
+  "inverse": false
+ },
+ "operates_flight_type": {
+  "canonical": "operates_flight_type",
+  "inverse": false
+ },
+ "operates_in": {
+  "canonical": "operates_in",
+  "inverse": false
+ },
+ "originally_named": {
+  "canonical": "originally_named",
+  "inverse": false
+ },
+ "participant": {
+  "canonical": "participant",
+  "inverse": false
+ },
+ "perceived_as": {
+  "canonical": "perceived_as",
+  "inverse": false
+ },
+ "played_college_basketball_for": {
+  "canonical": "played_for",
+  "inverse": false
+ },
+ "played_role_in": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "played_sport": {
+  "canonical": "sport",
+  "inverse": false
+ },
+ "plays": {
+  "canonical": "portrays",
+  "inverse": false
+ },
+ "plays_sport": {
+  "canonical": "sport",
+  "inverse": false
+ },
+ "position_held": {
+  "canonical": "held_position",
+  "inverse": false
+ },
+ "post_office_opened_on": {
+  "canonical": "post_office_opened_on",
+  "inverse": false
+ },
+ "premiere_date": {
+  "canonical": "premiere_date",
+  "inverse": false
+ },
+ "produced_in": {
+  "canonical": "produced_in",
+  "inverse": false
+ },
+ "published_in_uk_by": {
+  "canonical": "published_by",
+  "inverse": false
+ },
+ "published_in_uk_in_year": {
+  "canonical": "published_in_year",
+  "inverse": false
+ },
+ "published_in_usa_by": {
+  "canonical": "published_by",
+  "inverse": false
+ },
+ "published_in_usa_in_year": {
+  "canonical": "published_in_year",
+  "inverse": false
+ },
+ "pupils_attend": {
+  "canonical": "pupils_attend",
+  "inverse": false
+ },
+ "ran_at_time": {
+  "canonical": "ran_at_time",
+  "inverse": false
+ },
+ "ran_from": {
+  "canonical": "ran_from",
+  "inverse": false
+ },
+ "ran_until": {
+  "canonical": "ran_until",
+  "inverse": false
+ },
+ "real_name": {
+  "canonical": "birth_name",
+  "inverse": false
+ },
+ "released_on": {
+  "canonical": "release_date",
+  "inverse": false
+ },
+ "renovated_in_year": {
+  "canonical": "renovated_in_year",
+  "inverse": false
+ },
+ "route_ends": {
+  "canonical": "route_ends",
+  "inverse": false
+ },
+ "satirizes": {
+  "canonical": "satirizes",
+  "inverse": false
+ },
+ "season_number": {
+  "canonical": "season_number",
+  "inverse": false
+ },
+ "seat_of": {
+  "canonical": "seat_of",
+  "inverse": false
+ },
+ "seating_capacity": {
+  "canonical": "seating_capacity",
+  "inverse": false
+ },
+ "sibling": {
+  "canonical": "sibling_of",
+  "inverse": false
+ },
+ "starred_in": {
+  "canonical": "starring",
+  "inverse": true
+ },
+ "student_at": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "took_place_on": {
+  "canonical": "held_on",
+  "inverse": false
+ },
+ "weeks_at_number_one": {
+  "canonical": "weeks_at_number_one",
+  "inverse": false
+ },
+ "winner": {
+  "canonical": "winner",
+  "inverse": false
+ },
+ "won": {
+  "canonical": "won_by",
+  "inverse": true
+ },
+ "won_award_for": {
+  "canonical": "won_award_for",
+  "inverse": false
+ },
+ "won_by_team": {
+  "canonical": "won_by_team",
+  "inverse": false
+ },
+ "won_championship_in_year": {
+  "canonical": "won_championship_in_year",
+  "inverse": false
+ },
+ "works_in_media": {
+  "canonical": "works_in_media",
+  "inverse": false
+ },
+ "zip_code": {
+  "canonical": "zip_code",
+  "inverse": false
+ },
+ "abandoned_in_year": {
+  "canonical": "abandoned_in_year",
+  "inverse": false
+ },
+ "active_from_year": {
+  "canonical": "active_from_year",
+  "inverse": false
+ },
+ "active_to_year": {
+  "canonical": "active_to_year",
+  "inverse": false
+ },
+ "adapted_from": {
+  "canonical": "based_on",
+  "inverse": false
+ },
+ "affiliated_with": {
+  "canonical": "affiliated_with",
+  "inverse": false
+ },
+ "aged_group": {
+  "canonical": "aged_group",
+  "inverse": false
+ },
+ "aids_with": {
+  "canonical": "aids_with",
+  "inverse": false
+ },
+ "air_date": {
+  "canonical": "air_date",
+  "inverse": false
+ },
+ "aired_with": {
+  "canonical": "aired_with",
+  "inverse": false
+ },
+ "all_defensive_team_count": {
+  "canonical": "all_defensive_team_count",
+  "inverse": false
+ },
+ "all_star_in_year": {
+  "canonical": "all_star_in_year",
+  "inverse": false
+ },
+ "alternative_title": {
+  "canonical": "alternative_title",
+  "inverse": false
+ },
+ "amalgamated_to_form": {
+  "canonical": "amalgamated_to_form",
+  "inverse": false
+ },
+ "amalgamated_with_due_to": {
+  "canonical": "amalgamated_with_due_to",
+  "inverse": false
+ },
+ "animated_by": {
+  "canonical": "animated_by",
+  "inverse": false
+ },
+ "announced_as_successor_on": {
+  "canonical": "announced_as_successor_on",
+  "inverse": false
+ },
+ "appeared_in_film_directed_by": {
+  "canonical": "appeared_in_film_directed_by",
+  "inverse": false
+ },
+ "appeared_in_north_america_in_year": {
+  "canonical": "appeared_in_north_america_in_year",
+  "inverse": false
+ },
+ "appeared_in_year": {
+  "canonical": "appeared_in_year",
+  "inverse": false
+ },
+ "appointed_at": {
+  "canonical": "appointed_at",
+  "inverse": false
+ },
+ "appointed_at_year": {
+  "canonical": "appointed_at_year",
+  "inverse": false
+ },
+ "approach_guidance_type": {
+  "canonical": "approach_guidance_type",
+  "inverse": false
+ },
+ "architect": {
+  "canonical": "designed_by",
+  "inverse": false
+ },
+ "architectural_style": {
+  "canonical": "architectural_style",
+  "inverse": false
+ },
+ "arrived_in_county_in_year": {
+  "canonical": "arrived_in_county_in_year",
+  "inverse": false
+ },
+ "asked_to_replace": {
+  "canonical": "asked_to_replace",
+  "inverse": false
+ },
+ "assists": {
+  "canonical": "assists",
+  "inverse": false
+ },
+ "attended": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "average_gamer_age_range": {
+  "canonical": "average_gamer_age_range",
+  "inverse": false
+ },
+ "average_gamer_education_level": {
+  "canonical": "average_gamer_education_level",
+  "inverse": false
+ },
+ "average_gamer_gender": {
+  "canonical": "average_gamer_gender",
+  "inverse": false
+ },
+ "award_count": {
+  "canonical": "award_count",
+  "inverse": false
+ },
+ "award_won": {
+  "canonical": "won_award",
+  "inverse": false
+ },
+ "awarded": {
+  "canonical": "awarded",
+  "inverse": false
+ },
+ "awarded_for": {
+  "canonical": "awarded_for",
+  "inverse": false
+ },
+ "awarded_frequency": {
+  "canonical": "awarded_frequency",
+  "inverse": false
+ },
+ "awarded_trophy": {
+  "canonical": "awarded",
+  "inverse": false
+ },
+ "bankrupt_in": {
+  "canonical": "bankrupt_in",
+  "inverse": false
+ },
+ "based_on_novel_by": {
+  "canonical": "based_on_work_by",
+  "inverse": false
+ },
+ "based_on_work_by": {
+  "canonical": "based_on_work_by",
+  "inverse": false
+ },
+ "beat": {
+  "canonical": "beat",
+  "inverse": false
+ },
+ "became_head_coach_of_in_year": {
+  "canonical": "became_head_coach_of_in_year",
+  "inverse": false
+ },
+ "became_heir_apparent_on": {
+  "canonical": "became_heir_apparent_on",
+  "inverse": false
+ },
+ "became_president_on": {
+  "canonical": "became_president_on",
+  "inverse": false
+ },
+ "became_professor_in_year": {
+  "canonical": "became_professor_in_year",
+  "inverse": false
+ },
+ "became_widespread_in": {
+  "canonical": "became_widespread_in",
+  "inverse": false
+ },
+ "began_in_year": {
+  "canonical": "began_in_year",
+  "inverse": false
+ },
+ "began_racing_era_in_year": {
+  "canonical": "began_racing_era_in_year",
+  "inverse": false
+ },
+ "began_shooting_in_year": {
+  "canonical": "began_shooting_in_year",
+  "inverse": false
+ },
+ "began_teaching_in_year": {
+  "canonical": "began_teaching_in_year",
+  "inverse": false
+ },
+ "belongs_to_family": {
+  "canonical": "belongs_to_family",
+  "inverse": false
+ },
+ "best_known_role_in": {
+  "canonical": "best_known_role_in",
+  "inverse": false
+ },
+ "borders": {
+  "canonical": "borders",
+  "inverse": false
+ },
+ "bought": {
+  "canonical": "bought",
+  "inverse": false
+ },
+ "box_office_gross": {
+  "canonical": "box_office_gross",
+  "inverse": false
+ },
+ "broadcast_date": {
+  "canonical": "air_date",
+  "inverse": false
+ },
+ "broadcaster_type": {
+  "canonical": "broadcaster_type",
+  "inverse": false
+ },
+ "brought_in_after": {
+  "canonical": "brought_in_after",
+  "inverse": false
+ },
+ "brought_into_mainstream": {
+  "canonical": "brought_into_mainstream",
+  "inverse": false
+ },
+ "built_for": {
+  "canonical": "built_for",
+  "inverse": false
+ },
+ "built_or_altered_during": {
+  "canonical": "built_or_altered_during",
+  "inverse": false
+ },
+ "business_partner": {
+  "canonical": "business_partner",
+  "inverse": false
+ },
+ "cancelled_due_to": {
+  "canonical": "cancelled_due_to",
+  "inverse": false
+ },
+ "captain": {
+  "canonical": "captain",
+  "inverse": false
+ },
+ "captain_name": {
+  "canonical": "captain",
+  "inverse": false
+ },
+ "cause_of_crash": {
+  "canonical": "cause_of_crash",
+  "inverse": false
+ },
+ "ceased_operations_in": {
+  "canonical": "ceased_operations_in",
+  "inverse": false
+ },
+ "ceremony_venue": {
+  "canonical": "ceremony_venue",
+  "inverse": false
+ },
+ "certification": {
+  "canonical": "certification",
+  "inverse": false
+ },
+ "champions_in_season": {
+  "canonical": "champions_in_season",
+  "inverse": false
+ },
+ "changed_at": {
+  "canonical": "changed_at",
+  "inverse": false
+ },
+ "charged_for_baronetcy": {
+  "canonical": "charged_for_baronetcy",
+  "inverse": false
+ },
+ "charged_for_knighthood": {
+  "canonical": "charged_for_knighthood",
+  "inverse": false
+ },
+ "charged_for_peerage": {
+  "canonical": "charged_for_peerage",
+  "inverse": false
+ },
+ "charges_rate": {
+  "canonical": "charges_rate",
+  "inverse": false
+ },
+ "chartered_in_year": {
+  "canonical": "chartered_in_year",
+  "inverse": false
+ },
+ "chinese_name": {
+  "canonical": "chinese_name",
+  "inverse": false
+ },
+ "chorister_gender": {
+  "canonical": "chorister_gender",
+  "inverse": false
+ },
+ "claimed_in_year": {
+  "canonical": "claimed_in_year",
+  "inverse": false
+ },
+ "clock_installed_in": {
+  "canonical": "clock_installed_in",
+  "inverse": false
+ },
+ "co_author_of": {
+  "canonical": "co_author_of",
+  "inverse": false
+ },
+ "co_produced_with": {
+  "canonical": "co_produced_with",
+  "inverse": false
+ },
+ "co_starred_with": {
+  "canonical": "co_starred_with",
+  "inverse": false
+ },
+ "coaches_at": {
+  "canonical": "coaches_at",
+  "inverse": false
+ },
+ "coined_by": {
+  "canonical": "coined_by",
+  "inverse": false
+ },
+ "collaborated_with": {
+  "canonical": "collaborated_with",
+  "inverse": false
+ },
+ "combined_ward_population": {
+  "canonical": "population",
+  "inverse": false
+ },
+ "composed_in_year": {
+  "canonical": "composed_in_year",
+  "inverse": false
+ },
+ "comprised_teams_from": {
+  "canonical": "comprised_teams_from",
+  "inverse": false
+ },
+ "constructed_in_front_of": {
+  "canonical": "constructed_in_front_of",
+  "inverse": false
+ },
+ "constructed_in_year": {
+  "canonical": "built_in_year",
+  "inverse": false
+ },
+ "constructed_next_to": {
+  "canonical": "constructed_next_to",
+  "inverse": false
+ },
+ "contains_poems_written_along_with": {
+  "canonical": "contains_poems_written_along_with",
+  "inverse": false
+ },
+ "converted_on_date": {
+  "canonical": "converted_on_date",
+  "inverse": false
+ },
+ "country": {
+  "canonical": "country",
+  "inverse": false
+ },
+ "crash_cause": {
+  "canonical": "cause_of_crash",
+  "inverse": false
+ },
+ "crash_date": {
+  "canonical": "crash_date",
+  "inverse": false
+ },
+ "crashed_on_date": {
+  "canonical": "crash_date",
+  "inverse": false
+ },
+ "created_for_reason": {
+  "canonical": "created_for_reason",
+  "inverse": false
+ },
+ "created_in_year": {
+  "canonical": "created_in_year",
+  "inverse": false
+ },
+ "damaged_by_fire_in_year": {
+  "canonical": "damaged_by_fire_in_year",
+  "inverse": false
+ },
+ "date_of_birth": {
+  "canonical": "born_on",
+  "inverse": false
+ },
+ "date_of_crash": {
+  "canonical": "crash_date",
+  "inverse": false
+ },
+ "date_of_death": {
+  "canonical": "died_on",
+  "inverse": false
+ },
+ "defeated_in_final": {
+  "canonical": "defeated_in_final",
+  "inverse": false
+ },
+ "defined": {
+  "canonical": "defined",
+  "inverse": false
+ },
+ "definition": {
+  "canonical": "defined_as",
+  "inverse": false
+ },
+ "denounced_in": {
+  "canonical": "denounced_in",
+  "inverse": false
+ },
+ "depends_on": {
+  "canonical": "depends_on",
+  "inverse": false
+ },
+ "deputy_to": {
+  "canonical": "deputy_to",
+  "inverse": false
+ },
+ "designed": {
+  "canonical": "designed",
+  "inverse": false
+ },
+ "development_cost": {
+  "canonical": "development_cost",
+  "inverse": false
+ },
+ "died_at": {
+  "canonical": "died_in",
+  "inverse": false
+ },
+ "directed_in_year": {
+  "canonical": "directed_in_year",
+  "inverse": false
+ },
+ "direction_from": {
+  "canonical": "direction_from",
+  "inverse": false
+ },
+ "distance_from_corby_glen": {
+  "canonical": "distance_to",
+  "inverse": false
+ },
+ "distance_from_stamford": {
+  "canonical": "distance_to",
+  "inverse": false
+ },
+ "does_not_run_on": {
+  "canonical": "does_not_run_on",
+  "inverse": false
+ },
+ "donation_amount": {
+  "canonical": "donation_amount",
+  "inverse": false
+ },
+ "draft_pick": {
+  "canonical": "draft_pick",
+  "inverse": false
+ },
+ "drove_in_1952_british_grand_prix": {
+  "canonical": "drove_in_1952_british_grand_prix",
+  "inverse": false
+ },
+ "drummer": {
+  "canonical": "drummer",
+  "inverse": false
+ },
+ "dvd_released_on": {
+  "canonical": "dvd_released_on",
+  "inverse": false
+ },
+ "editor_of": {
+  "canonical": "edited_by",
+  "inverse": true
+ },
+ "enacted_in_year": {
+  "canonical": "enacted_in_year",
+  "inverse": false
+ },
+ "ended_on": {
+  "canonical": "ended_on",
+  "inverse": false
+ },
+ "engaged_in_expansion_of": {
+  "canonical": "engaged_in_expansion_of",
+  "inverse": false
+ },
+ "entered_in_festival": {
+  "canonical": "entered_in_festival",
+  "inverse": false
+ },
+ "entered_in_festival_edition": {
+  "canonical": "entered_in_festival",
+  "inverse": false
+ },
+ "episode_number_in_season": {
+  "canonical": "episode_number_in_season",
+  "inverse": false
+ },
+ "episode_number_overall": {
+  "canonical": "episode_number_overall",
+  "inverse": false
+ },
+ "equivalent_rank": {
+  "canonical": "equivalent_rank",
+  "inverse": false
+ },
+ "escapee_count": {
+  "canonical": "escapee_count",
+  "inverse": false
+ },
+ "escapees_joined": {
+  "canonical": "escapees_joined",
+  "inverse": false
+ },
+ "exhibited_at": {
+  "canonical": "exhibited_at",
+  "inverse": false
+ },
+ "existed_between": {
+  "canonical": "existed_between",
+  "inverse": false
+ },
+ "exists_in": {
+  "canonical": "exists_in",
+  "inverse": false
+ },
+ "expelled_from": {
+  "canonical": "expelled_from",
+  "inverse": false
+ },
+ "father": {
+  "canonical": "child_of",
+  "inverse": true
+ },
+ "featured_first_episode": {
+  "canonical": "featured_first_episode",
+  "inverse": false
+ },
+ "filmed_in_format": {
+  "canonical": "filmed_in_format",
+  "inverse": false
+ },
+ "finals_mvp_in_year": {
+  "canonical": "finals_mvp_in_year",
+  "inverse": false
+ },
+ "finished_position": {
+  "canonical": "finished_position",
+  "inverse": false
+ },
+ "finished_position_at_1958_24_hours_of_le_mans": {
+  "canonical": "finished_position",
+  "inverse": false
+ },
+ "first_aired_on_network": {
+  "canonical": "broadcast_on",
+  "inverse": false
+ },
+ "first_album": {
+  "canonical": "first_album",
+  "inverse": false
+ },
+ "first_awarded_in_year": {
+  "canonical": "first_awarded_in_year",
+  "inverse": false
+ },
+ "first_commercial_success": {
+  "canonical": "first_commercial_success",
+  "inverse": false
+ },
+ "first_episode": {
+  "canonical": "featured_first_episode",
+  "inverse": false
+ },
+ "first_film_role_in": {
+  "canonical": "first_film_role_in",
+  "inverse": false
+ },
+ "first_flown_in_year": {
+  "canonical": "first_flown_in_year",
+  "inverse": false
+ },
+ "first_officer": {
+  "canonical": "first_officer",
+  "inverse": false
+ },
+ "first_officer_name": {
+  "canonical": "first_officer",
+  "inverse": false
+ },
+ "first_run_in_year": {
+  "canonical": "first_run_in_year",
+  "inverse": false
+ },
+ "first_single": {
+  "canonical": "first_single",
+  "inverse": false
+ },
+ "first_sound_film": {
+  "canonical": "first_sound_film",
+  "inverse": false
+ },
+ "first_umpired_in_year": {
+  "canonical": "first_umpired_in_year",
+  "inverse": false
+ },
+ "first_used_in_year": {
+  "canonical": "first_used_in_year",
+  "inverse": false
+ },
+ "first_winner": {
+  "canonical": "first_winner",
+  "inverse": false
+ },
+ "fixtures_taken_over_by": {
+  "canonical": "fixtures_taken_over_by",
+  "inverse": false
+ },
+ "flight_type": {
+  "canonical": "flight_type",
+  "inverse": false
+ },
+ "flows_direction": {
+  "canonical": "flows_direction",
+  "inverse": false
+ },
+ "flows_through": {
+  "canonical": "flows_through",
+  "inverse": false
+ },
+ "focuses_on": {
+  "canonical": "focuses_on",
+  "inverse": false
+ },
+ "foreword_by": {
+  "canonical": "foreword_by",
+  "inverse": false
+ },
+ "foreword_topic": {
+  "canonical": "foreword_topic",
+  "inverse": false
+ },
+ "formed_in_location": {
+  "canonical": "founded_in",
+  "inverse": false
+ },
+ "formed_to_discuss": {
+  "canonical": "formed_to_discuss",
+  "inverse": false
+ },
+ "former_branch_of": {
+  "canonical": "former_branch_of",
+  "inverse": false
+ },
+ "fraction_users_engage_in_online_game_play": {
+  "canonical": "fraction_users_engage_in_online_game_play",
+  "inverse": false
+ },
+ "from": {
+  "canonical": "originated_in",
+  "inverse": false
+ },
+ "from_location": {
+  "canonical": "originated_in",
+  "inverse": false
+ },
+ "gained_worldwide_recognition_in_year": {
+  "canonical": "gained_worldwide_recognition_in_year",
+  "inverse": false
+ },
+ "gaoler_of": {
+  "canonical": "gaoler_of",
+  "inverse": false
+ },
+ "generates_revenue_by": {
+  "canonical": "generates_revenue_by",
+  "inverse": false
+ },
+ "graded_outstanding_in": {
+  "canonical": "graded_outstanding_in",
+  "inverse": false
+ },
+ "graduated_in_year": {
+  "canonical": "graduated_in_year",
+  "inverse": false
+ },
+ "grand_opening_on": {
+  "canonical": "grand_opening_on",
+  "inverse": false
+ },
+ "granted_to": {
+  "canonical": "granted_to",
+  "inverse": false
+ },
+ "grown_for": {
+  "canonical": "grown_for",
+  "inverse": false
+ },
+ "had_captain": {
+  "canonical": "captain",
+  "inverse": false
+ },
+ "had_first_officer": {
+  "canonical": "first_officer",
+  "inverse": false
+ },
+ "had_number_one_song": {
+  "canonical": "had_number_one_song",
+  "inverse": false
+ },
+ "had_strengthened_powers_in": {
+  "canonical": "had_strengthened_powers_in",
+  "inverse": false
+ },
+ "has_advantage": {
+  "canonical": "has_advantage",
+  "inverse": false
+ },
+ "has_album": {
+  "canonical": "released_album",
+  "inverse": false
+ },
+ "has_chapter_number": {
+  "canonical": "has_chapter_number",
+  "inverse": false
+ },
+ "has_cinematographer": {
+  "canonical": "has_cinematographer",
+  "inverse": false
+ },
+ "has_component": {
+  "canonical": "has_component",
+  "inverse": false
+ },
+ "has_configuration": {
+  "canonical": "has_configuration",
+  "inverse": false
+ },
+ "has_debut_album": {
+  "canonical": "has_debut_album",
+  "inverse": false
+ },
+ "has_duty": {
+  "canonical": "has_duty",
+  "inverse": false
+ },
+ "has_employment_status": {
+  "canonical": "has_employment_status",
+  "inverse": false
+ },
+ "has_family_member": {
+  "canonical": "has_family_member",
+  "inverse": false
+ },
+ "has_field_producer": {
+  "canonical": "has_field_producer",
+  "inverse": false
+ },
+ "has_followup": {
+  "canonical": "has_followup",
+  "inverse": false
+ },
+ "has_full_name": {
+  "canonical": "full_name",
+  "inverse": false
+ },
+ "has_grid_reference": {
+  "canonical": "has_grid_reference",
+  "inverse": false
+ },
+ "has_internet_users": {
+  "canonical": "has_internet_users",
+  "inverse": false
+ },
+ "has_koechel_number": {
+  "canonical": "has_koechel_number",
+  "inverse": false
+ },
+ "has_largest_online_user_base": {
+  "canonical": "has_largest_online_user_base",
+  "inverse": false
+ },
+ "has_location": {
+  "canonical": "has_location",
+  "inverse": false
+ },
+ "has_net_worth": {
+  "canonical": "has_net_worth",
+  "inverse": false
+ },
+ "has_number_of_volunteers": {
+  "canonical": "has_number_of_volunteers",
+  "inverse": false
+ },
+ "has_office_in": {
+  "canonical": "has_office_in",
+  "inverse": false
+ },
+ "has_protagonist": {
+  "canonical": "main_character",
+  "inverse": false
+ },
+ "has_pub": {
+  "canonical": "has_pub",
+  "inverse": false
+ },
+ "has_rank_in_pakistan": {
+  "canonical": "has_rank_in_pakistan",
+  "inverse": false
+ },
+ "has_rank_on_earth": {
+  "canonical": "has_rank_on_earth",
+  "inverse": false
+ },
+ "has_registration": {
+  "canonical": "has_registration",
+  "inverse": false
+ },
+ "has_setting": {
+  "canonical": "has_setting",
+  "inverse": false
+ },
+ "has_skeletons_of": {
+  "canonical": "has_skeletons_of",
+  "inverse": false
+ },
+ "has_specific_epithet": {
+  "canonical": "has_specific_epithet",
+  "inverse": false
+ },
+ "has_squad": {
+  "canonical": "has_squad",
+  "inverse": false
+ },
+ "has_three_major_waves_of": {
+  "canonical": "has_three_major_waves_of",
+  "inverse": false
+ },
+ "has_traces_of": {
+  "canonical": "has_traces_of",
+  "inverse": false
+ },
+ "has_track": {
+  "canonical": "has_track",
+  "inverse": false
+ },
+ "has_type": {
+  "canonical": "is_a",
+  "inverse": false
+ },
+ "has_value": {
+  "canonical": "has_value",
+  "inverse": false
+ },
+ "headquartered_at": {
+  "canonical": "headquartered_in",
+  "inverse": false
+ },
+ "headteacher": {
+  "canonical": "headteacher",
+  "inverse": false
+ },
+ "heir_apparent_to": {
+  "canonical": "heir_apparent_to",
+  "inverse": false
+ },
+ "held_from": {
+  "canonical": "held_from",
+  "inverse": false
+ },
+ "held_office": {
+  "canonical": "held_position",
+  "inverse": false
+ },
+ "held_people": {
+  "canonical": "held_people",
+  "inverse": false
+ },
+ "held_position_from_until": {
+  "canonical": "held_position_from_until",
+  "inverse": false
+ },
+ "held_rank": {
+  "canonical": "held_rank",
+  "inverse": false
+ },
+ "held_to": {
+  "canonical": "held_to",
+  "inverse": false
+ },
+ "highest_doubles_ranking": {
+  "canonical": "highest_doubles_ranking",
+  "inverse": false
+ },
+ "highest_singles_ranking": {
+  "canonical": "highest_singles_ranking",
+  "inverse": false
+ },
+ "holds_chair": {
+  "canonical": "held_position",
+  "inverse": false
+ },
+ "homage_to": {
+  "canonical": "homage_to",
+  "inverse": false
+ },
+ "home_arena_of": {
+  "canonical": "home_arena",
+  "inverse": true
+ },
+ "home_stadium": {
+  "canonical": "home_arena",
+  "inverse": false
+ },
+ "hosted": {
+  "canonical": "held_at",
+  "inverse": true
+ },
+ "hub_airport": {
+  "canonical": "hub_airport",
+  "inverse": false
+ },
+ "imprisoned_in": {
+  "canonical": "imprisoned_in",
+  "inverse": false
+ },
+ "in_development_for": {
+  "canonical": "in_development_for",
+  "inverse": false
+ },
+ "included_in": {
+  "canonical": "included_in",
+  "inverse": false
+ },
+ "inducted_into_hall_of_fame_in": {
+  "canonical": "inducted_into_hall_of_fame_in_year",
+  "inverse": false
+ },
+ "inspired_by": {
+  "canonical": "inspired_by",
+  "inverse": false
+ },
+ "invested_with": {
+  "canonical": "invested_with",
+  "inverse": false
+ },
+ "involved_in": {
+  "canonical": "involved_in",
+  "inverse": false
+ },
+ "involves": {
+  "canonical": "involves",
+  "inverse": false
+ },
+ "is_album_by": {
+  "canonical": "released_album",
+  "inverse": true
+ },
+ "is_based_at": {
+  "canonical": "is_based_at",
+  "inverse": false
+ },
+ "is_edition_of": {
+  "canonical": "is_edition_of",
+  "inverse": false
+ },
+ "is_episode_of": {
+  "canonical": "featured_first_episode",
+  "inverse": true
+ },
+ "is_event_of": {
+  "canonical": "organized_by",
+  "inverse": false
+ },
+ "is_first": {
+  "canonical": "is_first",
+  "inverse": false
+ },
+ "is_first_and_oldest": {
+  "canonical": "is_first_and_oldest",
+  "inverse": false
+ },
+ "is_first_in_country": {
+  "canonical": "is_first_in_country",
+  "inverse": false
+ },
+ "is_head_coach_of": {
+  "canonical": "head_coach",
+  "inverse": true
+ },
+ "is_landing_for": {
+  "canonical": "is_landing_for",
+  "inverse": false
+ },
+ "is_largest_broadcaster_by_employees": {
+  "canonical": "is_largest_broadcaster_by_employees",
+  "inverse": false
+ },
+ "is_mother_church_of": {
+  "canonical": "is_mother_church_of",
+  "inverse": false
+ },
+ "is_name_for": {
+  "canonical": "is_name_for",
+  "inverse": false
+ },
+ "is_oldest_national_broadcasting_organisation": {
+  "canonical": "is_oldest_national_broadcasting_organisation",
+  "inverse": false
+ },
+ "is_practice_of": {
+  "canonical": "is_practice_of",
+  "inverse": false
+ },
+ "is_season_of": {
+  "canonical": "is_season_of",
+  "inverse": false
+ },
+ "is_seat_of": {
+  "canonical": "seat_of",
+  "inverse": false
+ },
+ "is_sequel_to": {
+  "canonical": "is_sequel_to",
+  "inverse": false
+ },
+ "joined_club": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "joined_team_in_year": {
+  "canonical": "joined_team_in_year",
+  "inverse": false
+ },
+ "joined_team_on": {
+  "canonical": "joined_team_on",
+  "inverse": false
+ },
+ "joins": {
+  "canonical": "joins",
+  "inverse": false
+ },
+ "joins_near": {
+  "canonical": "joins_near",
+  "inverse": false
+ },
+ "killed_on": {
+  "canonical": "killed_on",
+  "inverse": false
+ },
+ "language": {
+  "canonical": "language",
+  "inverse": false
+ },
+ "largest_in": {
+  "canonical": "largest_in",
+  "inverse": false
+ },
+ "last_major_screen_role": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "last_regular_tenant": {
+  "canonical": "major_tenant",
+  "inverse": false
+ },
+ "latest_record": {
+  "canonical": "released_album",
+  "inverse": false
+ },
+ "lead_vocalist": {
+  "canonical": "has_vocalist",
+  "inverse": false
+ },
+ "leads_to": {
+  "canonical": "leads_to",
+  "inverse": false
+ },
+ "led_to_widespread_use_of": {
+  "canonical": "led_to_widespread_use_of",
+  "inverse": false
+ },
+ "length_km": {
+  "canonical": "length_km",
+  "inverse": false
+ },
+ "librettist": {
+  "canonical": "librettist",
+  "inverse": false
+ },
+ "libretto_adapted_by": {
+  "canonical": "libretto_adapted_by",
+  "inverse": false
+ },
+ "license_built_version_of": {
+  "canonical": "license_built_version_of",
+  "inverse": false
+ },
+ "lies_on_road": {
+  "canonical": "located_on_road",
+  "inverse": false
+ },
+ "links": {
+  "canonical": "links",
+  "inverse": false
+ },
+ "listed_on_nrhp_in_year": {
+  "canonical": "listed_on_nrhp_in_year",
+  "inverse": false
+ },
+ "live_in": {
+  "canonical": "live_in",
+  "inverse": false
+ },
+ "lmgt_am_winner": {
+  "canonical": "won_by_team",
+  "inverse": false
+ },
+ "lmgt_pro_winner": {
+  "canonical": "won_by_team",
+  "inverse": false
+ },
+ "lmp2_winner": {
+  "canonical": "won_by_team",
+  "inverse": false
+ },
+ "located_in_county": {
+  "canonical": "located_in",
+  "inverse": false
+ },
+ "located_in_state": {
+  "canonical": "located_in",
+  "inverse": false
+ },
+ "located_near": {
+  "canonical": "located_near",
+  "inverse": false
+ },
+ "located_on_grounds_of": {
+  "canonical": "located_on_grounds_of",
+  "inverse": false
+ },
+ "lyrics_by": {
+  "canonical": "lyrics_by",
+  "inverse": false
+ },
+ "makes_illegal": {
+  "canonical": "makes_illegal",
+  "inverse": false
+ },
+ "managed_by": {
+  "canonical": "managed_by",
+  "inverse": false
+ },
+ "married_to": {
+  "canonical": "spouse",
+  "inverse": false
+ },
+ "meaning_in_spanish": {
+  "canonical": "meaning_in_spanish",
+  "inverse": false
+ },
+ "member_of_league": {
+  "canonical": "member_of_league",
+  "inverse": false
+ },
+ "member_of_legislative_assembly": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "member_of_legislative_assembly_from": {
+  "canonical": "member_of_legislative_assembly_from",
+  "inverse": false
+ },
+ "member_of_parliament_since": {
+  "canonical": "member_of_parliament_since",
+  "inverse": false
+ },
+ "member_of_party": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "member_of_political_party": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "members_died_in_crash": {
+  "canonical": "members_died_in_crash",
+  "inverse": false
+ },
+ "mirror_image_of": {
+  "canonical": "mirror_image_of",
+  "inverse": false
+ },
+ "most_drafted_from": {
+  "canonical": "most_drafted_from",
+  "inverse": false
+ },
+ "most_recent_film": {
+  "canonical": "most_recent_film",
+  "inverse": false
+ },
+ "mother": {
+  "canonical": "child_of",
+  "inverse": true
+ },
+ "moved_into_year": {
+  "canonical": "moved_into_year",
+  "inverse": false
+ },
+ "name_adopted_in_year": {
+  "canonical": "name_adopted_in_year",
+  "inverse": false
+ },
+ "name_changed_due_to": {
+  "canonical": "name_changed_due_to",
+  "inverse": false
+ },
+ "name_in_estonian": {
+  "canonical": "name_in_estonian",
+  "inverse": false
+ },
+ "native_to": {
+  "canonical": "native_to",
+  "inverse": false
+ },
+ "near": {
+  "canonical": "near",
+  "inverse": false
+ },
+ "near_borders_with": {
+  "canonical": "near_borders_with",
+  "inverse": false
+ },
+ "neighbours": {
+  "canonical": "borders",
+  "inverse": false
+ },
+ "nephew": {
+  "canonical": "nephew",
+  "inverse": false
+ },
+ "nicknamed": {
+  "canonical": "nicknamed",
+  "inverse": false
+ },
+ "nominated_for_award": {
+  "canonical": "nominated_for_award",
+  "inverse": false
+ },
+ "nominated_for_award_for": {
+  "canonical": "nominated_for_award_for",
+  "inverse": false
+ },
+ "notable_as": {
+  "canonical": "notable_as",
+  "inverse": false
+ },
+ "number_modified": {
+  "canonical": "number_modified",
+  "inverse": false
+ },
+ "number_of_albums_released": {
+  "canonical": "number_of_albums_released",
+  "inverse": false
+ },
+ "number_of_appearances_for": {
+  "canonical": "number_of_appearances_for",
+  "inverse": false
+ },
+ "number_of_list_a_matches_umpired": {
+  "canonical": "number_of_list_a_matches_umpired",
+  "inverse": false
+ },
+ "number_of_locations": {
+  "canonical": "number_of_locations",
+  "inverse": false
+ },
+ "number_of_online_gamers": {
+  "canonical": "number_of_online_gamers",
+  "inverse": false
+ },
+ "number_of_public_sector_broadcasting_staff": {
+  "canonical": "number_of_public_sector_broadcasting_staff",
+  "inverse": false
+ },
+ "number_of_races": {
+  "canonical": "number_of_races",
+  "inverse": false
+ },
+ "number_of_races_for_class": {
+  "canonical": "number_of_races_for_class",
+  "inverse": false
+ },
+ "number_of_staff": {
+  "canonical": "number_of_staff",
+  "inverse": false
+ },
+ "number_of_staff_including_part_time_flexible_fixed_contract": {
+  "canonical": "number_of_staff_including_part_time_flexible_fixed_contract",
+  "inverse": false
+ },
+ "number_of_world_championships": {
+  "canonical": "number_of_world_championships",
+  "inverse": false
+ },
+ "number_one_country_hits_count": {
+  "canonical": "number_one_country_hits_count",
+  "inverse": false
+ },
+ "occurred_during": {
+  "canonical": "occurred_during",
+  "inverse": false
+ },
+ "official_name": {
+  "canonical": "has_name",
+  "inverse": false
+ },
+ "official_radio_broadcaster": {
+  "canonical": "official_radio_broadcaster",
+  "inverse": false
+ },
+ "official_radio_broadcaster_of": {
+  "canonical": "official_radio_broadcaster",
+  "inverse": true
+ },
+ "official_residence_of": {
+  "canonical": "official_residence_of",
+  "inverse": false
+ },
+ "official_website": {
+  "canonical": "official_website",
+  "inverse": false
+ },
+ "ofsted_areas_outstanding": {
+  "canonical": "ofsted_areas_outstanding",
+  "inverse": false
+ },
+ "ofsted_grade": {
+  "canonical": "ofsted_grade",
+  "inverse": false
+ },
+ "older_than": {
+  "canonical": "older_than",
+  "inverse": false
+ },
+ "on_display_at": {
+  "canonical": "on_display_at",
+  "inverse": false
+ },
+ "on_the_edge_of": {
+  "canonical": "on_the_edge_of",
+  "inverse": false
+ },
+ "ongoing_since": {
+  "canonical": "ongoing_since",
+  "inverse": false
+ },
+ "opened_for_previews_on": {
+  "canonical": "opened_for_previews_on",
+  "inverse": false
+ },
+ "opened_on_date": {
+  "canonical": "opened_on",
+  "inverse": false
+ },
+ "opening_round_of": {
+  "canonical": "opening_round_of",
+  "inverse": false
+ },
+ "operated_by_aircraft": {
+  "canonical": "operated_by_aircraft",
+  "inverse": false
+ },
+ "operated_out_of_same_building_since": {
+  "canonical": "operated_out_of_same_building_since",
+  "inverse": false
+ },
+ "operational_status": {
+  "canonical": "operational_status",
+  "inverse": false
+ },
+ "operationally_assigned_to": {
+  "canonical": "operationally_assigned_to",
+  "inverse": false
+ },
+ "origin_airport": {
+  "canonical": "origin_airport",
+  "inverse": false
+ },
+ "origin_of_term": {
+  "canonical": "origin_of_term",
+  "inverse": false
+ },
+ "originally_formed_as": {
+  "canonical": "originally_formed_as",
+  "inverse": false
+ },
+ "originally_known_as": {
+  "canonical": "originally_known_as",
+  "inverse": false
+ },
+ "originally_scheduled_for_season": {
+  "canonical": "originally_scheduled_for_season",
+  "inverse": false
+ },
+ "outranked": {
+  "canonical": "outranked",
+  "inverse": false
+ },
+ "overall_episode_number": {
+  "canonical": "episode_number_overall",
+  "inverse": false
+ },
+ "overlooks": {
+  "canonical": "overlooks",
+  "inverse": false
+ },
+ "parent_company": {
+  "canonical": "owned_by",
+  "inverse": true
+ },
+ "part_of_season": {
+  "canonical": "part_of_season",
+  "inverse": false
+ },
+ "participated_in_grand_prix_on": {
+  "canonical": "participated_in_grand_prix_on",
+  "inverse": false
+ },
+ "passed_by_government": {
+  "canonical": "passed_by",
+  "inverse": false
+ },
+ "passed_in_country": {
+  "canonical": "passed_in_country",
+  "inverse": false
+ },
+ "peak_population": {
+  "canonical": "peak_population",
+  "inverse": false
+ },
+ "people_sent_to": {
+  "canonical": "people_sent_to",
+  "inverse": false
+ },
+ "people_shot_at": {
+  "canonical": "people_shot_at",
+  "inverse": false
+ },
+ "performs_as": {
+  "canonical": "performs_as",
+  "inverse": false
+ },
+ "played_as": {
+  "canonical": "plays_position",
+  "inverse": false
+ },
+ "played_at": {
+  "canonical": "played_at",
+  "inverse": false
+ },
+ "played_college_at": {
+  "canonical": "played_college_at",
+  "inverse": false
+ },
+ "played_lead_in": {
+  "canonical": "acted_in",
+  "inverse": false
+ },
+ "played_role": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "plot_summary": {
+  "canonical": "plot_summary",
+  "inverse": false
+ },
+ "politician_from": {
+  "canonical": "politician_from",
+  "inverse": false
+ },
+ "popularized_genre": {
+  "canonical": "popularized_genre",
+  "inverse": false
+ },
+ "population_at_2011_census": {
+  "canonical": "population",
+  "inverse": false
+ },
+ "population_census_year": {
+  "canonical": "census_year",
+  "inverse": false
+ },
+ "population_in_year": {
+  "canonical": "population",
+  "inverse": false
+ },
+ "population_rank_in_country": {
+  "canonical": "population_rank_in_country",
+  "inverse": false
+ },
+ "population_rank_in_state": {
+  "canonical": "population_rank_in_state",
+  "inverse": false
+ },
+ "portrayed": {
+  "canonical": "portrays",
+  "inverse": false
+ },
+ "portrayed_in": {
+  "canonical": "portrayed_in",
+  "inverse": false
+ },
+ "postal_code": {
+  "canonical": "zip_code",
+  "inverse": false
+ },
+ "powers_aircraft": {
+  "canonical": "powers_aircraft",
+  "inverse": false
+ },
+ "preceded_by_champion": {
+  "canonical": "preceded_by_champion",
+  "inverse": false
+ },
+ "premiere_location": {
+  "canonical": "premiere_location",
+  "inverse": false
+ },
+ "premiered_in": {
+  "canonical": "premiere_date",
+  "inverse": false
+ },
+ "premiered_in_city": {
+  "canonical": "premiered_in_city",
+  "inverse": false
+ },
+ "prepared_for_publication_by": {
+  "canonical": "prepared_for_publication_by",
+  "inverse": false
+ },
+ "presented_by": {
+  "canonical": "presented_by",
+  "inverse": false
+ },
+ "presented_in": {
+  "canonical": "presented_in",
+  "inverse": false
+ },
+ "preserved_at": {
+  "canonical": "preserved_at",
+  "inverse": false
+ },
+ "previous_live_album": {
+  "canonical": "previous_live_album",
+  "inverse": false
+ },
+ "previously_named": {
+  "canonical": "previously_named",
+  "inverse": false
+ },
+ "produced_changes_in": {
+  "canonical": "produced_changes_in",
+  "inverse": false
+ },
+ "produced_from": {
+  "canonical": "produced_from",
+  "inverse": false
+ },
+ "produced_power": {
+  "canonical": "produced_power",
+  "inverse": false
+ },
+ "produced_until": {
+  "canonical": "produced_until",
+  "inverse": false
+ },
+ "provided_by": {
+  "canonical": "provided_by",
+  "inverse": false
+ },
+ "provides_choristers_to": {
+  "canonical": "provides_choristers_to",
+  "inverse": false
+ },
+ "publication_frequency": {
+  "canonical": "publication_frequency",
+  "inverse": false
+ },
+ "purpose": {
+  "canonical": "purpose",
+  "inverse": false
+ },
+ "ran_to": {
+  "canonical": "ran_to",
+  "inverse": false
+ },
+ "ranked_as": {
+  "canonical": "ranked_as",
+  "inverse": false
+ },
+ "rebuilt_after_fire_in_year": {
+  "canonical": "rebuilt_after_fire_in_year",
+  "inverse": false
+ },
+ "recorded_on": {
+  "canonical": "recorded_on",
+  "inverse": false
+ },
+ "records_sold_in_us": {
+  "canonical": "records_sold_in_us",
+  "inverse": false
+ },
+ "recurring_theme_in": {
+  "canonical": "recurring_theme_in",
+  "inverse": false
+ },
+ "refers_to": {
+  "canonical": "refers_to",
+  "inverse": false
+ },
+ "reissue_date": {
+  "canonical": "reissue_date",
+  "inverse": false
+ },
+ "related_album": {
+  "canonical": "related_album",
+  "inverse": false
+ },
+ "release_label": {
+  "canonical": "record_label",
+  "inverse": false
+ },
+ "release_type": {
+  "canonical": "release_type",
+  "inverse": false
+ },
+ "released_by_label": {
+  "canonical": "record_label",
+  "inverse": false
+ },
+ "released_in": {
+  "canonical": "released_in",
+  "inverse": false
+ },
+ "remake_of": {
+  "canonical": "remake_of",
+  "inverse": false
+ },
+ "remodeled_into_marketplace_in_year": {
+  "canonical": "remodeled_into_marketplace_in_year",
+  "inverse": false
+ },
+ "reports_to": {
+  "canonical": "reports_to",
+  "inverse": false
+ },
+ "represented_district": {
+  "canonical": "represented_district",
+  "inverse": false
+ },
+ "result": {
+  "canonical": "result",
+  "inverse": false
+ },
+ "retired_on": {
+  "canonical": "retired_on",
+  "inverse": false
+ },
+ "role_in": {
+  "canonical": "role_in",
+  "inverse": false
+ },
+ "royal_refers_to": {
+  "canonical": "royal_refers_to",
+  "inverse": false
+ },
+ "run_by": {
+  "canonical": "run_by",
+  "inverse": false
+ },
+ "runs_along_road": {
+  "canonical": "runs_along_road",
+  "inverse": false
+ },
+ "runs_from_to": {
+  "canonical": "runs_from_to",
+  "inverse": false
+ },
+ "runs_through": {
+  "canonical": "runs_through",
+  "inverse": false
+ },
+ "runtime": {
+  "canonical": "has_duration",
+  "inverse": false
+ },
+ "scheduled_destination": {
+  "canonical": "scheduled_destination",
+  "inverse": false
+ },
+ "scheduled_release": {
+  "canonical": "scheduled_release",
+  "inverse": false
+ },
+ "school_type": {
+  "canonical": "school_type",
+  "inverse": false
+ },
+ "scored_points": {
+  "canonical": "scored_points",
+  "inverse": false
+ },
+ "selected_in_draft": {
+  "canonical": "drafted_by",
+  "inverse": true
+ },
+ "sequel_to": {
+  "canonical": "is_sequel_to",
+  "inverse": false
+ },
+ "series_regular_in": {
+  "canonical": "series_regular_in",
+  "inverse": false
+ },
+ "served_as_prime_minister_during": {
+  "canonical": "served_as_prime_minister_during",
+  "inverse": false
+ },
+ "served_as_speaker_from": {
+  "canonical": "served_as_speaker_from",
+  "inverse": false
+ },
+ "served_as_speaker_until": {
+  "canonical": "served_as_speaker_until",
+  "inverse": false
+ },
+ "served_in_office_during": {
+  "canonical": "served_in_office_during",
+  "inverse": false
+ },
+ "serves_ages": {
+  "canonical": "serves_ages",
+  "inverse": false
+ },
+ "serves_students_per_year": {
+  "canonical": "serves_students_per_year",
+  "inverse": false
+ },
+ "shortlisted_for_award": {
+  "canonical": "shortlisted_for_award",
+  "inverse": false
+ },
+ "shot_in": {
+  "canonical": "filmed_in",
+  "inverse": false
+ },
+ "shot_in_location": {
+  "canonical": "filmed_in",
+  "inverse": false
+ },
+ "single_from_album": {
+  "canonical": "has_track",
+  "inverse": true
+ },
+ "site_of": {
+  "canonical": "site_of",
+  "inverse": false
+ },
+ "sited_on": {
+  "canonical": "located_on",
+  "inverse": false
+ },
+ "sold_in_year": {
+  "canonical": "sold_in_year",
+  "inverse": false
+ },
+ "start_date": {
+  "canonical": "start_date",
+  "inverse": false
+ },
+ "started_occupation_in_year": {
+  "canonical": "started_occupation_in_year",
+  "inverse": false
+ },
+ "started_role_in_year": {
+  "canonical": "started_role_in_year",
+  "inverse": false
+ },
+ "station_count": {
+  "canonical": "station_count",
+  "inverse": false
+ },
+ "status_in_league": {
+  "canonical": "status_in_league",
+  "inverse": false
+ },
+ "stolen_in_year": {
+  "canonical": "stolen_in_year",
+  "inverse": false
+ },
+ "stopped_racing_in_year": {
+  "canonical": "stopped_racing_in_year",
+  "inverse": false
+ },
+ "stormed_in_year": {
+  "canonical": "stormed_in_year",
+  "inverse": false
+ },
+ "street_address": {
+  "canonical": "street_address",
+  "inverse": false
+ },
+ "strengthened_powers_of": {
+  "canonical": "strengthened_powers_of",
+  "inverse": false
+ },
+ "student_at_start_year": {
+  "canonical": "student_at_start_year",
+  "inverse": false
+ },
+ "styled_as": {
+  "canonical": "has_title",
+  "inverse": false
+ },
+ "succeeded_by": {
+  "canonical": "succeeded_by",
+  "inverse": false
+ },
+ "succession_position": {
+  "canonical": "succession_position",
+  "inverse": false
+ },
+ "supplied_during": {
+  "canonical": "supplied_during",
+  "inverse": false
+ },
+ "supplied_to": {
+  "canonical": "supplied_to",
+  "inverse": false
+ },
+ "supplied_to_specific": {
+  "canonical": "supplied_to_specific",
+  "inverse": false
+ },
+ "switched_positions_with": {
+  "canonical": "switched_positions_with",
+  "inverse": false
+ },
+ "symbol_of": {
+  "canonical": "symbol_of",
+  "inverse": false
+ },
+ "symbolises_border_between": {
+  "canonical": "symbolises_border_between",
+  "inverse": false
+ },
+ "taught": {
+  "canonical": "taught",
+  "inverse": false
+ },
+ "title_play_on_words_from": {
+  "canonical": "title_play_on_words_from",
+  "inverse": false
+ },
+ "took_place_at": {
+  "canonical": "held_at",
+  "inverse": false
+ },
+ "track_on_album": {
+  "canonical": "has_track",
+  "inverse": true
+ },
+ "uncle_of": {
+  "canonical": "uncle_of",
+  "inverse": false
+ },
+ "used_in_event": {
+  "canonical": "used_in_event",
+  "inverse": false
+ },
+ "viewer_count": {
+  "canonical": "viewer_count",
+  "inverse": false
+ },
+ "voice_type": {
+  "canonical": "voice_type",
+  "inverse": false
+ },
+ "voiced_in": {
+  "canonical": "voiced_in",
+  "inverse": false
+ },
+ "volunteer_hours_per_month": {
+  "canonical": "volunteer_hours_per_month",
+  "inverse": false
+ },
+ "volunteers_at": {
+  "canonical": "volunteers_at",
+  "inverse": false
+ },
+ "volunteers_develop": {
+  "canonical": "volunteers_develop",
+  "inverse": false
+ },
+ "wanted_to_write": {
+  "canonical": "wanted_to_write",
+  "inverse": false
+ },
+ "was": {
+  "canonical": "was",
+  "inverse": false
+ },
+ "was_known_as": {
+  "canonical": "also_known_as",
+  "inverse": false
+ },
+ "was_prime_minister_during": {
+  "canonical": "was_prime_minister_during",
+  "inverse": false
+ },
+ "weather_condition": {
+  "canonical": "weather_condition",
+  "inverse": false
+ },
+ "wide_release_date_in_belgium_and_france": {
+  "canonical": "wide_release_date_in_belgium_and_france",
+  "inverse": false
+ },
+ "wide_release_date_in_ireland": {
+  "canonical": "wide_release_date_in_ireland",
+  "inverse": false
+ },
+ "winners_epitomize": {
+  "canonical": "winners_epitomize",
+  "inverse": false
+ },
+ "won_by_margin": {
+  "canonical": "won_by_margin",
+  "inverse": false
+ },
+ "won_championship": {
+  "canonical": "won_championship",
+  "inverse": false
+ },
+ "won_doubles_titles_count": {
+  "canonical": "won_doubles_titles_count",
+  "inverse": false
+ },
+ "won_event_in_year": {
+  "canonical": "won_event_in_year",
+  "inverse": false
+ },
+ "won_matches_in_season": {
+  "canonical": "won_matches_in_season",
+  "inverse": false
+ },
+ "won_medal": {
+  "canonical": "won_medal",
+  "inverse": false
+ },
+ "won_singles_titles_count": {
+  "canonical": "won_singles_titles_count",
+  "inverse": false
+ },
+ "won_super_bowl_count": {
+  "canonical": "won_super_bowl_count",
+  "inverse": false
+ },
+ "won_title": {
+  "canonical": "won_title",
+  "inverse": false
+ },
+ "won_world_titles_count": {
+  "canonical": "won_world_titles_count",
+  "inverse": false
+ },
+ "worked_for": {
+  "canonical": "works_at",
+  "inverse": false
+ },
+ "works_as": {
+  "canonical": "has_role",
+  "inverse": false
+ },
+ "written_in_form": {
+  "canonical": "written_in_form",
+  "inverse": false
+ },
+ "written_in_year": {
+  "canonical": "written_in_year",
+  "inverse": false
+ },
+ "written_with": {
+  "canonical": "written_with",
+  "inverse": false
+ },
+ "includes": {
+  "canonical": "includes",
+  "inverse": false
+ },
+ "worked_with": {
+  "canonical": "collaborated_with",
+  "inverse": false
+ },
+ "found_in": {
+  "canonical": "found_in",
+  "inverse": false
+ },
+ "length": {
+  "canonical": "length",
+  "inverse": false
+ },
+ "edited": {
+  "canonical": "edited_by",
+  "inverse": true
+ },
+ "begins_at": {
+  "canonical": "begins_at",
+  "inverse": false
+ },
+ "has_record": {
+  "canonical": "has_record",
+  "inverse": false
+ },
+ "hosted_by": {
+  "canonical": "hosted_by",
+  "inverse": false
+ },
+ "includes_brand": {
+  "canonical": "includes_brand",
+  "inverse": false
+ },
+ "defeated": {
+  "canonical": "defeated",
+  "inverse": false
+ },
+ "has_character": {
+  "canonical": "has_character",
+  "inverse": false
+ },
+ "includes_song": {
+  "canonical": "has_track",
+  "inverse": false
+ },
+ "acquired_by": {
+  "canonical": "acquired",
+  "inverse": true
+ },
+ "closed_in_year": {
+  "canonical": "closed_in_year",
+  "inverse": false
+ },
+ "ends_at": {
+  "canonical": "ends_at",
+  "inverse": false
+ },
+ "equipped_with": {
+  "canonical": "equipped_with",
+  "inverse": false
+ },
+ "forum_topics": {
+  "canonical": "forum_topics",
+  "inverse": false
+ },
+ "has_address": {
+  "canonical": "has_address",
+  "inverse": false
+ },
+ "has_degree": {
+  "canonical": "earned_degree",
+  "inverse": false
+ },
+ "plays_in": {
+  "canonical": "plays_in",
+  "inverse": false
+ },
+ "responsible_for": {
+  "canonical": "responsible_for",
+  "inverse": false
+ },
+ "acquired": {
+  "canonical": "acquired",
+  "inverse": false
+ },
+ "becomes": {
+  "canonical": "becomes",
+  "inverse": false
+ },
+ "caused_by": {
+  "canonical": "cause_of_crash",
+  "inverse": false
+ },
+ "claims": {
+  "canonical": "claims",
+  "inverse": false
+ },
+ "cooperated_with": {
+  "canonical": "cooperated_with",
+  "inverse": false
+ },
+ "demolished_in": {
+  "canonical": "demolished_in",
+  "inverse": false
+ },
+ "discovered_by": {
+  "canonical": "discovered_by",
+  "inverse": false
+ },
+ "has_format": {
+  "canonical": "has_format",
+  "inverse": false
+ },
+ "has_score": {
+  "canonical": "final_score",
+  "inverse": false
+ },
+ "host_of": {
+  "canonical": "hosted_by",
+  "inverse": true
+ },
+ "led_to": {
+  "canonical": "led_to",
+  "inverse": false
+ },
+ "met_at": {
+  "canonical": "met_at",
+  "inverse": false
+ },
+ "orientation": {
+  "canonical": "orientation",
+  "inverse": false
+ },
+ "shares_border_with": {
+  "canonical": "borders",
+  "inverse": false
+ },
+ "similar_to": {
+  "canonical": "similar_to",
+  "inverse": false
+ },
+ "studied_at": {
+  "canonical": "educated_at",
+  "inverse": false
+ },
+ "supports_database": {
+  "canonical": "supports_database",
+  "inverse": false
+ },
+ "used_for": {
+  "canonical": "used_for",
+  "inverse": false
+ },
+ "written_in": {
+  "canonical": "language",
+  "inverse": false
+ },
+ "wrote": {
+  "canonical": "wrote",
+  "inverse": false
+ },
+ "acquired_in": {
+  "canonical": "acquired_in",
+  "inverse": false
+ },
+ "activities_include": {
+  "canonical": "activities_include",
+  "inverse": false
+ },
+ "aired_between": {
+  "canonical": "aired_between",
+  "inverse": false
+ },
+ "arrested_for": {
+  "canonical": "arrested_for",
+  "inverse": false
+ },
+ "broadcast_time": {
+  "canonical": "broadcast_time",
+  "inverse": false
+ },
+ "built_over": {
+  "canonical": "built_over",
+  "inverse": false
+ },
+ "capital": {
+  "canonical": "capital",
+  "inverse": false
+ },
+ "capital_of": {
+  "canonical": "capital",
+  "inverse": true
+ },
+ "climate": {
+  "canonical": "climate",
+  "inverse": false
+ },
+ "commemorates": {
+  "canonical": "commemorates",
+  "inverse": false
+ },
+ "conducted_by": {
+  "canonical": "conducted_by",
+  "inverse": false
+ },
+ "considered_noble_in": {
+  "canonical": "considered_noble_in",
+  "inverse": false
+ },
+ "continuation_of": {
+  "canonical": "continuation_of",
+  "inverse": false
+ },
+ "corresponds_to": {
+  "canonical": "corresponds_to",
+  "inverse": false
+ },
+ "declined_in": {
+  "canonical": "declined_in",
+  "inverse": false
+ },
+ "designated_minsters_in_year": {
+  "canonical": "designated_minsters_in_year",
+  "inverse": false
+ },
+ "destroyed_in_year": {
+  "canonical": "destroyed_in",
+  "inverse": false
+ },
+ "documented": {
+  "canonical": "documented",
+  "inverse": false
+ },
+ "existed_since": {
+  "canonical": "existed_since",
+  "inverse": false
+ },
+ "first_found_in": {
+  "canonical": "first_found_in",
+  "inverse": false
+ },
+ "first_published_by": {
+  "canonical": "first_published_by",
+  "inverse": false
+ },
+ "first_published_in_year": {
+  "canonical": "published_in_year",
+  "inverse": false
+ },
+ "follows_format_of": {
+  "canonical": "follows_format_of",
+  "inverse": false
+ },
+ "forbids": {
+  "canonical": "forbids",
+  "inverse": false
+ },
+ "grew_up_in": {
+  "canonical": "grew_up_in",
+  "inverse": false
+ },
+ "has_architecture": {
+  "canonical": "has_architecture",
+  "inverse": false
+ },
+ "has_branch_house_in": {
+  "canonical": "has_branch_house_in",
+  "inverse": false
+ },
+ "has_capital": {
+  "canonical": "capital",
+  "inverse": false
+ },
+ "has_car_design": {
+  "canonical": "has_car_design",
+  "inverse": false
+ },
+ "has_demographic": {
+  "canonical": "has_demographic",
+  "inverse": false
+ },
+ "has_episode_count": {
+  "canonical": "number_of_episodes",
+  "inverse": false
+ },
+ "has_feature": {
+  "canonical": "has_feature",
+  "inverse": false
+ },
+ "has_floor_count": {
+  "canonical": "has_floor_count",
+  "inverse": false
+ },
+ "has_housekeeper": {
+  "canonical": "has_housekeeper",
+  "inverse": false
+ },
+ "has_largest_city": {
+  "canonical": "has_largest_city",
+  "inverse": false
+ },
+ "has_listing_status": {
+  "canonical": "has_listing_status",
+  "inverse": false
+ },
+ "has_number_of_episodes": {
+  "canonical": "number_of_episodes",
+  "inverse": false
+ },
+ "has_number_of_seasons": {
+  "canonical": "has_number_of_seasons",
+  "inverse": false
+ },
+ "has_number_of_teams": {
+  "canonical": "has_number_of_teams",
+  "inverse": false
+ },
+ "has_subsidiary": {
+  "canonical": "has_subsidiary",
+  "inverse": false
+ },
+ "has_time_slot": {
+  "canonical": "has_time_slot",
+  "inverse": false
+ },
+ "history_linked_with": {
+  "canonical": "history_linked_with",
+  "inverse": false
+ },
+ "hosted_in_year": {
+  "canonical": "hosted_in_year",
+  "inverse": false
+ },
+ "introduced_character": {
+  "canonical": "introduced_character",
+  "inverse": false
+ },
+ "joined": {
+  "canonical": "member_of",
+  "inverse": false
+ },
+ "latest_version": {
+  "canonical": "latest_version",
+  "inverse": false
+ },
+ "left_for_reason": {
+  "canonical": "left_for_reason",
+  "inverse": false
+ },
+ "left_organization_in": {
+  "canonical": "left_organization_in",
+  "inverse": false
+ },
+ "listed": {
+  "canonical": "listed",
+  "inverse": false
+ },
+ "most_valuable_player": {
+  "canonical": "most_valuable_player",
+  "inverse": false
+ },
+ "music_video_directed_by": {
+  "canonical": "directed_by",
+  "inverse": false
+ },
+ "offers_special_programs_for": {
+  "canonical": "offers_special_programs_for",
+  "inverse": false
+ },
+ "ordered_by": {
+  "canonical": "ordered_by",
+  "inverse": false
+ },
+ "organizes_programs_on": {
+  "canonical": "organizes_programs_on",
+  "inverse": false
+ },
+ "part_of_historical_region": {
+  "canonical": "part_of",
+  "inverse": false
+ },
+ "peak_chart_position": {
+  "canonical": "chart_position",
+  "inverse": false
+ },
+ "planned_to_be": {
+  "canonical": "planned_to_be",
+  "inverse": false
+ },
+ "population_rank": {
+  "canonical": "population_rank",
+  "inverse": false
+ },
+ "prohibits": {
+  "canonical": "prohibits",
+  "inverse": false
+ },
+ "promotes_to": {
+  "canonical": "promotes_to",
+  "inverse": false
+ },
+ "protested": {
+  "canonical": "protested",
+  "inverse": false
+ },
+ "received_degree": {
+  "canonical": "earned_degree",
+  "inverse": false
+ },
+ "received_degree_in_year": {
+  "canonical": "received_degree_in_year",
+  "inverse": false
+ },
+ "recorded_interceptions": {
+  "canonical": "recorded_interceptions",
+  "inverse": false
+ },
+ "renamed_by": {
+  "canonical": "renamed_by",
+  "inverse": false
+ },
+ "ruled_against": {
+  "canonical": "ruled_against",
+  "inverse": false
+ },
+ "settled_by": {
+  "canonical": "settled_by",
+  "inverse": false
+ },
+ "songs_from_musical": {
+  "canonical": "songs_from_musical",
+  "inverse": false
+ },
+ "status": {
+  "canonical": "status",
+  "inverse": false
+ },
+ "surrounded_but_did_not_include": {
+  "canonical": "surrounded_but_did_not_include",
+  "inverse": false
+ },
+ "surrounding_area_elevation": {
+  "canonical": "surrounding_area_elevation",
+  "inverse": false
+ },
+ "topped_chart_in": {
+  "canonical": "topped_chart_in",
+  "inverse": false
+ },
+ "weight": {
+  "canonical": "weight",
+  "inverse": false
+ },
+ "widespread_in": {
+  "canonical": "widespread_in",
+  "inverse": false
+ },
+ "win_loss_record": {
+  "canonical": "win_loss_record",
+  "inverse": false
+ },
+ "has_length": {
+  "canonical": "length",
+  "inverse": false
+ },
+ "has_rank": {
+  "canonical": "has_rank",
+  "inverse": false
+ },
+ "recorded": {
+  "canonical": "recorded_by",
+  "inverse": true
+ },
+ "had_point_differential": {
+  "canonical": "had_point_differential",
+  "inverse": false
+ },
+ "has_hub": {
+  "canonical": "has_hub",
+  "inverse": false
+ },
+ "joined_in_year": {
+  "canonical": "joined_in_year",
+  "inverse": false
+ },
+ "produces": {
+  "canonical": "manufactures",
+  "inverse": false
+ },
+ "started_in_year": {
+  "canonical": "began_in_year",
+  "inverse": false
+ },
+ "capacity": {
+  "canonical": "seating_capacity",
+  "inverse": false
+ },
+ "dissolved_in": {
+  "canonical": "dissolved_in",
+  "inverse": false
+ },
+ "first_appeared_in_year": {
+  "canonical": "first_appeared_in_year",
+  "inverse": false
+ },
+ "first_ascent_date": {
+  "canonical": "first_ascent_date",
+  "inverse": false
+ },
+ "first_ascent_year": {
+  "canonical": "first_climbed_in_year",
+  "inverse": false
+ },
+ "has_alignment": {
+  "canonical": "has_alignment",
+  "inverse": false
+ },
+ "has_northern_terminus": {
+  "canonical": "has_northern_terminus",
+  "inverse": false
+ },
+ "has_participant": {
+  "canonical": "has_participant",
+  "inverse": false
+ },
+ "has_southern_terminus": {
+  "canonical": "has_southern_terminus",
+  "inverse": false
+ },
+ "held_in_month": {
+  "canonical": "held_in_month",
+  "inverse": false
+ },
+ "lost_record_in_year": {
+  "canonical": "lost_record_in_year",
+  "inverse": false
+ },
+ "number_built": {
+  "canonical": "number_built",
+  "inverse": false
+ },
+ "paid": {
+  "canonical": "paid",
+  "inverse": false
+ },
+ "powers": {
+  "canonical": "powers",
+  "inverse": false
+ },
+ "salary": {
+  "canonical": "salary",
+  "inverse": false
+ },
+ "spent_weeks_on_chart": {
+  "canonical": "weeks_on_chart",
+  "inverse": false
+ },
+ "supported": {
+  "canonical": "supported",
+  "inverse": false
+ },
+ "active_period": {
+  "canonical": "active_period",
+  "inverse": false
+ },
+ "admitted_in_year": {
+  "canonical": "admitted_in_year",
+  "inverse": false
+ },
+ "advocates": {
+  "canonical": "advocates",
+  "inverse": false
+ },
+ "awarded_annually": {
+  "canonical": "awarded_frequency",
+  "inverse": false
+ },
+ "began_writing_in_year": {
+  "canonical": "began_writing_in_year",
+  "inverse": false
+ },
+ "candidate_for": {
+  "canonical": "candidate_for",
+  "inverse": false
+ },
+ "caused_damage": {
+  "canonical": "caused_damage",
+  "inverse": false
+ },
+ "caused_reaction": {
+  "canonical": "caused_reaction",
+  "inverse": false
+ },
+ "ceremoniously_designated_for": {
+  "canonical": "ceremoniously_designated_for",
+  "inverse": false
+ },
+ "charged_with": {
+  "canonical": "charged_with",
+  "inverse": false
+ },
+ "chart_number_one_for": {
+  "canonical": "chart_number_one_for",
+  "inverse": false
+ },
+ "continues_from": {
+  "canonical": "continues_from",
+  "inverse": false
+ },
+ "cost": {
+  "canonical": "cost",
+  "inverse": false
+ },
+ "demolished_for": {
+  "canonical": "demolished_for",
+  "inverse": false
+ },
+ "demolished_in_year": {
+  "canonical": "demolished_in",
+  "inverse": false
+ },
+ "designated_as": {
+  "canonical": "designated_as",
+  "inverse": false
+ },
+ "developed_on": {
+  "canonical": "developed_on",
+  "inverse": false
+ },
+ "donated": {
+  "canonical": "donated",
+  "inverse": false
+ },
+ "elected_in_year": {
+  "canonical": "elected_in_year",
+  "inverse": false
+ },
+ "elected_to": {
+  "canonical": "elected_to",
+  "inverse": false
+ },
+ "episode_number": {
+  "canonical": "episode_number_overall",
+  "inverse": false
+ },
+ "features": {
+  "canonical": "features",
+  "inverse": false
+ },
+ "first_ascent_by": {
+  "canonical": "first_climbed_by",
+  "inverse": false
+ },
+ "first_climbed_by": {
+  "canonical": "first_climbed_by",
+  "inverse": false
+ },
+ "first_competed_in": {
+  "canonical": "first_competed_in",
+  "inverse": false
+ },
+ "formed_under": {
+  "canonical": "formed_under",
+  "inverse": false
+ },
+ "has_administrative_centre": {
+  "canonical": "has_administrative_centre",
+  "inverse": false
+ },
+ "has_age_range": {
+  "canonical": "has_age_range",
+  "inverse": false
+ },
+ "has_cash_award": {
+  "canonical": "has_cash_award",
+  "inverse": false
+ },
+ "has_consequence": {
+  "canonical": "has_consequence",
+  "inverse": false
+ },
+ "has_denominational_status": {
+  "canonical": "has_denominational_status",
+  "inverse": false
+ },
+ "has_etymology_language": {
+  "canonical": "has_etymology_language",
+  "inverse": false
+ },
+ "has_high_point": {
+  "canonical": "highest_point",
+  "inverse": false
+ },
+ "has_laps": {
+  "canonical": "has_laps",
+  "inverse": false
+ },
+ "has_meaning": {
+  "canonical": "means",
+  "inverse": false
+ },
+ "has_musical_characteristic": {
+  "canonical": "has_musical_characteristic",
+  "inverse": false
+ },
+ "has_northern_end": {
+  "canonical": "has_northern_end",
+  "inverse": false
+ },
+ "has_number_of_employees": {
+  "canonical": "has_number_of_employees",
+  "inverse": false
+ },
+ "has_number_of_pupils": {
+  "canonical": "has_number_of_pupils",
+  "inverse": false
+ },
+ "has_number_of_shops": {
+  "canonical": "has_number_of_shops",
+  "inverse": false
+ },
+ "has_perpetrator": {
+  "canonical": "has_perpetrator",
+  "inverse": false
+ },
+ "has_perpetrator_name": {
+  "canonical": "has_perpetrator_name",
+  "inverse": false
+ },
+ "has_purpose": {
+  "canonical": "has_purpose",
+  "inverse": false
+ },
+ "has_status": {
+  "canonical": "has_status",
+  "inverse": false
+ },
+ "has_version": {
+  "canonical": "has_version",
+  "inverse": false
+ },
+ "has_year": {
+  "canonical": "has_year",
+  "inverse": false
+ },
+ "haunts_on": {
+  "canonical": "haunts_on",
+  "inverse": false
+ },
+ "highest_peak": {
+  "canonical": "highest_point",
+  "inverse": false
+ },
+ "hosts": {
+  "canonical": "hosts",
+  "inverse": false
+ },
+ "injured_on": {
+  "canonical": "injured_on",
+  "inverse": false
+ },
+ "is_debut_of": {
+  "canonical": "is_debut_of",
+  "inverse": false
+ },
+ "is_from": {
+  "canonical": "is_from",
+  "inverse": false
+ },
+ "is_near": {
+  "canonical": "is_near",
+  "inverse": false
+ },
+ "landed_in": {
+  "canonical": "landed_in",
+  "inverse": false
+ },
+ "linked_to": {
+  "canonical": "linked_to",
+  "inverse": false
+ },
+ "lost_against": {
+  "canonical": "lost_against",
+  "inverse": false
+ },
+ "lost_in_games": {
+  "canonical": "lost_in_games",
+  "inverse": false
+ },
+ "made_landfall_on": {
+  "canonical": "made_landfall_on",
+  "inverse": false
+ },
+ "mission": {
+  "canonical": "mission",
+  "inverse": false
+ },
+ "moved_in_year": {
+  "canonical": "moved_in_year",
+  "inverse": false
+ },
+ "name_origin": {
+  "canonical": "name_origin",
+  "inverse": false
+ },
+ "number_of_games": {
+  "canonical": "number_of_games",
+  "inverse": false
+ },
+ "number_of_missions": {
+  "canonical": "number_of_missions",
+  "inverse": false
+ },
+ "occurred_in_year": {
+  "canonical": "date",
+  "inverse": false
+ },
+ "opened_in": {
+  "canonical": "opened_in",
+  "inverse": false
+ },
+ "ordered": {
+  "canonical": "ordered",
+  "inverse": false
+ },
+ "original_release_by": {
+  "canonical": "original_release_by",
+  "inverse": false
+ },
+ "original_release_year": {
+  "canonical": "original_release_year",
+  "inverse": false
+ },
+ "originally_recorded_by": {
+  "canonical": "originally_recorded_by",
+  "inverse": false
+ },
+ "outcome": {
+  "canonical": "outcome",
+  "inverse": false
+ },
+ "passed_on_role": {
+  "canonical": "passed_on_role",
+  "inverse": false
+ },
+ "performed_cover_of": {
+  "canonical": "performed_cover_of",
+  "inverse": false
+ },
+ "perpetrated_by": {
+  "canonical": "perpetrated_by",
+  "inverse": false
+ },
+ "placed_singles_in_top_20": {
+  "canonical": "placed_singles_in_top_20",
+  "inverse": false
+ },
+ "played_in": {
+  "canonical": "plays_in",
+  "inverse": false
+ },
+ "powered": {
+  "canonical": "powers",
+  "inverse": false
+ },
+ "previously_operated_at": {
+  "canonical": "previously_operated_at",
+  "inverse": false
+ },
+ "production_code": {
+  "canonical": "production_code",
+  "inverse": false
+ },
+ "prominence": {
+  "canonical": "prominence",
+  "inverse": false
+ },
+ "purchase_price": {
+  "canonical": "purchase_price",
+  "inverse": false
+ },
+ "ranked": {
+  "canonical": "ranked",
+  "inverse": false
+ },
+ "reached_chart_position": {
+  "canonical": "reached_chart_position",
+  "inverse": false
+ },
+ "reached_peak_winds": {
+  "canonical": "reached_peak_winds",
+  "inverse": false
+ },
+ "ready_for_press_launch": {
+  "canonical": "ready_for_press_launch",
+  "inverse": false
+ },
+ "received": {
+  "canonical": "received",
+  "inverse": false
+ },
+ "reopened_on": {
+  "canonical": "reopened_on",
+  "inverse": false
+ },
+ "retired_in": {
+  "canonical": "retired_in",
+  "inverse": false
+ },
+ "returned": {
+  "canonical": "returned",
+  "inverse": false
+ },
+ "ruled_in": {
+  "canonical": "ruled_in",
+  "inverse": false
+ },
+ "series_episode_number": {
+  "canonical": "episode_number_overall",
+  "inverse": false
+ },
+ "sold": {
+  "canonical": "sold",
+  "inverse": false
+ },
+ "terminates_at": {
+  "canonical": "terminates_at",
+  "inverse": false
+ },
+ "warned": {
+  "canonical": "warned",
+  "inverse": false
+ },
+ "was_first_hurricane_of_season": {
+  "canonical": "was_first_hurricane_of_season",
+  "inverse": false
+ },
+ "was_number_one_single_for": {
+  "canonical": "chart_number_one_for",
+  "inverse": false
+ },
+ "wears": {
+  "canonical": "wears",
+  "inverse": false
+ },
+ "withdrawn_due_to": {
+  "canonical": "withdrawn_due_to",
+  "inverse": false
+ },
+ "written_in_response_to": {
+  "canonical": "written_in_response_to",
+  "inverse": false
+ },
+ "has_published_in": {
+  "canonical": "published_in",
+  "inverse": false
+ },
+ "featured_interview_with": {
+  "canonical": "featured_interview_with",
+  "inverse": false
+ },
+ "appointed_by": {
+  "canonical": "appointed_by",
+  "inverse": false
+ },
+ "can_move_between": {
+  "canonical": "can_move_between",
+  "inverse": false
+ },
+ "featured_in": {
+  "canonical": "featured_in",
+  "inverse": false
+ },
+ "has_affiliate": {
+  "canonical": "has_affiliate",
+  "inverse": false
+ },
+ "reviewed_by": {
+  "canonical": "reviewed_by",
+  "inverse": false
+ },
+ "guest_starred_in": {
+  "canonical": "guest_appeared_in",
+  "inverse": false
+ },
+ "confirmed_by": {
+  "canonical": "confirmed_by",
+  "inverse": false
+ },
+ "featured": {
+  "canonical": "featured",
+  "inverse": false
+ },
+ "has_highest_peak": {
+  "canonical": "highest_point",
+  "inverse": false
+ },
+ "has_highest_point": {
+  "canonical": "highest_point",
+  "inverse": false
+ },
+ "has_member_of": {
+  "canonical": "member_count",
+  "inverse": false
+ },
+ "has_model_number": {
+  "canonical": "has_model_number",
+  "inverse": false
+ },
+ "has_work_by": {
+  "canonical": "has_work_by",
+  "inverse": false
+ },
+ "has_written": {
+  "canonical": "authored",
+  "inverse": false
+ },
+ "occurred_on": {
+  "canonical": "date",
+  "inverse": false
+ },
+ "rated": {
+  "canonical": "rated",
+  "inverse": false
+ },
+ "recorded_in": {
+  "canonical": "recorded_in",
+  "inverse": false
+ },
+ "related_to": {
+  "canonical": "related_to",
+  "inverse": false
+ },
+ "reviewed_for": {
+  "canonical": "reviewed_for",
+  "inverse": false
+ },
+ "take_on_rank": {
+  "canonical": "take_on_rank",
+  "inverse": false
+ },
+ "trained_in": {
+  "canonical": "trained_in",
+  "inverse": false
+ },
+ "translated_by": {
+  "canonical": "translated_by",
+  "inverse": false
+ },
+ "achieved_pole_position_for": {
+  "canonical": "achieved_pole_position_for",
+  "inverse": false
+ },
+ "address": {
+  "canonical": "address",
+  "inverse": false
+ },
+ "appointed": {
+  "canonical": "appointed",
+  "inverse": false
+ },
+ "attendance": {
+  "canonical": "attendance",
+  "inverse": false
+ },
+ "awards_points_to": {
+  "canonical": "awards_points_to",
+  "inverse": false
+ },
+ "became_monitoring_body_in_year": {
+  "canonical": "became_monitoring_body_in_year",
+  "inverse": false
+ },
+ "brought_into_afghanistan_by": {
+  "canonical": "brought_into_afghanistan_by",
+  "inverse": false
+ },
+ "brought_into_afghanistan_in_year": {
+  "canonical": "brought_into_afghanistan_in_year",
+  "inverse": false
+ },
+ "cancelled_because": {
+  "canonical": "cancelled_because",
+  "inverse": false
+ },
+ "carriage_capacity": {
+  "canonical": "carriage_capacity",
+  "inverse": false
+ },
+ "chose_to_replace": {
+  "canonical": "chose_to_replace",
+  "inverse": false
+ },
+ "competited_for_number_of_seasons": {
+  "canonical": "competited_for_number_of_seasons",
+  "inverse": false
+ },
+ "competited_from_year": {
+  "canonical": "competited_from_year",
+  "inverse": false
+ },
+ "competited_to_year": {
+  "canonical": "competited_to_year",
+  "inverse": false
+ },
+ "connected_to": {
+  "canonical": "connected_to",
+  "inverse": false
+ },
+ "converted_by": {
+  "canonical": "converted_by",
+  "inverse": false
+ },
+ "converted_in_year": {
+  "canonical": "converted_on_date",
+  "inverse": false
+ },
+ "created_in": {
+  "canonical": "created_in",
+  "inverse": false
+ },
+ "cultivated_in_asia_for": {
+  "canonical": "cultivated_in_asia_for",
+  "inverse": false
+ },
+ "current_status": {
+  "canonical": "current_status",
+  "inverse": false
+ },
+ "date_of_battle": {
+  "canonical": "date",
+  "inverse": false
+ },
+ "death_toll": {
+  "canonical": "death_toll",
+  "inverse": false
+ },
+ "degree_in": {
+  "canonical": "earned_degree",
+  "inverse": false
+ },
+ "designed_to_use": {
+  "canonical": "designed_to_use",
+  "inverse": false
+ },
+ "driven_by": {
+  "canonical": "driven_by",
+  "inverse": false
+ },
+ "driver_name": {
+  "canonical": "driven_by",
+  "inverse": false
+ },
+ "duration": {
+  "canonical": "duration",
+  "inverse": false
+ },
+ "featured_in_number_of_movies": {
+  "canonical": "featured_in_number_of_movies",
+  "inverse": false
+ },
+ "finished_in_constructors_championship": {
+  "canonical": "finished_in_constructors_championship",
+  "inverse": false
+ },
+ "first_episode_aired_on": {
+  "canonical": "air_date",
+  "inverse": false
+ },
+ "first_positive_role_in": {
+  "canonical": "first_positive_role_in",
+  "inverse": false
+ },
+ "fleet_size": {
+  "canonical": "fleet_size",
+  "inverse": false
+ },
+ "founded_on": {
+  "canonical": "established_in_year",
+  "inverse": false
+ },
+ "had_incumbent": {
+  "canonical": "had_incumbent",
+  "inverse": false
+ },
+ "had_strongest_season": {
+  "canonical": "had_strongest_season",
+  "inverse": false
+ },
+ "has_cultivar_count": {
+  "canonical": "has_cultivar_count",
+  "inverse": false
+ },
+ "has_economy_based_on": {
+  "canonical": "has_economy_based_on",
+  "inverse": false
+ },
+ "has_iata_code": {
+  "canonical": "has_iata_code",
+  "inverse": false
+ },
+ "has_icao_code": {
+  "canonical": "has_icao_code",
+  "inverse": false
+ },
+ "has_inversions": {
+  "canonical": "has_inversions",
+  "inverse": false
+ },
+ "has_isbn": {
+  "canonical": "has_isbn",
+  "inverse": false
+ },
+ "has_iso_code": {
+  "canonical": "has_iso_code",
+  "inverse": false
+ },
+ "has_jury_president": {
+  "canonical": "has_jury_president",
+  "inverse": false
+ },
+ "has_legal_requirement": {
+  "canonical": "has_legal_requirement",
+  "inverse": false
+ },
+ "has_mvp": {
+  "canonical": "has_mvp",
+  "inverse": false
+ },
+ "has_new_industry": {
+  "canonical": "has_new_industry",
+  "inverse": false
+ },
+ "has_number_of_paintings": {
+  "canonical": "has_number_of_paintings",
+  "inverse": false
+ },
+ "has_original_species": {
+  "canonical": "has_original_species",
+  "inverse": false
+ },
+ "has_population_density": {
+  "canonical": "has_population_density",
+  "inverse": false
+ },
+ "has_risk": {
+  "canonical": "has_risk",
+  "inverse": false
+ },
+ "has_road": {
+  "canonical": "has_road",
+  "inverse": false
+ },
+ "has_sister_airline": {
+  "canonical": "has_sister_airline",
+  "inverse": false
+ },
+ "has_syllables_in_first_line": {
+  "canonical": "has_syllables_in_first_line",
+  "inverse": false
+ },
+ "has_syllables_in_second_line": {
+  "canonical": "has_syllables_in_second_line",
+  "inverse": false
+ },
+ "has_top_speed": {
+  "canonical": "has_top_speed",
+  "inverse": false
+ },
+ "has_website": {
+  "canonical": "has_website",
+  "inverse": false
+ },
+ "has_zip_code": {
+  "canonical": "zip_code",
+  "inverse": false
+ },
+ "held_from_to": {
+  "canonical": "held_from_to",
+  "inverse": false
+ },
+ "helds": {
+  "canonical": "held_at",
+  "inverse": true
+ },
+ "influenced_by": {
+  "canonical": "influenced_by",
+  "inverse": false
+ },
+ "involved": {
+  "canonical": "has_participant",
+  "inverse": false
+ },
+ "is_last_of_format": {
+  "canonical": "is_last_of_format",
+  "inverse": false
+ },
+ "is_last_olympic_year_until": {
+  "canonical": "is_last_olympic_year_until",
+  "inverse": false
+ },
+ "laid_off": {
+  "canonical": "laid_off",
+  "inverse": false
+ },
+ "leaked_amount": {
+  "canonical": "leaked_amount",
+  "inverse": false
+ },
+ "leaked_on": {
+  "canonical": "leaked_on",
+  "inverse": false
+ },
+ "liberated_in_year": {
+  "canonical": "liberated_in_year",
+  "inverse": false
+ },
+ "located_relative_to": {
+  "canonical": "located_relative_to",
+  "inverse": false
+ },
+ "lost_by_score": {
+  "canonical": "lost_by_score",
+  "inverse": false
+ },
+ "main_business": {
+  "canonical": "main_business",
+  "inverse": false
+ },
+ "means_in_pashto": {
+  "canonical": "means_in_pashto",
+  "inverse": false
+ },
+ "merged_in_year": {
+  "canonical": "merged_in_year",
+  "inverse": false
+ },
+ "merged_into": {
+  "canonical": "merged_into",
+  "inverse": false
+ },
+ "near_highways": {
+  "canonical": "near_highways",
+  "inverse": false
+ },
+ "nominated_for": {
+  "canonical": "nominated_for",
+  "inverse": false
+ },
+ "number_of_caps": {
+  "canonical": "number_of_caps",
+  "inverse": false
+ },
+ "number_of_carriages": {
+  "canonical": "number_of_carriages",
+  "inverse": false
+ },
+ "number_of_storeys": {
+  "canonical": "number_of_storeys",
+  "inverse": false
+ },
+ "opening_night_film": {
+  "canonical": "opening_night_film",
+  "inverse": false
+ },
+ "parallel_to": {
+  "canonical": "parallel_to",
+  "inverse": false
+ },
+ "performed": {
+  "canonical": "performed",
+  "inverse": false
+ },
+ "promoted_to_city_status_on": {
+  "canonical": "promoted_to_city_status_on",
+  "inverse": false
+ },
+ "relationship_to": {
+  "canonical": "relationship_to",
+  "inverse": false
+ },
+ "renamed_to": {
+  "canonical": "renamed_to",
+  "inverse": false
+ },
+ "represented": {
+  "canonical": "represents",
+  "inverse": false
+ },
+ "route": {
+  "canonical": "route",
+  "inverse": false
+ },
+ "screen_debut_in": {
+  "canonical": "screen_debut_in",
+  "inverse": false
+ },
+ "selected": {
+  "canonical": "selected",
+  "inverse": false
+ },
+ "separated_by": {
+  "canonical": "separated_by",
+  "inverse": false
+ },
+ "started_acting_in_year": {
+  "canonical": "started_acting_in_year",
+  "inverse": false
+ },
+ "started_service_in_year": {
+  "canonical": "started_service_in_year",
+  "inverse": false
+ },
+ "stole": {
+  "canonical": "stolen_by",
+  "inverse": true
+ },
+ "student_of": {
+  "canonical": "student_of",
+  "inverse": false
+ },
+ "supported_album": {
+  "canonical": "supported_album",
+  "inverse": false
+ },
+ "surveyed_in_year": {
+  "canonical": "surveyed_in_year",
+  "inverse": false
+ },
+ "survived": {
+  "canonical": "survived",
+  "inverse": false
+ },
+ "threatened_to_release": {
+  "canonical": "threatened_to_release",
+  "inverse": false
+ },
+ "threatens_to_displace": {
+  "canonical": "threatens_to_displace",
+  "inverse": false
+ },
+ "tribute_to": {
+  "canonical": "tribute_to",
+  "inverse": false
+ },
+ "used_during": {
+  "canonical": "used_during",
+  "inverse": false
+ },
+ "used_on": {
+  "canonical": "used_on",
+  "inverse": false
+ },
+ "uses": {
+  "canonical": "uses",
+  "inverse": false
+ },
+ "victim_nationality": {
+  "canonical": "victim_nationality",
+  "inverse": false
+ },
+ "welcomes_businesses": {
+  "canonical": "welcomes_businesses",
+  "inverse": false
+ },
+ "won_race_at": {
+  "canonical": "won_by",
+  "inverse": true
+ },
+ "won_race_for": {
+  "canonical": "won_race_for",
+  "inverse": false
+ },
+ "written_at": {
+  "canonical": "written_at",
+  "inverse": false
+ },
+ "written_in_script": {
+  "canonical": "written_in_script",
+  "inverse": false
+ },
+ "has_cause": {
+  "canonical": "has_cause",
+  "inverse": false
+ },
+ "affects": {
+  "canonical": "affects",
+  "inverse": false
+ },
+ "bordered_by": {
+  "canonical": "borders",
+  "inverse": false
+ },
+ "included_member": {
+  "canonical": "included_member",
+  "inverse": false
+ },
+ "prepares_for": {
+  "canonical": "prepares_for",
+  "inverse": false
+ },
+ "considered_alongside": {
+  "canonical": "considered_alongside",
+  "inverse": false
+ },
+ "made_debut_in": {
+  "canonical": "made_debut_in",
+  "inverse": false
+ },
+ "requires": {
+  "canonical": "requires",
+  "inverse": false
+ },
+ "developed_using": {
+  "canonical": "developed_using",
+  "inverse": false
+ },
+ "has_caliber": {
+  "canonical": "has_caliber",
+  "inverse": false
+ },
+ "has_capacity": {
+  "canonical": "has_capacity",
+  "inverse": false
+ },
+ "has_endpoint": {
+  "canonical": "has_endpoint",
+  "inverse": false
+ },
+ "has_guest_of_honor": {
+  "canonical": "has_guest_of_honor",
+  "inverse": false
+ },
+ "made_for": {
+  "canonical": "made_for",
+  "inverse": false
+ },
+ "accounts_for": {
+  "canonical": "accounts_for",
+  "inverse": false
+ },
+ "active_since": {
+  "canonical": "active_since",
+  "inverse": false
+ },
+ "adapted_for": {
+  "canonical": "adapted_for",
+  "inverse": false
+ },
+ "applicants_per_year": {
+  "canonical": "applicants_per_year",
+  "inverse": false
+ },
+ "assembled_in": {
+  "canonical": "assembled_in",
+  "inverse": false
+ },
+ "awarded_by": {
+  "canonical": "awarded_by",
+  "inverse": false
+ },
+ "became_first_millionaire_player_in": {
+  "canonical": "became_first_millionaire_player_in",
+  "inverse": false
+ },
+ "best_record": {
+  "canonical": "best_record",
+  "inverse": false
+ },
+ "best_record_year": {
+  "canonical": "best_record_year",
+  "inverse": false
+ },
+ "broadcasts": {
+  "canonical": "broadcasts",
+  "inverse": false
+ },
+ "built": {
+  "canonical": "built",
+  "inverse": false
+ },
+ "buried_in": {
+  "canonical": "buried_in",
+  "inverse": false
+ },
+ "causes": {
+  "canonical": "causes",
+  "inverse": false
+ },
+ "comparable_to": {
+  "canonical": "comparable_to",
+  "inverse": false
+ },
+ "competed_with": {
+  "canonical": "competed_with",
+  "inverse": false
+ },
+ "derived_from": {
+  "canonical": "derived_from",
+  "inverse": false
+ },
+ "designated_in_year": {
+  "canonical": "designated_in_year",
+  "inverse": false
+ },
+ "designed_for": {
+  "canonical": "designed_for",
+  "inverse": false
+ },
+ "destroyed_or_captured_during": {
+  "canonical": "destroyed_or_captured_during",
+  "inverse": false
+ },
+ "disbanded_in_year": {
+  "canonical": "dissolved_in_year",
+  "inverse": false
+ },
+ "dissolved_on": {
+  "canonical": "dissolved_in_year",
+  "inverse": false
+ },
+ "employs": {
+  "canonical": "employs",
+  "inverse": false
+ },
+ "eroded_in": {
+  "canonical": "eroded_in",
+  "inverse": false
+ },
+ "first_appeared_in": {
+  "canonical": "first_appeared_in",
+  "inverse": false
+ },
+ "first_class_began_in_year": {
+  "canonical": "first_class_began_in_year",
+  "inverse": false
+ },
+ "first_flight": {
+  "canonical": "first_flight_date",
+  "inverse": false
+ },
+ "first_flown_on": {
+  "canonical": "first_flight_date",
+  "inverse": false
+ },
+ "first_foreign_sale_to": {
+  "canonical": "first_foreign_sale_to",
+  "inverse": false
+ },
+ "follows": {
+  "canonical": "follows",
+  "inverse": false
+ },
+ "formed_from": {
+  "canonical": "formed_from",
+  "inverse": false
+ },
+ "funds": {
+  "canonical": "funds",
+  "inverse": false
+ },
+ "had_in_service": {
+  "canonical": "had_in_service",
+  "inverse": false
+ },
+ "has_90m_building_rank": {
+  "canonical": "has_90m_building_rank",
+  "inverse": false
+ },
+ "has_b_side": {
+  "canonical": "has_b_side",
+  "inverse": false
+ },
+ "has_building_concentration_rank": {
+  "canonical": "has_building_concentration_rank",
+  "inverse": false
+ },
+ "has_cathedral": {
+  "canonical": "has_cathedral",
+  "inverse": false
+ },
+ "has_climate": {
+  "canonical": "has_climate",
+  "inverse": false
+ },
+ "has_clock_tower_location": {
+  "canonical": "has_clock_tower_location",
+  "inverse": false
+ },
+ "has_coordinates": {
+  "canonical": "has_coordinates",
+  "inverse": false
+ },
+ "has_county_seat": {
+  "canonical": "county_seat",
+  "inverse": false
+ },
+ "has_dome_diameter": {
+  "canonical": "has_dome_diameter",
+  "inverse": false
+ },
+ "has_dome_height_above_roof": {
+  "canonical": "has_dome_height_above_roof",
+  "inverse": false
+ },
+ "has_maximum_speed": {
+  "canonical": "has_maximum_speed",
+  "inverse": false
+ },
+ "has_memorial_guest_of_honor": {
+  "canonical": "has_guest_of_honor",
+  "inverse": false
+ },
+ "has_minaret_height_above_roof": {
+  "canonical": "has_minaret_height_above_roof",
+  "inverse": false
+ },
+ "has_number_of_buildings": {
+  "canonical": "has_number_of_buildings",
+  "inverse": false
+ },
+ "has_number_of_participants": {
+  "canonical": "has_number_of_participants",
+  "inverse": false
+ },
+ "has_pattern": {
+  "canonical": "has_pattern",
+  "inverse": false
+ },
+ "has_prize_money": {
+  "canonical": "has_prize_money",
+  "inverse": false
+ },
+ "has_production_site_in": {
+  "canonical": "has_production_site_in",
+  "inverse": false
+ },
+ "has_production_sites": {
+  "canonical": "has_production_sites",
+  "inverse": false
+ },
+ "has_revenue": {
+  "canonical": "has_revenue",
+  "inverse": false
+ },
+ "has_sales_offices": {
+  "canonical": "has_sales_offices",
+  "inverse": false
+ },
+ "iata_code": {
+  "canonical": "iata_code",
+  "inverse": false
+ },
+ "icao_code": {
+  "canonical": "icao_code",
+  "inverse": false
+ },
+ "impairs": {
+  "canonical": "affects",
+  "inverse": false
+ },
+ "invested_in_year": {
+  "canonical": "invested_in_year",
+  "inverse": false
+ },
+ "involved_plate": {
+  "canonical": "involved_plate",
+  "inverse": false
+ },
+ "is_characterized_by": {
+  "canonical": "is_characterized_by",
+  "inverse": false
+ },
+ "is_not": {
+  "canonical": "is_not",
+  "inverse": false
+ },
+ "lost_to": {
+  "canonical": "defeated",
+  "inverse": true
+ },
+ "made_debut_against": {
+  "canonical": "made_debut_against",
+  "inverse": false
+ },
+ "made_of": {
+  "canonical": "made_of",
+  "inverse": false
+ },
+ "manufactured_from": {
+  "canonical": "manufactured_from",
+  "inverse": false
+ },
+ "manufactured_quantity": {
+  "canonical": "manufactured_quantity",
+  "inverse": false
+ },
+ "manufactured_to": {
+  "canonical": "manufactured_to",
+  "inverse": false
+ },
+ "married_on": {
+  "canonical": "married_on",
+  "inverse": false
+ },
+ "motto": {
+  "canonical": "motto",
+  "inverse": false
+ },
+ "obtained": {
+  "canonical": "obtained",
+  "inverse": false
+ },
+ "occurs_every": {
+  "canonical": "occurs_every",
+  "inverse": false
+ },
+ "operated": {
+  "canonical": "operated",
+  "inverse": false
+ },
+ "operated_for": {
+  "canonical": "operated_by",
+  "inverse": false
+ },
+ "operated_from": {
+  "canonical": "operated_from",
+  "inverse": false
+ },
+ "operated_until": {
+  "canonical": "operated_until",
+  "inverse": false
+ },
+ "operates": {
+  "canonical": "operates",
+  "inverse": false
+ },
+ "participation_questioned_due_to": {
+  "canonical": "participation_questioned_due_to",
+  "inverse": false
+ },
+ "played_matches_for": {
+  "canonical": "played_matches_for",
+  "inverse": false
+ },
+ "plays_home_games_at": {
+  "canonical": "plays_home_games_at",
+  "inverse": false
+ },
+ "president": {
+  "canonical": "president",
+  "inverse": false
+ },
+ "prevalence": {
+  "canonical": "prevalence",
+  "inverse": false
+ },
+ "produced_in_year": {
+  "canonical": "produced_in_year",
+  "inverse": false
+ },
+ "pronounced_as": {
+  "canonical": "pronounced_as",
+  "inverse": false
+ },
+ "raised_in": {
+  "canonical": "raised_in",
+  "inverse": false
+ },
+ "ranked_behind": {
+  "canonical": "ranked_behind",
+  "inverse": false
+ },
+ "recording_duration": {
+  "canonical": "recording_duration",
+  "inverse": false
+ },
+ "results_in": {
+  "canonical": "results_in",
+  "inverse": false
+ },
+ "resumed_soccer_in_year": {
+  "canonical": "resumed_soccer_in_year",
+  "inverse": false
+ },
+ "retitled_to": {
+  "canonical": "retitled_to",
+  "inverse": false
+ },
+ "scholarships_awarded_per_year": {
+  "canonical": "scholarships_awarded_per_year",
+  "inverse": false
+ },
+ "scored_total_points_for": {
+  "canonical": "scored_total_points_for",
+  "inverse": false
+ },
+ "scored_try_in_event": {
+  "canonical": "scored_try_in_event",
+  "inverse": false
+ },
+ "selects": {
+  "canonical": "selects",
+  "inverse": false
+ },
+ "served_as_mayor_during": {
+  "canonical": "served_as_mayor_during",
+  "inverse": false
+ },
+ "signed_as": {
+  "canonical": "signed_as",
+  "inverse": false
+ },
+ "stablemate": {
+  "canonical": "stablemate",
+  "inverse": false
+ },
+ "supports": {
+  "canonical": "supports",
+  "inverse": false
+ },
+ "transfer_earnings_increase_based_on": {
+  "canonical": "transfer_earnings_increase_based_on",
+  "inverse": false
+ },
+ "typically_height": {
+  "canonical": "height",
+  "inverse": false
+ },
+ "was_tallest_in_latin_america": {
+  "canonical": "was_tallest_in_latin_america",
+  "inverse": false
+ },
+ "wrote_at_age": {
+  "canonical": "wrote_at_age",
+  "inverse": false
+ }
+}

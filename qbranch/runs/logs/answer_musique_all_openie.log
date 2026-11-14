@@ -1,0 +1,4 @@
+graph_openie {"facts": 109000, "entities": 77089, "relations": 6779, "open_slots": 9, "agenda": 0, "agenda_open": 0}
+graph_openie_plan {"n": 1000.0, "em": 0.48, "f1": 0.635, "judge": 0.705, "recall@5": 0.872, "reader_prompt_tokens": 5955.874, "passages": 10.396, "reader_calls": 4.582}
+graph_openie {"n": 1000.0, "em": 0.414, "f1": 0.571, "judge": 0.607, "recall@5": 0.676, "reader_prompt_tokens": 1262.973, "passages": 4.955, "reader_calls": 1.0}
+1.2989

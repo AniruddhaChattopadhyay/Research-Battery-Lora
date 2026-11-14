@@ -1,0 +1,59 @@
+graph_qbranch_noopen {"facts": 12896, "entities": 11779, "relations": 2284, "open_slots": 10, "agenda": 10258, "agenda_open": 0}
+graph_qbranch_noopen {"n": 100.0, "em": 0.53, "f1": 0.65, "judge": 0.72, "recall@5": 0.757, "reader_prompt_tokens": 1283.07, "passages": 4.88, "reader_calls": 1.0}
+Traceback (most recent call last):
+  File "/Users/aniruddha/Documents/research/qbranch/src/run_answer.py", line 116, in <module>
+    get_retriever(base).resolve("x")  # build the entity index before the threads start
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/aniruddha/Documents/research/qbranch/src/answer.py", line 82, in resolve
+    self.E = DenseIndex(self.nodes)
+             ~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/qbranch/src/answer.py", line 32, in __init__
+    self.M = _unit(llm.embed(EMBED_MODEL, texts))
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/qbranch/src/llm.py", line 168, in embed
+    list(ex.map(one_batch, parts))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/aniruddha/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/aniruddha/Documents/research/qbranch/src/llm.py", line 149, in one_batch
+    resp = _client.embeddings.create(model=model, input=[texts[i] for i in idx],
+                                     extra_body={"usage": {"include": True}})
+  File "/Users/aniruddha/Documents/research/qbranch/.venv/lib/python3.13/site-packages/openai/resources/embeddings.py", line 113, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/embeddings",
+        ^^^^^^^^^^^^^^
+    ...<9 lines>...
+        cast_to=CreateEmbeddingResponse,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aniruddha/Documents/research/qbranch/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1474, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniruddha/Documents/research/qbranch/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1248, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - [
+  {
+    "origin": "string",
+    "code": "too_small",
+    "minimum": 1,
+    "inclusive": true,
+    "path": [
+      "input",
+      8
+    ],
+    "message": "Too small: expected string to have >=1 characters"
+  }
+]

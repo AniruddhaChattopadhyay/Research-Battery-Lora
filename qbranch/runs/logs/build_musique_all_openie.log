@@ -1,0 +1,25 @@
+musique: 1000 questions, 11656 passages, 10 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/musique_nall/build_openie
+batch 0: 1166 passages, 0 failed, 4101 relation names
+batch 1: 1166 passages, 0 failed, 4585 relation names
+batch 2: 1166 passages, 0 failed, 5035 relation names
+batch 3: 1166 passages, 0 failed, 5400 relation names
+batch 4: 1166 passages, 0 failed, 5688 relation names
+batch 5: 1166 passages, 0 failed, 5921 relation names
+batch 6: 1166 passages, 0 failed, 6193 relation names
+batch 7: 1166 passages, 0 failed, 6404 relation names
+batch 8: 1166 passages, 0 failed, 6617 relation names
+batch 9: 1162 passages, 0 failed, 6781 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 11868,
+   "cached_calls": 37,
+   "prompt": 6575126,
+   "completion": 5637890,
+   "reasoning": 1224403,
+   "cost": 4.491753030919985
+  }
+ },
+ "total_cost_usd": 4.4918,
+ "build_cost_from_records_usd": 3.713
+}

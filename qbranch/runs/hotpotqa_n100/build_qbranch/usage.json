@@ -1,0 +1,14 @@
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 997,
+   "cached_calls": 0,
+   "prompt": 736115,
+   "completion": 920071,
+   "reasoning": 4000,
+   "cost": 0.7097188939999993
+  }
+ },
+ "total_cost_usd": 0.7097,
+ "build_cost_from_records_usd": 0.704
+}

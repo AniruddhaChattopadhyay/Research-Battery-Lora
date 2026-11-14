@@ -1,0 +1,161 @@
+{
+ "summary": {
+  "closed_book": {
+   "n": 100,
+   "em": 0.31,
+   "f1": 0.419095238095238,
+   "judge": 0.39,
+   "recall@5": 0.0,
+   "reader_prompt_tokens": 72.32
+  },
+  "dense": {
+   "n": 100,
+   "em": 0.57,
+   "f1": 0.6670555555555556,
+   "judge": 0.7,
+   "recall@5": 0.7783333333333333,
+   "reader_prompt_tokens": 805.58
+  },
+  "oracle": {
+   "n": 100,
+   "em": 0.65,
+   "f1": 0.7636601731601732,
+   "judge": 0.85,
+   "recall@5": 1.0,
+   "reader_prompt_tokens": 494.41
+  },
+  "graph_qbranch": {
+   "n": 100,
+   "em": 0.58,
+   "f1": 0.6922142857142858,
+   "judge": 0.72,
+   "recall@5": 0.76,
+   "reader_prompt_tokens": 1279.69
+  },
+  "graph_qbranch_noq": {
+   "n": 100,
+   "em": 0.54,
+   "f1": 0.6467142857142858,
+   "judge": 0.69,
+   "recall@5": 0.715,
+   "reader_prompt_tokens": 1292.57
+  },
+  "graph_openie": {
+   "n": 100,
+   "em": 0.54,
+   "f1": 0.655904761904762,
+   "judge": 0.69,
+   "recall@5": 0.7400000000000001,
+   "reader_prompt_tokens": 1277.83
+  },
+  "dense_plan": {
+   "n": 100,
+   "em": 0.5,
+   "f1": 0.6197316017316017,
+   "judge": 0.66,
+   "recall@5": 0.935,
+   "reader_prompt_tokens": 3922.96,
+   "passages": 10.6,
+   "reader_calls": 4.67
+  },
+  "graph_qbranch_plan": {
+   "n": 100,
+   "em": 0.6,
+   "f1": 0.7096839826839827,
+   "judge": 0.77,
+   "recall@5": 0.9091666666666667,
+   "reader_prompt_tokens": 6103.91,
+   "passages": 10.04,
+   "reader_calls": 4.67
+  },
+  "graph_openie_plan": {
+   "n": 100,
+   "em": 0.56,
+   "f1": 0.6866839826839827,
+   "judge": 0.74,
+   "recall@5": 0.9183333333333334,
+   "reader_prompt_tokens": 6041.57,
+   "passages": 9.69,
+   "reader_calls": 4.67
+  },
+  "graph_qbranch_noq_plan": {
+   "n": 100,
+   "em": 0.58,
+   "f1": 0.694064935064935,
+   "judge": 0.75,
+   "recall@5": 0.9108333333333334,
+   "reader_prompt_tokens": 6085.64,
+   "passages": 9.91,
+   "reader_calls": 4.67
+  },
+  "dense_k8_plan": {
+   "n": 100,
+   "em": 0.49,
+   "f1": 0.6074935064935065,
+   "judge": 0.66,
+   "recall@5": 0.9500000000000002,
+   "reader_prompt_tokens": 5755.51,
+   "passages": 16.87,
+   "reader_calls": 4.67
+  },
+  "graph_qbranch_plan_noanchor": {
+   "n": 100,
+   "em": 0.58,
+   "f1": 0.7137012987012987,
+   "judge": 0.77,
+   "recall@5": 0.9108333333333333,
+   "reader_prompt_tokens": 6198.43,
+   "passages": 10.34,
+   "reader_calls": 4.67
+  },
+  "dense_k10": {
+   "n": 100,
+   "em": 0.58,
+   "f1": 0.6847698412698413,
+   "judge": 0.74,
+   "recall@5": 0.8591666666666667,
+   "reader_prompt_tokens": 1461.78,
+   "passages": 10.0,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch_noopen_plan": {
+   "n": 100,
+   "em": 0.56,
+   "f1": 0.6975238095238097,
+   "judge": 0.79,
+   "recall@5": 0.9375,
+   "reader_prompt_tokens": 6073.11,
+   "passages": 9.99,
+   "reader_calls": 4.67
+  }
+ },
+ "usage": {
+  "by_model": {
+   "google/gemini-embedding-2": {
+    "calls": 19,
+    "cached_calls": 0,
+    "prompt": 614,
+    "completion": 0,
+    "reasoning": 0,
+    "cost": 0.0001228
+   },
+   "openai/gpt-6-luna": {
+    "calls": 361,
+    "cached_calls": 106,
+    "prompt": 581945,
+    "completion": 38259,
+    "reasoning": 24400,
+    "cost": 0.09113065
+   },
+   "anthropic/claude-haiku-5.5": {
+    "calls": 18,
+    "cached_calls": 82,
+    "prompt": 2989,
+    "completion": 3929,
+    "reasoning": 3833,
+    "cost": 0.0022634
+   }
+  },
+  "total_cost_usd": 0.0935
+ }
+}

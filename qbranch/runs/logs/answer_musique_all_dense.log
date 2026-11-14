@@ -1,0 +1,7 @@
+closed_book {"n": 1000.0, "em": 0.241, "f1": 0.382, "judge": 0.393, "recall@5": 0.0, "reader_prompt_tokens": 72.099, "passages": 0.0, "reader_calls": 1.0}
+oracle {"n": 1000.0, "em": 0.574, "f1": 0.737, "judge": 0.825, "recall@5": 1.0, "reader_prompt_tokens": 472.713, "passages": 2.648, "reader_calls": 1.0}
+dense {"n": 1000.0, "em": 0.424, "f1": 0.583, "judge": 0.632, "recall@5": 0.699, "reader_prompt_tokens": 808.585, "passages": 5.0, "reader_calls": 1.0}
+dense_k10 {"n": 1000.0, "em": 0.453, "f1": 0.615, "judge": 0.679, "recall@5": 0.798, "reader_prompt_tokens": 1490.556, "passages": 10.0, "reader_calls": 1.0}
+dense_plan {"n": 1000.0, "em": 0.451, "f1": 0.624, "judge": 0.705, "recall@5": 0.909, "reader_prompt_tokens": 3844.06, "passages": 10.999, "reader_calls": 4.576}
+dense_k8_plan {"n": 1000.0, "em": 0.463, "f1": 0.632, "judge": 0.705, "recall@5": 0.938, "reader_prompt_tokens": 5712.15, "passages": 17.544, "reader_calls": 4.582}
+2.771

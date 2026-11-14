@@ -1,0 +1,5 @@
+dense_plan {"n": 1000.0, "em": 0.451, "f1": 0.625, "judge": 0.706, "recall@5": 0.91, "reader_prompt_tokens": 3853.865, "passages": 11.033, "reader_calls": 4.582}
+dense_k8_plan {"n": 1000.0, "em": 0.463, "f1": 0.632, "judge": 0.705, "recall@5": 0.938, "reader_prompt_tokens": 5712.15, "passages": 17.544, "reader_calls": 4.582}
+graph_openie {"facts": 109000, "entities": 77089, "relations": 6779, "open_slots": 9, "agenda": 0, "agenda_open": 0}
+graph_openie_plan {"n": 1000.0, "em": 0.48, "f1": 0.635, "judge": 0.705, "recall@5": 0.872, "reader_prompt_tokens": 5955.874, "passages": 10.396, "reader_calls": 4.582}
+0.0287

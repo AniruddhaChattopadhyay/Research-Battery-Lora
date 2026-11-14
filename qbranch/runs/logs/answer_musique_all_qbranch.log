@@ -1,0 +1,7 @@
+graph_qbranch {"facts": 86534, "entities": 70928, "relations": 9905, "open_slots": 34849, "agenda": 104374, "agenda_open": 34634}
+graph_qbranch_plan {"n": 1000.0, "em": 0.459, "f1": 0.623, "judge": 0.688, "recall@5": 0.871, "reader_prompt_tokens": 6002.599, "passages": 10.383, "reader_calls": 4.581}
+graph_qbranch {"n": 1000.0, "em": 0.441, "f1": 0.603, "judge": 0.643, "recall@5": 0.71, "reader_prompt_tokens": 1276.0, "passages": 4.956, "reader_calls": 1.0}
+graph_qbranch_noq {"facts": 86534, "entities": 70928, "relations": 9905, "open_slots": 34849, "agenda": 104374, "agenda_open": 34634}
+graph_qbranch_noq {"n": 1000.0, "em": 0.411, "f1": 0.571, "judge": 0.614, "recall@5": 0.654, "reader_prompt_tokens": 1275.93, "passages": 4.96, "reader_calls": 1.0}
+graph_qbranch_plan_noanchor {"n": 1000.0, "em": 0.462, "f1": 0.631, "judge": 0.704, "recall@5": 0.872, "reader_prompt_tokens": 6080.119, "passages": 10.656, "reader_calls": 4.582}
+2.4181

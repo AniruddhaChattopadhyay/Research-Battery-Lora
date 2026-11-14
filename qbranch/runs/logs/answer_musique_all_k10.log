@@ -1,0 +1,5 @@
+graph_qbranch_k10 {"facts": 86534, "entities": 70928, "relations": 9905, "open_slots": 34849, "agenda": 104374, "agenda_open": 34634}
+graph_qbranch_k10 {"n": 1000.0, "em": 0.435, "f1": 0.604, "judge": 0.66, "recall@5": 0.785, "reader_prompt_tokens": 1786.868, "passages": 8.839, "reader_calls": 1.0}
+graph_openie_k10 {"facts": 109000, "entities": 77089, "relations": 6779, "open_slots": 9, "agenda": 0, "agenda_open": 0}
+graph_openie_k10 {"n": 1000.0, "em": 0.443, "f1": 0.602, "judge": 0.645, "recall@5": 0.746, "reader_prompt_tokens": 1753.787, "passages": 8.566, "reader_calls": 1.0}
+0.6253

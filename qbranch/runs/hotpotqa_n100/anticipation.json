@@ -1,0 +1,259 @@
+{
+ "open_slots_total": 2922,
+ "open_slots_with_a_later_batch": 2341,
+ "exact": {
+  "bound_later": 0.021358393848782572,
+  "already_known": 0.019222554463904314,
+  "random_relation_bound_later": 0.009205467748825287
+ },
+ "soft": {
+  "bound_later": 0.03289192652712516,
+  "already_known": 0.031610422896198205,
+  "random_relation_bound_later": 0.010337462622810765
+ },
+ "any_relation_later": 0.10679196924391286,
+ "examples": [
+  {
+   "slot": [
+    "The Bell Jar",
+    "published_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "The Bell Jar",
+    "published_in_year",
+    "1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "The Bell Jar"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_on",
+    "23 July 1934"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_in",
+    "Derazhnya, Ukraine, Soviet Union"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "Steve Perry",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Steve Perry",
+    "born_on",
+    "October 8, 1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "Steve Perry (Oregon musician)"
+  },
+  {
+   "slot": [
+    "Southwell Minster",
+    "located_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Southwell Minster",
+    "located_in",
+    "Southwell"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Minster (church)"
+  },
+  {
+   "slot": [
+    "Giuseppe Verdi",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Giuseppe Verdi",
+    "born_on",
+    "9 or 10 October 1813"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Giuseppe Verdi"
+  },
+  {
+   "slot": [
+    "Sylvia Plath",
+    "died_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Sylvia Plath",
+    "died_on",
+    "1963"
+   ],
+   "bound_batch": 4,
+   "bound_in": "The Bell Jar"
+  },
+  {
+   "slot": [
+    "Semyon Aranovich",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Semyon Aranovich",
+    "born_on",
+    "23 July 1934"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Semyon Aranovich"
+  },
+  {
+   "slot": [
+    "Mitridate, re di Ponto",
+    "premiered_in_city",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Mitridate, re di Ponto",
+    "premiered_at",
+    "Teatro Regio Ducal"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Teatro Regio Ducal"
+  },
+  {
+   "slot": [
+    "Ambroise Thomas",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Ambroise Thomas",
+    "born_on",
+    "5 August 1811"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Ambroise Thomas"
+  },
+  {
+   "slot": [
+    "Leslie West",
+    "born_on_date",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Leslie West",
+    "born_on",
+    "October 22, 1945"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Leslie West"
+  },
+  {
+   "slot": [
+    "Leslie West",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Leslie West",
+    "born_on",
+    "October 22, 1945"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Leslie West"
+  }
+ ],
+ "top_open_relations": [
+  [
+   "born_in",
+   643
+  ],
+  [
+   "born_on",
+   282
+  ],
+  [
+   "founded_in_year",
+   245
+  ],
+  [
+   "located_in",
+   104
+  ],
+  [
+   "population",
+   83
+  ],
+  [
+   "full_name",
+   69
+  ],
+  [
+   "release_date",
+   68
+  ],
+  [
+   "founded_by",
+   66
+  ],
+  [
+   "nationality",
+   64
+  ],
+  [
+   "died_on",
+   63
+  ],
+  [
+   "occupation",
+   55
+  ],
+  [
+   "built_in_year",
+   51
+  ],
+  [
+   "member_of",
+   44
+  ],
+  [
+   "headquartered_in",
+   44
+  ],
+  [
+   "created_by",
+   41
+  ]
+ ]
+}

@@ -1,0 +1,260 @@
+{
+ "open_slots_total": 5236,
+ "open_slots_with_a_later_batch": 4199,
+ "exact": {
+  "bound_later": 0.012145748987854251,
+  "already_known": 0.018575851393188854,
+  "random_relation_bound_later": 0.004393903310311979
+ },
+ "soft": {
+  "bound_later": 0.015479876160990712,
+  "already_known": 0.02286258633007859,
+  "random_relation_bound_later": 0.00562038580614432
+ },
+ "any_relation_later": 0.10431055013098357,
+ "examples": [
+  {
+   "slot": [
+    "Jehovah's Witnesses",
+    "founded_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Jehovah's Witnesses",
+    "established_in_year",
+    "1914"
+   ],
+   "bound_batch": 4,
+   "bound_in": "Jehovah's Witnesses"
+  },
+  {
+   "slot": [
+    "Gulf of Mexico",
+    "has_area",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Gulf of Mexico",
+    "has_area",
+    "1.6 million km\u00b2"
+   ],
+   "bound_batch": 4,
+   "bound_in": "Gulf of Mexico"
+  },
+  {
+   "slot": [
+    "Gulf of Mexico",
+    "formed_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Gulf of Mexico",
+    "formed_in_year",
+    "300 million years ago"
+   ],
+   "bound_batch": 4,
+   "bound_in": "Gulf of Mexico"
+  },
+  {
+   "slot": [
+    "Saudi Arabia",
+    "population",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Saudi Arabia",
+    "population",
+    "28.7 million"
+   ],
+   "bound_batch": 3,
+   "bound_in": "Saudi Arabia"
+  },
+  {
+   "slot": [
+    "Saudi Arabia",
+    "founded_in_year",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Saudi Arabia",
+    "founded_in_year",
+    "1932"
+   ],
+   "bound_batch": 3,
+   "bound_in": "Saudi Arabia"
+  },
+  {
+   "slot": [
+    "Silver Lake",
+    "located_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Silver Lake",
+    "located_in",
+    "Carroll County"
+   ],
+   "bound_batch": 3,
+   "bound_in": "Silver Lake (Madison, New Hampshire)"
+  },
+  {
+   "slot": [
+    "Umm al Maradim",
+    "located_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Umm al Maradim",
+    "located_in",
+    "Persian Gulf"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Battle of Qurah and Umm al Maradim"
+  },
+  {
+   "slot": [
+    "Jefferson Davis",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Jefferson Davis",
+    "born_in_year",
+    "1808"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Confederate States Army"
+  },
+  {
+   "slot": [
+    "Guardians of the Galaxy (2014)",
+    "directed_by",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Guardians of the Galaxy",
+    "directed_by",
+    "James Gunn"
+   ],
+   "bound_batch": 2,
+   "bound_in": "List of Marvel Cinematic Universe films"
+  },
+  {
+   "slot": [
+    "Antonio Vivaldi",
+    "born_in",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Antonio Vivaldi",
+    "born_on",
+    "4 March 1678"
+   ],
+   "bound_batch": 1,
+   "bound_in": "Antonio Vivaldi"
+  },
+  {
+   "slot": [
+    "Back to the Future",
+    "directed_by",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Back to the Future",
+    "directed_by",
+    "Robert Zemeckis"
+   ],
+   "bound_batch": 2,
+   "bound_in": "Back to the Future (franchise)"
+  },
+  {
+   "slot": [
+    "Rebecca",
+    "child_of",
+    "?"
+   ],
+   "batch": 0,
+   "bound_by": [
+    "Rebecca",
+    "child_of",
+    "Jacob"
+   ],
+   "bound_batch": 3,
+   "bound_in": "Rebecca"
+  }
+ ],
+ "top_open_relations": [
+  [
+   "born_in",
+   841
+  ],
+  [
+   "founded_in_year",
+   481
+  ],
+  [
+   "born_on",
+   427
+  ],
+  [
+   "population",
+   262
+  ],
+  [
+   "located_in",
+   241
+  ],
+  [
+   "area",
+   187
+  ],
+  [
+   "headquartered_in",
+   141
+  ],
+  [
+   "established_in_year",
+   141
+  ],
+  [
+   "full_name",
+   123
+  ],
+  [
+   "died_on",
+   120
+  ],
+  [
+   "born_in_year",
+   92
+  ],
+  [
+   "elevation",
+   86
+  ],
+  [
+   "capital",
+   74
+  ],
+  [
+   "has_length",
+   69
+  ],
+  [
+   "founded_by",
+   66
+  ]
+ ],
+ "relations_in_graph": 2756
+}

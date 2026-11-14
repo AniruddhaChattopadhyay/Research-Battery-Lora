@@ -1,0 +1,5 @@
+dense_k8_plan {"n": 100.0, "em": 0.49, "f1": 0.607, "judge": 0.66, "recall@5": 0.95, "reader_prompt_tokens": 5755.51, "passages": 16.87, "reader_calls": 4.67}
+graph_qbranch {"facts": 12969, "entities": 11881, "relations": 2756, "open_slots": 5236, "agenda": 15676, "agenda_open": 5184}
+graph_qbranch_plan_noanchor {"n": 100.0, "em": 0.58, "f1": 0.714, "judge": 0.77, "recall@5": 0.911, "reader_prompt_tokens": 6198.43, "passages": 10.34, "reader_calls": 4.67}
+dense_k10 {"n": 100.0, "em": 0.58, "f1": 0.685, "judge": 0.74, "recall@5": 0.859, "reader_prompt_tokens": 1461.78, "passages": 10.0, "reader_calls": 1.0}
+0.1744

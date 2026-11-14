@@ -1,0 +1,103 @@
+{
+ "summary": {
+  "closed_book": {
+   "n": 300,
+   "em": 0.36333333333333334,
+   "f1": 0.5383227513227513,
+   "judge": 0.8666666666666667,
+   "recall@5": 0.0,
+   "reader_prompt_tokens": 109.58,
+   "passages": 0.0,
+   "reader_calls": 1.0
+  },
+  "dense": {
+   "n": 300,
+   "em": 0.31666666666666665,
+   "f1": 0.45552032227032224,
+   "judge": 0.76,
+   "recall@5": 0.4622222222222223,
+   "reader_prompt_tokens": 1797.8033333333333,
+   "passages": 5.0,
+   "reader_calls": 1.0
+  },
+  "dense_k10": {
+   "n": 300,
+   "em": 0.32666666666666666,
+   "f1": 0.4780661375661376,
+   "judge": 0.8166666666666667,
+   "recall@5": 0.6713888888888888,
+   "reader_prompt_tokens": 3431.49,
+   "passages": 10.0,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch": {
+   "n": 300,
+   "em": 0.3333333333333333,
+   "f1": 0.45292287342287335,
+   "judge": 0.74,
+   "recall@5": 0.3108333333333333,
+   "reader_prompt_tokens": 2892.3566666666666,
+   "passages": 5.0,
+   "reader_calls": 1.0
+  },
+  "graph_qbranch_noq": {
+   "n": 300,
+   "em": 0.3333333333333333,
+   "f1": 0.4460185185185185,
+   "judge": 0.7066666666666667,
+   "recall@5": 0.29583333333333334,
+   "reader_prompt_tokens": 2865.8333333333335,
+   "passages": 5.0,
+   "reader_calls": 1.0
+  },
+  "dense_plan": {
+   "n": 300,
+   "em": 0.31666666666666665,
+   "f1": 0.459034632034632,
+   "judge": 0.83,
+   "recall@5": 0.7230555555555556,
+   "reader_prompt_tokens": 9765.266666666666,
+   "passages": 12.206666666666667,
+   "reader_calls": 5.0
+  },
+  "graph_qbranch_plan": {
+   "n": 300,
+   "em": 0.31333333333333335,
+   "f1": 0.449450456950457,
+   "judge": 0.7666666666666667,
+   "recall@5": 0.4841666666666667,
+   "reader_prompt_tokens": 15561.896666666667,
+   "passages": 11.963333333333333,
+   "reader_calls": 5.0
+  }
+ },
+ "usage": {
+  "by_model": {
+   "google/gemini-embedding-2": {
+    "calls": 3690,
+    "cached_calls": 0,
+    "prompt": 2737544,
+    "completion": 0,
+    "reasoning": 0,
+    "cost": 0.547508799999997
+   },
+   "openai/gpt-6-luna": {
+    "calls": 4192,
+    "cached_calls": 308,
+    "prompt": 10845480,
+    "completion": 713559,
+    "reasoning": 475722,
+    "cost": 1.709119125000004
+   },
+   "anthropic/claude-haiku-5.5": {
+    "calls": 1350,
+    "cached_calls": 750,
+    "prompt": 301823,
+    "completion": 135811,
+    "reasoning": 129473,
+    "cost": 0.09808780000000014
+   }
+  },
+  "total_cost_usd": 2.3547
+ }
+}

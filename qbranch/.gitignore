@@ -1,5 +1,5 @@
-data/
-runs/
+# The LLM response cache is 12 GB. It is not in git.
+runs/llm_cache.sqlite*
 .venv/
 __pycache__/
 .env

@@ -1,0 +1,10 @@
+closed_book {"n": 300.0, "em": 0.363, "f1": 0.538, "judge": 0.867, "recall@5": 0.0, "reader_prompt_tokens": 109.58, "passages": 0.0, "reader_calls": 1.0}
+dense {"n": 300.0, "em": 0.317, "f1": 0.456, "judge": 0.76, "recall@5": 0.462, "reader_prompt_tokens": 1797.803, "passages": 5.0, "reader_calls": 1.0}
+dense_k10 {"n": 300.0, "em": 0.327, "f1": 0.478, "judge": 0.817, "recall@5": 0.671, "reader_prompt_tokens": 3431.49, "passages": 10.0, "reader_calls": 1.0}
+graph_qbranch {"facts": 35375, "entities": 29449, "relations": 4425, "open_slots": 14181, "agenda": 42202, "agenda_open": 14027}
+graph_qbranch {"n": 300.0, "em": 0.333, "f1": 0.453, "judge": 0.74, "recall@5": 0.311, "reader_prompt_tokens": 2892.357, "passages": 5.0, "reader_calls": 1.0}
+graph_qbranch_noq {"facts": 35375, "entities": 29449, "relations": 4425, "open_slots": 14181, "agenda": 42202, "agenda_open": 14027}
+graph_qbranch_noq {"n": 300.0, "em": 0.333, "f1": 0.446, "judge": 0.707, "recall@5": 0.296, "reader_prompt_tokens": 2865.833, "passages": 5.0, "reader_calls": 1.0}
+dense_plan {"n": 300.0, "em": 0.317, "f1": 0.459, "judge": 0.83, "recall@5": 0.723, "reader_prompt_tokens": 9765.267, "passages": 12.207, "reader_calls": 5.0}
+graph_qbranch_plan {"n": 300.0, "em": 0.313, "f1": 0.449, "judge": 0.767, "recall@5": 0.484, "reader_prompt_tokens": 15561.897, "passages": 11.963, "reader_calls": 5.0}
+2.3547
