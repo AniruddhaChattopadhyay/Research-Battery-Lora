@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "variant": "qbranch",
+ "rows": 594,
+ "overlap_predicted": 0.013468013468013467,
+ "overlap_other_slot": 0.1919191919191919,
+ "overlap_any": 0.20370370370370372,
+ "all_rows": {
+  "pred": 0.1632996632996633,
+  "control": 0.15824915824915825,
+  "diff": [
+   0.005050505050505051,
+   -0.030303030303030304,
+   0.04040404040404041
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 473,
+  "pred": 0.1649048625792812,
+  "control": 0.15856236786469344,
+  "diff": [
+   0.006342494714587738,
+   -0.03382663847780127,
+   0.046511627906976744
+  ]
+ },
+ "examples_overlap": [
+  [
+   "Who succeeded Rukn al-Dawla?",
+   "Where was Rukn al-Dawla born?",
+   false
+  ],
+  [
+   "When was \u015eehzade Murad born?",
+   "Where was \u015eehzade Murad born?",
+   false
+  ],
+  [
+   "Where was Arthur Lubin born?",
+   "When was Arthur Lubin born?",
+   false
+  ],
+  [
+   "Who directed the films in which Tapen Chatterjee played Goopy Gyne?",
+   "What is the release year of Goopy Gyne Bagha Byne?",
+   false
+  ],
+  [
+   "What other films did Ford Beebe direct?",
+   "When was Ford Beebe born?",
+   false
+  ],
+  [
+   "When did Boris Karloff die?",
+   "Where was Boris Karloff born?",
+   false
+  ],
+  [
+   "What songs has Brett Beavers written?",
+   "When was Brett Beavers born?",
+   false
+  ],
+  [
+   "Who was Eochu Uairches's spouse?",
+   "Where was Eochu Uairches born?",
+   false
+  ],
+  [
+   "What was the cause of Alex de Renzy's death?",
+   "Who was Alex de Renzy's spouse?",
+   false
+  ],
+  [
+   "Who is Gurinder Chadha married to?",
+   "Where was Gurinder Chadha born?",
+   false
+  ]
+ ]
+}

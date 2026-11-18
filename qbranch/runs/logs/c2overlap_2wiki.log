@@ -1,0 +1,5 @@
+{"run_dir": "runs/2wikimultihopqa_nall", "variant": "qbranch", "rows": 594, "overlap_predicted": 0.013468013468013467, "overlap_other_slot": 0.1919191919191919, "overlap_any": 0.20370370370370372, "all_rows": {"pred": 0.1632996632996633, "control": 0.15824915824915825, "diff": [0.005050505050505051, -0.030303030303030304, 0.04040404040404041]}, "rows_without_overlap": {"n": 473, "pred": 0.1649048625792812, "control": 0.15856236786469344, "diff": [0.006342494714587738, -0.03382663847780127, 0.046511627906976744]}}
+{"run_dir": "runs/2wikimultihopqa_nall", "variant": "qbranch_qa", "rows": 593, "overlap_predicted": 0.01854974704890388, "overlap_other_slot": 0.2411467116357504, "overlap_any": 0.2596964586846543, "all_rows": {"pred": 0.16188870151770657, "control": 0.15177065767284992, "diff": [0.01011804384485666, -0.023608768971332208, 0.04384485666104553]}, "rows_without_overlap": {"n": 439, "pred": 0.15034168564920272, "control": 0.16173120728929385, "diff": [-0.011389521640091117, -0.05011389521640091, 0.029612756264236904]}}
+qbranch_qa - qbranch, all_rows: +0.005 [-0.044, +0.056]
+qbranch_qa - qbranch, rows_without_overlap: -0.018 [-0.074, +0.038]
+cost 0.052

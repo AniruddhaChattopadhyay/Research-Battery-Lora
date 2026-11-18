@@ -10,6 +10,8 @@ Read these files first:
 3. `notes/2026-11-09-pilot-log.md`: the pilot on 100-question slices.
 4. `notes/2026-11-18-results.md`: the full runs, path planning, C2 on four streams (read this first for results).
 5. `notes/2026-11-09-related-work-scan.md`: the closest work and the novelty risk.
+6. `notes/2026-11-18-faq-prompt-and-c2-controls.md`: the Q&A-example prompt, C2 with a strict control, goal 2,
+   the open-event prompt and the anchor fix (read this after the results note).
 
 ## Set-up
 

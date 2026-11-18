@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/multihoprag_nall",
+ "variant": "qbranch_events",
+ "rows": 585,
+ "overlap_predicted": 0.008547008547008548,
+ "overlap_other_slot": 0.20341880341880342,
+ "overlap_any": 0.2102564102564103,
+ "all_rows": {
+  "pred": 0.12136752136752137,
+  "control": 0.1282051282051282,
+  "diff": [
+   -0.006837606837606838,
+   -0.041025641025641026,
+   0.02735042735042735
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 462,
+  "pred": 0.09090909090909091,
+  "control": 0.09956709956709957,
+  "diff": [
+   -0.008658008658008658,
+   -0.04329004329004329,
+   0.02813852813852814
+  ]
+ },
+ "examples_overlap": [
+  [
+   "When will the author have an in-person D&D session?",
+   "Where was author born?",
+   false
+  ],
+  [
+   "Where was Jake Ferguson born?",
+   "What is the full name of the Jake Ferguson?",
+   false
+  ],
+  [
+   "What is Erik ten Hag's full name?",
+   "What is the birthplace of Erik ten Hag?",
+   false
+  ],
+  [
+   "What is the outcome of Sam Bankman-Fried's trial?",
+   "What is Sam Bankman-Fried's full name?",
+   false
+  ],
+  [
+   "What is the battery life of Apple Watch Ultra 2?",
+   "When was Apple Watch Ultra 2 released?",
+   false
+  ],
+  [
+   "Where was Jada Pinkett Smith born?",
+   "What is Jada Pinkett Smith's full name?",
+   false
+  ],
+  [
+   "Who is the famous opera singer that Betty understudies?",
+   "When was Opera released?",
+   false
+  ],
+  [
+   "What is Desmond Ridder's full name?",
+   "What is the birthplace of Desmond Ridder?",
+   false
+  ],
+  [
+   "What is the full name of the author?",
+   "Where was author born?",
+   false
+  ],
+  [
+   "What is the full name of Elon Musk?",
+   "What is the birthplace of Elon Musk?",
+   false
+  ]
+ ]
+}

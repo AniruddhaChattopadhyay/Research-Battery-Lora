@@ -4,6 +4,7 @@ Usage:
   uv run python analysis/compare.py runs/musique_nall graph_qbranch_plan:dense_plan graph_qbranch:dense
   add --exclude runs/musique_n100 to drop the questions of the development slice (held-out view).
   add --type 4hop to keep only one question type.
+  add --keep runs/musique_nall/faq_pool.json to keep only its "eval_qids" (the questions outside the example pool).
 Output: a table per comparison, the scores per system, and judge accuracy by question type (MuSiQue:
 number of hops).
 """
@@ -37,6 +38,12 @@ def main(argv):
         ex_dir = argv[argv.index("--exclude") + 1]
         exclude = {json.loads(line)["qid"] for line in open(os.path.join(ex_dir, "answers", "dense.jsonl"))}
         argv = [a for a in argv if a not in ("--exclude", ex_dir)]
+    if "--keep" in argv:  # a JSON file with "eval_qids" (for example faq_pool.json): keep only those questions
+        kp = argv[argv.index("--keep") + 1]
+        keep = set(json.load(open(kp))["eval_qids"])
+        argv = [a for a in argv if a not in ("--keep", kp)]
+    else:
+        keep = None
     only = None
     if "--type" in argv:
         only = argv[argv.index("--type") + 1]
@@ -46,6 +53,8 @@ def main(argv):
     data = {s: load(run_dir, s) for s in systems}
     data = {s: d for s, d in data.items() if d}
     common = set.intersection(*(set(d) for d in data.values())) - exclude
+    if keep is not None:
+        common &= keep
     if only:
         common = {q for q in common if qtype(q) == only}
     out = {"n": len(common), "excluded": len(exclude), "systems": {}, "pairs": {}, "by_type": {}}

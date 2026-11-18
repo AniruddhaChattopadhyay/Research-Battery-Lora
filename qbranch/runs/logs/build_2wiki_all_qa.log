@@ -1,0 +1,26 @@
+2wikimultihopqa: 1000 questions, 6119 passages, 10 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/2wikimultihopqa_nall/build_qbranch_qa
+example pool: 82 questions, k = 8 per passage, evaluate on 900 questions
+batch 0: 612 passages, 0 failed, 995 relation names
+batch 1: 612 passages, 0 failed, 1095 relation names
+batch 2: 612 passages, 0 failed, 1155 relation names
+batch 3: 612 passages, 0 failed, 1219 relation names
+batch 4: 612 passages, 0 failed, 1283 relation names
+batch 5: 612 passages, 0 failed, 1347 relation names
+batch 6: 612 passages, 0 failed, 1413 relation names
+batch 7: 612 passages, 0 failed, 1474 relation names
+batch 8: 612 passages, 0 failed, 1557 relation names
+batch 9: 611 passages, 0 failed, 1613 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 6313,
+   "cached_calls": 0,
+   "prompt": 6287333,
+   "completion": 5733829,
+   "reasoning": 897578,
+   "cost": 4.875487054759996
+  }
+ },
+ "total_cost_usd": 4.8755,
+ "build_cost_from_records_usd": 4.4815
+}

@@ -43,7 +43,8 @@ class Graph:
                     r, inverse = rel_map[r]["canonical"], rel_map[r]["inverse"]
                 if o is None or str(o).strip().lower() in ("", "null", "none", "unknown"):
                     # An inverse open slot (s, r_inv, ?) is the slot (?, r, s): the known entity is the object.
-                    self.open_slots.append({"s": s, "s_norm": norm_entity(s), "r": r, "o_type": tr.get("o_type"),
+                    self.open_slots.append({"s": s, "s_norm": norm_entity(s), "r": r, "s_type": tr.get("s_type"),
+                                            "o_type": tr.get("o_type"),
                                             "inverse": inverse, "pid": rec["pid"], "batch": rec["batch"],
                                             "iqid": iq})
                     continue

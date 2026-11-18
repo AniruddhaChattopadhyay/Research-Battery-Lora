@@ -1,0 +1,71 @@
+{
+ "background": {
+  "n": 588,
+  "share": 0.98,
+  "pred": 0.141156462585034,
+  "random_any": 0.04591836734693878,
+  "random_type": 0.10120068610634649,
+  "random_fit": 0.12937062937062938
+ },
+ "event": {
+  "n": 12,
+  "share": 0.02,
+  "pred": 0.4166666666666667,
+  "random_any": 0.08333333333333333,
+  "random_type": 0.0,
+  "random_fit": 0.08333333333333333
+ },
+ "cost_usd": 0.0093,
+ "event_examples_bound": [
+  [
+   "What is the outcome of the Epic v. Google trial?",
+   "The Epic v. Google trial may come down to simple v. complicated (The Verge, 2023-11-07)",
+   [
+    "Epic v. Google trial",
+    "won_by",
+    "Epic"
+   ],
+   "Tim Sweeney on Epic\u2019s victory royale over Google (The Verge, 2023-12-12)"
+  ],
+  [
+   "What is the final score of the match between Inter Miami and FC Cincinnati?",
+   "Inter Miami vs FC Cincinnati live score, result, updates, highlights with Lionel Messi's MLS playoffs on line (Sporting News, 2023-10-07)",
+   [
+    "Inter Miami vs FC Cincinnati",
+    "final_score",
+    "1-0"
+   ],
+   "Argentina vs Paraguay live score, result, updates, highlights from CONMEBOL World Cup qualifying (Sporting News, 2023-10-12)"
+  ],
+  [
+   "What is the outcome of the Epic v. Google trial?",
+   "The Epic v. Google trial may come down to simple v. complicated (The Verge, 2023-11-07)",
+   [
+    "Epic v. Google trial",
+    "won_by",
+    "Epic"
+   ],
+   "Tim Sweeney on Epic\u2019s victory royale over Google (The Verge, 2023-12-12)"
+  ],
+  [
+   "What is the outcome of Sam Bankman-Fried's trial?",
+   "SBF, riding high on FTX, reportedly offered $5B to Trump to cancel President re-run (TechCrunch, 2023-10-02)",
+   [
+    "Sam Bankman-Fried",
+    "is",
+    "guilty on seven counts including charges of wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "Which team will Shohei Ohtani sign with?",
+   "Shohei Ohtani rumors tracker: Latest news, updates on free agent's MLB future (Sporting News, 2023-11-27)",
+   [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "M.L.B. Superstar Shohei Ohtani to Sign $700 Million Deal With Dodgers (The New York Times, 2023-12-09)"
+  ]
+ ]
+}

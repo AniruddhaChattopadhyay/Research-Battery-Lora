@@ -1,0 +1,1208 @@
+{
+ "pool": [
+  {
+   "qid": "temporal_query_2509",
+   "question": "Considering the excerpts from TechCrunch, has the focus of European AI startups on regulation and compliance changed since the report on November 9, 2023, before the EU lawmakers reached a deal on AI rules on December 9, 2023?",
+   "answer": "no",
+   "urls": [
+    "https://techcrunch.com/2023/12/08/eu-ai-act-political-deal/",
+    "https://techcrunch.com/2023/11/09/theres-something-going-on-with-ai-startups-in-france/"
+   ]
+  },
+  {
+   "qid": "temporal_query_1217",
+   "question": "After TechCrunch reported on Biden's AI Executive Order as broad but lacking depth without corresponding legislation on October 31, 2023, and Music Business Worldwide shared concerns from the National Music Publishers Association about generative AI being a significant risk to the human creative class on November 30, 2023, is the stance of these two news sources on the need for regulatory measures for AI consistent or inconsistent?",
+   "answer": "Consistent",
+   "urls": [
+    "https://www.musicbusinessworldwide.com/nmpa-generative-ai-is-the-greatest-risk-to-the-human-creative-class-that-has-ever-existed/",
+    "https://techcrunch.com/2023/10/31/bidens-ai-eo-hailed-as-broad-but-not-deep-without-legislation-to-match/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1572",
+   "question": "Does 'The New York Times' article suggest that Chelsea Football Club's expansion in the U.S. market is a strategic move under Todd Boehly's co-ownership, while 'The Guardian' and 'Sky Sports' articles focus on Chelsea Football Club's recent match outcomes and player fitness concerns, respectively, without discussing strategic market expansion?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theguardian.com/football/2023/oct/20/pochettino-reece-james-mistake-future-chelsea-dna-arsenal",
+    "https://www.skysports.com/football/news/11095/12988292/chelsea-vs-arsenal-mauricio-pochettino-and-mikel-arteta-on-their-close-connection-since-psg-playing-days-ahead-of-london-derby",
+    "https://theathletic.com/5061878/2023/11/14/uswnt-emma-hayes-hire-chelsea/"
+   ]
+  },
+  {
+   "qid": "comparison_query_19",
+   "question": "Does the Sporting News article suggest that streaming services do not require a subscription for viewing the Cowboys vs. 49ers game, in contrast to the Polygon article's claim about film availability on streaming platforms without a subscription?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/nfl/news/cowboys-49ers-live-score-highlights-sunday-night-football/e46d8e03c6a948aa82f859c3",
+    "https://www.polygon.com/what-to-watch/23959772/best-noir-movies-watch-streaming-neo-noir"
+   ]
+  },
+  {
+   "qid": "temporal_query_314",
+   "question": "Is the reporting on the Northern Lights visibility in the UK by 'The Independent - Travel' inconsistent with the observations of the aurora borealis reported by 'Live Science: The Most Interesting Articles' between November 9, 2023, and December 21, 2023?",
+   "answer": "no",
+   "urls": [
+    "https://www.livescience.com/space/astronomy/see-stunning-images-of-steve-and-auroras-from-this-weekends-powerful-solar-storm",
+    "https://www.independent.co.uk/travel/uk/northern-lights-uk-2023-b2467851.html"
+   ]
+  },
+  {
+   "qid": "temporal_query_1600",
+   "question": "Between the report from 'The Roar | Sports Writers Blog' on October 19, 2023, detailing the Tasmania JackJumpers' lead over the Sydney Kings, and the update from 'Sporting News' on October 31, 2023, about the Texas Rangers' lead over the Arizona Diamondbacks, which news source reported a larger point/lead difference in a game, 'The Roar | Sports Writers Blog' or 'Sporting News'?",
+   "answer": "The Roar | Sports Writers Blog",
+   "urls": [
+    "https://www.theroar.com.au/2023/10/20/nbl-round-4/",
+    "https://www.sportingnews.com/us/mlb/news/world-series-live-score-rangers-diamondbacks-game-4/59435f6fdceaa5092bcb2f40"
+   ]
+  },
+  {
+   "qid": "comparison_query_1708",
+   "question": "Does \"The Sydney Morning Herald\" attribute the recommendation of \"Prisoner's Daughter\" to a different basis than \"The New York Times\" attributes the ranking of \"The Crimson Tide college football team,\" with both recommendations being based on talent involved?",
+   "answer": "no",
+   "urls": [
+    "https://www.smh.com.au/culture/tv-and-radio/the-best-shows-to-stream-in-december-20231129-p5enns.html?ref=rss&utm_medium=rss&utm_source=rss_culture",
+    "https://theathletic.com/5108140/2023/12/03/college-football-playoff-florida-state-alabama/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1900",
+   "question": "Does the article from 'The Independent - Life and Style' suggest that 'ASOS' is facing challenges that are affecting its consumer engagement differently than the 'TechCrunch' article suggests 'Scalable Capital' is enhancing its business capabilities through fundraising?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.independent.co.uk/life-style/fashion/fashion-retailer-asos-struggles-to-engage-consumers-as-company-losses-balloon-b2439673.html",
+    "https://techcrunch.com/2023/12/06/european-neobroker-scalable-capital-raises-65m-on-a-flat-1-4b-valuation/"
+   ]
+  },
+  {
+   "qid": "comparison_query_317",
+   "question": "Does the 'Essentially Sports' article suggest that the NBA's Christmas games are secure regardless of the NFL's decisions, while the 'FOX News - Lifestyle' article discusses the impact of parents using Christmas as a bribe, without mentioning any potential threat to the NBA's Christmas dominance?",
+   "answer": "no",
+   "urls": [
+    "https://www.essentiallysports.com/nba-active-basketball-nfl-news-perspective-are-nba-christmas-day-games-a-better-tradition-than-nfl-thanksgiving-day-games/",
+    "https://www.foxnews.com/lifestyle/5-biggest-mistakes-parents-make-christmastime-parenting-expert"
+   ]
+  },
+  {
+   "qid": "inference_query_494",
+   "question": "What is the name of the electric pickup truck discussed in TechCrunch as having an uncertain future and believed by Elon Musk, as reported by The Verge, to be potentially safer for occupants and pedestrians than other trucks?",
+   "answer": "Cybertruck",
+   "urls": [
+    "https://techcrunch.com/2023/11/30/whats-up-with-teslas-cybertruck-everything-to-know-about-the-much-hyped-electric-pickup/",
+    "https://www.theverge.com/2023/12/12/23998308/tesla-cybertuck-safety-pedestrian-crash-test-nhtsa-iihs"
+   ]
+  },
+  {
+   "qid": "comparison_query_2068",
+   "question": "Does the article from Advanced Science News suggest that Governments should invest in healthy habits to reduce mortality, while the article from FOX News - Health claims that sugar, despite its potential habit-forming nature, is not as addictive as drugs?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.advancedsciencenews.com/what-about-the-mediterranean-lifestyle-reduces-mortality-scientists-find-out/",
+    "https://www.foxnews.com/health/ultraprocessed-foods-feel-good-chemicals-could-be-addictive-cigarettes-drugs-study-suggests"
+   ]
+  },
+  {
+   "qid": "comparison_query_2163",
+   "question": "Does the 'Sporting News' article suggest that the 'New Jersey Devils' have experienced a change in performance outlook due to a player's injury, while the 'Essentially Sports' article indicates that 'Denny Hamlin' remained in championship contention despite an injury?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/nhl/news/best-nhl-prop-bets-tonight-panarin-makar-tuesday/67d9b5e55d061181d7805c01",
+    "https://www.essentiallysports.com/nascar-news-major-nascar-snubs-as-autosport-releases-the-top-fifty-motorsport-drivers-of-this-year-chris-buescher-denny-hamlin-christopher-bell-tyler-reddick-ross-chastain/"
+   ]
+  },
+  {
+   "qid": "temporal_query_1882",
+   "question": "Was the reporting on the operating hours of Starbucks stores on Thanksgiving by 'The Independent - Life and Style' after November 6, 2023, inconsistent with the information provided about the date of Thanksgiving in 2023 in a later article by the same source?",
+   "answer": "no",
+   "urls": [
+    "https://www.independent.co.uk/life-style/friendsgiving-thanksgiving-activity-ideas-b2445536.html",
+    "https://www.independent.co.uk/life-style/thanksgiving-2023-stores-opening-times-walmart-b2416502.html"
+   ]
+  },
+  {
+   "qid": "comparison_query_1812",
+   "question": "Does the TechCrunch article suggest that the emergence of multi-purpose robots in the industrial automation world is a current trend, while the Fortune article indicates that the inspiration for engineers to build human-like and useful robots has been ongoing for decades?",
+   "answer": "Yes",
+   "urls": [
+    "https://techcrunch.com/2023/12/09/qa-with-boston-dynamics-aaron-saunders/",
+    "https://fortune.com/2023/11/05/when-will-robots-replace-humans-startups-elon-musk-humanoids-optimus/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2375",
+   "question": "Does the FOX News - Health article fail to identify the Mayo Clinic as taking a leadership role in artificial intelligence efforts in health care, while the TechCrunch article credits California with leading in privacy-protective innovation for AI technologies?",
+   "answer": "no",
+   "urls": [
+    "https://www.foxnews.com/health/mayo-clinic-sees-ai-transformative-force-health-care-appoints-dr-bhavik-patel-chief-ai-officer",
+    "https://techcrunch.com/2023/11/27/cppa-admt-draft-rules/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2133",
+   "question": "Does the FOX News - Health article linking Influenza to minor health issues disagree with the FOX News - Health article on GLP-1 agonist medications concerning the potential for rare but serious health complications from medical conditions or treatments?",
+   "answer": "no",
+   "urls": [
+    "https://www.foxnews.com/health/ozempic-wegovy-may-be-linked-stomach-paralysis-other-digestive-issues-large-scale-study",
+    "https://www.foxnews.com/health/losing-leg-flu-virginia-woman-urges-people-get-vaccinated-dont-waste-time"
+   ]
+  },
+  {
+   "qid": "comparison_query_2252",
+   "question": "Does the FOX News - Health article link Ketamine to the treatment of depression, while the Advanced Science News article associates the ketogenic diet with the potential to improve treatment for human behavioral conditions?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.advancedsciencenews.com/cavefish-provide-clues-to-the-keto-diets-effect-on-autism-like-behavior/",
+    "https://www.foxnews.com/health/5-myths-ketamine-drug-tied-matthew-perry-death-according-doctors"
+   ]
+  },
+  {
+   "qid": "comparison_query_523",
+   "question": "Does the Sporting News article claim that the San Francisco 49ers defeated the Seahawks on Thanksgiving align with the Sporting News report on The Wolverines (Michigan football team) winning The Game for the third consecutive year in terms of both teams achieving recent victories?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/fantasy/news/draftkings-picks-week-14-nfl-dfs-lineup-advice-daily-fantasy/5b73c016f4a94135b9041952",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-conquers-ohio-state-again-story-far-over/797e0148646f5d0d76ae74ee"
+   ]
+  },
+  {
+   "qid": "comparison_query_2066",
+   "question": "Does the Polygon post focus on outdated series disliked by the authors on each major streaming platform, while The Sydney Morning Herald article discusses the trend of entertainment companies creating their own exclusive streaming platforms over the past five years?",
+   "answer": "no",
+   "urls": [
+    "https://www.polygon.com/what-to-watch/23560732/best-new-tv-shows-netflix-prime-hbo-max-hulu-streaming",
+    "https://www.smh.com.au/culture/tv-and-radio/the-best-shows-to-stream-in-december-20231129-p5enns.html?ref=rss&utm_medium=rss&utm_source=rss_culture"
+   ]
+  },
+  {
+   "qid": "comparison_query_2327",
+   "question": "Does the Sporting News article that discusses Michigan's performance against Penn State without Jim Harbaugh suggest a different involvement of Harbaugh during the game compared to the Sporting News article regarding the sign-stealing scandal and his suspension?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-jim-harbaugh-penn-state-ohio-state-different-game/91a7f796bb8ff2fdc9c27698",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-sign-stealing-scandal-updates-jim-harbaugh-suspension/4072ec7b8f79e8a6a3251892"
+   ]
+  },
+  {
+   "qid": "inference_query_2147",
+   "question": "Who, after a period of injury affecting his participation in the MLS playoffs with Inter Miami, is also recognized for influencing the integration of emerging talents into Argentina's forward line as observed in a World Cup qualifying match covered by Sporting News?",
+   "answer": "Lionel Messi",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/watch-argentina-vs-paraguay-stream-tv-lineups-odds-qualifying/9852101b5448230da880d549",
+    "https://www.sportingnews.com/us/soccer/news/inter-miami-vs-fc-cincinnati-live-score-result-highlights-mls/6288f57a14a413f02512e266"
+   ]
+  },
+  {
+   "qid": "comparison_query_89",
+   "question": "Does the 'Live Science: The Most Interesting Articles' article on the impact of warmer water on aquatic organisms' metabolism and oxygen consumption agree with the 'Live Science: The Most Interesting Articles' article on organisms during the Permian-Triassic boundary regarding the effects of temperature and oxygen levels on organism health, or do they present differing outcomes?",
+   "answer": "Agree",
+   "urls": [
+    "https://www.livescience.com/planet-earth/rivers-oceans/we-know-far-more-about-the-deep-ocean-than-the-moon-or-mars-says-explorer-jon-copley",
+    "https://www.livescience.com/animals/extinct-species/they-seemed-primed-to-take-over-how-the-great-dying-doomed-the-beast-tooth-and-set-the-stage-for-the-dawn-of-the-dinosaurs"
+   ]
+  },
+  {
+   "qid": "temporal_query_903",
+   "question": "Was the policy on price matching for customers at HP inconsistent according to The Verge before Polygon reported on the ineligibility for price matching on purchases?",
+   "answer": "no",
+   "urls": [
+    "https://www.polygon.com/23934751/black-friday-cyber-monday-2023-time-price-matching-returns",
+    "https://www.theverge.com/21570383/price-matching-policy-apple-google-microsoft"
+   ]
+  },
+  {
+   "qid": "comparison_query_1574",
+   "question": "Does the 'Sporting News' claim that the NFL game between the Lions and Packers will be broadcast on Amazon Prime Video for 'NFL fans across the United States' align with their claim about the broadcast platform for the Bears vs. Panthers game for 'NFL fans in the U.S.'?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/nfl/news/bears-panthers-live-score-highlights-thursday-night-football/50e2de0148c14c204e3bb16c",
+    "https://www.sportingnews.com/us/nfl/news/lions-packers-live-score-highlights-thursday-night-football/c8af29e6e4202ddb91a41437"
+   ]
+  },
+  {
+   "qid": "comparison_query_343",
+   "question": "Does the 'Zee Business' article claim that the India national cricket team played against Australia in the 2015 World Cup semi-final, while the 'TalkSport' article states that the England national teams are facing South Africa in both the Rugby World Cup and the ODI Cricket World Cup semi-finals, indicating different opponents for each country's national teams in their respective semi-final matches?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.zeebiz.com/trending/sports/news-icc-world-cup-2023-india-at-cricket-world-cup-semifinals-so-far-indias-journey-in-world-cup-semifinals-rohit-sharma-sachin-tendulkar-kohli-ind-vs-sa-australia-eden-gardens-wankhede-south-africa-england-sri-lanka-262883",
+    "https://talksport.com/football/1608383/liverpool-everton-chelsea-arsenal-england-saturday-sport/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1175",
+   "question": "Does the 'Fortune' article suggest that Denise George was dismissed for her legal actions related to Jeffrey Epstein's estate, while the 'Sport Grill' article discusses whether Reece James should have been dismissed for an elbowing incident during a football match?",
+   "answer": "Yes",
+   "urls": [
+    "https://sportgrill.co.uk/2023/11/06/tottenhams-unbeaten-run-ends-with-4-1-home-loss-to-chelsea/",
+    "https://fortune.com/2023/11/17/jeffrey-epstein-us-virgin-islands-jpmorgan-attorney-general-investigation-fired/"
+   ]
+  },
+  {
+   "qid": "temporal_query_891",
+   "question": "Has the perspective on managing dementia in 'The Guardian' articles shown a change from the time Susan Saunders was reported to be caring for her mother with dementia (published at '2023-10-10') to the more recent report on new Alzheimer\u2019s drugs (published at '2023-12-17')?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theguardian.com/society/2023/dec/17/new-alzheimers-drugs-bring-hope-of-slowing-disease-for-uk-patients",
+    "https://www.theguardian.com/lifeandstyle/2023/oct/10/walks-tech-and-protein-how-to-parent-your-own-parents"
+   ]
+  },
+  {
+   "qid": "comparison_query_410",
+   "question": "Does the 'Sporting News' article suggest that the 'New Jersey Devils' have maintained a consistent performance outlook despite a player's injury, while the 'Essentially Sports' article indicates that 'Denny Hamlin' was eliminated from championship contention due to an injury?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/nhl/news/best-nhl-prop-bets-tonight-panarin-makar-tuesday/67d9b5e55d061181d7805c01",
+    "https://www.essentiallysports.com/nascar-news-major-nascar-snubs-as-autosport-releases-the-top-fifty-motorsport-drivers-of-this-year-chris-buescher-denny-hamlin-christopher-bell-tyler-reddick-ross-chastain/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2141",
+   "question": "Does the TechCrunch article on Vivek Ramaswamy's approach to TikTok suggest a different strategy compared to the TechCrunch article on audiences' reactions to artists like Nicki Minaj trying to trend their songs on TikTok?",
+   "answer": "Yes",
+   "urls": [
+    "https://techcrunch.com/2023/10/02/tiktok-republican-social-media-campaign-struggle-vivek-ramaswamy/",
+    "https://techcrunch.com/2023/12/08/gag-city-barbz-nicki-minaj-stans-meme-brand-accounts/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2037",
+   "question": "Does the article from 'Live Science: The Most Interesting Articles' suggest that the continuation of investment in HIV vaccine and cure research is essential for ending the AIDS epidemic, while the 'Business Line' article proposes that engineering bNAbs for an HIV cure is a promising approach, and are both articles aligned in the view that ongoing research is crucial for combating HIV?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.thehindubusinessline.com/portfolio/big-story/merck-novo-nordisk-gilead-biogen-and-more-here-are-the-investment-opportunities-in-global-big-pharma/article67543437.ece",
+    "https://www.livescience.com/health/hiv/we-could-end-the-aids-epidemic-in-less-than-a-decade-heres-how"
+   ]
+  },
+  {
+   "qid": "comparison_query_354",
+   "question": "Does the Engadget article claim that CyberGhost's cybersecurity measures exclude an independent security audit, a vulnerability disclosure program, and transparency reporting, while the TechCrunch article suggests that Keep Labs employs automated tools for code vulnerability assessments, indicating different approaches to product security?",
+   "answer": "no",
+   "urls": [
+    "https://www.engadget.com/best-vpn-130004396.html?src=rss",
+    "https://techcrunch.com/2023/10/04/keep-labs-smart-storage-redefines-medication-management/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1134",
+   "question": "Does the TechCrunch article discussing microblogging and public discourse platforms list a broader range of platforms including startups and new applications from larger tech companies compared to the TechCrunch article that mentions the homogenization of content on Social media platforms (TikTok, Instagram, Snapchat, Facebook, YouTube, and X)?",
+   "answer": "Yes",
+   "urls": [
+    "https://techcrunch.com/2023/11/19/with-amo-the-founder-of-zenly-wants-to-make-social-apps-social-again/",
+    "https://techcrunch.com/2023/10/18/x-plans-to-use-payment-phone-and-id-verification-to-stop-bots-in-addition-to-the-new-1-yr-fee/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1169",
+   "question": "Does 'The Guardian' report on 'Game 3 of the World Series' indicate that 'Brandon Pfaadt' is a probable starter, while 'Sporting News' suggests his pitching performance ended at a specific event during the game?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/mlb/news/world-series-live-score-results-rangers-diamondbacks-game-3/4a4c79e11dd8aabd734c2bbf",
+    "https://www.theguardian.com/sport/live/2023/oct/28/world-series-game-2-arizona-diamondbacks-v-texas-rangers-live"
+   ]
+  },
+  {
+   "qid": "comparison_query_2015",
+   "question": "Does the article from FOX News - Lifestyle featuring Sherri Geerts focus on a corporate merger, in contrast to The Independent - Life and Style article which discusses generational Christmas traditions?",
+   "answer": "no",
+   "urls": [
+    "https://www.foxnews.com/lifestyle/woman-switched-birth-spends-holidays-birth-mom-decades-long-search-feel-peace",
+    "https://www.independent.co.uk/life-style/this-christmas-let-your-home-be-the-centre-of-the-celebrations-with-the-white-company-b2427930.html"
+   ]
+  },
+  {
+   "qid": "comparison_query_784",
+   "question": "Does the article from Sporting News involving Luciano Acosta mention the same type of game interruption as the article from The Roar | Sports Writers Blog involving Marcus Lee, with both discussing a foul resulting in a free-kick?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/inter-miami-vs-fc-cincinnati-live-score-result-highlights-mls/6288f57a14a413f02512e266",
+    "https://www.theroar.com.au/2023/10/27/nbl-round-5/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2464",
+   "question": "Does the CBSSports.com article suggest that the Tampa Bay Buccaneers could not have success with a Michigan quarterback unlike past achievements, while the Sporting News article indicates that The Big Ten is currently engaged in a review process concerning Michigan and Jim Harbaugh, without implying any success with a quarterback?",
+   "answer": "no",
+   "urls": [
+    "https://www.cbssports.com/nfl/draft/news/2024-nfl-mock-draft-bengals-joe-burrow-gets-another-playmaker-four-qbs-go-in-round-1-but-pats-opt-for-wr/",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-sign-stealing-scandal-updates-jim-harbaugh-suspension/4072ec7b8f79e8a6a3251892"
+   ]
+  },
+  {
+   "qid": "temporal_query_1883",
+   "question": "Between the report from 'Sky Sports' published at '2023-10-20T21:30:00+00:00' stating that \"Mikel Arteta was on loan at Paris Saint-Germain from Barcelona's B side in 2001,\" and the article from 'The Guardian' published at '2023-10-20T21:30:28+00:00' mentioning \"Mauricio Pochettino and Mikel Arteta joined Paris Saint-Germain at the same time in early 2001,\" is the information provided about the time when Mauricio Pochettino and Mikel Arteta were involved with Paris Saint-Germain consistent or inconsistent?",
+   "answer": "Consistent",
+   "urls": [
+    "https://www.theguardian.com/football/2023/oct/20/pochettino-reece-james-mistake-future-chelsea-dna-arsenal",
+    "https://www.skysports.com/football/news/11095/12988292/chelsea-vs-arsenal-mauricio-pochettino-and-mikel-arteta-on-their-close-connection-since-psg-playing-days-ahead-of-london-derby"
+   ]
+  },
+  {
+   "qid": "comparison_query_2052",
+   "question": "Does the FOX News - Lifestyle article credit Marcus Urann with the failure to extend the cranberry selling season, while the Scitechdaily | Science Space And Technology News 2017 article discusses cranberry growers' use of cloning to increase production, and are these strategies aligned in their goal to enhance cranberry cultivation?",
+   "answer": "no",
+   "urls": [
+    "https://scitechdaily.com/cranberries-a-thanksgiving-staple-with-a-rich-history-and-unique-biology/",
+    "https://www.foxnews.com/lifestyle/meet-american-made-cranberries-turkey-day-tradition-marcus-urann-farmer-with-can-do-spirit"
+   ]
+  },
+  {
+   "qid": "comparison_query_727",
+   "question": "Does the Engadget article suggest that Discord users will experience a new system for policy enforcement, while The Sydney Morning Herald article indicates that the aircraft safety reforms will include a warning system for identifying suspicious components?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.smh.com.au/business/companies/the-airline-parts-scandal-sparking-panic-and-introspection-in-aerospace-20231016-p5ecmf.html?ref=rss&utm_medium=rss&utm_source=rss_business",
+    "https://www.engadget.com/discords-latest-teen-safety-blitz-starts-with-content-filters-and-automated-warnings-150031569.html?src=rss"
+   ]
+  },
+  {
+   "qid": "temporal_query_1527",
+   "question": "After Sporting News reported on Alejandro Mata's successful 31-yard field goal for Colorado on October 28, 2023, did the same news source report a successful or unsuccessful field goal attempt by Jayden Fielding in a later article?",
+   "answer": "Unsuccessful",
+   "urls": [
+    "https://www.sportingnews.com/us/ncaa-football/news/colorado-ucla-live-score-highlights-college-football/01a78f0b290d93746e3e17bb",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-conquers-ohio-state-again-story-far-over/797e0148646f5d0d76ae74ee"
+   ]
+  },
+  {
+   "qid": "comparison_query_588",
+   "question": "Did the 'Sporting News' article report that Derrick Henry returned to the game after a head injury in the same manner that 'The Sydney Morning Herald' article reported Nathan Murphy did not continue playing in the grand final due to a concussion?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/fantasy/news/fantasy-football-rb-rankings-week-14-running-backs-sleepers/7dba90c2816610df4860c264",
+    "https://www.smh.com.au/sport/afl/mcrae-reveals-hidden-message-he-carried-under-collar-of-his-grand-final-shirt-20231001-p5e8tl.html?ref=rss&utm_medium=rss&utm_source=rss_sport_afl"
+   ]
+  },
+  {
+   "qid": "comparison_query_1934",
+   "question": "Does the article from 'Science News For Students' suggest that 'MXenes and MBenes' have the same role in addressing climate change as the lifestyle changes 'Peter Kalmus' made according to 'Yahoo News'?",
+   "answer": "no",
+   "urls": [
+    "https://news.yahoo.com/scientist-reckons-climate-grief-130602750.html",
+    "https://www.snexplores.org/article/nanomaterial-mxene-carbon-capture-air"
+   ]
+  },
+  {
+   "qid": "temporal_query_654",
+   "question": "Did the 'Business Line' article published after the 'The Guardian' article suggest that Leqembi (lecanemab) is the only approved drug for Alzheimer's, while 'The Guardian' mentions recent scientific developments in tackling dementia without specifying the approval status of new drugs?",
+   "answer": "no",
+   "urls": [
+    "https://www.thehindubusinessline.com/portfolio/big-story/merck-novo-nordisk-gilead-biogen-and-more-here-are-the-investment-opportunities-in-global-big-pharma/article67543437.ece",
+    "https://www.theguardian.com/society/2023/dec/17/new-alzheimers-drugs-bring-hope-of-slowing-disease-for-uk-patients"
+   ]
+  },
+  {
+   "qid": "temporal_query_2290",
+   "question": "Did Polygon recommend Nintendo Switch games after The Verge suggested a GameStop gift card as a last-minute gift option, which could be used to purchase such games?",
+   "answer": "no",
+   "urls": [
+    "https://www.theverge.com/23642026/best-digital-gift-ideas-online-cards-subscriptions",
+    "https://www.polygon.com/what-to-play/24007353/nintendo-switch-best-games-to-play-first"
+   ]
+  },
+  {
+   "qid": "comparison_query_397",
+   "question": "Did the Cnbc | World Business News Leader report on Nike's net income and the article from The Age on the 10-year Treasury yield both report a decrease in their respective financial metrics?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.cnbc.com/2023/09/28/nike-nke-earnings-q1-2024.html",
+    "https://www.theage.com.au/business/markets/asx-set-to-edge-up-as-wall-street-steadies-a-rises-20231005-p5e9va.html?ref=rss&utm_medium=rss&utm_source=rss_business"
+   ]
+  },
+  {
+   "qid": "comparison_query_760",
+   "question": "Does the article from The Verge discussing the Microsoft Elite Series 2 \u201cCore\u201d version mention a reduction in features compared to the standard model, and does the article from The Verge on MacBook Pros indicate a reduction in prices for the new models?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theverge.com/22399419/apple-macbook-air-pro-mac-mini-imac-deals",
+    "https://www.theverge.com/23025443/best-xbox-controllers-one-series-x-s"
+   ]
+  },
+  {
+   "qid": "comparison_query_1525",
+   "question": "Are the prices for Inter Miami premium packages mentioned in Sporting News considered more expensive than the most luxurious Premier League tickets, and does The Roar | Sports Writers Blog confirm that Manchester City is currently leading the Premier League table with 28 points?",
+   "answer": "True",
+   "urls": [
+    "https://www.theroar.com.au/2023/11/13/city-old-boy-has-final-say-for-chelsea-in-eight-goal-thriller-supreme-salah-leads-liverpool-surge/",
+    "https://www.sportingnews.com/us/soccer/news/inter-miami-season-tickets-messi-2024-prices-expensive-world/94a7a0825eec97b57cc1df4a"
+   ]
+  },
+  {
+   "qid": "comparison_query_1439",
+   "question": "Does 'The Sydney Morning Herald' suggest that the US economy is slowing down to an optimal level to prevent a recession, while also reporting a prediction by Paul Tudor Jones that the United States economy will enter into a recession early next year?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.smh.com.au/business/markets/asx-set-for-bright-start-a-drops-20231206-p5epbi.html?ref=rss&utm_medium=rss&utm_source=rss_business",
+    "https://www.smh.com.au/business/markets/asx-rises-after-wall-street-gains-on-rate-optimism-oil-drops-20231011-p5eba1.html?ref=rss&utm_medium=rss&utm_source=rss_business"
+   ]
+  },
+  {
+   "qid": "comparison_query_1232",
+   "question": "Does the Wired article suggest that Sony headphones offer the best value in their class during the Cyber Monday sale, while the Fortune article indicates that market participants need to act responsibly to maintain a reasonable market, despite the current low rates?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.wired.com/story/best-walmart-cyber-monday-deals-2023/",
+    "https://fortune.com/2023/11/12/shipping-industry-faces-hardship-after-bumper-profits-in-pandemic/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1274",
+   "question": "Does the Sporting News article suggest a change in the scoring trend for \"Thursday Night Football\" compared to previous games, while The Guardian article describes a specific instance where Lauren James created a scoring opportunity, without implying a general trend change in scoring for the game?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/nfl/news/thursday-night-football-fanduel-picks-lions-packers-nfl-dfs/723e1f9393bf3c74ba7efd78",
+    "https://www.theguardian.com/football/2023/dec/05/womens-nations-league-scotland-england-match-report"
+   ]
+  },
+  {
+   "qid": "comparison_query_2107",
+   "question": "Does the article from Essentially Sports discussing NFL controversies mention a broader range of issues compared to the Essentially Sports article on Denny Hamlin, which focuses on the controversies and criticism surrounding a single NASCAR driver?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.essentiallysports.com/nfl-active-perspective-news-is-the-coverage-on-taylor-swift-and-travis-kelces-romance-nothing-but-hype-or-a-pivotal-shift-in-nfls-century-old-game-plan-towards-global-recognition/",
+    "https://www.essentiallysports.com/nascar-news-major-nascar-snubs-as-autosport-releases-the-top-fifty-motorsport-drivers-of-this-year-chris-buescher-denny-hamlin-christopher-bell-tyler-reddick-ross-chastain/"
+   ]
+  },
+  {
+   "qid": "comparison_query_406",
+   "question": "Does 'The Sydney Morning Herald' suggest that the US economy is at an optimal slowing pace to avoid a recession, in contrast to 'The Age' which implies that a government shutdown could increase the risk of a recession in the US economy?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.smh.com.au/business/markets/asx-set-for-bright-start-a-drops-20231206-p5epbi.html?ref=rss&utm_medium=rss&utm_source=rss_business",
+    "https://www.theage.com.au/business/markets/asx-set-to-edge-up-as-wall-street-steadies-a-rises-20231005-p5e9va.html?ref=rss&utm_medium=rss&utm_source=rss_business"
+   ]
+  },
+  {
+   "qid": "comparison_query_914",
+   "question": "Did the Sporting News article claim that the San Francisco 49ers were defeated by the Seahawks on Thanksgiving align with the Sporting News report on The Wolverines (Michigan football team) winning The Game for the third consecutive year in terms of both teams achieving recent victories?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/fantasy/news/draftkings-picks-week-14-nfl-dfs-lineup-advice-daily-fantasy/5b73c016f4a94135b9041952",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-conquers-ohio-state-again-story-far-over/797e0148646f5d0d76ae74ee"
+   ]
+  },
+  {
+   "qid": "comparison_query_1399",
+   "question": "Does the Cnbc | World Business News Leader article report a decrease in Nike's net income for the recent quarter, and does the TechCrunch article also report a decrease in Gogoro's revenue for the same period?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.cnbc.com/2023/09/28/nike-nke-earnings-q1-2024.html",
+    "https://techcrunch.com/2023/12/18/gogoro-india/"
+   ]
+  },
+  {
+   "qid": "temporal_query_2398",
+   "question": "Has the coverage of ski resorts by 'The Independent - Travel' remained consistent after their report on the 'Swiss slopes of Zermatt and pistes of Vail in Colorado' on October 13th, 2023, compared to their subsequent report on 'Tremblant Ski Resort' on October 25th, 2023?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.independent.co.uk/travel/skiing/best-luxury-ski-resorts-b2427066.html",
+    "https://www.independent.co.uk/travel/skiing/best-ski-holidays-canada-b2432416.html"
+   ]
+  },
+  {
+   "qid": "comparison_query_1704",
+   "question": "Does 'The Verge' article suggest that the impact of 6PPD-quinone requires more research to understand its environmental effects, while the 'Iot Business News' article implies that digital solutions are already recognized as essential for addressing sustainability challenges?",
+   "answer": "Yes",
+   "urls": [
+    "https://iotbusinessnews.com/2023/11/18/77657-digital-twin-market-analyzing-growth-and-4-emerging-trends/",
+    "https://www.theverge.com/2023/11/17/23951181/tires-sustainable-rubber-bridgestone-michelin"
+   ]
+  },
+  {
+   "qid": "temporal_query_2193",
+   "question": "Did Engadget report a discount on the 13.6-inch MacBook Air before The Verge reported a discount on Samsung Galaxy Buds 2?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.engadget.com/the-26-best-amazon-prime-day-deals-you-can-still-shop-for-today-154416960.html?src=rss",
+    "https://www.theverge.com/22307388/wireless-earbuds-deals-airpods-galaxy-buds-powerbeats"
+   ]
+  },
+  {
+   "qid": "temporal_query_1803",
+   "question": "Between the Sporting News report on Jim Harbaugh's situation published on November 6, 2023, and the subsequent report on Michigan's performance with Jim Harbaugh against Penn State published on November 11, 2023, was there a change in the reporting regarding Jim Harbaugh's absence from the team?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-jim-harbaugh-penn-state-ohio-state-different-game/91a7f796bb8ff2fdc9c27698",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-sign-stealing-scandal-updates-jim-harbaugh-suspension/4072ec7b8f79e8a6a3251892"
+   ]
+  },
+  {
+   "qid": "temporal_query_2432",
+   "question": "Between the Polygon article published on September 28, 2023, discussing \"Hellraiser (film)\" and the FOX News - Lifestyle article published on October 30, 2023, mentioning \"The Exorcist (book and movie),\" is there consistency in reporting the adaptation sequence of the original works into films?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.polygon.com/22725152/best-horror-movies-netflix-amazon-prime-hulu-hbo",
+    "https://www.foxnews.com/lifestyle/angels-demons-spirits-souls-do-exist-exorcist-priest-warns-ouija-board-use"
+   ]
+  },
+  {
+   "qid": "temporal_query_1826",
+   "question": "Has the focus of Taylor Swift coverage by 'The Independent - Life and Style' and 'FOX News - Lifestyle' changed from the National Football League's (NFL) perspective to personal fan experiences involving individuals like Annika?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.independent.co.uk/life-style/travis-kelce-nfl-taylor-swift-coverage-b2423936.html",
+    "https://www.foxnews.com/lifestyle/young-taylor-swift-fans-go-viral-struggling-open-stars-cd-making-me-laugh"
+   ]
+  },
+  {
+   "qid": "comparison_query_1850",
+   "question": "Does 'The Guardian' article suggest that the efficiency of the press and command of space are essential measures of how 'the team' is functioning, while 'Essentially Sports' focuses on Aaron Judge's comments as a reflection of 'New York Yankees' internal team dynamics, indicating a difference in the aspects of team functioning being discussed?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theguardian.com/football/2023/dec/01/england-choose-survival-over-oblivion-and-a-chance-of-summer-trip-to-france",
+    "https://www.essentiallysports.com/mlb-baseball-news-perspective-gleyber-torres-new-york-yankees-gear-up-for-two-thousand-twenty-four-season-after-horrendous-year-but-could-letting-this-star-go-spell-another-big-mistake/"
+   ]
+  },
+  {
+   "qid": "comparison_query_100",
+   "question": "Does the 'Fortune' article suggest that 'Fifth Third 1.67% Card' holders can redeem points for statement credits in the same way that 'Fortune' indicates 'American Express Cash Magnet\u00ae cardholders' can redeem cash back rewards for statement credits?",
+   "answer": "Yes",
+   "urls": [
+    "https://fortune.com/recommends/credit-cards/fifth-third-1-67-cash-back-card-review/",
+    "https://fortune.com/recommends/credit-cards/american-express-cash-magnet-card-review/"
+   ]
+  },
+  {
+   "qid": "comparison_query_754",
+   "question": "Does the article from The Age suggest that 'People with an Aboriginal ancestor' have the same process to identify with their Aboriginal heritage compared to the stance of 'Indigenous people' on cultural identity as presented by The Guardian?",
+   "answer": "no",
+   "urls": [
+    "https://www.theguardian.com/artanddesign/2023/oct/17/i-see-myself-as-a-royal-artist-vincent-namatjira-on-colonialism-satire-and-his-great-grandfathers-legacy",
+    "https://www.theage.com.au/culture/books/author-melissa-lucashenko-on-playing-with-black-and-white-binaries-20230919-p5e5uy.html?ref=rss&utm_medium=rss&utm_source=rss_culture"
+   ]
+  },
+  {
+   "qid": "comparison_query_2345",
+   "question": "Does the Engadget article suggest that consumers should delay holiday shopping to increase financial pressure, while the Fortune article indicates that individuals with student loan payments experience financial pressure during the holidays due to gift-buying expectations?",
+   "answer": "no",
+   "urls": [
+    "https://www.engadget.com/best-october-amazon-prime-day-deals-100020186.html?src=rss",
+    "https://fortune.com/2023/12/23/holiday-shopping-student-debt-unaffordable-26-year-old-145000-loans/"
+   ]
+  },
+  {
+   "qid": "inference_query_1716",
+   "question": "Which platform is favored by Keira Megan for fan engagement and authenticity, and has also been in the news on TechCrunch for altering its revenue split to focus more on ad revenue?",
+   "answer": "Twitch",
+   "urls": [
+    "https://techcrunch.com/2023/10/26/twitch-mike-minton-chief-monetization-officer-twitchcon-2023-partner-plus-revenue-split/",
+    "https://www.polygon.com/23923506/sports-streamers-twitch-ufc-nba-nfl-broadcast-rights-streaming"
+   ]
+  },
+  {
+   "qid": "comparison_query_69",
+   "question": "Did the article from The Verge about \"Hasbro's Jenga: Super Mario Edition\" and the article from Engadget about the '9th generation iPad' both report a discount on their respective products during the Black Friday sales on Amazon?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.engadget.com/the-best-apple-cyber-monday-deals-of-2023-save-on-airpods-ipads-apple-watches-and-more-100030003.html?src=rss",
+    "https://www.theverge.com/23971355/black-friday-2023-tech-deals-under-25-cyber-monday"
+   ]
+  },
+  {
+   "qid": "comparison_query_1216",
+   "question": "Did the Sporting News article about Jayden Fielding mention a missed field goal attempt, while the Sporting News report on Chad Ryland discuss a successful field goal, with both instances involving different distances?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/nfl/news/patriots-broncos-live-score-highlights-sunday-night-game/ac59cdb452d9839b9accab05",
+    "https://www.sportingnews.com/us/ncaa-football/news/michigan-conquers-ohio-state-again-story-far-over/797e0148646f5d0d76ae74ee"
+   ]
+  },
+  {
+   "qid": "comparison_query_888",
+   "question": "Does the Sporting News article suggest that the Oregon football team is no longer in contention for the College Football Playoff following a specific game outcome, in contrast to the CBSSports.com article which discusses the LSU football team's status after losing two games?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/ncaa-football/news/alabama-college-football-playoff-texas-oregon-losses/02ba9161c845ab8490f4813a",
+    "https://www.cbssports.com/college-football/news/college-football-odds-lines-schedule-for-week-6-texas-alabama-notre-dame-among-favorites-in-ranked-games/"
+   ]
+  },
+  {
+   "qid": "comparison_query_945",
+   "question": "Does the article from Essentially Sports discussing NFL controversies mention a narrower range of issues compared to the Essentially Sports article on Denny Hamlin, which focuses on the controversies and criticism surrounding a single NASCAR driver?",
+   "answer": "no",
+   "urls": [
+    "https://www.essentiallysports.com/nfl-active-perspective-news-is-the-coverage-on-taylor-swift-and-travis-kelces-romance-nothing-but-hype-or-a-pivotal-shift-in-nfls-century-old-game-plan-towards-global-recognition/",
+    "https://www.essentiallysports.com/nascar-news-major-nascar-snubs-as-autosport-releases-the-top-fifty-motorsport-drivers-of-this-year-chris-buescher-denny-hamlin-christopher-bell-tyler-reddick-ross-chastain/"
+   ]
+  },
+  {
+   "qid": "comparison_query_950",
+   "question": "Does the TechCrunch article suggest that app rankings are increasingly dominated by Chinese-based companies, while the report from Cnbc | World Business News Leader indicates that U.S. companies are facing new restrictions on technology sales to China?",
+   "answer": "Yes",
+   "urls": [
+    "https://techcrunch.com/2023/12/12/temu-was-the-most-downloaded-iphone-app-in-the-u-s-in-2023/",
+    "https://www.cnbc.com/2023/11/14/us-china-relations-are-now-more-about-crisis-prevention.html"
+   ]
+  },
+  {
+   "qid": "temporal_query_1296",
+   "question": "Was the defensive performance of Cameron Carter-Vickers reported as a strong point for the USMNT by Sporting News before or after Sporting News reported on Erik ten Hag's team (Manchester United) withstanding late attacks to maintain their lead?",
+   "answer": "Before",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/usa-germany-player-ratings-pulisic-weah-star-usmnt/0718bd5fb2a8b822bf2c9465",
+    "https://www.sportingnews.com/us/soccer/news/man-united-vs-chelsea-live-score-result-premier-league/3fbd625c62445c98c3f5a559"
+   ]
+  },
+  {
+   "qid": "comparison_query_280",
+   "question": "Does the 'Sporting News' article claim that the England national rugby union team has had the same path to the Rugby World Cup semifinal compared to the path of The Wallabies (Australian national rugby union team) as implied by the 'Wide World Of Sports' article, with England defeating specific teams and The Wallabies' fate depending on a match between other teams?",
+   "answer": "no",
+   "urls": [
+    "https://wwos.nine.com.au/rugby/world-cup-2023-news-fiji-vs-portugal-wallabies-watch-on-samu-kerevi-interview/9a78381c-57a8-4005-b911-86fe3b74c469",
+    "https://www.sportingnews.com/us/rugby-union/news/watch-england-vs-south-africa-stream-channel-rugby-world-cup/20ce7b361138e7c1a1574572"
+   ]
+  },
+  {
+   "qid": "comparison_query_82",
+   "question": "Does the Polygon article suggest that Martin Scorsese has less autonomy in his filmmaking choices compared to earlier in his career, while The Independent - Life and Style article indicates that he has previously engaged with newer media platforms like TikTok through his daughter's videos?",
+   "answer": "no",
+   "urls": [
+    "https://www.independent.co.uk/life-style/martin-scorsese-daughter-tiktok-internet-slang-b2427269.html",
+    "https://www.polygon.com/23929489/martin-scorsese-best-movies-killers-flower-moon-career"
+   ]
+  },
+  {
+   "qid": "inference_query_1901",
+   "question": "Which filmmaker, known for following his own varied interests in filmmaking rather than moving from compromise to compromise according to a Polygon article, has also appeared in TikTok videos as reported by The Independent - Life and Style?",
+   "answer": "Martin Scorsese",
+   "urls": [
+    "https://www.independent.co.uk/life-style/martin-scorsese-daughter-tiktok-internet-slang-b2427269.html",
+    "https://www.polygon.com/23929489/martin-scorsese-best-movies-killers-flower-moon-career"
+   ]
+  },
+  {
+   "qid": "temporal_query_2247",
+   "question": "Has the guidance provided by Polygon on character creation in Baldur's Gate 3 remained consistent between the article discussing Warlock subclasses, feats, and builds published on December 1, 2023, and the article on choosing the best class for players of Baldur's Gate 3, specifically mentioning Rangers, published on December 18, 2023?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.polygon.com/baldurs-gate-3-guides/23817654/best-class-choose-classes",
+    "https://www.polygon.com/baldurs-gate-3-guides/23814020/warlock-class-subclasses-stats-features-proficiencies"
+   ]
+  },
+  {
+   "qid": "comparison_query_1133",
+   "question": "Does the article from The Verge suggest that Pok\u00e9mon has not expanded its reach beyond its core audience and multimedia properties, while the article from The Guardian indicates that Shayda (film) has managed to connect with a universal audience?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theverge.com/23970890/pokemon-poketsume-transformation-games-brand",
+    "https://www.theguardian.com/film/2023/oct/02/shayda-film-director-noora-niasari"
+   ]
+  },
+  {
+   "qid": "comparison_query_2466",
+   "question": "Does the Polygon article suggest that \"Video games in 2023\" have remained largely the same in terms of innovation and vibrancy compared to previous years, while the BBC News - Technology article, through Sophie's perspective, focuses on the change in accessibility of video games for everyone?",
+   "answer": "no",
+   "urls": [
+    "https://www.bbc.co.uk/news/technology-67066870?at_medium=RSS&at_campaign=KARANGA",
+    "https://www.polygon.com/23648669/best-video-games-2023"
+   ]
+  },
+  {
+   "qid": "comparison_query_1407",
+   "question": "Does the 'Sporting News' article suggest that Patrick Kane's move was motivated by a lack of interest in joining a playoff contender, while the 'Fortune' article implies that Egypt's policy decisions are driven by the prospect of economic rewards from international and regional partners?",
+   "answer": "no",
+   "urls": [
+    "https://fortune.com/2023/10/22/will-egypt-take-palestinian-refugees-from-gaza-israel-hamas-war/",
+    "https://www.sportingnews.com/us/nhl/news/patrick-kane-destinations-free-agent-winger/64088479e9b5c46a32bcbbe8"
+   ]
+  },
+  {
+   "qid": "comparison_query_533",
+   "question": "Did the FOX News - Entertainment article attribute the factors that helped Robin Williams overcome his drug addiction to the same life events as the pre-fight issues faced by Oliver McCall mentioned in the TalkSport article?",
+   "answer": "no",
+   "urls": [
+    "https://www.foxnews.com/entertainment/robin-williams-drug-addiction-made-monster-friends-recall-depth-actors-cocaine-use",
+    "https://talksport.com/sport/1249277/top-ten-craziest-fight-endings-boxing-floyd-mayweather-mike-tyson-lennox-lewis/"
+   ]
+  },
+  {
+   "qid": "comparison_query_498",
+   "question": "Does the FOX News - Health article linking Influenza to serious health complications agree with the FOX News - Health article on GLP-1 agonist medications concerning the potential for rare but serious health complications from medical conditions or treatments?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.foxnews.com/health/ozempic-wegovy-may-be-linked-stomach-paralysis-other-digestive-issues-large-scale-study",
+    "https://www.foxnews.com/health/losing-leg-flu-virginia-woman-urges-people-get-vaccinated-dont-waste-time"
+   ]
+  },
+  {
+   "qid": "comparison_query_695",
+   "question": "Does the 'Sporting News' article identify Scott McTominay as Manchester United's top scorer for the season, while the 'TalkSport' article suggests Erling Haaland has the chance to become the overall top scorer in 2023, indicating a difference in the scope of their scoring achievements?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/man-united-vs-chelsea-live-score-result-premier-league/3fbd625c62445c98c3f5a559",
+    "https://talksport.com/football/1674719/top-goalscorers-2023-ronaldo-haaland-kane/"
+   ]
+  },
+  {
+   "qid": "temporal_query_1838",
+   "question": "Does the 'Business Line' article published before the 'The Guardian' article suggest that Leqembi (lecanemab) is the only approved drug for Alzheimer's, while 'The Guardian' mentions recent scientific developments in tackling dementia without specifying the approval status of new drugs?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.thehindubusinessline.com/portfolio/big-story/merck-novo-nordisk-gilead-biogen-and-more-here-are-the-investment-opportunities-in-global-big-pharma/article67543437.ece",
+    "https://www.theguardian.com/society/2023/dec/17/new-alzheimers-drugs-bring-hope-of-slowing-disease-for-uk-patients"
+   ]
+  },
+  {
+   "qid": "comparison_query_148",
+   "question": "Does 'The Sydney Morning Herald' suggest that the US economy is accelerating past an optimal level to prevent a recession, while also reporting a prediction by Paul Tudor Jones that the United States economy will enter into a recession early next year?",
+   "answer": "no",
+   "urls": [
+    "https://www.smh.com.au/business/markets/asx-set-for-bright-start-a-drops-20231206-p5epbi.html?ref=rss&utm_medium=rss&utm_source=rss_business",
+    "https://www.smh.com.au/business/markets/asx-rises-after-wall-street-gains-on-rate-optimism-oil-drops-20231011-p5eba1.html?ref=rss&utm_medium=rss&utm_source=rss_business"
+   ]
+  },
+  {
+   "qid": "temporal_query_2027",
+   "question": "Did Engadget fail to report a discount on the 13.6-inch MacBook Air before The Verge reported a discount on Samsung Galaxy Buds 2?",
+   "answer": "no",
+   "urls": [
+    "https://www.engadget.com/the-26-best-amazon-prime-day-deals-you-can-still-shop-for-today-154416960.html?src=rss",
+    "https://www.theverge.com/22307388/wireless-earbuds-deals-airpods-galaxy-buds-powerbeats"
+   ]
+  },
+  {
+   "qid": "comparison_query_1021",
+   "question": "Does the Cnbc | World Business News Leader article report an increase in Nike's net income for the recent quarter, and does the TechCrunch article also report a decrease in Gogoro's revenue for the same period?",
+   "answer": "no",
+   "urls": [
+    "https://www.cnbc.com/2023/09/28/nike-nke-earnings-q1-2024.html",
+    "https://techcrunch.com/2023/12/18/gogoro-india/"
+   ]
+  },
+  {
+   "qid": "temporal_query_315",
+   "question": "Has the broadcasting platform for NFL 'Thursday Night Football' games for NFL fans across the United States as reported by Sporting News changed between the game featuring the Detroit Lions and Green Bay Packers on September 28, 2023, and the game featuring the Chicago Bears and Carolina Panthers on November 9, 2023?",
+   "answer": "No",
+   "urls": [
+    "https://www.sportingnews.com/us/nfl/news/bears-panthers-live-score-highlights-thursday-night-football/50e2de0148c14c204e3bb16c",
+    "https://www.sportingnews.com/us/nfl/news/lions-packers-live-score-highlights-thursday-night-football/c8af29e6e4202ddb91a41437"
+   ]
+  },
+  {
+   "qid": "temporal_query_2208",
+   "question": "Is the concern about antibiotics' effectiveness against certain diseases reported by 'Live Science: The Most Interesting Articles' before 'Yahoo News' consistent, considering the 'Live Science: The Most Interesting Articles' report on the susceptibility of 'Antibiotics in development' to resistance and the 'Yahoo News' report on 'Inflammation in dogs' being minimally or not responsive to antibiotics?",
+   "answer": "Yes",
+   "urls": [
+    "https://news.yahoo.com/mysterious-dog-respiratory-illness-know-193006621.html",
+    "https://www.livescience.com/health/medicine-drugs/dangerous-superbugs-are-a-growing-threat-and-antibiotics-cant-stop-their-rise-what-can"
+   ]
+  },
+  {
+   "qid": "comparison_query_2055",
+   "question": "Did the 'Sporting News' article claim that FC Cincinnati lost the Supporters' Shield, while the 'The Roar | Sports Writers Blog' article report a victory for Aston Villa over Fulham, and are these outcomes related to different competitions?",
+   "answer": "no",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/inter-miami-vs-fc-cincinnati-live-score-result-highlights-mls/6288f57a14a413f02512e266",
+    "https://www.theroar.com.au/2023/11/13/city-old-boy-has-final-say-for-chelsea-in-eight-goal-thriller-supreme-salah-leads-liverpool-surge/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1077",
+   "question": "Does the article from 'Science News For Students' suggest that 'MXenes or MBenes' have a different role in addressing climate change compared to the lifestyle changes 'Peter Kalmus' made according to 'Yahoo News'?",
+   "answer": "Yes",
+   "urls": [
+    "https://news.yahoo.com/scientist-reckons-climate-grief-130602750.html",
+    "https://www.snexplores.org/article/nanomaterial-mxene-carbon-capture-air"
+   ]
+  },
+  {
+   "qid": "temporal_query_921",
+   "question": "Between the report from 'The Verge' on 2023-11-24 and the report from 'Wired' on 2023-11-25, is there consistency in the focus on the utility of charging devices such as 'Universal travel adapters' and '10,000-mAh capacity power bank' during Black Friday sales?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.wired.com/story/best-apple-black-friday-deals-2023-2/",
+    "https://www.theverge.com/23969272/black-friday-cyber-monday-tech-deals-verge-staff-favorites"
+   ]
+  },
+  {
+   "qid": "comparison_query_1052",
+   "question": "Does the 'Revyuh Media' article claim that the discovery of Daam1's role is a significant advancement in cancer research, while the 'FOX News - Lifestyle' article focuses on the involvement of Bella Scalera and Luca Scalera with the Cancer Couch Foundation from its inception, without attributing such a discovery to their activities?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.foxnews.com/lifestyle/connecticut-moms-prowl-neighborhood-zombies-raise-money-breast-cancer-research",
+    "https://www.revyuh.com/news/science-and-research/scientific-research/the-blueprint-of-regeneration-scientists-discover-how-to-turn-stem-cells-fate/"
+   ]
+  },
+  {
+   "qid": "temporal_query_1288",
+   "question": "After Wired reported on October 10, 2023, that Best Buy also had deals on Apple products, did The Verge's article on October 26, 2023, about the availability of deals on current Macs with M1, M2, or M3 chips indicate a consistent or inconsistent trend in the availability of Apple deals at retailers?",
+   "answer": "Consistent",
+   "urls": [
+    "https://www.theverge.com/22399419/apple-macbook-air-pro-mac-mini-imac-deals",
+    "https://www.wired.com/story/amazon-prime-day-apple-deals-october-2023-1/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1707",
+   "question": "Does the article from Cnbc | World Business News Leader report a decrease in Nike's net income, while the article from Fortune indicates an increase in net income for the container shipping industry?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.cnbc.com/2023/09/28/nike-nke-earnings-q1-2024.html",
+    "https://fortune.com/2023/11/12/shipping-industry-faces-hardship-after-bumper-profits-in-pandemic/"
+   ]
+  },
+  {
+   "qid": "comparison_query_1916",
+   "question": "Does the article from The Verge discussing the Microsoft Elite Series 2 \u201cCore\u201d version mention an increase in features compared to the standard model, and does the article from The Verge on MacBook Pros indicate a reduction in prices for the new models?",
+   "answer": "no",
+   "urls": [
+    "https://www.theverge.com/22399419/apple-macbook-air-pro-mac-mini-imac-deals",
+    "https://www.theverge.com/23025443/best-xbox-controllers-one-series-x-s"
+   ]
+  },
+  {
+   "qid": "comparison_query_401",
+   "question": "Does the article from The Independent - Travel suggest that Dubai has exploration opportunities throughout the year, while the TechCrunch article indicates that Archer Aviation's expansion plans are specific to the United Arab Emirates?",
+   "answer": "Yes",
+   "urls": [
+    "https://techcrunch.com/2023/10/22/tesla-digs-its-own-grave-with-the-cybertruck-convoy-collapses-and-rivian-scores-a-win-at-rebelle/",
+    "https://www.independent.co.uk/travel/winter-fun-summer-sun-seasonal-guide-dubai-b2427344.html"
+   ]
+  },
+  {
+   "qid": "temporal_query_831",
+   "question": "After TechCrunch reported on Daye's tampon-based STI screening for GBS testing in pregnant women on November 6, 2023, and Live Science: The Most Interesting Articles highlighted the risks of cannabis use during pregnancy on December 13, 2023, does the advice from both sources regarding the importance of maternal health interventions during pregnancy remain consistent or inconsistent?",
+   "answer": "Consistent",
+   "urls": [
+    "https://www.livescience.com/health/fertility-pregnancy-birth/cannabis-use-in-pregnancy-linked-to-small-birth-size-other-poor-outcomes",
+    "https://techcrunch.com/2023/11/06/daye-sti-testing/"
+   ]
+  },
+  {
+   "qid": "inference_query_2535",
+   "question": "Which M.L.B. superstar, who had a dozen teams interested in him during his free agency according to The New York Times, may not benefit from an agreement during the winter meetings as reported by Sporting News?",
+   "answer": "Shohei Ohtani",
+   "urls": [
+    "https://www.sportingnews.com/us/mlb/news/shohei-ohtani-rumors-tracker-latest-news-updates-free-agent/6593aa54c999febe209052e3",
+    "https://theathletic.com/5106526/2023/12/09/shohei-ohtani-signs/"
+   ]
+  },
+  {
+   "qid": "comparison_query_2227",
+   "question": "Does the article from The Verge suggest that a GameStop gift card is a universally useful gift for gamers regardless of console preference, while the Polygon article recommends specific Nintendo Switch games, indicating a more targeted gift approach for owners of that console?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theverge.com/23642026/best-digital-gift-ideas-online-cards-subscriptions",
+    "https://www.polygon.com/what-to-play/24007353/nintendo-switch-best-games-to-play-first"
+   ]
+  },
+  {
+   "qid": "comparison_query_216",
+   "question": "Did the article from 'The Roar | Sports Writers Blog' attribute the JackJumpers' significant comeback to a specific scoring run, and does the 'Sporting News' article credit the Pakistan cricket team's historic victory to a comeback in the tournament?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.theroar.com.au/2023/10/27/nbl-round-5/",
+    "https://www.sportingnews.com/us/cricket/news/first-cricket-world-cup-history-winners-list-tournament-2023-odi/uzyhss1uo97tvfozvoxd32ia"
+   ]
+  },
+  {
+   "qid": "comparison_query_1150",
+   "question": "Does the article from Sporting News involving Luciano Acosta mention a different type of game interruption than the article from The Roar | Sports Writers Blog involving Marcus Lee, with one discussing a foul resulting in a free-kick and the other discussing fouling out of the game?",
+   "answer": "Yes",
+   "urls": [
+    "https://www.sportingnews.com/us/soccer/news/inter-miami-vs-fc-cincinnati-live-score-result-highlights-mls/6288f57a14a413f02512e266",
+    "https://www.theroar.com.au/2023/10/27/nbl-round-5/"
+   ]
+  }
+ ],
+ "eval_qids": [
+  "inference_query_1282",
+  "inference_query_2423",
+  "inference_query_1392",
+  "inference_query_123",
+  "inference_query_860",
+  "inference_query_1647",
+  "inference_query_1579",
+  "inference_query_1337",
+  "inference_query_2512",
+  "inference_query_1001",
+  "inference_query_1549",
+  "inference_query_1185",
+  "inference_query_1890",
+  "inference_query_711",
+  "inference_query_1632",
+  "inference_query_478",
+  "inference_query_936",
+  "inference_query_479",
+  "inference_query_2417",
+  "inference_query_310",
+  "inference_query_1998",
+  "inference_query_824",
+  "inference_query_1719",
+  "inference_query_2273",
+  "inference_query_1947",
+  "inference_query_493",
+  "inference_query_1023",
+  "inference_query_325",
+  "inference_query_2335",
+  "inference_query_251",
+  "inference_query_2222",
+  "inference_query_1105",
+  "inference_query_1534",
+  "inference_query_1814",
+  "inference_query_329",
+  "inference_query_1166",
+  "inference_query_1425",
+  "inference_query_1042",
+  "inference_query_1970",
+  "inference_query_2094",
+  "inference_query_679",
+  "inference_query_1785",
+  "inference_query_2521",
+  "inference_query_1442",
+  "inference_query_1674",
+  "inference_query_867",
+  "inference_query_203",
+  "inference_query_1763",
+  "inference_query_45",
+  "inference_query_305",
+  "inference_query_2312",
+  "inference_query_1326",
+  "inference_query_2287",
+  "inference_query_2187",
+  "inference_query_2025",
+  "inference_query_1",
+  "inference_query_1972",
+  "inference_query_1603",
+  "inference_query_1108",
+  "inference_query_793",
+  "inference_query_2456",
+  "inference_query_1090",
+  "inference_query_2267",
+  "inference_query_206",
+  "inference_query_648",
+  "inference_query_1837",
+  "inference_query_720",
+  "inference_query_779",
+  "inference_query_481",
+  "inference_query_1746",
+  "inference_query_1451",
+  "inference_query_297",
+  "inference_query_268",
+  "inference_query_1056",
+  "inference_query_1643",
+  "inference_query_1597",
+  "inference_query_358",
+  "inference_query_998",
+  "inference_query_1777",
+  "inference_query_975",
+  "inference_query_2275",
+  "inference_query_418",
+  "inference_query_1761",
+  "inference_query_1107",
+  "inference_query_1742",
+  "inference_query_672",
+  "inference_query_1955",
+  "inference_query_2307",
+  "inference_query_1903",
+  "inference_query_963",
+  "inference_query_1445",
+  "inference_query_2331",
+  "inference_query_1929",
+  "inference_query_2553",
+  "inference_query_1048",
+  "inference_query_1859",
+  "inference_query_783",
+  "inference_query_974",
+  "inference_query_617",
+  "inference_query_643",
+  "comparison_query_2511",
+  "comparison_query_534",
+  "comparison_query_94",
+  "comparison_query_1874",
+  "comparison_query_1999",
+  "comparison_query_800",
+  "comparison_query_1434",
+  "comparison_query_204",
+  "comparison_query_264",
+  "comparison_query_2053",
+  "comparison_query_2298",
+  "comparison_query_368",
+  "comparison_query_429",
+  "comparison_query_127",
+  "comparison_query_238",
+  "comparison_query_2101",
+  "comparison_query_1656",
+  "comparison_query_2061",
+  "comparison_query_1170",
+  "comparison_query_2119",
+  "comparison_query_1602",
+  "comparison_query_844",
+  "comparison_query_1591",
+  "comparison_query_2484",
+  "comparison_query_719",
+  "comparison_query_621",
+  "comparison_query_2531",
+  "comparison_query_1802",
+  "comparison_query_1252",
+  "comparison_query_1765",
+  "comparison_query_840",
+  "comparison_query_1355",
+  "comparison_query_1495",
+  "comparison_query_2014",
+  "comparison_query_1952",
+  "comparison_query_2104",
+  "comparison_query_2424",
+  "comparison_query_1074",
+  "comparison_query_244",
+  "comparison_query_967",
+  "comparison_query_2543",
+  "comparison_query_344",
+  "comparison_query_1482",
+  "comparison_query_1799",
+  "comparison_query_1926",
+  "comparison_query_1000",
+  "comparison_query_547",
+  "comparison_query_740",
+  "comparison_query_52",
+  "comparison_query_2211",
+  "comparison_query_830",
+  "comparison_query_345",
+  "comparison_query_2497",
+  "comparison_query_638",
+  "comparison_query_1122",
+  "comparison_query_477",
+  "comparison_query_992",
+  "comparison_query_1267",
+  "comparison_query_193",
+  "comparison_query_306",
+  "comparison_query_423",
+  "comparison_query_2096",
+  "comparison_query_637",
+  "comparison_query_149",
+  "comparison_query_1751",
+  "comparison_query_1936",
+  "comparison_query_1637",
+  "comparison_query_1848",
+  "comparison_query_2054",
+  "comparison_query_219",
+  "comparison_query_85",
+  "comparison_query_362",
+  "comparison_query_1938",
+  "comparison_query_539",
+  "comparison_query_1853",
+  "comparison_query_1755",
+  "comparison_query_351",
+  "comparison_query_2501",
+  "comparison_query_275",
+  "comparison_query_1120",
+  "comparison_query_2426",
+  "comparison_query_105",
+  "comparison_query_2322",
+  "comparison_query_71",
+  "comparison_query_561",
+  "comparison_query_532",
+  "comparison_query_2176",
+  "comparison_query_361",
+  "comparison_query_1453",
+  "comparison_query_602",
+  "comparison_query_2197",
+  "comparison_query_185",
+  "comparison_query_2481",
+  "comparison_query_72",
+  "comparison_query_1667",
+  "comparison_query_1262",
+  "comparison_query_1896",
+  "comparison_query_2377",
+  "comparison_query_2541",
+  "comparison_query_211",
+  "temporal_query_1015",
+  "temporal_query_339",
+  "temporal_query_1396",
+  "temporal_query_1621",
+  "temporal_query_1982",
+  "temporal_query_835",
+  "temporal_query_287",
+  "temporal_query_2271",
+  "temporal_query_2097",
+  "temporal_query_189",
+  "temporal_query_508",
+  "temporal_query_1782",
+  "temporal_query_924",
+  "temporal_query_1213",
+  "temporal_query_1660",
+  "temporal_query_2110",
+  "temporal_query_795",
+  "temporal_query_934",
+  "temporal_query_273",
+  "temporal_query_757",
+  "temporal_query_770",
+  "temporal_query_1587",
+  "temporal_query_2383",
+  "temporal_query_1165",
+  "temporal_query_592",
+  "temporal_query_2001",
+  "temporal_query_816",
+  "temporal_query_57",
+  "temporal_query_2114",
+  "temporal_query_1836",
+  "temporal_query_2281",
+  "temporal_query_1463",
+  "temporal_query_1640",
+  "temporal_query_1776",
+  "temporal_query_2470",
+  "temporal_query_737",
+  "temporal_query_53",
+  "temporal_query_2049",
+  "temporal_query_380",
+  "temporal_query_1557",
+  "temporal_query_220",
+  "temporal_query_1294",
+  "temporal_query_652",
+  "temporal_query_1089",
+  "temporal_query_2152",
+  "temporal_query_1628",
+  "temporal_query_1320",
+  "temporal_query_2499",
+  "temporal_query_634",
+  "temporal_query_1459",
+  "temporal_query_2431",
+  "temporal_query_1864",
+  "temporal_query_384",
+  "temporal_query_17",
+  "temporal_query_884",
+  "temporal_query_1556",
+  "temporal_query_763",
+  "temporal_query_2371",
+  "temporal_query_1026",
+  "temporal_query_2010",
+  "temporal_query_1727",
+  "temporal_query_2341",
+  "temporal_query_161",
+  "temporal_query_1815",
+  "temporal_query_1881",
+  "temporal_query_227",
+  "temporal_query_785",
+  "temporal_query_2007",
+  "temporal_query_299",
+  "temporal_query_1209",
+  "temporal_query_751",
+  "temporal_query_2008",
+  "temporal_query_1230",
+  "temporal_query_2002",
+  "temporal_query_1103",
+  "temporal_query_2034",
+  "temporal_query_2382",
+  "temporal_query_1403",
+  "temporal_query_1726",
+  "temporal_query_12",
+  "temporal_query_2458",
+  "temporal_query_86",
+  "temporal_query_1136",
+  "temporal_query_772",
+  "temporal_query_746",
+  "temporal_query_2278",
+  "temporal_query_1073",
+  "temporal_query_117",
+  "temporal_query_1822",
+  "temporal_query_1841",
+  "temporal_query_1985",
+  "temporal_query_1825",
+  "temporal_query_951",
+  "temporal_query_461",
+  "temporal_query_1273",
+  "temporal_query_1489",
+  "temporal_query_207",
+  "temporal_query_2171",
+  "temporal_query_1669",
+  "temporal_query_307"
+ ],
+ "k": 8
+}

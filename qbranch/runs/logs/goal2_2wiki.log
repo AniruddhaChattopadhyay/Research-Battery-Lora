@@ -1,0 +1,19 @@
+2wikimultihopqa: 900 evaluation questions, 2255 hops, 2016 with a known support passage
+qbranch {"open_slots": 18034, "passages": 6119, "open_slots_per_passage": 2.947213596992973, "hops_asked": 0.09889135254988914, "hops_asked_before": 0.042162698412698416, "questions_asked": 0.21666666666666667, "questions_asked_before": 0.08666666666666667, "slots_needed_by_a_hop": 0.012754394720789663}
+qbranch_qa {"open_slots": 17977, "passages": 6119, "open_slots_per_passage": 2.9378983494034974, "hops_asked": 0.09578713968957872, "hops_asked_before": 0.044642857142857144, "questions_asked": 0.21777777777777776, "questions_asked_before": 0.09444444444444444, "slots_needed_by_a_hop": 0.013517272069867052}
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "questions": 900,
+ "hops": 2255,
+ "qbranch_qa - qbranch, questions_asked": [
+  0.0011111111111111111,
+  -0.022222222222222223,
+  0.024444444444444446
+ ],
+ "qbranch_qa - qbranch, questions_asked_before": [
+  0.0077777777777777776,
+  -0.0077777777777777776,
+  0.024444444444444446
+ ],
+ "cost_usd": 0.2848
+}

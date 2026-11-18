@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/musique_nall",
+ "variant": "qbranch",
+ "rows": 586,
+ "overlap_predicted": 0.032423208191126277,
+ "overlap_other_slot": 0.2935153583617747,
+ "overlap_any": 0.32423208191126285,
+ "all_rows": {
+  "pred": 0.11433447098976109,
+  "control": 0.09044368600682594,
+  "diff": [
+   0.023890784982935155,
+   -0.006825938566552901,
+   0.05460750853242321
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 396,
+  "pred": 0.11616161616161616,
+  "control": 0.08333333333333333,
+  "diff": [
+   0.03282828282828283,
+   0.0,
+   0.06818181818181818
+  ]
+ },
+ "examples_overlap": [
+  [
+   "When was Barack Obama elected as U.S. President?",
+   "Where was Barack Obama born?",
+   false
+  ],
+  [
+   "When was Max von Sydow born?",
+   "When was Max von Sydow born?",
+   true
+  ],
+  [
+   "What is the population of the U.S.?",
+   "What is the population of the U.S.?",
+   true
+  ],
+  [
+   "When was the International Organization for Standardization founded?",
+   "When was the International Organization for Standardization established?",
+   true
+  ],
+  [
+   "What is the nationality of Fr\u00e9d\u00e9ric Chopin?",
+   "Where was Fr\u00e9d\u00e9ric Chopin born?",
+   false
+  ],
+  [
+   "Who founded the United States Army?",
+   "Where is United States Army headquartered?",
+   false
+  ],
+  [
+   "When was the Dominican Order founded?",
+   "When was the Dominican Order established?",
+   true
+  ],
+  [
+   "Where was Abraham Lincoln born?",
+   "When was Abraham Lincoln born?",
+   false
+  ],
+  [
+   "What is the title of the film in which Albert Brooks had a cameo in the opening scene?",
+   "When was Albert Brooks born?",
+   false
+  ],
+  [
+   "Where was Fred Perry born?",
+   "When was Fred Perry born?",
+   false
+  ]
+ ]
+}

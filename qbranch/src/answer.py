@@ -84,8 +84,11 @@ class GraphRetriever:
         j = int(np.argmax(s))
         return self.nodes[j] if s[j] >= min_sim else None
 
-    def retrieve(self, qvec, anchors=(), n_anchor=10):
-        """anchors: graph nodes that the path plan reached. Their best facts for this hop are always kept."""
+    def retrieve(self, qvec, anchors=(), n_anchor=10, anchor_mode="rank"):
+        """anchors: graph nodes that the path plan reached. Their best facts for this hop are always kept.
+        anchor_mode "rank": the anchored facts rank first and also choose the passages (the 2026-11-10 runs).
+        anchor_mode "facts": the anchored facts go to the reader, but the passages are chosen as with no anchors
+        (the fix: in "rank" mode, the anchored facts pushed the passage of the next hop out of the evidence)."""
         fs = self.F.scores(qvec)
         score = {}
         for fid in np.argsort(-fs)[:self.n_seed]:
@@ -112,6 +115,15 @@ class GraphRetriever:
             keep += sorted(nbrs, key=lambda nf: -fs[nf])[:n_anchor]
         keep = list(dict.fromkeys(keep))
         kept = set(keep)
+        if anchor_mode == "facts":
+            normal = sorted(score.items(), key=lambda x: -x[1])[:self.n_facts]
+            pscore = {}
+            for fid, sc in normal:
+                pid = self.g.facts[fid]["pid"]
+                pscore[pid] = pscore.get(pid, 0) + sc
+            pids = [pid for pid, _ in sorted(pscore.items(), key=lambda x: -x[1])[:self.n_passages]]
+            fids = keep + [fid for fid, _ in normal if fid not in kept]
+            return [self.g.facts[fid] for fid in fids], [self.by_pid[pid] for pid in pids]
         top = [(fid, float(fs[fid]) + 1.0) for fid in keep]  # +1: anchored facts rank first
         top += [x for x in sorted(score.items(), key=lambda x: -x[1]) if x[0] not in kept]
         top = top[:max(self.n_facts, len(keep))]

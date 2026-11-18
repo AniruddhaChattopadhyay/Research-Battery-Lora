@@ -124,3 +124,48 @@ def stream_batches(passages, n_batches, seed=0):
         random.Random(seed).shuffle(order)
     size = -(-len(order) // n_batches)
     return [order[i:i + size] for i in range(0, len(order), size)]
+
+
+def faq_pool(name, qs, size=100, seed=1):
+    """Held-out question-answer pairs for the build prompt of the variant qbranch_qa (an FAQ of the collection).
+
+    HippoRAG 2 sets: the candidates are the first `size` questions (the development slice). MultiHop-RAG: a random
+    sample of the inference, comparison and temporal queries that are not in the evaluation sample.
+    MuSiQue keeps only 23 of 100, because most MuSiQue questions share a sub-question with another question.
+    A candidate is dropped when it shares a gold passage, a MuSiQue sub-question id or a 2Wiki evidence triple with
+    an evaluation question, so the examples do not give the facts of a test question.
+    Return (pool items, ids of the evaluation questions). Evaluate the variant only on those ids.
+    """
+    if name == "multihoprag":
+        d = os.path.join(DATA, "..", "multihoprag")
+        raw = json.load(open(os.path.join(d, "MultiHopRAG.json")))
+        used = {q["qid"] for q in qs}
+        cands = [{"qid": "%s_%d" % (q["question_type"], i), "question": q["query"], "answer": q["answer"],
+                  "urls": {e["url"] for e in q["evidence_list"]}}
+                 for i, q in enumerate(raw) if q["question_type"] != "null_query"]
+        cands = [c for c in cands if c["qid"] not in used]
+        random.Random(seed).shuffle(cands)
+        by_q = {q["query"]: q for q in raw}
+        eval_urls = {e["url"] for q in qs for e in by_q[q["question"]]["evidence_list"]}
+        pool = [c for c in cands if not (c["urls"] & eval_urls)][:size]
+        return pool, [q["qid"] for q in qs]
+    raw = json.load(open(os.path.join(DATA, name + ".json")))
+    hop_keys = []
+    for q in raw:
+        if "question_decomposition" in q:
+            hop_keys.append({h["id"] for h in q["question_decomposition"]})
+        elif "evidences" in q:
+            hop_keys.append({tuple(e) for e in q["evidences"]})
+        else:
+            hop_keys.append(set())
+    eval_ids = [q["qid"] for q in qs[size:]]
+    eval_pids = {pid for q in qs[size:] for pid in q["gold_pids"]}
+    eval_hops = set().union(*hop_keys[size:])
+    pool = [q for q, h in zip(qs[:size], hop_keys[:size]) if not (set(q["gold_pids"]) & eval_pids) and not (h & eval_hops)]
+    return pool, eval_ids
+
+
+def faq_examples(pool, pid, k=8):
+    """k pool pairs for one passage. The sample depends only on the passage id, so a rerun gives the same prompt."""
+    pick = random.Random(int(pid)).sample(pool, min(k, len(pool)))
+    return "\n".join("- Q: %s A: %s" % (q["question"], q["answer"]) for q in pick)

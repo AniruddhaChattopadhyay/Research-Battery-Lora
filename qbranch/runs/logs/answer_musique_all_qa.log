@@ -1,0 +1,3 @@
+graph_qbranch_qa {"facts": 77805, "entities": 64681, "relations": 9795, "open_slots": 34661, "agenda": 103380, "agenda_open": 34533}
+graph_qbranch_qa {"n": 1000.0, "em": 0.435, "f1": 0.595, "judge": 0.634, "recall@5": 0.716, "reader_prompt_tokens": 1272.663, "passages": 4.974, "reader_calls": 1.0}
+0.442

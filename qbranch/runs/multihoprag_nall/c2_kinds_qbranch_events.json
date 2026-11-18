@@ -1,0 +1,171 @@
+{
+ "background": {
+  "n": 476,
+  "share": 0.7933333333333333,
+  "pred": 0.10294117647058823,
+  "random_any": 0.05042016806722689,
+  "random_type": 0.06947368421052631,
+  "random_fit": 0.11397849462365592
+ },
+ "event": {
+  "n": 124,
+  "share": 0.20666666666666667,
+  "pred": 0.1935483870967742,
+  "random_any": 0.056451612903225805,
+  "random_type": 0.11475409836065574,
+  "random_fit": 0.18333333333333332
+ },
+ "cost_usd": 0.0161,
+ "event_examples_bound": [
+  [
+   "What is the outcome of Sam Bankman-Fried's trial?",
+   "How is it still getting worse for Sam Bankman-Fried? (The Verge, 2023-10-12)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "What will be the outcome of the trial of Sam Bankman-Fried?",
+   "Is Sam Bankman-Fried a bad \u2018man\u2019 or a good \u2018boy\u2019? Lawyers swap opening statements before first witnesses take the stand (Fortune, 2023-10-04)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "What will be the outcome of the Federal Reserve's future interest rate decisions?",
+   "The housing winter arrives early as existing home sales crash to Great Recession levels and the long-feared \u2018deep freeze\u2019 sets in (Fortune, 2023-10-20)",
+   [
+    "Federal Reserve",
+    "has_outcome",
+    "hold key interest rate steady at meeting next week"
+   ],
+   "ASX set for bright start despite Wall Street slip; $A drops (The Sydney Morning Herald, 2023-12-05)"
+  ],
+  [
+   "What was the final result of the Inter Miami vs FC Cincinnati match?",
+   "Inter Miami vs FC Cincinnati live score, result, updates, highlights with Lionel Messi's MLS playoffs on line (Sporting News, 2023-10-07)",
+   [
+    "Inter Miami vs FC Cincinnati",
+    "final_score",
+    "1-0"
+   ],
+   "Argentina vs Paraguay live score, result, updates, highlights from CONMEBOL World Cup qualifying (Sporting News, 2023-10-12)"
+  ],
+  [
+   "Which team won the match between Inter Miami and FC Cincinnati?",
+   "Inter Miami vs FC Cincinnati live score, result, updates, highlights with Lionel Messi's MLS playoffs on line (Sporting News, 2023-10-07)",
+   [
+    "Inter Miami vs FC Cincinnati",
+    "winner",
+    "FC Cincinnati"
+   ],
+   "Argentina vs Paraguay live score, result, updates, highlights from CONMEBOL World Cup qualifying (Sporting News, 2023-10-12)"
+  ],
+  [
+   "What will be the outcome of Epic Games' antitrust battle with Google?",
+   "What to know about Fortnite maker Epic Games\u2019 antitrust battle with Google, starting today (TechCrunch, 2023-11-06)",
+   [
+    "Epic Games lawsuit against Google",
+    "won_by",
+    "Epic Games"
+   ],
+   "News publisher files class action antitrust suit against Google, citing AI\u2019s harms to their bottom line (TechCrunch, 2023-12-15)"
+  ],
+  [
+   "What is the outcome of the match between Inter Miami and FC Cincinnati?",
+   "Inter Miami vs FC Cincinnati live score, result, updates, highlights with Lionel Messi's MLS playoffs on line (Sporting News, 2023-10-07)",
+   [
+    "Inter Miami vs FC Cincinnati",
+    "winner",
+    "FC Cincinnati"
+   ],
+   "Argentina vs Paraguay live score, result, updates, highlights from CONMEBOL World Cup qualifying (Sporting News, 2023-10-12)"
+  ],
+  [
+   "What was the outcome of Sam Bankman-Fried's trial?",
+   "How is it still getting worse for Sam Bankman-Fried? (The Verge, 2023-10-12)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "What was the verdict of Sam Bankman-Fried's trial?",
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)",
+   [
+    "Sam Bankman-Fried",
+    "has_outcome",
+    "found guilty of seven criminal fraud counts tied to the collapse of his exchange and the theft of customer funds"
+   ],
+   "Coinbase rallies more than 60% in same month that FTX and Binance founders brace for prison (Cnbc | World Business News Leader, 2023-11-30)"
+  ],
+  [
+   "What was the outcome of Hamas' attack on Israel?",
+   "&#039;Massive intel failure by Mossad&#039;: Hamas&#039; surprise attack on Israel shocks internet (Business Today | Latest Stock Market And Economy News India, 2023-10-07)",
+   [
+    "Hamas' attack on Israel",
+    "has_outcome",
+    "more than 1,200 people killed"
+   ],
+   "After warning, the EU opens investigation into X over alleged disinformation (TechCrunch, 2023-10-13)"
+  ],
+  [
+   "What is the verdict for Sam Bankman-Fried?",
+   "Sex, Signal messages, and sabotaging FTX's code: SBF execs and Bahamas roommates tell all in court (Cnbc | World Business News Leader, 2023-10-06)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "What will be the final outcome of the OpenAI board and staff dispute?",
+   "How the OpenAI fiasco could bolster Meta and the \u2018open AI\u2019 movement (TechCrunch, 2023-11-21)",
+   [
+    "OpenAI",
+    "has_outcome",
+    "board backed down"
+   ],
+   "How ego and fear fuelled the rise of artificial intelligence (The Age, 2023-12-09)"
+  ],
+  [
+   "What is the outcome of Manchester United's Champions League campaign?",
+   "Leaky defence \u2018isn\u2019t good enough\u2019 and \u2018scars\u2019 grow from throwing away leads \u2013 It\u2019s all going wrong for Manchester United in Europe (TalkSport, 2023-11-29)",
+   [
+    "Manchester United",
+    "has_outcome",
+    "eliminated from Champions League at group stage"
+   ],
+   "Manchester United out of Europe after defeat to Bayern Munich (The Independent - Sports, 2023-12-12)"
+  ],
+  [
+   "What was the verdict for Sam Bankman-Fried?",
+   "Today the FTX jury suffered through a code review (The Verge, 2023-10-06)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ],
+  [
+   "What was the outcome of Sam Bankman-Fried's trial?",
+   "How is it still getting worse for Sam Bankman-Fried? (The Verge, 2023-10-12)",
+   [
+    "Sam Bankman-Fried",
+    "trial_verdict",
+    "guilty on seven counts including wire fraud"
+   ],
+   "The jury finally hears from Sam Bankman-Fried (The Verge, 2023-10-28)"
+  ]
+ ]
+}

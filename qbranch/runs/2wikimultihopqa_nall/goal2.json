@@ -1,0 +1,427 @@
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "questions": 900,
+ "hops": 2255,
+ "variants": {
+  "qbranch": {
+   "open_slots": 18034,
+   "passages": 6119,
+   "open_slots_per_passage": 2.947213596992973,
+   "hops_asked": 0.09889135254988914,
+   "hops_asked_before": 0.042162698412698416,
+   "questions_asked": 0.21666666666666667,
+   "questions_asked_before": 0.08666666666666667,
+   "slots_needed_by_a_hop": 0.012754394720789663,
+   "examples": [
+    {
+     "qid": "9bc54aba0bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of Ayumi Hamasaki?",
+     "answer": "Fukuoka",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is Ayumi Hamasaki's birthplace?",
+       0,
+       "Evolution (Ayumi Hamasaki song)"
+      ]
+     ]
+    },
+    {
+     "qid": "ccd086f80bdb11eba7f7acde48001122",
+     "hop": "What is the place of birth of Jon Gunn?",
+     "answer": "American",
+     "support_batch": 3,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Where was Jon Gunn born?",
+       1,
+       "Do You Believe? (film)"
+      ]
+     ]
+    },
+    {
+     "qid": "843ef89008fa11ebbdacac1f6bf848b6",
+     "hop": "What is the date of birth of Bruce Robinson?",
+     "answer": "2 May 1946",
+     "support_batch": 8,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Bruce Robinson born?",
+       5,
+       "Fat Man and Little Boy"
+      ]
+     ]
+    },
+    {
+     "qid": "1cf6b11808a111ebbd78ac1f6bf848b6",
+     "hop": "What is the date of birth of Henry King (director)?",
+     "answer": "January 24, 1886",
+     "support_batch": 5,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is the birth date of Henry King?",
+       4,
+       "A Yank in the R.A.F."
+      ]
+     ]
+    },
+    {
+     "qid": "1fa46e26084911ebbd55ac1f6bf848b6",
+     "hop": "What is the country of citizenship of G\u00e9rard Oury?",
+     "answer": "French",
+     "support_batch": 8,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is G\u00e9rard Oury's nationality?",
+       5,
+       "La Carapate"
+      ]
+     ]
+    },
+    {
+     "qid": "0856e5d4085b11ebbd5cac1f6bf848b6",
+     "hop": "What is the date of birth of Marco Ferreri?",
+     "answer": "11 May 1928",
+     "support_batch": 8,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Marco Ferreri born?",
+       7,
+       "Diary of a Maniac"
+      ]
+     ]
+    },
+    {
+     "qid": "ee212a820bdc11eba7f7acde48001122",
+     "hop": "What is the director of The Trail of the Lonesome Pine?",
+     "answer": "Charles Maigne",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Who directed The Trail of the Lonesome Pine?",
+       6,
+       "Sidney D. Mitchell"
+      ]
+     ]
+    },
+    {
+     "qid": "6a4840d608dc11ebbd9cac1f6bf848b6",
+     "hop": "What is the date of birth of Tsui Hark?",
+     "answer": "15 February 1950",
+     "support_batch": 4,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is the birth date of Tsui Hark?",
+       2,
+       "A Better Tomorrow"
+      ]
+     ]
+    },
+    {
+     "qid": "ec8167b208a011ebbd78ac1f6bf848b6",
+     "hop": "What is the date of birth of Pupi Avati?",
+     "answer": "3 November 1938",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Pupi Avati born?",
+       6,
+       "La mazurka del barone, della santa e del fico fiorone"
+      ],
+      [
+       "When was Pupi Avati born?",
+       5,
+       "The Hideout (film)"
+      ]
+     ]
+    },
+    {
+     "qid": "f7ddb2ce0bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of Anna Rajecka?",
+     "answer": "Warsaw",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Where was Anna Rajecka born?",
+       3,
+       "Pierre-Marie Gault de Saint-Germain"
+      ]
+     ]
+    },
+    {
+     "qid": "deea59ca0bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of Matthias Drawe?",
+     "answer": "East Berlin",
+     "support_batch": 5,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is the birthplace of Matthias Drawe?",
+       1,
+       "Der K\u00f6nig von Kreuzberg"
+      ]
+     ]
+    },
+    {
+     "qid": "cb17bffe089611ebbd76ac1f6bf848b6",
+     "hop": "What is the date of birth of Francesca Comencini?",
+     "answer": "19 August 1961",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Francesca Comencini born?",
+       5,
+       "Un giorno speciale"
+      ]
+     ]
+    }
+   ]
+  },
+  "qbranch_qa": {
+   "open_slots": 17977,
+   "passages": 6119,
+   "open_slots_per_passage": 2.9378983494034974,
+   "hops_asked": 0.09578713968957872,
+   "hops_asked_before": 0.044642857142857144,
+   "questions_asked": 0.21777777777777776,
+   "questions_asked_before": 0.09444444444444444,
+   "slots_needed_by_a_hop": 0.013517272069867052,
+   "examples": [
+    {
+     "qid": "c68eb0be08e611ebbda5ac1f6bf848b6",
+     "hop": "What is the director of Dr. Who and the Daleks?",
+     "answer": "Gordon Flemyng",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Who directed Dr. Who and the Daleks?",
+       2,
+       "Roberta Tovey"
+      ]
+     ]
+    },
+    {
+     "qid": "9bc54aba0bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of Ayumi Hamasaki?",
+     "answer": "Fukuoka",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is the place of birth of Ayumi Hamasaki?",
+       0,
+       "Evolution (Ayumi Hamasaki song)"
+      ]
+     ]
+    },
+    {
+     "qid": "ccd086f80bdb11eba7f7acde48001122",
+     "hop": "What is the place of birth of Jon Gunn?",
+     "answer": "American",
+     "support_batch": 3,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Where was Jon Gunn born?",
+       1,
+       "Do You Believe? (film)"
+      ]
+     ]
+    },
+    {
+     "qid": "7efb04e708a011ebbd78ac1f6bf848b6",
+     "hop": "What is the director of Goopy Gyne Bagha Byne?",
+     "answer": "Satyajit Ray",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Who directed Goopy Gyne Bagha Byne?",
+       4,
+       "Tapen Chatterjee"
+      ]
+     ]
+    },
+    {
+     "qid": "0856e5d4085b11ebbd5cac1f6bf848b6",
+     "hop": "What is the date of birth of Marco Ferreri?",
+     "answer": "11 May 1928",
+     "support_batch": 8,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Marco Ferreri born?",
+       7,
+       "Diary of a Maniac"
+      ]
+     ]
+    },
+    {
+     "qid": "c213141e08e411ebbda4ac1f6bf848b6",
+     "hop": "What is the publication date of Flash Gordon Conquers the Universe?",
+     "answer": "1940",
+     "support_batch": 7,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "What is the release year of Flash Gordon Conquers the Universe?",
+       3,
+       "Carol Hughes (actress)"
+      ]
+     ]
+    },
+    {
+     "qid": "ec8167b208a011ebbd78ac1f6bf848b6",
+     "hop": "What is the date of birth of Pupi Avati?",
+     "answer": "3 November 1938",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Pupi Avati born?",
+       5,
+       "The Hideout (film)"
+      ],
+      [
+       "When was Pupi Avati born?",
+       6,
+       "La mazurka del barone, della santa e del fico fiorone"
+      ]
+     ]
+    },
+    {
+     "qid": "69c0bb76087711ebbd67ac1f6bf848b6",
+     "hop": "What is the date of birth of \u00c9ric Rohmer?",
+     "answer": "21 March 1920",
+     "support_batch": 5,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was \u00c9ric Rohmer born?",
+       8,
+       "Suzanne's Career"
+      ],
+      [
+       "When was \u00c9ric Rohmer born?",
+       2,
+       "Autumn Tale"
+      ],
+      [
+       "When was \u00c9ric Rohmer born?",
+       9,
+       "Claire's Knee"
+      ]
+     ]
+    },
+    {
+     "qid": "deea59ca0bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of Matthias Drawe?",
+     "answer": "East Berlin",
+     "support_batch": 5,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Where was Matthias Drawe born?",
+       1,
+       "Der K\u00f6nig von Kreuzberg"
+      ]
+     ]
+    },
+    {
+     "qid": "2e4804e8086611ebbd5eac1f6bf848b6",
+     "hop": "What is the date of birth of Yonfan?",
+     "answer": "14 October 1947",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Yonfan born?",
+       5,
+       "Colour Blossoms"
+      ]
+     ]
+    },
+    {
+     "qid": "cb17bffe089611ebbd76ac1f6bf848b6",
+     "hop": "What is the date of birth of Francesca Comencini?",
+     "answer": "19 August 1961",
+     "support_batch": 6,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "When was Francesca Comencini born?",
+       5,
+       "Un giorno speciale"
+      ],
+      [
+       "When was Francesca Comencini born?",
+       8,
+       "Carlo Giuliani, Boy"
+      ]
+     ]
+    },
+    {
+     "qid": "c6243b900bdd11eba7f7acde48001122",
+     "hop": "What is the place of birth of William D. MacGillivray?",
+     "answer": "St. John's",
+     "support_batch": 9,
+     "asked": true,
+     "asked_before": true,
+     "slots": [
+      [
+       "Where was William D. MacGillivray born?",
+       0,
+       "Life Classes"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "qbranch_qa - qbranch, questions_asked": [
+  0.0011111111111111111,
+  -0.022222222222222223,
+  0.024444444444444446
+ ],
+ "qbranch_qa - qbranch, questions_asked_before": [
+  0.0077777777777777776,
+  -0.0077777777777777776,
+  0.024444444444444446
+ ],
+ "cost_usd": 0.2848
+}

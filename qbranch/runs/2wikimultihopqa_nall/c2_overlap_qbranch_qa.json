@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "variant": "qbranch_qa",
+ "rows": 593,
+ "overlap_predicted": 0.01854974704890388,
+ "overlap_other_slot": 0.2411467116357504,
+ "overlap_any": 0.2596964586846543,
+ "all_rows": {
+  "pred": 0.16188870151770657,
+  "control": 0.15177065767284992,
+  "diff": [
+   0.01011804384485666,
+   -0.023608768971332208,
+   0.04384485666104553
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 439,
+  "pred": 0.15034168564920272,
+  "control": 0.16173120728929385,
+  "diff": [
+   -0.011389521640091117,
+   -0.05011389521640091,
+   0.029612756264236904
+  ]
+ },
+ "examples_overlap": [
+  [
+   "Where did Raj Kanwar die?",
+   "Where was Raj Kanwar born?",
+   false
+  ],
+  [
+   "What is Joseph Lerner's full name?",
+   "When was Joseph Lerner born?",
+   false
+  ],
+  [
+   "What award did F. R. Leavis receive?",
+   "Where was F. R. Leavis born?",
+   false
+  ],
+  [
+   "When was Halit Refi\u011f born?",
+   "Where was Halit Refi\u011f born?",
+   false
+  ],
+  [
+   "When was the album Royalty released?",
+   "What is the release year of the album Royalty?",
+   true
+  ],
+  [
+   "Who is the spouse of Roger Corman?",
+   "Where was Roger Corman born?",
+   false
+  ],
+  [
+   "What is the nationality of George Archainbaud?",
+   "Where was George Archainbaud born?",
+   false
+  ],
+  [
+   "Where was Amado V. Hernandez born?",
+   "When was Amado V. Hernandez born?",
+   false
+  ],
+  [
+   "Where did Eduard von Borsody die?",
+   "Where was Eduard von Borsody born?",
+   false
+  ],
+  [
+   "Where was James Tuchet, 5th Earl of Castlehaven born?",
+   "When was James Tuchet, 5th Earl of Castlehaven born?",
+   false
+  ]
+ ]
+}

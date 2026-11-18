@@ -44,6 +44,25 @@ Passage: {text}
 Return only a JSON object with this form:
 {{"triples": [{{"s": "...", "s_type": "...", "r": "...", "o": "...", "o_type": "..."}}]}}"""
 
+# Variant (meeting 2026-11-13): random question-answer pairs from the dataset go into the prompt, like an
+# FAQ of the collection (partial knowledge of what users ask). The pairs come from held-out questions only.
+BUILD_QBRANCH_QA = BUILD_QBRANCH.replace(
+    "Known relations: {relations}",
+    "Users of this collection asked questions like these examples (with their answers). The examples are not about "
+    "this passage. They show which kinds of facts users need. When the passage allows it, write questions (answered "
+    "and open) that ask for the same kinds of facts. Each of your questions asks for one fact.\n{examples}\n\n"
+    "Known relations: {relations}")
+
+# Variant for C2 on the news stream: the open questions can also be open outcomes of events.
+_BG = "These are facts about its entities that a later document can give, for example the birthplace of a person who is named but not described."
+BUILD_QBRANCH_EVENTS = BUILD_QBRANCH.replace(
+    _BG,
+    "These are facts that a later document can give. They can be background facts about its entities (for example "
+    "the birthplace of a person who is named but not described). They can also be open outcomes of events or states "
+    "that are not decided when the passage is written (for example the verdict of a trial, the result of a vote, "
+    "the team that a player will sign with, the date of a release that is not fixed).")
+assert BUILD_QBRANCH_QA != BUILD_QBRANCH and BUILD_QBRANCH_EVENTS != BUILD_QBRANCH
+
 TITLE_RULE_WIKI = "The passage title names its main entity: always call the main entity by its title, without the text in parentheses. Call other entities by their full names as the passage writes them."
 
 TITLE_RULE_NEWS = ("The passage is part of a news article. The title is the headline, the source and the date of the article, not an entity. "

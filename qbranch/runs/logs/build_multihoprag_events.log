@@ -1,0 +1,25 @@
+multihoprag: 300 questions, 4574 passages, 10 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/multihoprag_nall/build_qbranch_events
+batch 0: 458 passages, 0 failed, 2680 relation names
+batch 1: 458 passages, 0 failed, 2967 relation names
+batch 2: 458 passages, 0 failed, 3151 relation names
+batch 3: 458 passages, 0 failed, 3337 relation names
+batch 4: 458 passages, 1 failed, 3446 relation names
+batch 5: 458 passages, 0 failed, 3605 relation names
+batch 6: 458 passages, 0 failed, 3690 relation names
+batch 7: 458 passages, 0 failed, 3775 relation names
+batch 8: 458 passages, 0 failed, 3909 relation names
+batch 9: 452 passages, 0 failed, 4037 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 4913,
+   "cached_calls": 0,
+   "prompt": 5310291,
+   "completion": 5692446,
+   "reasoning": 1272696,
+   "cost": 4.150819776400005
+  }
+ },
+ "total_cost_usd": 4.1508,
+ "build_cost_from_records_usd": 3.4362
+}

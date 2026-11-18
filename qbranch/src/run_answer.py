@@ -10,9 +10,12 @@ Systems:
   graph_qbranch_noq  QBranch graph, no inferred-question index (ablation)
   graph_openie    graph from plain triple extraction, no questions (ablation)
   graph_qbranch_noopen  QBranch build without open questions + inferred-question index (ablation)
+  graph_qbranch_qa  QBranch build with held-out dataset Q&A pairs in the prompt + inferred-question index
+  graph_qbranch_events  QBranch build with open events in the prompt (news) + inferred-question index
   <system>_plan   path-planned answering (src/plan.py) on top of dense or a graph system,
                   for example dense_plan, graph_qbranch_plan. Recall is over the union of the hop passages.
   <graph>_plan_noanchor  the plan without anchored facts (ablation of the symbolic path step)
+  <graph>_plan_factanchor  the anchored facts go to the reader, but they do not choose the passages (the fix)
   dense_k<k>      dense with k passages (k per hop for dense_k<k>_plan), a control for the evidence budget
 """
 import argparse
@@ -52,7 +55,8 @@ retrievers = {}
 
 
 def variant_of(system):
-    return {"graph_openie": "openie", "graph_qbranch_noopen": "qbranch_noopen"}.get(system.split("_k")[0], "qbranch")
+    return {"graph_openie": "openie", "graph_qbranch_noopen": "qbranch_noopen",
+            "graph_qbranch_qa": "qbranch_qa", "graph_qbranch_events": "qbranch_events"}.get(system.split("_k")[0], "qbranch")
 
 
 def get_retriever(system):
@@ -60,10 +64,13 @@ def get_retriever(system):
     if system not in retrievers:
         variant = variant_of(system)
         same = next((r for s2, r in retrievers.items() if variant_of(s2) == variant), None)
-        g = same.g if same else Graph(build.load_records(os.path.join(run_dir, "build_" + variant)), variant)
+        bdir = os.path.join(run_dir, "build_" + variant)
+        assert os.path.isdir(bdir), "no build for %s: %s" % (system, bdir)
+        g = same.g if same else Graph(build.load_records(bdir), variant)
         print(system, json.dumps({k: v for k, v in g.stats().items() if k != "top_relations"}), flush=True)
         retrievers[system] = answer.GraphRetriever(
-            g, ps, use_questions=system.split("_k")[0] in ("graph_qbranch", "graph_qbranch_noopen"),
+            g, ps, use_questions=system.split("_k")[0] in ("graph_qbranch", "graph_qbranch_noopen", "graph_qbranch_qa",
+                                                         "graph_qbranch_events"),
             n_passages=dense_k(system), share=same)
     return retrievers[system]
 
@@ -91,7 +98,7 @@ def dense_k(system):
     return int(system.split("_k")[1]) if "_k" in system else a.k
 
 
-def plan_one(base, q, use_anchors=True):
+def plan_one(base, q, use_anchors=True, anchor_mode="rank"):
     if base.startswith("dense"):
         def hop(subq, refs):
             top = np.argsort(-dense_idx.scores(answer.embed_queries([subq])[0]))[:dense_k(base)]
@@ -102,7 +109,7 @@ def plan_one(base, q, use_anchors=True):
 
         def hop(subq, refs):
             anchors = [n for n in (r.resolve(x) for x in refs) if n] if use_anchors else []
-            return r.retrieve(answer.embed_queries([subq])[0], anchors=anchors)
+            return r.retrieve(answer.embed_queries([subq])[0], anchors=anchors, anchor_mode=anchor_mode)
         fmt = r.evidence
     return plan.run(q["question"], hop, fmt)
 
@@ -110,7 +117,7 @@ def plan_one(base, q, use_anchors=True):
 sum_path = os.path.join(run_dir, "summary.json")
 summary = json.load(open(sum_path))["summary"] if os.path.exists(sum_path) else {}
 for system in a.systems.split(","):
-    is_plan = "_plan" in system  # <base>_plan, or <base>_plan_noanchor (no anchored hop facts)
+    is_plan = "_plan" in system  # <base>_plan, <base>_plan_noanchor or <base>_plan_factanchor
     base = system.split("_plan")[0]
     if base not in ("closed_book", "oracle") and not base.startswith("dense"):
         get_retriever(base)
@@ -123,7 +130,8 @@ for system in a.systems.split(","):
         q = qs[i]
         trace = None
         if is_plan:
-            pred, trace, sel, usages, ev = plan_one(base, q, use_anchors=not system.endswith("_noanchor"))
+            pred, trace, sel, usages, ev = plan_one(base, q, use_anchors=not system.endswith("_noanchor"),
+                                                    anchor_mode="facts" if system.endswith("_factanchor") else "rank")
             usage = {"prompt": sum(u.get("prompt", 0) for u in usages), "calls": len(usages)}
         else:
             ev, sel = evidence_for(system, i)

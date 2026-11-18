@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/musique_nall",
+ "variant": "qbranch_qa",
+ "rows": 590,
+ "overlap_predicted": 0.05254237288135593,
+ "overlap_other_slot": 0.30847457627118646,
+ "overlap_any": 0.3576271186440678,
+ "all_rows": {
+  "pred": 0.11186440677966102,
+  "control": 0.10847457627118644,
+  "diff": [
+   0.003389830508474576,
+   -0.0288135593220339,
+   0.03389830508474576
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 379,
+  "pred": 0.11609498680738786,
+  "control": 0.10817941952506596,
+  "diff": [
+   0.0079155672823219,
+   -0.03430079155672823,
+   0.05013192612137203
+  ]
+ },
+ "examples_overlap": [
+  [
+   "When did Nunavut become a territory of Canada?",
+   "When was Nunavut founded?",
+   true
+  ],
+  [
+   "What is Oklahoma's state abbreviation?",
+   "What is the population of Oklahoma?",
+   false
+  ],
+  [
+   "What is the capital of Mexico?",
+   "What is the population of Mexico?",
+   false
+  ],
+  [
+   "Where was Vladimir Lenin born?",
+   "When was Vladimir Lenin born?",
+   false
+  ],
+  [
+   "Where was Michael Connelly born?",
+   "When was Michael Connelly born?",
+   false
+  ],
+  [
+   "Who directed the film about Philippe Petit's high-wire walk?",
+   "Where was Philippe Petit born?",
+   false
+  ],
+  [
+   "What is the common language of Jews?",
+   "What is the place of origin of Jews?",
+   false
+  ],
+  [
+   "What is the population of Silver Lake?",
+   "What is the area of Silver Lake?",
+   false
+  ],
+  [
+   "Where was Lionel Messi born?",
+   "When was Lionel Messi born?",
+   false
+  ],
+  [
+   "Where was Steven Spielberg born?",
+   "When was Steven Spielberg born?",
+   false
+  ]
+ ]
+}

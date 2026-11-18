@@ -1,0 +1,8 @@
+2wikimultihopqa: 900 evaluation questions, 2255 hops, 2016 with a known support passage
+qbranch {"open_slots": 18034, "passages": 6119, "open_slots_per_passage": 2.947213596992973, "hops_asked": 0.09667405764966741, "hops_asked_before": 0.04017857142857143, "questions_asked": 0.21555555555555556, "questions_asked_before": 0.08444444444444445, "slots_needed_by_a_hop": 0.012643486940608883}
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "questions": 900,
+ "hops": 2255,
+ "cost_usd": 0.2598
+}

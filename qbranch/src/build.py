@@ -3,6 +3,8 @@
 Variant "qbranch": infer questions, name the schema, bind facts and keep open slots (figure panel b).
 Variant "qbranch_noopen": the same, without the open questions (ablation of the open slots).
 Variant "openie": extract triples only (the ablation without questions).
+Variant "qbranch_qa": "qbranch" plus held-out question-answer pairs of the dataset in the prompt (an FAQ).
+Variant "qbranch_events": "qbranch", and the open questions can also be open outcomes of events (news).
 Between batches, the most frequent relation names go into the prompt, so the schema can grow
 and be reused (a light form of schema normalization).
 """
@@ -22,12 +24,16 @@ def _norm_rel(r):
     return "_".join(str(r or "").strip().lower().replace("-", " ").split())
 
 
-def _call(variant, passage, vocab, model):
-    tmpl = {"qbranch": prompts.BUILD_QBRANCH, "qbranch_noopen": prompts.BUILD_QBRANCH_NOOPEN,
-            "openie": prompts.BUILD_OPENIE}[variant]
+TEMPLATES = {"qbranch": prompts.BUILD_QBRANCH, "qbranch_noopen": prompts.BUILD_QBRANCH_NOOPEN,
+             "openie": prompts.BUILD_OPENIE, "qbranch_qa": prompts.BUILD_QBRANCH_QA,
+             "qbranch_events": prompts.BUILD_QBRANCH_EVENTS}
+
+
+def _call(variant, passage, vocab, model, examples=""):
+    tmpl = TEMPLATES[variant]
     rule = prompts.TITLE_RULE_NEWS if "time" in passage else prompts.TITLE_RULE_WIKI
     msg = tmpl.format(relations=", ".join(vocab) if vocab else "(none yet)", title_rule=rule,
-                      title=passage["title"], text=passage["text"])
+                      title=passage["title"], text=passage["text"], examples=examples)
     for tag in ("", "retry1", "retry2"):
         r = llm.chat(model, msg, seed_tag=tag, **BUILD_KW)
         j = llm.parse_json(r["text"])
@@ -36,7 +42,10 @@ def _call(variant, passage, vocab, model):
     return None, r["usage"]
 
 
-def build(passages_by_batch, variant, out_dir, model=BUILD_MODEL, workers=12, vocab_size=80):
+def build(passages_by_batch, variant, out_dir, model=BUILD_MODEL, workers=12, vocab_size=80, examples_fn=None):
+    """examples_fn(pid) -> the example text for the prompt of the variant qbranch_qa."""
+    if variant == "qbranch_qa" and examples_fn is None:
+        raise ValueError("qbranch_qa needs examples_fn")
     os.makedirs(out_dir, exist_ok=True)
     rel_count = collections.Counter()
     for t, batch in enumerate(passages_by_batch):
@@ -46,7 +55,8 @@ def build(passages_by_batch, variant, out_dir, model=BUILD_MODEL, workers=12, vo
         else:
             vocab = [r for r, _ in rel_count.most_common(vocab_size)]
             with ThreadPoolExecutor(workers) as ex:
-                outs = list(ex.map(lambda p: _call(variant, p, vocab, model), batch))
+                outs = list(ex.map(lambda p: _call(variant, p, vocab, model,
+                                                   examples_fn(p["pid"]) if examples_fn else ""), batch))
             recs = [{"pid": p["pid"], "title": p["title"], "batch": t, "out": j, "usage": u}
                     for p, (j, u) in zip(batch, outs)]
             with open(path, "w") as f:

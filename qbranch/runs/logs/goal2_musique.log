@@ -1,0 +1,19 @@
+musique: 900 evaluation questions, 2374 hops, 2374 with a known support passage
+qbranch {"open_slots": 34849, "passages": 11656, "open_slots_per_passage": 2.9897906657515443, "hops_asked": 0.05265374894692502, "hops_asked_before": 0.037489469250210614, "questions_asked": 0.13333333333333333, "questions_asked_before": 0.09666666666666666, "slots_needed_by_a_hop": 0.0028982180263422194}
+qbranch_qa {"open_slots": 34661, "passages": 11656, "open_slots_per_passage": 2.97366163349348, "hops_asked": 0.05391743892165122, "hops_asked_before": 0.02948609941027801, "questions_asked": 0.1388888888888889, "questions_asked_before": 0.07777777777777778, "slots_needed_by_a_hop": 0.002567727416981622}
+{
+ "run_dir": "runs/musique_nall",
+ "questions": 900,
+ "hops": 2374,
+ "qbranch_qa - qbranch, questions_asked": [
+  0.005555555555555556,
+  -0.014444444444444444,
+  0.025555555555555557
+ ],
+ "qbranch_qa - qbranch, questions_asked_before": [
+  -0.01888888888888889,
+  -0.035555555555555556,
+  -0.0022222222222222222
+ ],
+ "cost_usd": 0.4112
+}

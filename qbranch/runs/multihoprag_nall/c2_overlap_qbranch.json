@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/multihoprag_nall",
+ "variant": "qbranch",
+ "rows": 584,
+ "overlap_predicted": 0.023972602739726026,
+ "overlap_other_slot": 0.3458904109589041,
+ "overlap_any": 0.36986301369863017,
+ "all_rows": {
+  "pred": 0.14897260273972604,
+  "control": 0.1284246575342466,
+  "diff": [
+   0.02054794520547945,
+   -0.017123287671232876,
+   0.05826198630136924
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 368,
+  "pred": 0.09782608695652174,
+  "control": 0.14402173913043478,
+  "diff": [
+   -0.04619565217391304,
+   -0.09510869565217392,
+   0.0
+  ]
+ },
+ "examples_overlap": [
+  [
+   "When was OpenAI founded?",
+   "Who is the CEO of OpenAI?",
+   false
+  ],
+  [
+   "When was Shohei Ohtani born?",
+   "What is the full name of Shohei Ohtani?",
+   false
+  ],
+  [
+   "Where is Google headquartered?",
+   "When was Google founded?",
+   false
+  ],
+  [
+   "Where was Britney Spears born?",
+   "When was Britney Spears born?",
+   false
+  ],
+  [
+   "What is the name of Travis Kelce's podcast?",
+   "What is the jersey number of Travis Kelce?",
+   false
+  ],
+  [
+   "What is Shohei Ohtani's birthplace?",
+   "When was Shohei Ohtani born?",
+   false
+  ],
+  [
+   "What is the birth date of Taylor Swift?",
+   "Where was Taylor Swift born?",
+   false
+  ],
+  [
+   "Where was Rhamondre Stevenson born?",
+   "When was Rhamondre Stevenson born?",
+   false
+  ],
+  [
+   "What is Elon Musk's role at X?",
+   "Where was Elon Musk born?",
+   false
+  ],
+  [
+   "Which college did Rhamondre Stevenson attend?",
+   "Where was Rhamondre Stevenson born?",
+   false
+  ]
+ ]
+}

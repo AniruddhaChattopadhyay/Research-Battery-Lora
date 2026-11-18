@@ -139,27 +139,55 @@
    "reader_prompt_tokens": 1753.787,
    "passages": 8.566,
    "reader_calls": 1.0
+  },
+  "graph_qbranch_plan_factanchor": {
+   "n": 1000,
+   "em": 0.456,
+   "f1": 0.6228611752249187,
+   "judge": 0.691,
+   "recall@5": 0.8723333333333333,
+   "reader_prompt_tokens": 6173.017,
+   "passages": 10.662,
+   "reader_calls": 4.582
+  },
+  "graph_qbranch_qa": {
+   "n": 1000,
+   "em": 0.435,
+   "f1": 0.5952329471526066,
+   "judge": 0.634,
+   "recall@5": 0.71575,
+   "reader_prompt_tokens": 1272.663,
+   "passages": 4.974,
+   "reader_calls": 1.0
   }
  },
  "usage": {
   "by_model": {
+   "google/gemini-embedding-2": {
+    "calls": 1199,
+    "cached_calls": 0,
+    "prompt": 860070,
+    "completion": 0,
+    "reasoning": 0,
+    "cost": 0.17201400000000008
+   },
    "openai/gpt-6-luna": {
-    "calls": 1858,
-    "cached_calls": 142,
-    "prompt": 3359647,
-    "completion": 355178,
-    "reasoning": 269258,
-    "cost": 0.5972590500000008
+    "calls": 999,
+    "cached_calls": 1,
+    "prompt": 1271158,
+    "completion": 191005,
+    "reasoning": 145632,
+    "cost": 0.2519982000000001
    },
    "anthropic/claude-haiku-5.5": {
-    "calls": 242,
-    "cached_calls": 1758,
-    "prompt": 41077,
-    "completion": 47821,
-    "reasoning": 46507,
-    "cost": 0.0280182
+    "calls": 148,
+    "cached_calls": 852,
+    "prompt": 24964,
+    "completion": 31024,
+    "reasoning": 30205,
+    "cost": 0.0180084
    }
   },
-  "total_cost_usd": 0.6253
+  "total_cost_usd": 0.442
  }
 }

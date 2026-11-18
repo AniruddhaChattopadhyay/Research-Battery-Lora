@@ -1,0 +1,5 @@
+{"run_dir": "runs/multihoprag_nall", "variant": "qbranch", "rows": 584, "overlap_predicted": 0.023972602739726026, "overlap_other_slot": 0.3458904109589041, "overlap_any": 0.36986301369863017, "all_rows": {"pred": 0.14897260273972604, "control": 0.1284246575342466, "diff": [0.02054794520547945, -0.017123287671232876, 0.05826198630136924]}, "rows_without_overlap": {"n": 368, "pred": 0.09782608695652174, "control": 0.14402173913043478, "diff": [-0.04619565217391304, -0.09510869565217392, 0.0]}}
+{"run_dir": "runs/multihoprag_nall", "variant": "qbranch_qa", "rows": 591, "overlap_predicted": 0.03553299492385787, "overlap_other_slot": 0.38917089678510997, "overlap_any": 0.4196277495769881, "all_rows": {"pred": 0.17766497461928935, "control": 0.12859560067681894, "diff": [0.049069373942470386, 0.008460236886632826, 0.08798646362098139]}, "rows_without_overlap": {"n": 343, "pred": 0.15743440233236153, "control": 0.14285714285714285, "diff": [0.014577259475218658, -0.03505830903790085, 0.06705539358600583]}}
+qbranch_qa - qbranch, all_rows: +0.029 [-0.026, +0.081]
+qbranch_qa - qbranch, rows_without_overlap: +0.061 [-0.009, +0.129]
+cost 0.075

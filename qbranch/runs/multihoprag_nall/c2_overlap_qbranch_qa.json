@@ -1,0 +1,79 @@
+{
+ "run_dir": "runs/multihoprag_nall",
+ "variant": "qbranch_qa",
+ "rows": 591,
+ "overlap_predicted": 0.03553299492385787,
+ "overlap_other_slot": 0.38917089678510997,
+ "overlap_any": 0.4196277495769881,
+ "all_rows": {
+  "pred": 0.17766497461928935,
+  "control": 0.12859560067681894,
+  "diff": [
+   0.049069373942470386,
+   0.008460236886632826,
+   0.08798646362098139
+  ]
+ },
+ "rows_without_overlap": {
+  "n": 343,
+  "pred": 0.15743440233236153,
+  "control": 0.14285714285714285,
+  "diff": [
+   0.014577259475218658,
+   -0.03505830903790085,
+   0.06705539358600583
+  ]
+ },
+ "examples_overlap": [
+  [
+   "Who is the head coach of the Chicago Bears?",
+   "What is the full name of the Chicago Bears?",
+   false
+  ],
+  [
+   "What is the name of the writer?",
+   "What is the birthplace of writer?",
+   false
+  ],
+  [
+   "What is the birthplace of Sam Altman?",
+   "What is the full name of Sam Altman?",
+   false
+  ],
+  [
+   "When was Britney Spears born?",
+   "What is Britney Spears's full name?",
+   false
+  ],
+  [
+   "When was Brad Lightcap born?",
+   "When was Brad Lightcap born?",
+   true
+  ],
+  [
+   "Who is the CEO of Amazon?",
+   "When was the Amazon founded?",
+   false
+  ],
+  [
+   "What is the name of Shohei Ohtani's agent?",
+   "When was Shohei Ohtani born?",
+   false
+  ],
+  [
+   "When was Bill Kenwright born?",
+   "Where was Bill Kenwright born?",
+   false
+  ],
+  [
+   "Where was J\u00fcrgen Klopp born?",
+   "When was J\u00fcrgen Klopp born?",
+   false
+  ],
+  [
+   "What is the price of the Apple Watch Series 9?",
+   "What is the battery life of the Apple Watch Series 9?",
+   false
+  ]
+ ]
+}
