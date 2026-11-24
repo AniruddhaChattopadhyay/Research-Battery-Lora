@@ -14,6 +14,15 @@ Same test as c2_semantic.py (keep that file: the 2026-11-10 numbers come from it
    question or answer of faq_pool.json. The output gives the rates with and without these rows.
 4. The output goes to <run_dir>/c2_<variant>.json.
 
+5. Options for the confirmatory runs of 2026-11-19 (notes/2026-11-19-confirmatory-plan.md):
+     --exclude <c2 file>      do not sample the slots of an earlier run (fresh rows only)
+     --tag <name>             write c2_<variant>_<name>.json, so an earlier output is not overwritten
+     --shared_control <var>   also draw a strict control from the agenda of another build (random_fit_shared)
+     --fit_only               skip the controls random_any and random_type
+     --mem_n <k>              size of the memory sample (default n / 2)
+     --pool <file>            the example pool for the leak check (default <run_dir>/faq_pool.json)
+     --build <dir name>       the build directory, when it is not build_<variant>
+
 Usage: uv run python analysis/c2_v2.py runs/musique_nall [--variant qbranch_qa] [--n 600]
 """
 import collections
@@ -56,7 +65,12 @@ def arg(name, default):
 run_dir = sys.argv[1]
 VARIANT = arg("--variant", "qbranch")
 N = int(arg("--n", 600))
-g = Graph(build.load_records(os.path.join(run_dir, "build_" + VARIANT)), VARIANT)
+TAG = arg("--tag", "")
+BUILD_DIR = arg("--build", "build_" + VARIANT)
+SHARED = arg("--shared_control", "")
+FIT_ONLY = "--fit_only" in sys.argv
+MEM_N = int(arg("--mem_n", N // 2))
+g = Graph(build.load_records(os.path.join(run_dir, BUILD_DIR)), VARIANT)
 F = answer.DenseIndex([g.fact_text(f) for f in g.facts])
 about = collections.defaultdict(list)
 for f in g.facts:
@@ -68,18 +82,33 @@ last = max(s["batch"] for s in g.open_slots)
 slots = [s for s in g.open_slots if s["batch"] < last and s["iqid"] is not None and s["s_norm"]]
 for s in slots:
     s["q"] = g.agenda[s["iqid"]]["q"]
-rng = random.Random(0)
+rng = random.Random(int(arg("--seed", 0)))
 
 
 def tkey(s):
     return str(s.get("s_type") or "").strip().lower()
 
 
-by_type = collections.defaultdict(list)  # slots whose question names their entity, by entity type
-for s in slots:
-    if s["s"] and s["s"].lower() in s["q"].lower():
-        by_type[tkey(s)].append(s)
+def named_by_type(slots_):
+    """Slots whose question names their entity, by entity type."""
+    out = collections.defaultdict(list)
+    for s in slots_:
+        if s["s"] and s["s"].lower() in s["q"].lower():
+            out[tkey(s)].append(s)
+    return out
+
+
+by_type = named_by_type(slots)
 all_named = [s for v in by_type.values() for s in v]
+shared_by_type, shared_named = None, None
+if SHARED:  # the agenda of another build gives the control questions
+    g2 = Graph(build.load_records(os.path.join(run_dir, "build_" + SHARED)), SHARED)
+    last2 = max(s["batch"] for s in g2.open_slots)
+    slots2 = [s for s in g2.open_slots if s["batch"] < last2 and s["iqid"] is not None and s["s_norm"]]
+    for s in slots2:
+        s["q"] = g2.agenda[s["iqid"]]["q"]
+    shared_by_type = named_by_type(slots2)
+    shared_named = [s for v in shared_by_type.values() for s in v]
 
 
 def put_name(o, slot):
@@ -129,13 +158,27 @@ for s in slots:
     s["known"] = [f for f in ent if f["batch"] <= s["batch"] and f["pid"] != s["pid"]]
 ceiling = float(np.mean([bool(s["later"]) for s in slots]))
 known_ceiling = float(np.mean([bool(s["known"]) for s in slots]))
-sample_l = rng.sample([s for s in slots if s["later"]], min(N, sum(1 for s in slots if s["later"])))
-sample_k = rng.sample([s for s in slots if s["known"]], min(N // 2, sum(1 for s in slots if s["known"])))
-for s in sample_l:  # all random draws here, in one thread
-    s["c_any"] = candidates(s, all_named, 1)
-    s["c_type"] = candidates(s, by_type.get(tkey(s)) or all_named, N_CAND)
 
-pool_path = os.path.join(run_dir, "faq_pool.json")
+
+def row_key(s_, r_, q_, batch_, title_):
+    return "|".join([str(s_), str(r_), str(q_), str(batch_), str(title_)])
+
+
+seen = set()
+if "--exclude" in sys.argv:
+    for r in json.load(open(arg("--exclude", "")))["rows"]:
+        seen.add(row_key(r["slot"][0], r["slot"][1], r["q"], r["batch"], r["title"]))
+with_later = [s for s in slots if s["later"]
+              and row_key(s["s"], s["r"], s["q"], s["batch"], g.pid_title[s["pid"]]) not in seen]
+sample_l = rng.sample(with_later, min(N, len(with_later)))
+known = [s for s in slots if s["known"]]
+sample_k = rng.sample(known, min(MEM_N, len(known)))
+for s in sample_l:  # all random draws here, in one thread
+    s["c_any"] = [] if FIT_ONLY else candidates(s, all_named, 1)
+    s["c_type"] = candidates(s, by_type.get(tkey(s)) or all_named, N_CAND)
+    s["c_shared"] = candidates(s, shared_by_type.get(tkey(s)) or shared_named, N_CAND) if SHARED else []
+
+pool_path = arg("--pool", os.path.join(run_dir, "faq_pool.json"))
 pool_text = ""
 if os.path.exists(pool_path):
     pool_text = " ".join("%s %s" % (q["question"], q["answer"]) for q in json.load(open(pool_path))["pool"]).lower()
@@ -147,15 +190,19 @@ def in_pool(slot):
 
 def one_later(slot):
     q_any = slot["c_any"][0] if slot["c_any"] else None
-    q_type = slot["c_type"][0] if slot["c_type"] else None
+    q_type = slot["c_type"][0] if slot["c_type"] and not FIT_ONLY else None
     q_fit = next((c for c in slot["c_type"] if fits(slot["s"], c)), None)
-    return {"slot": [slot["s"], slot["r"], "?"], "s_type": slot.get("s_type"), "q": slot["q"],
+    q_shared = next((c for c in slot["c_shared"] if fits(slot["s"], c)), None)
+    return {"slot": [slot["s"], slot["r"], "?"], "s_norm": slot["s_norm"], "s_type": slot.get("s_type"),
+            "q": slot["q"],
             "batch": slot["batch"], "title": g.pid_title[slot["pid"]], "n_later": len(slot["later"]),
             "pool_entity": in_pool(slot), "q_any": q_any, "q_type": q_type, "q_fit": q_fit,
+            "q_fit_shared": q_shared,
             "pred": check(nearest(slot["later"], slot["q"]), slot["q"]),
             "random_any": check(nearest(slot["later"], q_any), q_any) if q_any else None,
             "random_type": check(nearest(slot["later"], q_type), q_type) if q_type else None,
-            "random_fit": check(nearest(slot["later"], q_fit), q_fit) if q_fit else None}
+            "random_fit": check(nearest(slot["later"], q_fit), q_fit) if q_fit else None,
+            "random_fit_shared": check(nearest(slot["later"], q_shared), q_shared) if q_shared else None}
 
 
 def one_known(slot):
@@ -174,7 +221,7 @@ def hit(r, key):
 
 def compare(rows_, ctrl):
     """pred - control on the rows that have a control question; paired bootstrap, 5,000 draws."""
-    rs = [r for r in rows_ if r["q_" + ctrl.split("_")[1]]]
+    rs = [r for r in rows_ if r["q_" + ctrl.split("_", 1)[1]]]
     if not rs:
         return None
     d = np.array([hit(r, "pred") - hit(r, ctrl) for r in rs])
@@ -186,7 +233,7 @@ def compare(rows_, ctrl):
 
 
 def block(rows_):
-    return {c: compare(rows_, c) for c in ("random_any", "random_type", "random_fit")}
+    return {c: compare(rows_, c) for c in ("random_any", "random_type", "random_fit", "random_fit_shared")}
 
 
 m_rate = float(np.mean([hit(r, "memory") for r in mem_rows])) if mem_rows else None
@@ -205,6 +252,7 @@ out = {"run_dir": run_dir, "variant": VARIANT, "open_slots": len(g.open_slots), 
        "already_in_memory_over_all_slots": known_ceiling * m_rate if m_rate is not None else None,
        "memory_given_earlier_facts": m_rate, "batch_gap_mean": float(np.mean(gaps)) if gaps else None,
        "cost_usd": llm.usage_report()["total_cost_usd"]}
-json.dump({**out, "rows": rows, "memory_rows": mem_rows}, open(os.path.join(run_dir, "c2_%s.json" % VARIANT), "w"),
-          indent=1)
+name = "c2_%s%s.json" % (VARIANT, "_" + TAG if TAG else "")
+json.dump({**out, "tag": TAG, "build_dir": BUILD_DIR, "shared_control": SHARED, "excluded_rows": len(seen),
+           "rows": rows, "memory_rows": mem_rows}, open(os.path.join(run_dir, name), "w"), indent=1)
 print(json.dumps(out, indent=1))
