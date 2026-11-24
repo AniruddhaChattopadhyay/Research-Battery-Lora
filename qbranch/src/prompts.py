@@ -63,6 +63,21 @@ BUILD_QBRANCH_EVENTS = BUILD_QBRANCH.replace(
     "the team that a player will sign with, the date of a release that is not fixed).")
 assert BUILD_QBRANCH_QA != BUILD_QBRANCH and BUILD_QBRANCH_EVENTS != BUILD_QBRANCH
 
+# History context (meeting 2026-11-23): the build prompt also gets the related facts and open questions that
+# the graph holds from earlier batches (retrieval, not the full memory). The Q&A text of BUILD_QBRANCH_QA
+# plus this text is the setting "history context and budgeted oracle".
+_HIST = ("Memory. The graph holds these items from earlier passages (only the most related items are shown).\n"
+         "Known facts:\n{mem_facts}\n"
+         "Open questions (no passage answered them yet):\n{mem_open}\n"
+         "Use the memory in Step 1. If this passage answers an open question of the memory, write it as an answered "
+         "question. Do not write an open question that a known fact answers. Do not repeat an open question of the "
+         "memory. Write the open questions that are still not answered after you read the memory and this passage "
+         "together.\n\n"
+         "Known relations: {relations}")
+BUILD_QBRANCH_HIST = BUILD_QBRANCH.replace("Known relations: {relations}", _HIST)
+BUILD_QBRANCH_HIST_QA = BUILD_QBRANCH_QA.replace("Known relations: {relations}", _HIST)
+assert "{mem_facts}" in BUILD_QBRANCH_HIST and "{mem_facts}" in BUILD_QBRANCH_HIST_QA and "{examples}" in BUILD_QBRANCH_HIST_QA
+
 TITLE_RULE_WIKI = "The passage title names its main entity: always call the main entity by its title, without the text in parentheses. Call other entities by their full names as the passage writes them."
 
 TITLE_RULE_NEWS = ("The passage is part of a news article. The title is the headline, the source and the date of the article, not an entity. "

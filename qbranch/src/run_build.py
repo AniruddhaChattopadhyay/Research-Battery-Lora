@@ -16,28 +16,34 @@ import llm  # noqa: E402
 ap = argparse.ArgumentParser()
 ap.add_argument("--dataset", default="hotpotqa")
 ap.add_argument("--n", type=int, default=100)
-ap.add_argument("--variant", choices=["qbranch", "qbranch_noopen", "openie", "qbranch_qa", "qbranch_events"],
+ap.add_argument("--variant", choices=["qbranch", "qbranch_noopen", "openie", "qbranch_qa", "qbranch_events", "qbranch_hist",
+                                      "qbranch_hist_qa"],
                 default="qbranch")
 ap.add_argument("--k_examples", type=int, default=8, help="qbranch_qa: pool pairs per passage")
 ap.add_argument("--batches", type=int, default=5)
 ap.add_argument("--seed", type=int, default=0)
+ap.add_argument("--max_batches", type=int, default=0, help="stop after this number of batches (smoke test)")
+ap.add_argument("--out_tag", default="", help="suffix of the build directory")
 ap.add_argument("--workers", type=int, default=12)
 a = ap.parse_args()
 
 qs, ps = data.load(a.dataset, a.n or None)
 run_dir = os.path.join(llm.ROOT, "runs", "%s_n%s" % (a.dataset, a.n or "all"))
-out_dir = os.path.join(run_dir, "build_" + a.variant)
+out_dir = os.path.join(run_dir, "build_" + a.variant + a.out_tag)
 print("%s: %d questions, %d passages, %d batches -> %s" % (a.dataset, len(qs), len(ps), a.batches, out_dir))
 examples_fn = None
-if a.variant == "qbranch_qa":
+if a.variant in build.QA:
     pool, eval_ids = data.faq_pool(a.dataset, qs)
     os.makedirs(out_dir, exist_ok=True)
-    json.dump({"pool": pool, "eval_qids": eval_ids, "k": a.k_examples},
-              open(os.path.join(run_dir, "faq_pool.json"), "w"), indent=1, default=list)
+    pool_path = os.path.join(run_dir, "faq_pool.json")
+    if not os.path.exists(pool_path):  # the pool is deterministic; keep the file of the first build
+        json.dump({"pool": pool, "eval_qids": eval_ids, "k": a.k_examples}, open(pool_path, "w"), indent=1,
+                  default=list)
     print("example pool: %d questions, k = %d per passage, evaluate on %d questions" % (len(pool), a.k_examples,
                                                                                          len(eval_ids)))
     examples_fn = lambda pid: data.faq_examples(pool, pid, a.k_examples)  # noqa: E731
-build.build(data.stream_batches(ps, a.batches, a.seed), a.variant, out_dir, workers=a.workers,
+batches = data.stream_batches(ps, a.batches, a.seed)
+build.build(batches[:a.max_batches] if a.max_batches else batches, a.variant, out_dir, workers=a.workers,
             examples_fn=examples_fn)
 recs = build.load_records(out_dir)
 cost = sum((r.get("usage") or {}).get("cost", 0) for r in recs)
