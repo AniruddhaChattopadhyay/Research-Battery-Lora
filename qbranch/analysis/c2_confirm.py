@@ -9,6 +9,9 @@ Usage:
                                                                         the mean of the files (test T1)
   uv run python analysis/c2_confirm.py diff <c2 file base> <c2 file new>  new - base (tests T2 and T3)
 Output: printed JSON. Add --out <file> to save it.
+Options (notes/2026-11-24-history-context-plan.md):
+  --min_batch <b>   keep only the slots of batch b or later (history builds: batch 0 has no memory)
+  --raw             do not apply the rule against name-only answers
 """
 import collections
 import json
@@ -28,9 +31,34 @@ def hit(r, key):
     return float(bool(r.get(key) and r[key]["answered"]))
 
 
+def opt(name, default):
+    return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
+
+
+MIN_BATCH = int(opt("--min_batch", 0))
+RAW = "--raw" in sys.argv
+N_SELF = collections.Counter()
+
+
+def drop_self(r, path):
+    """Rule of 2026-11-24: a fact with the same subject and object, or an answer that is only the name of the
+    entity of the slot, is not an answer."""
+    ent = norm_entity(r["slot"][0])
+    for key in ("pred", "random_fit", "random_fit_shared"):
+        c = r.get(key)
+        if c and c["answered"]:
+            f = c.get("fact")
+            if norm_entity(c.get("answer")) == ent or (f and norm_entity(f[0]) == norm_entity(f[2])):
+                c["answered"] = False
+                N_SELF[(os.path.basename(path), key)] += 1
+
+
 def load(path):
     d = json.load(open(path))
-    rows = [r for r in d["rows"] if r.get("q_fit")]
+    rows = [r for r in d["rows"] if r.get("q_fit") and r["batch"] >= MIN_BATCH]
+    if not RAW:
+        for r in rows:
+            drop_self(r, path)
     g = Graph(build.load_records(os.path.join(d["run_dir"], d.get("build_dir") or "build_" + d["variant"])),
               d["variant"])
     first = {}  # first batch in which memory links two entities or values
@@ -93,9 +121,10 @@ def one_file(rows, keys=("pred", "ctrl", "gap", "gap_new", "gap_shared", "gap_no
 
 
 mode, files = sys.argv[1], [a for a in sys.argv[2:] if not a.startswith("--")]
-if "--out" in sys.argv:
-    files.remove(sys.argv[sys.argv.index("--out") + 1])
-res = {"mode": mode, "files": files}
+for o in ("--out", "--min_batch"):
+    if o in sys.argv:
+        files.remove(sys.argv[sys.argv.index(o) + 1])
+res = {"mode": mode, "files": files, "min_batch": MIN_BATCH, "name_only_rule": not RAW}
 if mode == "gap":
     per, gb = [], []
     for i, f in enumerate(files):
@@ -119,6 +148,7 @@ else:
             continue
         b = (w @ sb) / np.maximum(w @ nb, 1) - (w @ sa) / np.maximum(w @ na, 1)
         res["new_minus_base_" + k] = ci(sb.sum() / nb.sum() - sa.sum() / na.sum(), b)
+res["name_only_answers_removed"] = {"%s %s" % k: v for k, v in sorted(N_SELF.items())}
 print(json.dumps(res, indent=1))
 if "--out" in sys.argv:
     json.dump(res, open(sys.argv[sys.argv.index("--out") + 1], "w"), indent=1)

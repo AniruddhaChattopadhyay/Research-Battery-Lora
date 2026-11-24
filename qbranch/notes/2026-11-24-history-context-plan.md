@@ -36,8 +36,10 @@ Source: the meeting with Prof. Roy of 2026-11-23. The earlier results are in
 On 2026-11-19 I found that the builds store facts such as `Taylor Swift | full_name | Taylor Swift`.
 The checker accepts them as answers, and on news this helps the control (66 of 331 answered control
 rows against 27 of 375 predicted rows). New rule, in code and not in the checker prompt:
-**an answer does not count when the object of the fact is the entity of the slot itself, or when the
-answer text is only the name of that entity** (after normalization). The rule applies to all arms and
+**an answer does not count when the subject and the object of the fact are the same entity, or when
+the answer text is only the name of the entity of the slot** (after normalization). (I corrected this
+wording on 2026-11-24 during the builds, before any result: the first wording also removed correct
+answers of the form `Sam Altman | founded | OpenAI` for a slot of OpenAI.) The rule applies to all arms and
 to the old rows. The checker prompt does not change, so the old decisions stay comparable.
 
 ## 4. Quantities
