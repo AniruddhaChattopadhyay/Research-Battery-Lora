@@ -1,0 +1,7 @@
+graph_qbranch_hist {"facts": 35203, "entities": 30952, "relations": 6639, "open_slots": 15241, "agenda": 43852, "agenda_open": 15090}
+graph_qbranch_hist {"n": 300.0, "em": 0.32, "f1": 0.441, "judge": 0.72, "recall@5": 0.314, "reader_prompt_tokens": 2974.547, "passages": 5.0, "reader_calls": 1.0}
+graph_qbranch_hist_qa {"facts": 31810, "entities": 26418, "relations": 5539, "open_slots": 15443, "agenda": 43474, "agenda_open": 15355}
+graph_qbranch_hist_qa {"n": 300.0, "em": 0.327, "f1": 0.452, "judge": 0.73, "recall@5": 0.306, "reader_prompt_tokens": 2997.253, "passages": 5.0, "reader_calls": 1.0}
+graph_qbranch_qa {"facts": 32177, "entities": 25766, "relations": 5509, "open_slots": 14113, "agenda": 42179, "agenda_open": 14053}
+graph_qbranch_qa {"n": 300.0, "em": 0.323, "f1": 0.431, "judge": 0.693, "recall@5": 0.273, "reader_prompt_tokens": 2938.587, "passages": 5.0, "reader_calls": 1.0}
+0.6093

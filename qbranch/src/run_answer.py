@@ -12,6 +12,8 @@ Systems:
   graph_qbranch_noopen  QBranch build without open questions + inferred-question index (ablation)
   graph_qbranch_qa  QBranch build with held-out dataset Q&A pairs in the prompt + inferred-question index
   graph_qbranch_events  QBranch build with open events in the prompt (news) + inferred-question index
+  graph_qbranch_hist    QBranch build with history context + inferred-question index
+  graph_qbranch_hist_qa QBranch build with history context and Q&A pairs + inferred-question index
   <system>_plan   path-planned answering (src/plan.py) on top of dense or a graph system,
                   for example dense_plan, graph_qbranch_plan. Recall is over the union of the hop passages.
   <graph>_plan_noanchor  the plan without anchored facts (ablation of the symbolic path step)
@@ -56,7 +58,8 @@ retrievers = {}
 
 def variant_of(system):
     return {"graph_openie": "openie", "graph_qbranch_noopen": "qbranch_noopen",
-            "graph_qbranch_qa": "qbranch_qa", "graph_qbranch_events": "qbranch_events"}.get(system.split("_k")[0], "qbranch")
+            "graph_qbranch_qa": "qbranch_qa", "graph_qbranch_events": "qbranch_events",
+            "graph_qbranch_hist": "qbranch_hist", "graph_qbranch_hist_qa": "qbranch_hist_qa"}.get(system.split("_k")[0], "qbranch")
 
 
 def get_retriever(system):
@@ -70,7 +73,8 @@ def get_retriever(system):
         print(system, json.dumps({k: v for k, v in g.stats().items() if k != "top_relations"}), flush=True)
         retrievers[system] = answer.GraphRetriever(
             g, ps, use_questions=system.split("_k")[0] in ("graph_qbranch", "graph_qbranch_noopen", "graph_qbranch_qa",
-                                                         "graph_qbranch_events"),
+                                                         "graph_qbranch_events", "graph_qbranch_hist",
+                                                         "graph_qbranch_hist_qa"),
             n_passages=dense_k(system), share=same)
     return retrievers[system]
 

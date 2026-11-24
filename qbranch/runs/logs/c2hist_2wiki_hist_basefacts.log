@@ -1,0 +1,49 @@
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "variant": "qbranch_hist",
+ "open_slots": 18185,
+ "passages": 6119,
+ "open_slots_per_passage": 2.971890831835267,
+ "slots_with_a_later_batch": 16388,
+ "batches": 10,
+ "ceiling_some_later_fact": 0.17012448132780084,
+ "memory_ceiling_some_earlier_fact": 0.1745789602147913,
+ "sample_with_later_facts": 2788,
+ "fit_found": 0.986728837876614,
+ "all_rows": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 2751,
+   "pred": 0.16466739367502725,
+   "control": 0.13522355507088332,
+   "diff": [
+    0.029443838604143947,
+    0.013449654671028717,
+    0.045438022537259176
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pool_rows": 53,
+ "rows_without_pool_entity": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 2699,
+   "pred": 0.16302334197851057,
+   "control": 0.1337532419414598,
+   "diff": [
+    0.02927010003705076,
+    0.012597258243793997,
+    0.045572434234901815
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pred_over_all_slots": 0.027764217720283136,
+ "already_in_memory_over_all_slots": null,
+ "memory_given_earlier_facts": null,
+ "batch_gap_mean": 3.7120879120879122,
+ "cost_usd": 0.2193
+}

@@ -1,0 +1,147 @@
+{
+ "mode": "diff",
+ "files": [
+  "runs/musique_nall/c2_qbranch_confirm.json",
+  "runs/musique_nall/c2_qbranch_hist_h_basefacts.json"
+ ],
+ "min_batch": 1,
+ "name_only_rule": true,
+ "base": {
+  "rows": 2536,
+  "entities": 1428,
+  "pred": [
+   0.1096,
+   0.0927,
+   0.1268
+  ],
+  "ctrl": [
+   0.1116,
+   0.0937,
+   0.1309
+  ],
+  "gap": [
+   -0.002,
+   -0.0175,
+   0.0129
+  ],
+  "gap_n": 2536,
+  "gap_new": [
+   0.0174,
+   0.0046,
+   0.0296
+  ],
+  "gap_new_n": 2536,
+  "gap_shared": [
+   -0.002,
+   -0.0175,
+   0.0129
+  ],
+  "gap_shared_n": 2536,
+  "gap_nopool": [
+   -0.0016,
+   -0.0171,
+   0.0132
+  ],
+  "gap_nopool_n": 2521,
+  "pred_new": [
+   0.0907,
+   0.0768,
+   0.1046
+  ],
+  "pred_nopool": [
+   0.1091,
+   0.0921,
+   0.1263
+  ]
+ },
+ "new": {
+  "rows": 3332,
+  "entities": 1640,
+  "pred": [
+   0.0978,
+   0.0835,
+   0.1126
+  ],
+  "ctrl": [
+   0.1378,
+   0.1194,
+   0.1569
+  ],
+  "gap": [
+   -0.0399,
+   -0.0581,
+   -0.0222
+  ],
+  "gap_n": 3332,
+  "gap_new": [
+   -0.0132,
+   -0.0278,
+   0.0012
+  ],
+  "gap_new_n": 3332,
+  "gap_shared": [
+   -0.0399,
+   -0.0581,
+   -0.0222
+  ],
+  "gap_shared_n": 3332,
+  "gap_nopool": [
+   -0.0397,
+   -0.058,
+   -0.0218
+  ],
+  "gap_nopool_n": 3299,
+  "pred_new": [
+   0.0825,
+   0.0704,
+   0.0951
+  ],
+  "pred_nopool": [
+   0.0967,
+   0.0825,
+   0.1113
+  ]
+ },
+ "shared_entities": 876,
+ "new_minus_base_gap": [
+  -0.0379,
+  -0.0598,
+  -0.0169
+ ],
+ "new_minus_base_pred": [
+  -0.0118,
+  -0.0288,
+  0.0052
+ ],
+ "new_minus_base_gap_shared": [
+  -0.0379,
+  -0.0598,
+  -0.0169
+ ],
+ "new_minus_base_gap_new": [
+  -0.0306,
+  -0.0486,
+  -0.012
+ ],
+ "new_minus_base_gap_nopool": [
+  -0.0381,
+  -0.0599,
+  -0.0172
+ ],
+ "new_minus_base_pred_new": [
+  -0.0082,
+  -0.0236,
+  0.0071
+ ],
+ "new_minus_base_pred_nopool": [
+  -0.0124,
+  -0.0291,
+  0.0045
+ ],
+ "name_only_answers_removed": {
+  "c2_qbranch_confirm.json pred": 6,
+  "c2_qbranch_confirm.json random_fit": 2,
+  "c2_qbranch_hist_h_basefacts.json pred": 1,
+  "c2_qbranch_hist_h_basefacts.json random_fit": 1
+ }
+}

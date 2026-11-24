@@ -1,0 +1,173 @@
+{
+ "mode": "gap",
+ "files": [
+  "runs/multihoprag_nall/c2_qbranch_confirm.json",
+  "runs/musique_nall/c2_qbranch_confirm.json",
+  "runs/2wikimultihopqa_nall/c2_qbranch_confirm.json"
+ ],
+ "min_batch": 0,
+ "name_only_rule": true,
+ "per_file": [
+  {
+   "file": "runs/multihoprag_nall/c2_qbranch_confirm.json",
+   "rows": 3145,
+   "entities": 991,
+   "pred": [
+    0.1107,
+    0.0922,
+    0.131
+   ],
+   "ctrl": [
+    0.0843,
+    0.0685,
+    0.1034
+   ],
+   "gap": [
+    0.0264,
+    0.0099,
+    0.0443
+   ],
+   "gap_n": 3145,
+   "gap_new": [
+    0.0197,
+    0.0077,
+    0.032
+   ],
+   "gap_new_n": 3145,
+   "gap_shared": [
+    0.0264,
+    0.0099,
+    0.0443
+   ],
+   "gap_shared_n": 3145,
+   "gap_nopool": [
+    0.0281,
+    0.0093,
+    0.0487
+   ],
+   "gap_nopool_n": 2595,
+   "pred_new": [
+    0.063,
+    0.0511,
+    0.0758
+   ],
+   "pred_nopool": [
+    0.1175,
+    0.096,
+    0.1416
+   ]
+  },
+  {
+   "file": "runs/musique_nall/c2_qbranch_confirm.json",
+   "rows": 2918,
+   "entities": 1630,
+   "pred": [
+    0.1052,
+    0.089,
+    0.1216
+   ],
+   "ctrl": [
+    0.1093,
+    0.0928,
+    0.1273
+   ],
+   "gap": [
+    -0.0041,
+    -0.0184,
+    0.0102
+   ],
+   "gap_n": 2918,
+   "gap_new": [
+    0.0171,
+    0.0051,
+    0.0296
+   ],
+   "gap_new_n": 2918,
+   "gap_shared": [
+    -0.0041,
+    -0.0184,
+    0.0102
+   ],
+   "gap_shared_n": 2918,
+   "gap_nopool": [
+    -0.0038,
+    -0.018,
+    0.0106
+   ],
+   "gap_nopool_n": 2902,
+   "pred_new": [
+    0.0884,
+    0.0748,
+    0.1019
+   ],
+   "pred_nopool": [
+    0.1048,
+    0.0884,
+    0.1214
+   ]
+  },
+  {
+   "file": "runs/2wikimultihopqa_nall/c2_qbranch_confirm.json",
+   "rows": 2303,
+   "entities": 1242,
+   "pred": [
+    0.1372,
+    0.1207,
+    0.1541
+   ],
+   "ctrl": [
+    0.1198,
+    0.1049,
+    0.1349
+   ],
+   "gap": [
+    0.0174,
+    0.0013,
+    0.0334
+   ],
+   "gap_n": 2303,
+   "gap_new": [
+    0.0208,
+    0.0052,
+    0.0365
+   ],
+   "gap_new_n": 2303,
+   "gap_shared": [
+    0.0174,
+    0.0013,
+    0.0334
+   ],
+   "gap_shared_n": 2303,
+   "gap_nopool": [
+    0.0181,
+    0.0018,
+    0.0338
+   ],
+   "gap_nopool_n": 2269,
+   "pred_new": [
+    0.1346,
+    0.1182,
+    0.1513
+   ],
+   "pred_nopool": [
+    0.1344,
+    0.1184,
+    0.1511
+   ]
+  }
+ ],
+ "mean_gap": [
+  0.0132,
+  0.0044,
+  0.0226
+ ],
+ "mean_gap_new": [
+  0.0192,
+  0.0116,
+  0.0271
+ ],
+ "name_only_answers_removed": {
+  "c2_qbranch_confirm.json pred": 34,
+  "c2_qbranch_confirm.json random_fit": 70
+ }
+}

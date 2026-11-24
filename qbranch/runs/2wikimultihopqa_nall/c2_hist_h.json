@@ -1,0 +1,147 @@
+{
+ "mode": "diff",
+ "files": [
+  "runs/2wikimultihopqa_nall/c2_qbranch_confirm.json",
+  "runs/2wikimultihopqa_nall/c2_qbranch_hist_h.json"
+ ],
+ "min_batch": 1,
+ "name_only_rule": true,
+ "base": {
+  "rows": 1927,
+  "entities": 1028,
+  "pred": [
+   0.1349,
+   0.1169,
+   0.1535
+  ],
+  "ctrl": [
+   0.1147,
+   0.0985,
+   0.1314
+  ],
+  "gap": [
+   0.0202,
+   0.0031,
+   0.0375
+  ],
+  "gap_n": 1927,
+  "gap_new": [
+   0.0223,
+   0.0056,
+   0.0392
+  ],
+  "gap_new_n": 1927,
+  "gap_shared": [
+   0.0202,
+   0.0031,
+   0.0375
+  ],
+  "gap_shared_n": 1927,
+  "gap_nopool": [
+   0.0206,
+   0.0032,
+   0.038
+  ],
+  "gap_nopool_n": 1894,
+  "pred_new": [
+   0.1323,
+   0.1146,
+   0.151
+  ],
+  "pred_nopool": [
+   0.1315,
+   0.1138,
+   0.1501
+  ]
+ },
+ "new": {
+  "rows": 2297,
+  "entities": 1109,
+  "pred": [
+   0.1916,
+   0.1718,
+   0.2115
+  ],
+  "ctrl": [
+   0.1249,
+   0.1087,
+   0.1421
+  ],
+  "gap": [
+   0.0666,
+   0.0487,
+   0.0852
+  ],
+  "gap_n": 2297,
+  "gap_new": [
+   0.0736,
+   0.0564,
+   0.0916
+  ],
+  "gap_new_n": 2297,
+  "gap_shared": [
+   0.0454,
+   0.027,
+   0.063
+  ],
+  "gap_shared_n": 2289,
+  "gap_nopool": [
+   0.0658,
+   0.0481,
+   0.084
+  ],
+  "gap_nopool_n": 2250,
+  "pred_new": [
+   0.1894,
+   0.1697,
+   0.2092
+  ],
+  "pred_nopool": [
+   0.1884,
+   0.1688,
+   0.2082
+  ]
+ },
+ "shared_entities": 756,
+ "new_minus_base_gap": [
+  0.0464,
+  0.0232,
+  0.0699
+ ],
+ "new_minus_base_pred": [
+  0.0566,
+  0.0355,
+  0.0776
+ ],
+ "new_minus_base_gap_shared": [
+  0.0252,
+  0.0016,
+  0.0489
+ ],
+ "new_minus_base_gap_new": [
+  0.0513,
+  0.0281,
+  0.0742
+ ],
+ "new_minus_base_gap_nopool": [
+  0.0452,
+  0.0218,
+  0.0687
+ ],
+ "new_minus_base_pred_new": [
+  0.057,
+  0.0359,
+  0.0781
+ ],
+ "new_minus_base_pred_nopool": [
+  0.057,
+  0.0355,
+  0.0779
+ ],
+ "name_only_answers_removed": {
+  "c2_qbranch_confirm.json pred": 1,
+  "c2_qbranch_confirm.json random_fit": 2,
+  "c2_qbranch_hist_h.json pred": 1,
+  "c2_qbranch_hist_h.json random_fit_shared": 1
+ }
+}

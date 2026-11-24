@@ -1,0 +1,67 @@
+{
+ "run_dir": "runs/2wikimultihopqa_nall",
+ "variant": "qbranch_hist",
+ "open_slots": 18185,
+ "passages": 6119,
+ "open_slots_per_passage": 2.971890831835267,
+ "slots_with_a_later_batch": 16388,
+ "batches": 10,
+ "ceiling_some_later_fact": 0.17537222357822796,
+ "memory_ceiling_some_earlier_fact": 0.1768977300463754,
+ "sample_with_later_facts": 2874,
+ "fit_found": 0.9874739039665971,
+ "all_rows": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 2838,
+   "pred": 0.18710359408033828,
+   "control": 0.12931642001409444,
+   "diff": [
+    0.057787174066243834,
+    0.04193093727977449,
+    0.07329105003523609
+   ]
+  },
+  "random_fit_shared": {
+   "n": 2846,
+   "pred": 0.1876317638791286,
+   "control": 0.14546732255797612,
+   "diff": [
+    0.0421644413211525,
+    0.025650035137034434,
+    0.05797610681658468
+   ]
+  }
+ },
+ "pool_rows": 50,
+ "rows_without_pool_entity": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 2788,
+   "pred": 0.18472022955523673,
+   "control": 0.12769010043041606,
+   "diff": [
+    0.05703012912482066,
+    0.04160688665710186,
+    0.07245337159253945
+   ]
+  },
+  "random_fit_shared": {
+   "n": 2796,
+   "pred": 0.18526466380543632,
+   "control": 0.1427038626609442,
+   "diff": [
+    0.04256080114449213,
+    0.026108726752503576,
+    0.059012875536480686
+   ]
+  }
+ },
+ "pred_over_all_slots": 0.03276787893580669,
+ "already_in_memory_over_all_slots": null,
+ "memory_given_earlier_facts": null,
+ "batch_gap_mean": 3.6573556797020483,
+ "cost_usd": 0.4484
+}

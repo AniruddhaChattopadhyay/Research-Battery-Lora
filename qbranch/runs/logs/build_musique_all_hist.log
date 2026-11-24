@@ -1,0 +1,33 @@
+musique: 1000 questions, 11656 passages, 10 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/musique_nall/build_qbranch_hist
+batch 0: 1166 passages, 0 failed, 4110 relation names
+batch 1: 1166 passages, 0 failed, 5731 relation names
+batch 2: 1166 passages, 1 failed, 7142 relation names
+batch 3: 1166 passages, 0 failed, 8496 relation names
+batch 4: 1166 passages, 0 failed, 9722 relation names
+batch 5: 1166 passages, 0 failed, 10821 relation names
+batch 6: 1166 passages, 0 failed, 11879 relation names
+batch 7: 1166 passages, 0 failed, 12935 relation names
+batch 8: 1166 passages, 0 failed, 13943 relation names
+batch 9: 1162 passages, 0 failed, 15021 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 12010,
+   "cached_calls": 0,
+   "prompt": 14217872,
+   "completion": 11697547,
+   "reasoning": 1404505,
+   "cost": 8.862253180232006
+  },
+  "google/gemini-embedding-2": {
+   "calls": 1582,
+   "cached_calls": 0,
+   "prompt": 1328877,
+   "completion": 0,
+   "reasoning": 0,
+   "cost": 0.2657754000000002
+  }
+ },
+ "total_cost_usd": 9.128,
+ "build_cost_from_records_usd": 7.9559
+}

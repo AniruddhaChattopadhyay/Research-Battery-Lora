@@ -1,0 +1,49 @@
+{
+ "run_dir": "runs/musique_nall",
+ "variant": "qbranch_hist",
+ "open_slots": 35767,
+ "passages": 11656,
+ "open_slots_per_passage": 3.068548387096774,
+ "slots_with_a_later_batch": 32203,
+ "batches": 10,
+ "ceiling_some_later_fact": 0.18075955656305312,
+ "memory_ceiling_some_earlier_fact": 0.19759028661925906,
+ "sample_with_later_facts": 4000,
+ "fit_found": 0.97025,
+ "all_rows": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3881,
+   "pred": 0.10177789229580005,
+   "control": 0.13604741046122135,
+   "diff": [
+    -0.03426951816542129,
+    -0.04766812677145066,
+    -0.021643906209739758
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pool_rows": 46,
+ "rows_without_pool_entity": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3842,
+   "pred": 0.10046850598646538,
+   "control": 0.13456533055700157,
+   "diff": [
+    -0.03409682457053618,
+    -0.04711087975013014,
+    -0.021603331598125976
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pred_over_all_slots": 0.01848266465857218,
+ "already_in_memory_over_all_slots": null,
+ "memory_given_earlier_facts": null,
+ "batch_gap_mean": 3.784841075794621,
+ "cost_usd": 0.4434
+}

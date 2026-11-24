@@ -1,0 +1,33 @@
+2wikimultihopqa: 1000 questions, 6119 passages, 10 batches -> /Users/aniruddha/Documents/research/qbranch/src/../runs/2wikimultihopqa_nall/build_qbranch_hist
+batch 0: 612 passages, 0 failed, 1145 relation names
+batch 1: 612 passages, 0 failed, 1299 relation names
+batch 2: 612 passages, 0 failed, 1397 relation names
+batch 3: 612 passages, 0 failed, 1482 relation names
+batch 4: 612 passages, 0 failed, 1541 relation names
+batch 5: 612 passages, 0 failed, 1616 relation names
+batch 6: 612 passages, 1 failed, 1718 relation names
+batch 7: 612 passages, 0 failed, 1798 relation names
+batch 8: 612 passages, 0 failed, 1880 relation names
+batch 9: 611 passages, 0 failed, 1952 relation names
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 6312,
+   "cached_calls": 0,
+   "prompt": 7497006,
+   "completion": 5845683,
+   "reasoning": 843563,
+   "cost": 4.457230778632017
+  },
+  "google/gemini-embedding-2": {
+   "calls": 797,
+   "cached_calls": 0,
+   "prompt": 662396,
+   "completion": 0,
+   "reasoning": 0,
+   "cost": 0.13247920000000005
+  }
+ },
+ "total_cost_usd": 4.5897,
+ "build_cost_from_records_usd": 3.9598
+}
