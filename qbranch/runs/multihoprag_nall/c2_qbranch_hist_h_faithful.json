@@ -1,0 +1,3006 @@
+{
+ "file": "runs/multihoprag_nall/c2_qbranch_hist_h.json",
+ "rows": [
+  {
+   "q": "What is Zach Charbonnet's injury status?",
+   "fact": [
+    "Zach Charbonnet",
+    "injury_status",
+    "bruise on his knee"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the Logitech G535's microphone quality?",
+   "fact": [
+    "Logitech G535",
+    "has_feature",
+    "mic makes voices sound a little too thin"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Roschon Johnson's injury status?",
+   "fact": [
+    "Roschon Johnson",
+    "injury_status",
+    "back in action"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Javonte Williams' injury status?",
+   "fact": [
+    "Javonte Williams",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Sam Altman's job?",
+   "fact": [
+    "Sam Altman",
+    "ceo_of",
+    "OpenAI"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is David Njoku's team?",
+   "fact": [
+    "David Njoku",
+    "plays_for",
+    "Cleveland Browns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which NFL team does Jake Ferguson play for?",
+   "fact": [
+    "Jake Ferguson",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of Satechi's fold-up wireless charging stand?",
+   "fact": [
+    "Satechi's fold-up wireless charging stand",
+    "has_price",
+    "full discount at checkout"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the M1-powered MacBook Air?",
+   "fact": [
+    "M1-powered MacBook Air",
+    "has_price",
+    "$750"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Where was the study published?",
+   "fact": [
+    "study",
+    "published_in",
+    "Science Advances"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Brock Purdy's injury status?",
+   "fact": [
+    "Brock Purdy",
+    "injury_status",
+    "healthy"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Cowboys vs. 49ers game on 2023-10-08?",
+   "fact": [
+    "Dallas Cowboys vs. San Francisco 49ers game on 2023-10-08",
+    "final_score",
+    "49ers 42, Cowboys 10"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Deebo Samuel's injury status?",
+   "fact": [
+    "Deebo Samuel",
+    "injury_status",
+    "healthy"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Sony WF-1000XM5 deal?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "has_price",
+    "$248"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Kenny Pickett's injury status?",
+   "fact": [
+    "Kenny Pickett",
+    "injury_status",
+    "ankle injury, likely to miss time"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic Games v. Google antitrust trial?",
+   "fact": [
+    "Epic Games v. Google antitrust trial",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the score of the Michigan vs. Penn State game?",
+   "fact": [
+    "Michigan vs. Penn State game on 2023-11-11",
+    "final_score",
+    "Michigan 24, Penn State 15"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tyler Conklin's team?",
+   "fact": [
+    "Tyler Conklin",
+    "plays_for",
+    "Jets"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which club does Sean Dyche manage?",
+   "fact": [
+    "Sean Dyche",
+    "has_role",
+    "manager of Everton"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the injury status of Aaron Rodgers?",
+   "fact": [
+    "Aaron Rodgers",
+    "injury_status",
+    "limited in practice; will not be activated this week; sidelined; recovering from a torn Achilles"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where was Lionel Messi born?",
+   "fact": [
+    "Lionel Messi",
+    "born_in",
+    "Rosario"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Zach Wilson's injury status?",
+   "fact": [
+    "Zach Wilson",
+    "injury_status",
+    "reportedly reluctant to play"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Paddy Cosgrave's role at Web Summit?",
+   "fact": [
+    "Paddy Cosgrave",
+    "ceo_of",
+    "Web Summit"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Juan Soto be traded to?",
+   "fact": [
+    "Juan Soto",
+    "traded_to",
+    "New York Yankees"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is D'Andre Swift's injury status?",
+   "fact": [
+    "D'Andre Swift",
+    "injury_status",
+    "took a hard hit; exited game; uncertain if hurt or kept out due to lopsided score"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Colorado vs. Arizona State game on 2023-10-07?",
+   "fact": [
+    "Colorado vs. Arizona State game on 2023-10-07",
+    "final_score",
+    "Colorado 27, Arizona State 24"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the welcome offer for DraftKings?",
+   "fact": [
+    "DraftKings",
+    "has_welcome_offer",
+    "Up to $1,200 in welcome offers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Amazon's return policy?",
+   "fact": [
+    "Amazon",
+    "return_policy",
+    "most items purchased between Nov. 1 and Dec. 31 can be returned before Jan. 31, 2024"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Taylor Swift's profession?",
+   "fact": [
+    "Taylor Swift",
+    "occupation",
+    "singer"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Geno Smith's injury?",
+   "fact": [
+    "Geno Smith",
+    "injury",
+    "elbow issue"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Changpeng Zhao's plea agreement?",
+   "fact": [
+    "Changpeng Zhao",
+    "trial_outcome",
+    "pleaded guilty to violations of the Bank Secrecy Act"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Rhamondre Stevenson's injury status?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani join?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Apple gift card?",
+   "fact": [
+    "Apple gift card",
+    "has_price",
+    "$25"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Who is the manager of Inter Miami?",
+   "fact": [
+    "Inter Miami",
+    "has_role",
+    "Gerardo Martino"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Ja'Marr Chase's injury status?",
+   "fact": [
+    "Ja'Marr Chase",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the USC vs. Notre Dame game on 2023-10-14?",
+   "fact": [
+    "USC vs. Notre Dame game on 2023-10-14",
+    "final_score",
+    "Notre Dame 48, USC 20"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What was the result of the Vikings vs. Broncos game on 2023-11-19?",
+   "fact": [
+    "Minnesota Vikings vs. Denver Broncos game on 2023-11-19",
+    "final_score",
+    "Broncos 21, Vikings 20"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani join?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Raiders vs. Lions game on 2023-10-30?",
+   "fact": [
+    "Raiders vs. Lions game on 2023-10-30",
+    "final_score",
+    "Lions 26, Raiders 14"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which club does Lautaro Martinez play for?",
+   "fact": [
+    "Lautaro Martinez",
+    "plays_for",
+    "Inter Milan"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the welcome offer at BetMGM Sportsbook?",
+   "fact": [
+    "BetMGM Sportsbook",
+    "has_welcome_offer",
+    "First Bet bonus of up to $1,500 plus a $50 bonus bet for customers in select states"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the score of the USC vs. Notre Dame game on 2023-10-14?",
+   "fact": [
+    "USC vs. Notre Dame game on 2023-10-14",
+    "final_score",
+    "Notre Dame 48, USC 20"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic v. Google trial?",
+   "fact": [
+    "Epic v. Google trial",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When did Britney Spears and Kevin Federline finalize their divorce?",
+   "fact": [
+    "Britney Spears and Kevin Federline",
+    "divorced_in_year",
+    "2007"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Bears vs. Panthers game on 2023-11-09?",
+   "fact": [
+    "Bears vs. Panthers game on 2023-11-09",
+    "final_score",
+    "Chicago Bears 16, Carolina Panthers 13"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the team referred to as Phoenix?",
+   "fact": [
+    "Phoenix",
+    "full_name",
+    "South East Melbourne Phoenix"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Brock Purdy play for?",
+   "fact": [
+    "Brock Purdy",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the price of Satechi's fold-up wireless charging stand?",
+   "fact": [
+    "Satechi's fold-up wireless charging stand",
+    "has_price",
+    "full discount at checkout"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the Gaza Strip?",
+   "fact": [
+    "Gaza Strip",
+    "defined_as",
+    "an enclosed area roughly 25 miles long, about the size of Philadelphia, with 2.3 million residents"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the M1-powered MacBook Air?",
+   "fact": [
+    "M1-powered MacBook Air",
+    "has_price",
+    "$750"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Gerald Everett's team?",
+   "fact": [
+    "Gerald Everett",
+    "plays_for",
+    "Los Angeles Chargers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Curtis Samuel's projected fantasy points?",
+   "fact": [
+    "Curtis Samuel",
+    "projected_fantasy_points",
+    "11.6"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Ja'Marr Chase's injury status?",
+   "fact": [
+    "Ja'Marr Chase",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Lionel Messi's injury status?",
+   "fact": [
+    "Lionel Messi",
+    "injury_status",
+    "fitness concerns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which team will Shohei Ohtani sign with?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When will Shohei Ohtani sign a contract?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with_on",
+    "2023-12-09"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Sporting News?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Dallas Goedert's injury status?",
+   "fact": [
+    "Dallas Goedert",
+    "injury_status",
+    "healthy"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Taylor Swift's connection to Travis Kelce?",
+   "fact": [
+    "Taylor Swift",
+    "dating",
+    "Travis Kelce"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of the Colorado vs. Arizona State game?",
+   "fact": [
+    "Colorado vs. Arizona State game on 2023-10-07",
+    "final_score",
+    "Colorado 27, Arizona State 24"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Taylor Swift's occupation?",
+   "fact": [
+    "Taylor Swift",
+    "occupation",
+    "singer"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Rashee Rice's team?",
+   "fact": [
+    "Rashee Rice",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which NFL team does Jake Ferguson play for?",
+   "fact": [
+    "Jake Ferguson",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Tre'Davious White's injury status?",
+   "fact": [
+    "Tre'Davious White",
+    "injury_status",
+    "lost for the season"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Anthony Richardson's injury status?",
+   "fact": [
+    "Anthony Richardson",
+    "injury_status",
+    "might undergo season-ending shoulder surgery"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the SuperDraft promo code mentioned?",
+   "fact": [
+    "SuperDraft",
+    "promo_code",
+    "TSN"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will Yoshinobu Yamamoto sign with?",
+   "fact": [
+    "Yoshinobu Yamamoto",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Cooper Kupp's injury status?",
+   "fact": [
+    "Cooper Kupp",
+    "injury_status",
+    "played hurt"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Thierry Breton's role at the European Commission?",
+   "fact": [
+    "Thierry Breton",
+    "has_role",
+    "EU\u2019s internal market commissioner"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the relationship between Taylor Swift and Travis Kelce?",
+   "fact": [
+    "Taylor Swift",
+    "dating",
+    "Travis Kelce"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which team will Shohei Ohtani sign with in free agency?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Dorian Thompson-Robinson's injury status?",
+   "fact": [
+    "Dorian Thompson-Robinson",
+    "injury_status",
+    "out with a concussion"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What charges did Changpeng Zhao plead guilty to?",
+   "fact": [
+    "Changpeng Zhao",
+    "trial_outcome",
+    "pleaded guilty to violations of the Bank Secrecy Act"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Epic v. Google?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the exact date when Shohei Ohtani will sign his contract?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with_on",
+    "2023-12-09"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the USC vs. Notre Dame game on 2023-10-14?",
+   "fact": [
+    "USC vs. Notre Dame game on 2023-10-14",
+    "final_score",
+    "Notre Dame 48, USC 20"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What are the specific welcome bonus requirements at FanDuel Sportsbook?",
+   "fact": [
+    "FanDuel Sportsbook",
+    "has_welcome_offer",
+    "Bet $5 on any moneyline, get $150 in bonus bets if your team wins"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the price of the Sony WF-1000XM5 deal?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "has_price",
+    "$248"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "When did Tyler Adams initially get injured?",
+   "fact": [
+    "Tyler Adams",
+    "injured_on",
+    "spring 2023"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Christian McCaffrey's injury status?",
+   "fact": [
+    "Christian McCaffrey",
+    "injury_status",
+    "hurt"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Paddy Cosgrave's role at Web Summit?",
+   "fact": [
+    "Paddy Cosgrave",
+    "ceo_of",
+    "Web Summit"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Javonte Williams' injury status?",
+   "fact": [
+    "Javonte Williams",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Should you start Jake Ferguson in Week 13?",
+   "fact": [
+    "Jake Ferguson",
+    "has_fantasy_start_sit_recommendation",
+    "Start"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the final score of the Cowboys vs. 49ers game on 2023-10-08?",
+   "fact": [
+    "Dallas Cowboys vs. San Francisco 49ers game on 2023-10-08",
+    "final_score",
+    "49ers 42, Cowboys 10"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Tre'Davious White's injury status?",
+   "fact": [
+    "Tre'Davious White",
+    "injury_status",
+    "lost for the season"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Yoshinobu Yamamoto sign with?",
+   "fact": [
+    "Yoshinobu Yamamoto",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Nico Collins' injury status?",
+   "fact": [
+    "Nico Collins",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the final score of the USC vs. Notre Dame game on 2023-10-14?",
+   "fact": [
+    "USC vs. Notre Dame game on 2023-10-14",
+    "final_score",
+    "Notre Dame 48, USC 20"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "How many goals did Manchester United concede in the Champions League group stage?",
+   "fact": [
+    "Manchester United",
+    "has_record",
+    "15 goals conceded in 2023/24 Champions League group stage"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Javonte Williams' injury status?",
+   "fact": [
+    "Javonte Williams",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team does Rhamondre Stevenson play for?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "plays_for",
+    "New England Patriots"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the final score of the Manchester United vs Manchester City derby?",
+   "fact": [
+    "Manchester United vs Manchester City",
+    "final_score",
+    "3-0"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the injury status of Shohei Ohtani?",
+   "fact": [
+    "Shohei Ohtani",
+    "injury_status",
+    "will not pitch in 2024; recovering from September operation to repair right elbow's ulnar collateral ligament; underwent Tommy John surgery in 2018; reportedly had a second Tommy John procedure"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of the Sony WF-1000XM5?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "has_battery_life",
+    "seven to eight hours"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the jury's decision about SBF?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What was the final score of the Michigan vs. Penn State game on 2023-11-11?",
+   "fact": [
+    "Michigan vs. Penn State game on 2023-11-11",
+    "final_score",
+    "Michigan 24, Penn State 15"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Raiders vs. Lions game on 2023-10-30?",
+   "fact": [
+    "Raiders vs. Lions game on 2023-10-30",
+    "final_score",
+    "Lions 26, Raiders 14"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the SuperDraft promo code mentioned?",
+   "fact": [
+    "SuperDraft",
+    "promo_code",
+    "TSN"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the best-selling game of all time?",
+   "fact": [
+    "Minecraft",
+    "ranked",
+    "best-selling video game of all time"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Jonathan Taylor's injury status?",
+   "fact": [
+    "Jonathan Taylor",
+    "injury_status",
+    "out for next few weeks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Kenneth Walker III's injury?",
+   "fact": [
+    "Kenneth Walker III",
+    "injury",
+    "oblique"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will Yoshinobu Yamamoto sign with?",
+   "fact": [
+    "Yoshinobu Yamamoto",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Javonte Williams' injury status?",
+   "fact": [
+    "Javonte Williams",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Colorado vs. Arizona State game on 2023-10-07?",
+   "fact": [
+    "Colorado vs. Arizona State game on 2023-10-07",
+    "final_score",
+    "Colorado 27, Arizona State 24"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is David Montgomery's team?",
+   "fact": [
+    "David Montgomery",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Joe Flacco's role for the Browns?",
+   "fact": [
+    "Joe Flacco",
+    "has_role",
+    "quarterback for the Cleveland Browns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tank Dell's injury status?",
+   "fact": [
+    "Tank Dell",
+    "injury_status",
+    "leg, season-ending"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is D'Andre Swift's injury status?",
+   "fact": [
+    "D'Andre Swift",
+    "injury_status",
+    "took a hard hit; exited game; uncertain if hurt or kept out due to lopsided score"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Courtland Sutton's injury status?",
+   "fact": [
+    "Courtland Sutton",
+    "injury_status",
+    "out with a concussion"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Russell Wilson's injury status?",
+   "fact": [
+    "Russell Wilson",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Lionel Messi's injury status?",
+   "fact": [
+    "Lionel Messi",
+    "injury_status",
+    "fitness concerns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Who owns Bethesda?",
+   "fact": [
+    "Microsoft",
+    "owns",
+    "Bethesda"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Rhamondre Stevenson's injury status?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Sporting News?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Epic v. Google?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the player referred to as Messi in the Argentina lineup?",
+   "fact": [
+    "Lionel Messi",
+    "full_name",
+    "Lionel Messi"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Alex Verdugo play for?",
+   "fact": [
+    "Alex Verdugo",
+    "played_for",
+    "Boston Red Sox"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Derek Carr's injury status?",
+   "fact": [
+    "Derek Carr",
+    "injury_status",
+    "head, shoulder, back"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the box office gross of Taylor Swift: The Eras Tour?",
+   "fact": [
+    "Taylor Swift: The Eras Tour",
+    "has_record",
+    "over $250 million globally"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Amari Cooper's injury status?",
+   "fact": [
+    "Amari Cooper",
+    "injury_status",
+    "concussion"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of ESR travel kit?",
+   "fact": [
+    "ESR travel kit",
+    "has_price",
+    "$40"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani join?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani sign with?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who directed Jawan?",
+   "fact": [
+    "Jawan",
+    "directed_by",
+    "Atlee"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who won the Colorado vs. UCLA game on 2023-10-28?",
+   "fact": [
+    "Colorado vs. UCLA game on 2023-10-28",
+    "won_by",
+    "UCLA"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Rhamondre Stevenson's injury status?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of the Logitech G535?",
+   "fact": [
+    "Logitech G535",
+    "has_battery_life",
+    "30 to 35 hours per charge"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Joe Flacco's role with the Browns?",
+   "fact": [
+    "Joe Flacco",
+    "has_role",
+    "quarterback for the Cleveland Browns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Christian Watson's injury?",
+   "fact": [
+    "Christian Watson",
+    "injury",
+    "hamstring"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Tyler Glasnow's free agency year?",
+   "fact": [
+    "Tyler Glasnow",
+    "free_agent_in_year",
+    "2025"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Lionel Messi's full name?",
+   "fact": [
+    "Lionel Messi",
+    "full_name",
+    "Lionel Messi"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic v. Google trial?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Alex Verdugo's batting average?",
+   "fact": [
+    "Alex Verdugo",
+    "has_batting_average",
+    ".281"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is T.J. Hockenson's injury status?",
+   "fact": [
+    "T.J. Hockenson",
+    "injury_status",
+    "active"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Apple gift card?",
+   "fact": [
+    "Apple gift card",
+    "has_price",
+    "$25"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic Games antitrust trial against Google?",
+   "fact": [
+    "Epic Games v. Google",
+    "trial_outcome",
+    "jury sided with Epic Games"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Gary Wang's role at FTX?",
+   "fact": [
+    "Gary Wang",
+    "role_at",
+    "co-founder of FTX and Alameda Research"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "How many goals did Manchester United concede in the Champions League group stage?",
+   "fact": [
+    "Manchester United",
+    "has_record",
+    "15 goals conceded in 2023/24 Champions League group stage"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which club does Joshua Kimmich play for?",
+   "fact": [
+    "Joshua Kimmich",
+    "plays_for",
+    "Bayern Munich"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the verdict in Sam Bankman-Fried's court case?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the Cybertruck's exterior design?",
+   "fact": [
+    "Tesla Cybertruck",
+    "has_feature",
+    "inflexible stainless steel exterior"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "When did Changpeng Zhao plead guilty?",
+   "fact": [
+    "Changpeng Zhao",
+    "pleaded_guilty_on",
+    "2023-11-21"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Brock Purdy's injury status?",
+   "fact": [
+    "Brock Purdy",
+    "injury_status",
+    "healthy"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the trial on Google?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won the verdict"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the player referred to as Messi in the Argentina lineup?",
+   "fact": [
+    "Lionel Messi",
+    "full_name",
+    "Lionel Messi"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Jalen Hurts' injury status?",
+   "fact": [
+    "Jalen Hurts",
+    "injury_status",
+    "illness"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the release date of Taylor Swift: The Eras Tour?",
+   "fact": [
+    "Taylor Swift: The Eras Tour",
+    "release_date",
+    "2023-10-13"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Lautaro Martinez play for?",
+   "fact": [
+    "Lautaro Martinez",
+    "plays_for",
+    "Inter Milan"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of Sporting News?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Vikings vs. Broncos game on 2023-11-19?",
+   "fact": [
+    "Minnesota Vikings vs. Denver Broncos game on 2023-11-19",
+    "final_score",
+    "Broncos 21, Vikings 20"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Epic v. Google?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the injury status of Tyreek Hill?",
+   "fact": [
+    "Tyreek Hill",
+    "injury_status",
+    "hand injury, briefly left game, returned"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which team will Shohei Ohtani join?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Who is the manager of Chelsea?",
+   "fact": [
+    "Chelsea",
+    "managed_by",
+    "Mauricio Pochettino"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is D'Andre Swift's injury status?",
+   "fact": [
+    "D'Andre Swift",
+    "injury_status",
+    "took a hard hit; exited game; uncertain if hurt or kept out due to lopsided score"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which club does Lautaro Mart\u00ednez play for?",
+   "fact": [
+    "Lautaro Mart\u00ednez",
+    "plays_for",
+    "Internazionale"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which club does Lionel Messi play for?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tyreek Hill's injury status?",
+   "fact": [
+    "Tyreek Hill",
+    "injury_status",
+    "hand injury, briefly left game, returned"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Roschon Johnson's injury status?",
+   "fact": [
+    "Roschon Johnson",
+    "injury_status",
+    "back in action"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Wilson's injury status?",
+   "fact": [
+    "Wilson",
+    "injury_status",
+    "finger and abdomen injuries"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team won the Raiders vs. Lions game on 2023-10-30?",
+   "fact": [
+    "Raiders vs. Lions game on 2023-10-30",
+    "won_by",
+    "Detroit Lions"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani sign with?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Marquise Brown's injury status?",
+   "fact": [
+    "Marquise Brown",
+    "injury_status",
+    "exited early from his game with a heel injury"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Nishad Singh's current legal status?",
+   "fact": [
+    "Nishad Singh",
+    "pleaded_guilty_to",
+    "six charges, including wire fraud, money laundering, and conspiracy counts around his political donations"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Walmart's price-matching policy?",
+   "fact": [
+    "Walmart",
+    "price_matches_competitors",
+    "false"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of the Vikings vs. Broncos game on 2023-11-19?",
+   "fact": [
+    "Minnesota Vikings vs. Denver Broncos game on 2023-11-19",
+    "final_score",
+    "Broncos 21, Vikings 20"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Justin Fields' injury status?",
+   "fact": [
+    "Justin Fields",
+    "injury_status",
+    "expected to return to the field this week"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Khalil Herbert's injury status?",
+   "fact": [
+    "Khalil Herbert",
+    "injury_status",
+    "back in action"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What platforms is Super Mario Bros. Wonder available on?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "available_on",
+    "Nintendo Switch"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the final score of the Bears vs. Panthers game on 2023-11-09?",
+   "fact": [
+    "Bears vs. Panthers game on 2023-11-09",
+    "final_score",
+    "Chicago Bears 16, Carolina Panthers 13"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Caroline Ellison's current legal status?",
+   "fact": [
+    "Caroline Ellison",
+    "pleaded_guilty_to",
+    "criminal charges stemming from the FTX collapse"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Ja'Marr Chase's injury status?",
+   "fact": [
+    "Ja'Marr Chase",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What was the final score of the Chelsea vs Manchester City match on 2023-11-12?",
+   "fact": [
+    "Chelsea vs Manchester City match on 2023-11-12",
+    "final_score",
+    "4-4"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the USC vs. Notre Dame game on 2023-10-14?",
+   "fact": [
+    "USC vs. Notre Dame game on 2023-10-14",
+    "won_by",
+    "Notre Dame"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team does Lionel Messi play for?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Gary Wang's role at FTX?",
+   "fact": [
+    "Gary Wang",
+    "role_at",
+    "co-founder of FTX and Alameda Research"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the trial outcome for Sam Bankman-Fried?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Jonathan Taylor's injury status?",
+   "fact": [
+    "Jonathan Taylor",
+    "injury_status",
+    "out for next few weeks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Trevon Diggs' injury status?",
+   "fact": [
+    "Trevon Diggs",
+    "injury_status",
+    "season-ending ACL injury"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Aaron Jones's injury?",
+   "fact": [
+    "Aaron Jones",
+    "injury",
+    "knee injury (moderate MCL sprain, no ACL tear)"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team does Breece Hall play for?",
+   "fact": [
+    "Breece Hall",
+    "plays_for",
+    "New York Jets"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the regular price of the Epicka universal travel adapter?",
+   "fact": [
+    "Epicka universal travel adapter",
+    "regular_price",
+    "$25"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic v. Google trial?",
+   "fact": [
+    "Epic v. Google trial",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the verdict in Sam Bankman-Fried's court case?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Jonathan Taylor's injury status?",
+   "fact": [
+    "Jonathan Taylor",
+    "injury_status",
+    "out for next few weeks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the name of Travis Kelce's podcast?",
+   "fact": [
+    "Travis Kelce",
+    "hosts_podcast",
+    "New Heights with Jason and Travis Kelce"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the game referred to as Breath of the Wild?",
+   "fact": [
+    "Breath of the Wild",
+    "has_full_name",
+    "The Legend of Zelda: Breath of the Wild"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Who is the quarterback for the Cincinnati Bengals?",
+   "fact": [
+    "Cincinnati Bengals",
+    "starting_quarterback",
+    "Jake Browning"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Patrick Mahomes's team?",
+   "fact": [
+    "Patrick Mahomes",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "injury_status",
+    "returning"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which club does Reece James play for?",
+   "fact": [
+    "Reece James",
+    "plays_for",
+    "Chelsea"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of the Sony WH-1000XM4?",
+   "fact": [
+    "Sony WH-1000XM4",
+    "has_battery_life",
+    "30 hours"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Justin Herbert's injury status?",
+   "fact": [
+    "Justin Herbert",
+    "injury_status",
+    "season-ending hand injury"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the final score of the 2015 Cricket World Cup semi-final between India and Australia?",
+   "fact": [
+    "India vs Australia 2015 Cricket World Cup semi-final",
+    "final_score",
+    "Australia 329/7, India 233"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tre'Davious White's injury status?",
+   "fact": [
+    "Tre'Davious White",
+    "injury_status",
+    "lost for the season"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the kidney disease that Richelle Cranston has?",
+   "fact": [
+    "Richelle Cranston",
+    "injury_status",
+    "stage five chronic kidney disease"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Will Smith's age?",
+   "fact": [
+    "Will Smith",
+    "age",
+    "55"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will Juan Soto be traded to?",
+   "fact": [
+    "Juan Soto",
+    "traded_to",
+    "New York Yankees"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "When did the FTC file its antitrust complaint against Amazon?",
+   "fact": [
+    "Federal Trade Commission",
+    "sued_amazon_on",
+    "2023-09"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Where was Lionel Messi born?",
+   "fact": [
+    "Lionel Messi",
+    "born_in",
+    "Rosario"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Google Nest Hub?",
+   "fact": [
+    "Google Nest Hub",
+    "has_price",
+    "$50"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Daniel Jones's injury status?",
+   "fact": [
+    "Daniel Jones",
+    "injury_status",
+    "out for the season with an ACL injury"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Jim Harbaugh's role at Michigan?",
+   "fact": [
+    "Michigan",
+    "has_head_coach",
+    "Jim Harbaugh"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Reece James's injury status?",
+   "fact": [
+    "Reece James",
+    "injury_status",
+    "returned from injury, needs to be careful and little by little get back to full fitness"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tyreek Hill's injury status?",
+   "fact": [
+    "Tyreek Hill",
+    "injury_status",
+    "hand injury, briefly left game, returned"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of the Apple AirPods Pro (2nd Gen)?",
+   "fact": [
+    "Apple AirPods Pro (2nd Generation)",
+    "has_battery_life",
+    "up to six hours on a single charge"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team won the Cowboys vs. 49ers game on 2023-10-08?",
+   "fact": [
+    "Dallas Cowboys vs. San Francisco 49ers game on 2023-10-08",
+    "won_by",
+    "San Francisco 49ers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Thierry Breton's role at the European Commission?",
+   "fact": [
+    "Thierry Breton",
+    "has_role",
+    "EU\u2019s internal market commissioner"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Terry McLaurin's full name?",
+   "fact": [
+    "Terry McLaurin",
+    "has_full_name",
+    "Terry McLaurin"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Lionel Messi's injury status?",
+   "fact": [
+    "Lionel Messi",
+    "injury_status",
+    "fitness concerns"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the price of the 9th-gen iPad?",
+   "fact": [
+    "9th-gen iPad",
+    "has_price",
+    "$379"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "2015"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which team does Rhamondre Stevenson play for?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "plays_for",
+    "New England Patriots"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Zach Charbonnet's injury status?",
+   "fact": [
+    "Zach Charbonnet",
+    "injury_status",
+    "bruise on his knee"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Javonte Williams' injury status?",
+   "fact": [
+    "Javonte Williams",
+    "injury_status",
+    "no injury designation"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the injury status of Marvin Mims Jr.?",
+   "fact": [
+    "Marvin Mims Jr.",
+    "injury_status",
+    "full participant on Friday; hamstring injury"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's criminal trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Rhamondre Stevenson's injury status?",
+   "fact": [
+    "Rhamondre Stevenson",
+    "injury_status",
+    "out"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is D'Onta Foreman's injury status?",
+   "fact": [
+    "D'Onta Foreman",
+    "injury_status",
+    "out"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani join?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which team will Yoshinobu Yamamoto sign with?",
+   "fact": [
+    "Yoshinobu Yamamoto",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of the Amazon Echo Buds (2023)?",
+   "fact": [
+    "Amazon Echo Buds (2023)",
+    "has_battery_life",
+    "five or so hours per charge"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the verdict in Sam Bankman-Fried's court case?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team won the Raiders vs. Lions game on 2023-10-30?",
+   "fact": [
+    "Raiders vs. Lions game on 2023-10-30",
+    "won_by",
+    "Detroit Lions"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Zach Wilson's injury status?",
+   "fact": [
+    "Zach Wilson",
+    "injury_status",
+    "reportedly reluctant to play"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Josh Allen's team?",
+   "fact": [
+    "Josh Allen",
+    "plays_for",
+    "Buffalo Bills"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of the Michigan vs. Penn State game on 2023-11-11?",
+   "fact": [
+    "Michigan vs. Penn State game on 2023-11-11",
+    "final_score",
+    "Michigan 24, Penn State 15"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the injury status of Rashid Shaheed?",
+   "fact": [
+    "Rashid Shaheed",
+    "injury_status",
+    "thigh injury, missing the matchup"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Sony WF-1000XM5 deal?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "has_price",
+    "$248"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Joe Burrow's injury status?",
+   "fact": [
+    "Joe Burrow",
+    "injury_status",
+    "thumb injury that cost him the season"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Shohei Ohtani's injury status?",
+   "fact": [
+    "Shohei Ohtani",
+    "injury_status",
+    "will not pitch in 2024; recovering from September operation to repair right elbow's ulnar collateral ligament; underwent Tommy John surgery in 2018; reportedly had a second Tommy John procedure"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Zach Charbonnet's injury status?",
+   "fact": [
+    "Zach Charbonnet",
+    "injury_status",
+    "bruise on his knee"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the price-matching policy of Walmart specifically?",
+   "fact": [
+    "Walmart",
+    "price_matches_competitors",
+    "false"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the value of Shohei Ohtani's next contract?",
+   "fact": [
+    "Shohei Ohtani",
+    "has_contract_value",
+    "$700 million"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "Which team won the Cowboys vs. 49ers game on 2023-10-08?",
+   "fact": [
+    "Dallas Cowboys vs. San Francisco 49ers game on 2023-10-08",
+    "won_by",
+    "San Francisco 49ers"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Dak Prescott play for?",
+   "fact": [
+    "Dak Prescott",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is Lucas?",
+   "fact": [
+    "Lucas",
+    "is_a",
+    "10-year-old boy from Pittsburgh"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Geno Smith's injury?",
+   "fact": [
+    "Geno Smith",
+    "injury",
+    "elbow issue"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Zach Charbonnet's injury status?",
+   "fact": [
+    "Zach Charbonnet",
+    "injury_status",
+    "bruise on his knee"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Tre'Davious White's injury status?",
+   "fact": [
+    "Tre'Davious White",
+    "injury_status",
+    "lost for the season"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Epic v. Google trial?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "When will Tyler Glasnow be traded?",
+   "fact": [
+    "Tyler Glasnow",
+    "traded_on",
+    "2023-12-14"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Geno Smith's injury status?",
+   "fact": [
+    "Geno Smith",
+    "injury_status",
+    "questionable to return with an elbow issue, but returned; expected to play Thursday"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Jake Ferguson play for?",
+   "fact": [
+    "Jake Ferguson",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Ray-Ban Meta smart glasses?",
+   "fact": [
+    "Ray-Ban Meta Smart Glasses",
+    "has_price",
+    "$299"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is the outcome of Epic v. Google?",
+   "fact": [
+    "Epic v. Google",
+    "trial_outcome",
+    "Epic won"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What was the result of the Cowboys vs. 49ers game on 2023-10-08?",
+   "fact": [
+    "Dallas Cowboys vs. San Francisco 49ers game on 2023-10-08",
+    "final_score",
+    "49ers 42, Cowboys 10"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the injury status of Ja'Marr Chase?",
+   "fact": [
+    "Ja'Marr Chase",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What club does Tim Ream play for?",
+   "fact": [
+    "Tim Ream",
+    "member_of",
+    "Fulham"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Mobile Pixels portable monitor?",
+   "fact": [
+    "Mobile Pixels portable monitor",
+    "has_price",
+    "under $100"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "When did Britney Spears and Kevin Federline divorce?",
+   "fact": [
+    "Britney Spears and Kevin Federline",
+    "divorced_in_year",
+    "2007"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Google Pixel 8?",
+   "fact": [
+    "Google Pixel 8",
+    "has_price",
+    "$549"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is Salvon Ahmed's injury status?",
+   "fact": [
+    "Salvon Ahmed",
+    "injury_status",
+    "Injured Reserve with a foot injury"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Joe Alwyn's occupation?",
+   "fact": [
+    "Joe Alwyn",
+    "occupation",
+    "actor"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "trial_outcome",
+    "found guilty of seven criminal fraud counts"
+   ],
+   "shown": true,
+   "stated": true
+  },
+  {
+   "q": "What is Derek Carr's injury status?",
+   "fact": [
+    "Derek Carr",
+    "injury_status",
+    "head, shoulder, back"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Ja'Marr Chase's injury status?",
+   "fact": [
+    "Ja'Marr Chase",
+    "injury_status",
+    "not projected to play Week 16"
+   ],
+   "shown": true,
+   "stated": false
+  },
+  {
+   "q": "What is the welcome bonus amount at Caesars Sportsbook?",
+   "fact": [
+    "Caesars Sportsbook",
+    "has_welcome_offer",
+    "First Bet bonus up to $1,000"
+   ],
+   "shown": false,
+   "stated": true
+  }
+ ],
+ "cost_usd": 0.0159
+}

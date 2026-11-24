@@ -22,6 +22,9 @@ Same test as c2_semantic.py (keep that file: the 2026-11-10 numbers come from it
      --mem_n <k>              size of the memory sample (default n / 2)
      --pool <file>            the example pool for the leak check (default <run_dir>/faq_pool.json)
      --build <dir name>       the build directory, when it is not build_<variant>
+6. Option of 2026-11-24 (history builds):
+     --facts_from <var>       take the later facts from another build of the same stream. A history build shows
+                              its open questions to later passages, so its own facts are steered to them.
 
 Usage: uv run python analysis/c2_v2.py runs/musique_nall [--variant qbranch_qa] [--n 600]
 """
@@ -71,9 +74,11 @@ SHARED = arg("--shared_control", "")
 FIT_ONLY = "--fit_only" in sys.argv
 MEM_N = int(arg("--mem_n", N // 2))
 g = Graph(build.load_records(os.path.join(run_dir, BUILD_DIR)), VARIANT)
-F = answer.DenseIndex([g.fact_text(f) for f in g.facts])
+FACTS_FROM = arg("--facts_from", "")
+gF = Graph(build.load_records(os.path.join(run_dir, "build_" + FACTS_FROM)), FACTS_FROM) if FACTS_FROM else g
+F = answer.DenseIndex([gF.fact_text(f) for f in gF.facts])
 about = collections.defaultdict(list)
-for f in g.facts:
+for f in gF.facts:
     about[f["s_norm"]].append(f)
     if f["o_norm"] != f["s_norm"]:
         about[f["o_norm"]].append(f)
@@ -144,7 +149,7 @@ def check(facts, question):
     k = j.get("fact")
     f = facts[k - 1] if ok and isinstance(k, int) and 0 < k <= len(facts) else None
     return {"answered": ok, "answer": j.get("answer"), "fact": [f["s"], f["r"], f["o"]] if f else None,
-            "fact_batch": f["batch"] if f else None, "fact_title": g.pid_title[f["pid"]] if f else None}
+            "fact_batch": f["batch"] if f else None, "fact_title": gF.pid_title[f["pid"]] if f else None}
 
 
 def fits(entity, question):
@@ -253,6 +258,6 @@ out = {"run_dir": run_dir, "variant": VARIANT, "open_slots": len(g.open_slots), 
        "memory_given_earlier_facts": m_rate, "batch_gap_mean": float(np.mean(gaps)) if gaps else None,
        "cost_usd": llm.usage_report()["total_cost_usd"]}
 name = "c2_%s%s.json" % (VARIANT, "_" + TAG if TAG else "")
-json.dump({**out, "tag": TAG, "build_dir": BUILD_DIR, "shared_control": SHARED, "excluded_rows": len(seen),
+json.dump({**out, "tag": TAG, "facts_from": FACTS_FROM, "build_dir": BUILD_DIR, "shared_control": SHARED, "excluded_rows": len(seen),
            "rows": rows, "memory_rows": mem_rows}, open(os.path.join(run_dir, name), "w"), indent=1)
 print(json.dumps(out, indent=1))

@@ -1,0 +1,148 @@
+{
+ "mode": "diff",
+ "files": [
+  "runs/multihoprag_nall/c2_qbranch_confirm.json",
+  "runs/multihoprag_nall/c2_qbranch_hist_h.json"
+ ],
+ "min_batch": 1,
+ "name_only_rule": true,
+ "base": {
+  "rows": 2736,
+  "entities": 888,
+  "pred": [
+   0.1104,
+   0.0937,
+   0.1289
+  ],
+  "ctrl": [
+   0.0811,
+   0.0672,
+   0.0959
+  ],
+  "gap": [
+   0.0292,
+   0.0129,
+   0.0462
+  ],
+  "gap_n": 2736,
+  "gap_new": [
+   0.0245,
+   0.014,
+   0.0364
+  ],
+  "gap_new_n": 2736,
+  "gap_shared": [
+   0.0292,
+   0.0129,
+   0.0462
+  ],
+  "gap_shared_n": 2736,
+  "gap_nopool": [
+   0.0314,
+   0.0124,
+   0.0507
+  ],
+  "gap_nopool_n": 2229,
+  "pred_new": [
+   0.064,
+   0.0522,
+   0.0767
+  ],
+  "pred_nopool": [
+   0.1166,
+   0.0971,
+   0.1382
+  ]
+ },
+ "new": {
+  "rows": 3401,
+  "entities": 834,
+  "pred": [
+   0.1697,
+   0.1404,
+   0.2008
+  ],
+  "ctrl": [
+   0.0903,
+   0.0729,
+   0.1088
+  ],
+  "gap": [
+   0.0794,
+   0.0483,
+   0.1144
+  ],
+  "gap_n": 3401,
+  "gap_new": [
+   0.0662,
+   0.0385,
+   0.0996
+  ],
+  "gap_new_n": 3401,
+  "gap_shared": [
+   0.0928,
+   0.0585,
+   0.1303
+  ],
+  "gap_shared_n": 3353,
+  "gap_nopool": [
+   0.0875,
+   0.0525,
+   0.1285
+  ],
+  "gap_nopool_n": 2788,
+  "pred_new": [
+   0.1191,
+   0.0929,
+   0.1499
+  ],
+  "pred_nopool": [
+   0.1808,
+   0.1483,
+   0.2156
+  ]
+ },
+ "shared_entities": 534,
+ "new_minus_base_gap": [
+  0.0501,
+  0.015,
+  0.087
+ ],
+ "new_minus_base_pred": [
+  0.0593,
+  0.0254,
+  0.0945
+ ],
+ "new_minus_base_gap_shared": [
+  0.0635,
+  0.0244,
+  0.1032
+ ],
+ "new_minus_base_gap_new": [
+  0.0417,
+  0.012,
+  0.0755
+ ],
+ "new_minus_base_gap_nopool": [
+  0.0561,
+  0.0157,
+  0.0991
+ ],
+ "new_minus_base_pred_new": [
+  0.0551,
+  0.0267,
+  0.0859
+ ],
+ "new_minus_base_pred_nopool": [
+  0.0641,
+  0.0251,
+  0.1044
+ ],
+ "name_only_answers_removed": {
+  "c2_qbranch_confirm.json pred": 27,
+  "c2_qbranch_confirm.json random_fit": 51,
+  "c2_qbranch_hist_h.json pred": 15,
+  "c2_qbranch_hist_h.json random_fit": 16,
+  "c2_qbranch_hist_h.json random_fit_shared": 13
+ }
+}

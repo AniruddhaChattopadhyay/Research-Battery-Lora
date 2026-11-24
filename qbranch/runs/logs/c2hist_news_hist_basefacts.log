@@ -1,0 +1,49 @@
+{
+ "run_dir": "runs/multihoprag_nall",
+ "variant": "qbranch_hist",
+ "open_slots": 15241,
+ "passages": 4574,
+ "open_slots_per_passage": 3.3320944468736338,
+ "slots_with_a_later_batch": 13755,
+ "batches": 10,
+ "ceiling_some_later_fact": 0.29283896764812795,
+ "memory_ceiling_some_earlier_fact": 0.5806615776081425,
+ "sample_with_later_facts": 4000,
+ "fit_found": 0.9785,
+ "all_rows": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3914,
+   "pred": 0.11573837506387327,
+   "control": 0.10884006131834441,
+   "diff": [
+    0.006898313745528871,
+    -0.006642820643842616,
+    0.0201839550332141
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pool_rows": 734,
+ "rows_without_pool_entity": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3203,
+   "pred": 0.12019981267561661,
+   "control": 0.11676553231345614,
+   "diff": [
+    0.0034342803621604744,
+    -0.011863877614736186,
+    0.01810802372775523
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pred_over_all_slots": 0.033676481279534716,
+ "already_in_memory_over_all_slots": null,
+ "memory_given_earlier_facts": null,
+ "batch_gap_mean": 3.1543478260869566,
+ "cost_usd": 0.4447
+}

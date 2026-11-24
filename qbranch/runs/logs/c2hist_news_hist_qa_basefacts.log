@@ -1,0 +1,49 @@
+{
+ "run_dir": "runs/multihoprag_nall",
+ "variant": "qbranch_hist_qa",
+ "open_slots": 15443,
+ "passages": 4574,
+ "open_slots_per_passage": 3.3762571053782247,
+ "slots_with_a_later_batch": 13896,
+ "batches": 10,
+ "ceiling_some_later_fact": 0.2753310305123777,
+ "memory_ceiling_some_earlier_fact": 0.5649107656879677,
+ "sample_with_later_facts": 3826,
+ "fit_found": 0.9783063251437533,
+ "all_rows": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3743,
+   "pred": 0.13518567993588032,
+   "control": 0.11461394603259417,
+   "diff": [
+    0.020571733903286135,
+    0.005877638258081752,
+    0.035265829548490515
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pool_rows": 651,
+ "rows_without_pool_entity": {
+  "random_any": null,
+  "random_type": null,
+  "random_fit": {
+   "n": 3104,
+   "pred": 0.14690721649484537,
+   "control": 0.12048969072164949,
+   "diff": [
+    0.026417525773195876,
+    0.009664948453608248,
+    0.043170103092783504
+   ]
+  },
+  "random_fit_shared": null
+ },
+ "pred_over_all_slots": 0.036557282671272305,
+ "already_in_memory_over_all_slots": null,
+ "memory_given_earlier_facts": null,
+ "batch_gap_mean": 3.0511811023622046,
+ "cost_usd": 0.3848
+}

@@ -59,8 +59,9 @@ def load(path):
     if not RAW:
         for r in rows:
             drop_self(r, path)
-    g = Graph(build.load_records(os.path.join(d["run_dir"], d.get("build_dir") or "build_" + d["variant"])),
-              d["variant"])
+    ff = d.get("facts_from")  # the build that gave the later facts
+    g = Graph(build.load_records(os.path.join(d["run_dir"], "build_" + ff if ff else
+                                              d.get("build_dir") or "build_" + d["variant"])), ff or d["variant"])
     first = {}  # first batch in which memory links two entities or values
     for f in g.facts:
         k = frozenset((f["s_norm"], f["o_norm"]))

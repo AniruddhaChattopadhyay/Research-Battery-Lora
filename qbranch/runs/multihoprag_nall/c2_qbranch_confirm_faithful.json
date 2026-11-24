@@ -1,0 +1,3006 @@
+{
+ "file": "runs/multihoprag_nall/c2_qbranch_confirm.json",
+ "rows": [
+  {
+   "q": "Which club does Mohammed Kudus play for?",
+   "fact": [
+    "Mohammed Kudus",
+    "played_for",
+    "West Ham"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Jahmyr Gibbs play for?",
+   "fact": [
+    "Jahmyr Gibbs",
+    "plays_for",
+    "Detroit"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Tyrique Stevenson play for?",
+   "fact": [
+    "Tyrique Stevenson",
+    "plays_for",
+    "Chicago Bears"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Drake London play for?",
+   "fact": [
+    "Drake London",
+    "plays_for",
+    "Atlanta Falcons"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When did Eddie Jones become the coach of the Wallabies?",
+   "fact": [
+    "Eddie Jones",
+    "named_coach_on",
+    "2023"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "has_injury",
+    "out"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where is Hamas based?",
+   "fact": [
+    "Hamas",
+    "located_in",
+    "Gaza"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who directed Renaissance: A Film by Beyonc\u00e9?",
+   "fact": [
+    "Renaissance: A Film by Beyonc\u00e9",
+    "directed_by",
+    "Beyonc\u00e9"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What team does Jared Goff play for?",
+   "fact": [
+    "Jared Goff",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "late 2015"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the person being interviewed?",
+   "fact": [
+    "Tim Sweeney",
+    "is_a",
+    "interviewee"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who fired Sam Altman from OpenAI?",
+   "fact": [
+    "OpenAI board of directors",
+    "laid_off",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Rugby Australia?",
+   "fact": [
+    "Rugby Australia",
+    "has_ceo",
+    "Phil Waugh"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Tyjae Spears play for?",
+   "fact": [
+    "Tyjae Spears",
+    "plays_for",
+    "Tennessee Titans"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When was the Apple Watch Ultra 2 released?",
+   "fact": [
+    "Apple Watch Ultra 2",
+    "released_on",
+    "2023-09"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What platform is Super Mario Bros. Wonder available on?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "available_on",
+    "Nintendo Switch"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which NFL team does Matthew Stafford play for?",
+   "fact": [
+    "Matthew Stafford",
+    "plays_for",
+    "Los Angeles Rams"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Derek Carr's current team?",
+   "fact": [
+    "Derek Carr",
+    "plays_for",
+    "New Orleans Saints"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who founded Twitch?",
+   "fact": [
+    "Emmett Shear",
+    "founded",
+    "Twitch"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Rashee Rice play?",
+   "fact": [
+    "Rashee Rice",
+    "plays_position",
+    "wide receiver"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the Digital Services Act?",
+   "fact": [
+    "Digital Services Act",
+    "is_a",
+    "European Union\u2019s rebooted digital rulebook"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where was Cole Palmer born?",
+   "fact": [
+    "Cole Palmer",
+    "born_in",
+    "Wythenshawe"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Evan Engram play for?",
+   "fact": [
+    "Evan Engram",
+    "plays_for",
+    "Jaguars"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is Benjamin Netanyahu?",
+   "fact": [
+    "Benjamin Netanyahu",
+    "has_role",
+    "Prime Minister of Israel"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where is Gogoro headquartered?",
+   "fact": [
+    "Gogoro",
+    "headquartered_in",
+    "Taiwan"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "has_injury",
+    "out"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the final result of the Inter Miami vs FC Cincinnati match?",
+   "fact": [
+    "Inter Miami vs FC Cincinnati",
+    "final_score",
+    "1-0"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the population of Israel?",
+   "fact": [
+    "Israel",
+    "has_population",
+    "9.2 million"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Sam Froling play for?",
+   "fact": [
+    "Sam Froling",
+    "member_of",
+    "Illawarra Hawks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Deebo Samuel play for?",
+   "fact": [
+    "Deebo Samuel",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What club does Lautaro Martinez play for?",
+   "fact": [
+    "Lautaro Martinez",
+    "plays_for",
+    "Inter Milan"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Derek Carr's full name?",
+   "fact": [
+    "Derek Carr",
+    "full_name",
+    "Derek Carr"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the release date of Marvel's Spider-Man 2?",
+   "fact": [
+    "Marvel's Spider-Man 2",
+    "released_on",
+    "2023-11-01"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the battery life of the Sony WH-1000XM4?",
+   "fact": [
+    "Sony WH-1000XM4",
+    "has_feature",
+    "up to 30 hours on a single charge"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Google?",
+   "fact": [
+    "Google",
+    "has_ceo",
+    "Sundar Pichai"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Justin Jefferson play for?",
+   "fact": [
+    "Justin Jefferson",
+    "plays_for",
+    "Minnesota Vikings"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "late 2015"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who founded Google?",
+   "fact": [
+    "Larry Page",
+    "founded",
+    "Google"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When did Jada Pinkett Smith and Will Smith get married?",
+   "fact": [
+    "Will Smith",
+    "married_in_year",
+    "1997"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Sam Bankman-Fried's full name?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "has_full_name",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was Super Smash Bros. Ultimate released?",
+   "fact": [
+    "Super Smash Bros. Ultimate",
+    "released_in_year",
+    "2018"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Bryce Harper play for?",
+   "fact": [
+    "Bryce Harper",
+    "played_for",
+    "Philadelphia Phillies"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the release date of Spider-Man: Across the Spider-Verse?",
+   "fact": [
+    "Spider-Man: Across the Spider-Verse",
+    "published_on",
+    "2023-11-03"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who founded Flexport?",
+   "fact": [
+    "Flexport",
+    "founded_by",
+    "Ryan Petersen"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was the Apple Watch SE released?",
+   "fact": [
+    "Apple Watch SE",
+    "released_in_year",
+    "2022"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Breece Hall play?",
+   "fact": [
+    "Breece Hall",
+    "plays_position",
+    "running back"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which club does Christian Pulisic play for?",
+   "fact": [
+    "Christian Pulisic",
+    "plays_for",
+    "Milan"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the author of the article?",
+   "fact": [
+    "Megan Gray",
+    "written_by",
+    "article"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Microsoft?",
+   "fact": [
+    "Microsoft",
+    "has_ceo",
+    "Satya Nadella"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the promo code for Bet365?",
+   "fact": [
+    "Bet365",
+    "has_bonus_code",
+    "TSNCO"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is Tye Brady?",
+   "fact": [
+    "Tye Brady",
+    "has_role",
+    "chief technologist for robotics"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Cooper Kupp play for?",
+   "fact": [
+    "Cooper Kupp",
+    "plays_for",
+    "Los Angeles Rams"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Travis Kelce's occupation?",
+   "fact": [
+    "Travis Kelce",
+    "occupation",
+    "football player"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Justin Jefferson play for?",
+   "fact": [
+    "Justin Jefferson",
+    "plays_for",
+    "Vikings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the name of Bankman-Fried's father?",
+   "fact": [
+    "Joseph Bankman",
+    "has_child",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Saquon Barkley play for?",
+   "fact": [
+    "Saquon Barkley",
+    "plays_for",
+    "New York Giants"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Travis Kelce play for?",
+   "fact": [
+    "Travis Kelce",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the creator of Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Justin Jefferson play for?",
+   "fact": [
+    "Justin Jefferson",
+    "plays_for",
+    "Minnesota Vikings"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Sam Bankman-Fried's full name?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "has_full_name",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was the Sony WF-1000XM5 released?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "published_on",
+    "2023-07"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Cheslin Kolbe play?",
+   "fact": [
+    "Cheslin Kolbe",
+    "plays_position",
+    "winger"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Google?",
+   "fact": [
+    "Google",
+    "has_ceo",
+    "Sundar Pichai"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Dorian Thompson-Robinson's injury?",
+   "fact": [
+    "Dorian Thompson-Robinson",
+    "has_injury",
+    "concussion"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Derek Carr play for?",
+   "fact": [
+    "Derek Carr",
+    "plays_for",
+    "New Orleans Saints"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Ben Clark's occupation?",
+   "fact": [
+    "Ben Clark",
+    "has_role",
+    "portfolio manager"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Amon-Ra St. Brown play for?",
+   "fact": [
+    "Amon-Ra St. Brown",
+    "plays_for",
+    "Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team is Wilson on?",
+   "fact": [
+    "Wilson",
+    "plays_for",
+    "New York Jets"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the Beats Fit Pro?",
+   "fact": [
+    "Beats Fit Pro",
+    "has_price",
+    "$159"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Christian McCaffrey play for?",
+   "fact": [
+    "Christian McCaffrey",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Lionel Messi play for?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the name of the company that owns Twitch?",
+   "fact": [
+    "Twitch",
+    "owned_by",
+    "Amazon"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Rashee Rice?",
+   "fact": [
+    "Rashee Rice",
+    "full_name",
+    "Rashee Rice"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the Northern Lights?",
+   "fact": [
+    "Northern Lights",
+    "also_known_as",
+    "aurora borealis"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Tony Pollard play for?",
+   "fact": [
+    "Tony Pollard",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Jahmyr Gibbs play for?",
+   "fact": [
+    "Jahmyr Gibbs",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What platforms is Super Mario Bros. Wonder available on?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "available_on",
+    "Nintendo Switch"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is Sam Bankman-Fried's father?",
+   "fact": [
+    "Joseph Bankman",
+    "has_child",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does C.J. Stroud play for?",
+   "fact": [
+    "C.J. Stroud",
+    "plays_for",
+    "Houston Texans"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Levy's role or position?",
+   "fact": [
+    "Levy",
+    "role_at",
+    "foreign media advisor"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Google?",
+   "fact": [
+    "Google",
+    "has_ceo",
+    "Sundar Pichai"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of Caesars Sportsbook?",
+   "fact": [
+    "Caesars Sportsbook",
+    "has_full_name",
+    "NEWS1000"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the release date of Marvel's Spider-Man 2?",
+   "fact": [
+    "Marvel's Spider-Man 2",
+    "released_on",
+    "2023-11-01"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Tyler Lockett's full name?",
+   "fact": [
+    "Tyler Lockett",
+    "has_full_name",
+    "Tyler Lockett"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the ESR travel kit?",
+   "fact": [
+    "ESR travel kit",
+    "has_price",
+    "$40"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team is Chuba Hubbard associated with?",
+   "fact": [
+    "Chuba Hubbard",
+    "plays_for",
+    "Carolina Panthers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Chase Young play for?",
+   "fact": [
+    "Chase Young",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Joe Flacco play for?",
+   "fact": [
+    "Joe Flacco",
+    "plays_for",
+    "Cleveland Browns"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the NFL?",
+   "fact": [
+    "NFL",
+    "has_full_name",
+    "National Football League"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Dallas Goedert play for?",
+   "fact": [
+    "Dallas Goedert",
+    "plays_for",
+    "Philadelphia Eagles"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the resolution of the Blink Outdoor 4?",
+   "fact": [
+    "Blink Outdoor 4",
+    "has_feature",
+    "1080p resolution"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the release date of the Sony WF-1000XM5?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "published_on",
+    "2023-07"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Jared Goff play for?",
+   "fact": [
+    "Jared Goff",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the Buffalo Bills?",
+   "fact": [
+    "Buffalo Bills",
+    "has_full_name",
+    "Buffalo Bills"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Levy's full name?",
+   "fact": [
+    "Levy",
+    "has_full_name",
+    "Levy"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will sign Shohei Ohtani?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the release date of 1989 (Taylor's Version)?",
+   "fact": [
+    "1989 (Taylor's Version)",
+    "released_on",
+    "October 2023"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Matt Olson play for?",
+   "fact": [
+    "Atlanta Braves",
+    "has_player",
+    "Matt Olson"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Yoshinobu Yamamoto play for?",
+   "fact": [
+    "Yoshinobu Yamamoto",
+    "plays_for",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who developed Stardew Valley?",
+   "fact": [
+    "Stardew Valley",
+    "created_by",
+    "Eric Barone"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Disney?",
+   "fact": [
+    "Disney",
+    "has_ceo",
+    "Bob Iger"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the result of the match between Inter Miami and FC Cincinnati?",
+   "fact": [
+    "Inter Miami vs FC Cincinnati",
+    "final_score",
+    "1-0"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Walmart's price-matching policy?",
+   "fact": [
+    "Walmart",
+    "has_feature",
+    "no price matching with competitors or for online purchases that later decrease in price"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who founded Pebble?",
+   "fact": [
+    "Eric Migicovsky",
+    "founded",
+    "Pebble"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Jaylen Waddle's jersey number?",
+   "fact": [
+    "Jaylen Waddle",
+    "jersey_number",
+    "17"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the return and exchange period for Target?",
+   "fact": [
+    "Target",
+    "has_return_policy",
+    "accept most unopened items in new condition within 90 days of purchase"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who developed Stardew Valley?",
+   "fact": [
+    "Stardew Valley",
+    "created_by",
+    "Eric Barone"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does CeeDee Lamb play for?",
+   "fact": [
+    "CeeDee Lamb",
+    "plays_for",
+    "Dallas Cowboys"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Chris Olave play for?",
+   "fact": [
+    "Chris Olave",
+    "plays_for",
+    "Saints"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which club does Alphonso Davies play for?",
+   "fact": [
+    "Alphonso Davies",
+    "plays_for",
+    "Bayern"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the Chiefs?",
+   "fact": [
+    "Chiefs",
+    "has_full_name",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Sam LaPorta play for?",
+   "fact": [
+    "Sam LaPorta",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of BetMGM?",
+   "fact": [
+    "BetMGM",
+    "has_full_name",
+    "TSN50"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Chase Young play for?",
+   "fact": [
+    "Chase Young",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the Sporting News?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Levy's full name?",
+   "fact": [
+    "Levy",
+    "has_full_name",
+    "Levy"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was X designated as a Very Large Online Platform by the Commission?",
+   "fact": [
+    "X",
+    "designated_on",
+    "2023-04"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who owns the Carolina Panthers?",
+   "fact": [
+    "Carolina Panthers",
+    "owned_by",
+    "David Tepper"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Apple?",
+   "fact": [
+    "Apple",
+    "has_ceo",
+    "Tim Cook"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the battery life of the Sony WF-1000XM5 wireless earbuds?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "has_feature",
+    "seven to eight hours with average use"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Curtis Samuel play for?",
+   "fact": [
+    "Curtis Samuel",
+    "plays_for",
+    "Washington"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the head coach of the Wallabies?",
+   "fact": [
+    "Wallabies",
+    "has_coach",
+    "Eddie Jones"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the College Football Playoff?",
+   "fact": [
+    "College Football Playoff",
+    "defined_as",
+    "starts with the New Year's Six bowl games, of which two act as semifinal games to determine which teams will play in the National Championship"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What are the specific rules attached to Walmart's price-matching policy?",
+   "fact": [
+    "Walmart",
+    "has_feature",
+    "no price matching with competitors or for online purchases that later decrease in price"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the Philadelphia Eagles?",
+   "fact": [
+    "Eagles",
+    "has_full_name",
+    "Philadelphia Eagles"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "late 2015"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Where is Gogoro headquartered?",
+   "fact": [
+    "Gogoro",
+    "headquartered_in",
+    "Taiwan"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the jersey number of Russell Wilson?",
+   "fact": [
+    "Russell Wilson",
+    "jersey_number",
+    "3"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Christian McCaffrey play for?",
+   "fact": [
+    "Christian McCaffrey",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of FTX?",
+   "fact": [
+    "FTX",
+    "has_ceo",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the manager of Manchester United?",
+   "fact": [
+    "Manchester United",
+    "has_manager",
+    "Erik ten Hag"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Aaron Donald play for?",
+   "fact": [
+    "Aaron Donald",
+    "plays_for",
+    "Los Angeles Rams"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the price-matching policy for Amazon?",
+   "fact": [
+    "Amazon",
+    "has_feature",
+    "no price matching"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Levy's occupation?",
+   "fact": [
+    "Levy",
+    "worked_as",
+    "newsreader for i24News"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of the Google and Epic Games trial?",
+   "fact": [
+    "Epic Games lawsuit",
+    "defeated",
+    "Google"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was Erling Haaland born?",
+   "fact": [
+    "Erling Haaland",
+    "born_on",
+    "2000"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Microsoft?",
+   "fact": [
+    "Microsoft",
+    "has_ceo",
+    "Satya Nadella"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the current club of Lionel Messi?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Dak Prescott's full name?",
+   "fact": [
+    "Dak Prescott",
+    "has_full_name",
+    "Rayne Dakota Prescott"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Wilson play for?",
+   "fact": [
+    "Wilson",
+    "plays_for",
+    "New York Jets"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Rashee Rice play for?",
+   "fact": [
+    "Rashee Rice",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Terry McLaurin play for?",
+   "fact": [
+    "Terry McLaurin",
+    "plays_for",
+    "Washington Commanders"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Tyler Lockett's full name?",
+   "fact": [
+    "Tyler Lockett",
+    "has_full_name",
+    "Tyler Lockett"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Patrick Mahomes play for?",
+   "fact": [
+    "Patrick Mahomes",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Dallas Goedert's full name?",
+   "fact": [
+    "Dallas Goedert",
+    "full_name",
+    "Dallas Goedert"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Tears of the Kingdom?",
+   "fact": [
+    "Tears of the Kingdom",
+    "has_full_name",
+    "The Legend of Zelda: Tears of the Kingdom"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Tyler Lockett play for?",
+   "fact": [
+    "Tyler Lockett",
+    "plays_for",
+    "Seattle Seahawks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who developed Diablo 4?",
+   "fact": [
+    "Diablo 4",
+    "developed_by",
+    "Blizzard Entertainment"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Sam Howell's team?",
+   "fact": [
+    "Sam Howell",
+    "plays_for",
+    "Commanders"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Epic Games?",
+   "fact": [
+    "Epic Games",
+    "has_ceo",
+    "Tim Sweeney"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the price of the Apple Watch Ultra 2?",
+   "fact": [
+    "Apple Watch Ultra 2",
+    "has_price",
+    "$739"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Epic Games?",
+   "fact": [
+    "Epic Games",
+    "has_ceo",
+    "Tim Sweeney"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the price-matching policy of Amazon?",
+   "fact": [
+    "Amazon",
+    "has_feature",
+    "no price matching"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What was the final score of the game?",
+   "fact": [
+    "Buffalo Bills",
+    "final_score",
+    "31-10"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Travis Kelce's full name?",
+   "fact": [
+    "Travis Kelce",
+    "has_full_name",
+    "Travis Kelce"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the monthly fee for Meta's ad-free subscription in Europe?",
+   "fact": [
+    "Meta",
+    "has_price",
+    "\u20ac9.99 per month"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was Engadget founded?",
+   "fact": [
+    "Engadget",
+    "founded_in_year",
+    "2004"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Zach Charbonnet play for?",
+   "fact": [
+    "Zach Charbonnet",
+    "plays_for",
+    "Seattle Seahawks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Justin Jefferson play for?",
+   "fact": [
+    "Justin Jefferson",
+    "plays_for",
+    "Vikings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who founded Alameda Research?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "founded",
+    "Alameda Research"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who developed Super Mario Bros. Wonder?",
+   "fact": [
+    "Super Mario Bros. Wonder",
+    "developed_by",
+    "Nintendo EPD"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which NFL team does Jaylen Warren play for?",
+   "fact": [
+    "Jaylen Warren",
+    "plays_for",
+    "Steelers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Rachin Ravindra play for?",
+   "fact": [
+    "Rachin Ravindra",
+    "played_for",
+    "Chennai Super Kings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Patrick Mahomes play for?",
+   "fact": [
+    "Patrick Mahomes",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the battery life of the Apple AirPods Pro (2nd Gen)?",
+   "fact": [
+    "Apple AirPods Pro (2nd Generation)",
+    "has_feature",
+    "up to six hours on a single charge"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the fediverse?",
+   "fact": [
+    "fediverse",
+    "defined_as",
+    "an interconnected set of apps that can all read and write the same content"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Erik ten Hag's role at Manchester United?",
+   "fact": [
+    "Erik ten Hag",
+    "has_role",
+    "manager of Manchester United"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the price-matching policy of Walmart?",
+   "fact": [
+    "Walmart",
+    "has_feature",
+    "no price matching with competitors or for online purchases that later decrease in price"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the company that makes the MacBook Pro?",
+   "fact": [
+    "Apple",
+    "has_full_name",
+    "Apple"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the Amazon Robotics chief technologist?",
+   "fact": [
+    "Tye Brady",
+    "has_full_name",
+    "Tye Brady"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What team does Jordan Love play for?",
+   "fact": [
+    "Jordan Love",
+    "plays_for",
+    "Green Bay Packers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What team does Travis Kelce play for?",
+   "fact": [
+    "Travis Kelce",
+    "plays_for",
+    "Kansas City Chiefs"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Best Buy's price-matching policy?",
+   "fact": [
+    "Best Buy",
+    "has_feature",
+    "price matching from qualified competitors"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the outcome of Sam Bankman-Fried's trial?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "is",
+    "guilty on seven counts including charges of wire fraud"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was Bard released?",
+   "fact": [
+    "Bard",
+    "released_on",
+    "2023-02"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Maxx Crosby play for?",
+   "fact": [
+    "Maxx Crosby",
+    "plays_for",
+    "Las Vegas Raiders"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Tank Dell's injury?",
+   "fact": [
+    "Tank Dell",
+    "has_injury",
+    "fibula"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the NFL?",
+   "fact": [
+    "NFL",
+    "has_full_name",
+    "National Football League"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Lionel Messi play for?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Garrett Wilson play for?",
+   "fact": [
+    "Garrett Wilson",
+    "plays_for",
+    "New York Jets"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Mozilla?",
+   "fact": [
+    "Mitchell Baker",
+    "ceo_of",
+    "Mozilla"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which club does Alejandro Garnacho play for?",
+   "fact": [
+    "Alejandro Garnacho",
+    "plays_for",
+    "Manchester United"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Why is Dorian Thompson-Robinson out for the Browns?",
+   "fact": [
+    "Dorian Thompson-Robinson",
+    "has_injury",
+    "concussion"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Snap?",
+   "fact": [
+    "Snap",
+    "has_ceo",
+    "Evan Spiegel"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the NBA?",
+   "fact": [
+    "NBA",
+    "has_full_name",
+    "National Basketball Association"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which club does Lionel Messi play for?",
+   "fact": [
+    "Lionel Messi",
+    "plays_for",
+    "Inter Miami"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the battery life of Sony WH-CH720N?",
+   "fact": [
+    "Sony WH-CH720N",
+    "has_feature",
+    "up to 35 hours of continuous playback"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What position does Jaylen Warren play?",
+   "fact": [
+    "Jaylen Warren",
+    "is",
+    "a high-ceiling RB2 in a run-first offense"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the Digital Services Act (DSA)?",
+   "fact": [
+    "Digital Services Act",
+    "is_a",
+    "European Union\u2019s rebooted digital rulebook"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Sporting News?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the NBA?",
+   "fact": [
+    "NBA",
+    "has_full_name",
+    "National Basketball Association"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the name of the company that owns TikTok?",
+   "fact": [
+    "TikTok",
+    "owned_by",
+    "ByteDance"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When did Will Smith and Jada Pinkett Smith marry?",
+   "fact": [
+    "Will Smith",
+    "married_in_year",
+    "1997"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who developed Diablo 4?",
+   "fact": [
+    "Diablo 4",
+    "developed_by",
+    "Blizzard Entertainment"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Snap?",
+   "fact": [
+    "Snap",
+    "has_ceo",
+    "Evan Spiegel"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Jaylen Waddle play?",
+   "fact": [
+    "Jaylen Waddle",
+    "plays_position",
+    "wide receiver"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Fields play for?",
+   "fact": [
+    "Fields",
+    "plays_for",
+    "Chicago Bears"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What injury did Kenneth Walker III suffer?",
+   "fact": [
+    "Kenneth Walker III",
+    "has_injury",
+    "oblique"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the regular price of a Masterclass membership?",
+   "fact": [
+    "MasterClass membership",
+    "has_price",
+    "$10 a month"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When did Jada Pinkett Smith and Will Smith get married?",
+   "fact": [
+    "Will Smith",
+    "married_in_year",
+    "1997"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Cooper Kupp play for?",
+   "fact": [
+    "Cooper Kupp",
+    "plays_for",
+    "Los Angeles Rams"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "2015"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Joe Burrow play?",
+   "fact": [
+    "Joe Burrow",
+    "plays_position",
+    "quarterback"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does James Cook play for?",
+   "fact": [
+    "James Cook",
+    "plays_for",
+    "Buffalo Bills"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team will Shohei Ohtani sign with?",
+   "fact": [
+    "Shohei Ohtani",
+    "signed_with",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was the re-recorded version of 1989 released?",
+   "fact": [
+    "1989 (Taylor's Version)",
+    "released_on",
+    "October 2023"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Sam Altman's role at OpenAI?",
+   "fact": [
+    "Sam Altman",
+    "ceo_of",
+    "OpenAI"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Chase Young play for?",
+   "fact": [
+    "Chase Young",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When did Hamas attack Israelis?",
+   "fact": [
+    "Hamas",
+    "occurred_on",
+    "October 7"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Google?",
+   "fact": [
+    "Google",
+    "has_ceo",
+    "Sundar Pichai"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Rachaad White play for?",
+   "fact": [
+    "Rachaad White",
+    "plays_for",
+    "Tampa Bay Buccaneers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When was the Sony WF-1000XM5 released?",
+   "fact": [
+    "Sony WF-1000XM5",
+    "published_on",
+    "2023-07"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Microsoft?",
+   "fact": [
+    "Microsoft",
+    "has_ceo",
+    "Satya Nadella"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Stefon Diggs play for?",
+   "fact": [
+    "Stefon Diggs",
+    "plays_for",
+    "Bills"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What team does Sam LaPorta play for?",
+   "fact": [
+    "Sam LaPorta",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was the Apple Watch Series 9 released?",
+   "fact": [
+    "Apple Watch Series 9",
+    "released_on",
+    "2023-09"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was FTX founded?",
+   "fact": [
+    "FTX",
+    "founded_in_year",
+    "2019"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does David Montgomery play for?",
+   "fact": [
+    "David Montgomery",
+    "plays_for",
+    "Detroit Lions"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Garrett Wilson play for?",
+   "fact": [
+    "Garrett Wilson",
+    "plays_for",
+    "New York Jets"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Brandon Aiyuk play for?",
+   "fact": [
+    "Brandon Aiyuk",
+    "plays_for",
+    "49ers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Jordan Love play for?",
+   "fact": [
+    "Jordan Love",
+    "plays_for",
+    "Green Bay Packers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the publication that published this article?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Derrick Henry play for?",
+   "fact": [
+    "Derrick Henry",
+    "plays_for",
+    "Tennessee Titans"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Jayden Reed play for?",
+   "fact": [
+    "Jayden Reed",
+    "plays_for",
+    "Green Bay Packers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who developed Fortnite?",
+   "fact": [
+    "Fortnite",
+    "developed_by",
+    "Epic"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Jaxon Smith-Njigba play for?",
+   "fact": [
+    "Jaxon Smith-Njigba",
+    "plays_for",
+    "Seattle Seahawks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the interviewee?",
+   "fact": [
+    "Tim Sweeney",
+    "is_a",
+    "interviewee"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Tye Brady's occupation?",
+   "fact": [
+    "Tye Brady",
+    "has_role",
+    "chief technologist for robotics"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "When did Hamas launch deadly attacks on Israelis?",
+   "fact": [
+    "Hamas",
+    "occurred_on",
+    "2023-10-07"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was ChatGPT released?",
+   "fact": [
+    "ChatGPT",
+    "released_on",
+    "2022-11-30"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Pebble?",
+   "fact": [
+    "Pebble",
+    "has_ceo",
+    "Gabor Cselle"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What team does Bo Bichette play for?",
+   "fact": [
+    "Bo Bichette",
+    "associated_with",
+    "Toronto Blue Jays"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Justin Jefferson play for?",
+   "fact": [
+    "Justin Jefferson",
+    "plays_for",
+    "Minnesota Vikings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the Carolina Panthers' head coach?",
+   "fact": [
+    "Carolina Panthers",
+    "has_head_coach",
+    "Frank Reich"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of the Miami NFL team?",
+   "fact": [
+    "Miami Dolphins",
+    "has_full_name",
+    "Miami Dolphins"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When did Will Smith and Jada Pinkett Smith get married?",
+   "fact": [
+    "Will Smith",
+    "married_in_year",
+    "1997"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Where are the Kansas City Chiefs located?",
+   "fact": [
+    "Kansas City Chiefs",
+    "located_in",
+    "AFC West"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Salvon Ahmed play for?",
+   "fact": [
+    "Salvon Ahmed",
+    "plays_for",
+    "Miami Dolphins"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Simon Calder?",
+   "fact": [
+    "Simon Calder",
+    "has_full_name",
+    "Simon Calder"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of the MacBook Pro?",
+   "fact": [
+    "MacBook Pro",
+    "has_price",
+    "$1,800"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where was Levy born?",
+   "fact": [
+    "Levy",
+    "born_in",
+    "England"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of Sam Bankman-Fried?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "has_full_name",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the full name of Sam Bankman-Fried?",
+   "fact": [
+    "Sam Bankman-Fried",
+    "has_full_name",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Joshua Dobbs play for?",
+   "fact": [
+    "Joshua Dobbs",
+    "plays_for",
+    "Minnesota Vikings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of FTX?",
+   "fact": [
+    "FTX",
+    "has_ceo",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which club does Colwill play for?",
+   "fact": [
+    "Chelsea",
+    "includes",
+    "Colwill"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was Netflix founded?",
+   "fact": [
+    "Netflix",
+    "founded_in_year",
+    "2021"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Taylor Swift's occupation?",
+   "fact": [
+    "Taylor Swift",
+    "occupation",
+    "singer"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Joshua Dobbs play for?",
+   "fact": [
+    "Joshua Dobbs",
+    "plays_for",
+    "Minnesota Vikings"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where is OpenAI headquartered?",
+   "fact": [
+    "OpenAI",
+    "headquartered_in",
+    "San Francisco"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What team does Tyler Glasnow play for?",
+   "fact": [
+    "Tyler Glasnow",
+    "plays_for",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Snap?",
+   "fact": [
+    "Snap",
+    "has_ceo",
+    "Evan Spiegel"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of a Nest Aware membership?",
+   "fact": [
+    "Nest Aware",
+    "has_price",
+    "$6 per month"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NFL team does Davante Adams play for?",
+   "fact": [
+    "Davante Adams",
+    "plays_for",
+    "Raiders"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What position does Travis Kelce play?",
+   "fact": [
+    "Travis Kelce",
+    "plays_position",
+    "tight end"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "When was OpenAI founded?",
+   "fact": [
+    "OpenAI",
+    "founded_in_year",
+    "late 2015"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is Levy's full name?",
+   "fact": [
+    "Levy",
+    "has_full_name",
+    "Levy"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What was the final score of the match?",
+   "fact": [
+    "India",
+    "final_score",
+    "75"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team does Shohei Ohtani currently play for?",
+   "fact": [
+    "Shohei Ohtani",
+    "plays_for",
+    "Los Angeles Dodgers"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Who is the CEO of Meta?",
+   "fact": [
+    "Meta",
+    "has_ceo",
+    "Mark Zuckerberg"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the NFL?",
+   "fact": [
+    "NFL",
+    "has_full_name",
+    "National Football League"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Where is Manchester United located?",
+   "fact": [
+    "Manchester United",
+    "located_in",
+    "Newton Heath"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the manager of Manchester United?",
+   "fact": [
+    "Manchester United",
+    "has_manager",
+    "Erik ten Hag"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is Justin Jefferson's injury status?",
+   "fact": [
+    "Justin Jefferson",
+    "has_injury",
+    "out"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which team did the Bengals defeat?",
+   "fact": [
+    "Cincinnati Bengals",
+    "defeated",
+    "Buffalo Bills"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the final score of Inter Miami vs FC Cincinnati?",
+   "fact": [
+    "Inter Miami vs FC Cincinnati",
+    "final_score",
+    "1-0"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Which NBA team did Anthony Lamb play for?",
+   "fact": [
+    "Anthony Lamb",
+    "played_for",
+    "Golden State Warriors"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does George Kittle play for?",
+   "fact": [
+    "George Kittle",
+    "plays_for",
+    "San Francisco 49ers"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of Sony WH-1000XM5?",
+   "fact": [
+    "Sony WH-1000XM5",
+    "has_price",
+    "$328"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the full name of the publication that published this article?",
+   "fact": [
+    "Sporting News",
+    "has_full_name",
+    "Sporting News"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who founded FTX?",
+   "fact": [
+    "FTX",
+    "founded_by",
+    "Sam Bankman-Fried"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the price of Nintendo Switch Online subscription?",
+   "fact": [
+    "Nintendo Switch Online",
+    "has_price",
+    "$19.99 a year"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What is the Caesars Sportsbook promo code?",
+   "fact": [
+    "Caesars Sportsbook",
+    "has_promo_code",
+    "NEWS1000"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "Which team does Cheslin Kolbe play for?",
+   "fact": [
+    "Cheslin Kolbe",
+    "plays_for",
+    "Springboks"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Apple?",
+   "fact": [
+    "Apple",
+    "has_ceo",
+    "Tim Cook"
+   ],
+   "shown": false,
+   "stated": true
+  },
+  {
+   "q": "What club team does Christian Pulisic play for?",
+   "fact": [
+    "Christian Pulisic",
+    "plays_for",
+    "Milan"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of OpenAI?",
+   "fact": [
+    "OpenAI",
+    "has_ceo",
+    "Sam Altman"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Coinbase?",
+   "fact": [
+    "Coinbase",
+    "has_ceo",
+    "Brian Armstrong"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "Who is the CEO of Microsoft?",
+   "fact": [
+    "Microsoft",
+    "has_ceo",
+    "Satya Nadella"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What is the name of the author of the passage?",
+   "fact": [
+    "Medea",
+    "has_role",
+    "author"
+   ],
+   "shown": false,
+   "stated": false
+  },
+  {
+   "q": "What are the specific rules attached to Target's price-matching policy?",
+   "fact": [
+    "Target",
+    "has_feature",
+    "price adjustment for purchases made between Oct. 22 and Dec. 24 if the cost lowers and proof of purchase is shown"
+   ],
+   "shown": false,
+   "stated": true
+  }
+ ],
+ "cost_usd": 0.0168
+}

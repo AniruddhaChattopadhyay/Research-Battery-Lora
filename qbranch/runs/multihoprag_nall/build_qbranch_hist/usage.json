@@ -1,0 +1,22 @@
+{
+ "by_model": {
+  "deepseek/deepseek-v4.1-flash": {
+   "calls": 4780,
+   "cached_calls": 0,
+   "prompt": 7517415,
+   "completion": 5428334,
+   "reasoning": 718395,
+   "cost": 4.741795376000001
+  },
+  "google/gemini-embedding-2": {
+   "calls": 533,
+   "cached_calls": 0,
+   "prompt": 519609,
+   "completion": 0,
+   "reasoning": 0,
+   "cost": 0.10392180000000001
+  }
+ },
+ "total_cost_usd": 4.8457,
+ "build_cost_from_records_usd": 4.1891
+}

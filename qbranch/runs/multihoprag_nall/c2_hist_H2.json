@@ -1,0 +1,149 @@
+{
+ "mode": "diff",
+ "files": [
+  "runs/multihoprag_nall/c2_qbranch_hist_h.json",
+  "runs/multihoprag_nall/c2_qbranch_hist_qa_h.json"
+ ],
+ "min_batch": 1,
+ "name_only_rule": true,
+ "base": {
+  "rows": 3401,
+  "entities": 834,
+  "pred": [
+   0.1697,
+   0.1404,
+   0.2008
+  ],
+  "ctrl": [
+   0.0903,
+   0.0729,
+   0.1088
+  ],
+  "gap": [
+   0.0794,
+   0.0483,
+   0.1144
+  ],
+  "gap_n": 3401,
+  "gap_new": [
+   0.0662,
+   0.0385,
+   0.0996
+  ],
+  "gap_new_n": 3401,
+  "gap_shared": [
+   0.0928,
+   0.0585,
+   0.1303
+  ],
+  "gap_shared_n": 3353,
+  "gap_nopool": [
+   0.0875,
+   0.0525,
+   0.1285
+  ],
+  "gap_nopool_n": 2788,
+  "pred_new": [
+   0.1191,
+   0.0929,
+   0.1499
+  ],
+  "pred_nopool": [
+   0.1808,
+   0.1483,
+   0.2156
+  ]
+ },
+ "new": {
+  "rows": 3333,
+  "entities": 832,
+  "pred": [
+   0.1941,
+   0.157,
+   0.2341
+  ],
+  "ctrl": [
+   0.1017,
+   0.0794,
+   0.127
+  ],
+  "gap": [
+   0.0924,
+   0.0611,
+   0.1304
+  ],
+  "gap_n": 3333,
+  "gap_new": [
+   0.0735,
+   0.0442,
+   0.1122
+  ],
+  "gap_new_n": 3333,
+  "gap_shared": [
+   0.1071,
+   0.0736,
+   0.1451
+  ],
+  "gap_shared_n": 3278,
+  "gap_nopool": [
+   0.1037,
+   0.0689,
+   0.1465
+  ],
+  "gap_nopool_n": 2776,
+  "pred_new": [
+   0.117,
+   0.0891,
+   0.1525
+  ],
+  "pred_nopool": [
+   0.2104,
+   0.1688,
+   0.2558
+  ]
+ },
+ "shared_entities": 524,
+ "new_minus_base_gap": [
+  0.013,
+  -0.0147,
+  0.0409
+ ],
+ "new_minus_base_pred": [
+  0.0245,
+  -0.0061,
+  0.0562
+ ],
+ "new_minus_base_gap_shared": [
+  0.0143,
+  -0.0157,
+  0.0447
+ ],
+ "new_minus_base_gap_new": [
+  0.0074,
+  -0.0181,
+  0.0325
+ ],
+ "new_minus_base_gap_nopool": [
+  0.0162,
+  -0.0155,
+  0.0473
+ ],
+ "new_minus_base_pred_new": [
+  -0.0021,
+  -0.0252,
+  0.0204
+ ],
+ "new_minus_base_pred_nopool": [
+  0.0296,
+  -0.005,
+  0.0651
+ ],
+ "name_only_answers_removed": {
+  "c2_qbranch_hist_h.json pred": 15,
+  "c2_qbranch_hist_h.json random_fit": 16,
+  "c2_qbranch_hist_h.json random_fit_shared": 13,
+  "c2_qbranch_hist_qa_h.json pred": 34,
+  "c2_qbranch_hist_qa_h.json random_fit": 69,
+  "c2_qbranch_hist_qa_h.json random_fit_shared": 52
+ }
+}
